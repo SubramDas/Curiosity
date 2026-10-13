@@ -1,0 +1,33 @@
+{
+  "name": "learning-app-feasibility",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "test": "node experiments/phase-2/tests/services.test.mjs && tsx --test tests/*.test.ts",
+    "dev": "node --env-file=.env server/dev.mjs",
+    "build": "tsc --noEmit && vite build",
+    "test:browser": "playwright test",
+    "phase2:check": "node experiments/phase-2/run.mjs check",
+    "phase2:search": "node --env-file=.env experiments/phase-2/run.mjs search",
+    "phase2:chat": "node --env-file=.env experiments/phase-2/run.mjs chat",
+    "phase2:review-chat": "node --env-file=.env experiments/phase-2/review-chat.mjs",
+    "phase2:check-config": "node --env-file=.env experiments/phase-2/run.mjs check"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "prettier": "3.9.10",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}

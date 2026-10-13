@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+coverage/
+*.log
+phase-2-results/
+.local-data/
+playwright-report/
+test-results/
+
+# Workspace-specific Codex settings
+.codex/

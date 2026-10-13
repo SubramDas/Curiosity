@@ -1,0 +1,235 @@
+.status-message {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0;
+}
+.suggestions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0 24px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.suggestions button {
+  background: #f2f2f2;
+  color: inherit;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 18px;
+}
+.feed-section {
+  margin: 24px 0 32px;
+}
+.feed-section > h1,
+.feed-section > h2 {
+  margin-bottom: 8px;
+}
+.feed-section > .muted {
+  margin: 0 0 20px;
+  font-size: 13px;
+}
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 22px;
+}
+.video-result {
+  min-width: 0;
+  scroll-margin-top: 140px;
+}
+.video-result.expanded-result {
+  grid-column: 1/-1;
+}
+.video-card {
+  display: block;
+  background: transparent;
+  color: inherit;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  border-radius: 12px;
+}
+.video-thumbnail {
+  display: block;
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eee;
+  width: 100%;
+}
+.video-thumbnail > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.thumbnail-fallback {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 400;
+}
+.duration-badge {
+  position: absolute;
+  bottom: 9px;
+  right: 9px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #000c;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+}
+.watch-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #ffffff50;
+}
+.watch-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--green);
+}
+.video-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 12px;
+}
+.channel-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e5eee9;
+  color: var(--green);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.video-copy {
+  min-width: 0;
+}
+.video-copy strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.video-copy small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+.progress-label {
+  display: block;
+  margin: 7px 0 0 43px;
+  font-size: 11px;
+  color: var(--green);
+}
+.expanded-result > .video-card {
+  display: none;
+}
+.expanded-result > .video-card.selected {
+  display: block;
+  max-width: 360px;
+  margin-top: 18px;
+}
+.expanded-result > .video-card .video-thumbnail {
+  display: none;
+}
+.expanded-result > .video-card .video-info {
+  display: none;
+}
+.expanded-result > .video-card .progress-label {
+  margin: 0;
+  text-align: left;
+}
+.shorts-shelf {
+  margin: 32px 0;
+  border-top: 1px solid var(--line);
+  padding-top: 26px;
+}
+.shorts-shelf h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.shorts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+.short-card {
+  display: block;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  min-width: 0;
+}
+.video-thumbnail.portrait {
+  aspect-ratio: 9/16;
+  border-radius: 12px;
+}
+.short-card strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 10px 0 5px;
+}
+.short-card small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+.continue-watching {
+  margin: 24px 0 30px;
+}
+.continue-watching h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.empty-state {
+  background: #f8f8f8;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.skeleton-card {
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  background: #f1f1f1;
+}
+.feed-loading p {
+  color: var(--muted);
+  font-size: 13px;
+}

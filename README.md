@@ -87,3 +87,13 @@ Current evidence and remaining checks: [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md).
 - For account progress, run [002_video_progress.sql](supabase/migrations/002_video_progress.sql) once in the development SQL Editor, then run [video_progress_access.sql](supabase/tests/video_progress_access.sql). This adds a separate table without changing saved topics. The test rolls back its temporary records; if it errors, run `rollback;` before further SQL work.
 - Restart `npm run dev` to load the new server routes. The account migration and live account progress check remain pending until the founder runs them. Connection loss or abruptly closing the browser can lose the latest unsynced account position; the interface reports sync failures when the page remains open.
 # Curiosity
+
+## Approved desktop layout
+
+The app now uses the approved [Figma layout](https://www.figma.com/design/miSY1sBxnsGIfjjUgx6Djp?node-id=5-2): search and sign-in in the header, saved broad subjects in the sidebar, thumbnail videos, a Shorts shelf, and chat beside topic results. Mobile navigation opens from the menu button.
+
+The top bar shows **Trending**, then subjects from successful saved searches. Trending contains recent popular learning videos from YouTube; suggestions use up to two saved searches. English is preferred, but other languages can appear. Views are not a quality review.
+
+**Restart your existing `npm run dev` process** to load the new `/api/feed/home` route. No new keys, packages, or database migration are required for the redesign. Account playback sync still needs the previously documented video-progress setup.
+
+See [the design handoff](design/review/DESIGN_REVIEW.md) for the implementation, optional features, and verification details.

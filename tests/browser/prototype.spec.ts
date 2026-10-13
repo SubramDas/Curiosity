@@ -1,0 +1,543 @@
+import { test, expect } from "@playwright/test";
+const videos = [
+  {
+    id: "Kgcfj_KV-mo",
+    title: "How GPUs work",
+    channel: "Example",
+    watchUrl: "https://www.youtube.com/watch?v=Kgcfj_KV-mo",
+    reviewed: false,
+    details: { embeddable: true, privacyStatus: "public", duration: "PT3M53S" },
+  },
+];
+
+test.beforeEach(async ({ page }) => {
+  await page.route("**/api/feed/home", (route) =>
+    route.fulfill({
+      json: { trending: [], recommendations: [], messages: [] },
+    }),
+  );
+});
+
+test("Search, pagination, grouped guest topics, reload, and related tags work without duplicates", async ({
+  page,
+}) => {
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({ json: { videos, nextPageToken: "next" } }),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await expect(page.getByRole("button", { name: /How GPUs work/ })).toHaveCount(
+    1,
+  );
+  await page.getByRole("button", { name: "Load more videos" }).click();
+  await expect(page.getByRole("button", { name: /How GPUs work/ })).toHaveCount(
+    1,
+  );
+  await page.getByLabel("Search any topic").fill("AMD");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await expect(
+    page.getByText("2 topics explored", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".topic-tile")).toHaveCount(1);
+  await page.getByLabel("Search any topic").fill("Income tax on GPU imports");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await page.getByRole("button", { name: /Money & Business.*Explore/ }).click();
+  await page
+    .getByRole("button", { name: "Society, History & Law", exact: true })
+    .click();
+  await expect(
+    page.getByText("This is a related-subject preview.", { exact: false }),
+  ).toBeVisible();
+  await expect(page.locator(".topic-tile")).toHaveCount(2);
+  await page.reload();
+  await expect(
+    page.getByText("3 topics explored", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".topic-tile")).toHaveCount(2);
+});
+
+test("Chat failure is visible, and an offered demo break persists without inventing clips", async ({
+  page,
+}) => {
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({ json: { videos, nextPageToken: null } }),
+  );
+  await page.route("**/api/chat", (route) =>
+    route.fulfill({
+      status: 400,
+      json: { message: "The service limit was reached." },
+    }),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByLabel("What would you like explained?")
+    .fill("How does CUDA work?");
+  await page.getByRole("button", { name: "Ask →" }).click();
+  await expect(page.getByRole("alert")).toContainText(
+    "The service limit was reached.",
+  );
+  await page.evaluate(() =>
+    localStorage.setItem(
+      "curiosity-clock:computing:gpu:demo",
+      JSON.stringify({ seconds: 30, offered: true }),
+    ),
+  );
+  await page.getByText("Developer options", { exact: true }).click();
+  await page.getByLabel("30-second timer demo").check();
+  await expect(
+    page.getByRole("heading", { name: "Take a small related break" }),
+  ).toBeVisible();
+  await expect(page.locator(".break-panel .video-card")).toHaveCount(0);
+  await page.getByRole("button", { name: "Find related clips" }).click();
+  await expect(page.locator(".break-panel .video-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "Return to learning" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Ask a doubt" }),
+  ).toBeVisible();
+});
+
+test("Unavailable embedded video offers a clear alternative", async ({
+  page,
+}) => {
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({
+      json: {
+        videos: [
+          {
+            ...videos[0],
+            details: { ...videos[0].details, embeddable: false },
+          },
+        ],
+        nextPageToken: null,
+      },
+    }),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page.getByRole("button", { name: /How GPUs work/ }).click();
+  await expect(page.getByRole("alert")).toContainText("not available");
+  await expect(
+    page.getByRole("link", { name: "Open on YouTube ↗" }),
+  ).toBeVisible();
+});
+
+async function mockPlayer(page: import("@playwright/test").Page) {
+  await page.addInitScript(() => {
+    const state = window as unknown as {
+      YT: unknown;
+      mockPlayers: {
+        id: string;
+        position: number;
+        destroyed: boolean;
+        playing: boolean;
+        seeks: number[];
+        pause: () => void;
+        finish: () => void;
+      }[];
+    };
+    state.mockPlayers = [];
+    state.YT = {
+      Player: class {
+        id: string;
+        position = 0;
+        destroyed = false;
+        playing = false;
+        seeks: number[] = [];
+        constructor(
+          host: HTMLElement,
+          private options: {
+            videoId: string;
+            events: {
+              onReady: (e: unknown) => void;
+              onStateChange: (e: { data: number }) => void;
+            };
+          },
+        ) {
+          this.id = options.videoId;
+          host.textContent = `Mock player ${this.id}`;
+          state.mockPlayers.push(this);
+          setTimeout(() => options.events.onReady({ target: this }), 50);
+        }
+        getCurrentTime() {
+          return this.position;
+        }
+        getDuration() {
+          return 234;
+        }
+        seekTo(seconds: number) {
+          this.position = seconds;
+          this.seeks.push(seconds);
+        }
+        mute() {}
+        playVideo() {
+          this.playing = true;
+          this.options.events.onStateChange({ data: 1 });
+        }
+        pauseVideo() {
+          this.playing = false;
+          this.options.events.onStateChange({ data: 2 });
+        }
+        pause() {
+          this.position = 72;
+          this.pauseVideo();
+        }
+        finish() {
+          this.position = 234;
+          this.options.events.onStateChange({ data: 0 });
+        }
+        destroy() {
+          this.destroyed = true;
+          this.playing = false;
+        }
+      },
+    };
+  });
+}
+
+test("Long video stays above its result; guest progress survives reload and resumes", async ({
+  page,
+}) => {
+  await mockPlayer(page);
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({ json: { videos, nextPageToken: null } }),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page.getByRole("button", { name: /How GPUs work/ }).click();
+  await expect(page.locator(".video-result .player-section")).toHaveCount(1);
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers.length))
+    .toBe(1);
+  await page.waitForTimeout(100);
+  await page.evaluate(() => (window as any).mockPlayers[0].pause());
+  await expect(
+    page
+      .getByRole("region", { name: "Continue watching" })
+      .getByRole("button", { name: /How GPUs work Continue at 1:12/ }),
+  ).toBeVisible();
+  await page.reload();
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByRole("region", { name: "Continue watching" })
+    .getByRole("button")
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.seeks))
+    .toEqual([72]);
+});
+
+test("Scrolling short videos replaces and stops the previous player", async ({
+  page,
+}) => {
+  await mockPlayer(page);
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({
+      json: {
+        videos: [
+          { ...videos[0], details: { ...videos[0].details, duration: "PT1M" } },
+          {
+            ...videos[0],
+            id: "abcdefghijk",
+            title: "Another short",
+            details: { ...videos[0].details, duration: "PT2M" },
+          },
+        ],
+        nextPageToken: null,
+      },
+    }),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page
+    .getByLabel("Video format")
+    .getByRole("button", { name: "Short videos", exact: true })
+    .click();
+  await page.locator(".reel-feed").scrollIntoViewIfNeeded();
+  await expect(page.locator(".short-player")).toHaveCount(1);
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.playing))
+    .toBe(true);
+  await page.locator(".reel-feed").evaluate((element) => {
+    element.scrollTop = element.clientHeight;
+  });
+  await expect(page.locator(".short-player h3")).toHaveText("Another short");
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: "/tmp/curiosity-short-feed-mobile.png" });
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.destroyed))
+    .toBe(true);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as any).mockPlayers.filter((p: any) => !p.destroyed).length,
+      ),
+    )
+    .toBe(1);
+});
+
+test("Account progress loads independently of guest storage and saves the paused position", async ({
+  page,
+}) => {
+  await mockPlayer(page);
+  const saved: unknown[] = [];
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: true } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({ json: { videos, nextPageToken: null } }),
+  );
+  await page.route("**/api/auth/sign-in", (route) =>
+    route.fulfill({ json: { accessToken: "test-account-token" } }),
+  );
+  await page.route("**/api/topics/list", (route) =>
+    route.fulfill({ json: [] }),
+  );
+  await page.route("**/api/topics/save", (route) =>
+    route.fulfill({ json: [] }),
+  );
+  await page.route("**/api/progress/list", (route) =>
+    route.fulfill({
+      json: [
+        {
+          video_id: videos[0].id,
+          topic_key: "computing:gpu",
+          position_seconds: 45,
+          duration_seconds: 234,
+          completed: false,
+        },
+      ],
+    }),
+  );
+  await page.route("**/api/progress/save", (route) => {
+    saved.push(route.request().postDataJSON());
+    return route.fulfill({ json: { saved: true } });
+  });
+  await page.goto("/");
+  await page.locator(".account-panel summary").click();
+  await page
+    .getByLabel("Email", { exact: true })
+    .fill("developer@example.invalid");
+  await page.getByLabel("Password", { exact: true }).fill("test-only-password");
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Sign out", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByRole("region", { name: "Continue watching" })
+    .getByRole("button")
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.seeks))
+    .toEqual([45]);
+  await page.evaluate(() => (window as any).mockPlayers[0].pause());
+  await expect
+    .poll(() =>
+      saved.some(
+        (row: any) =>
+          row.position_seconds === 72 && row.video_id === videos[0].id,
+      ),
+    )
+    .toBe(true);
+  expect(
+    await page.evaluate(() =>
+      localStorage.getItem("curiosity-video-progress-v1"),
+    ),
+  ).toBeNull();
+});
+
+test("Continue watching restores a saved video missing from fresh search results", async ({
+  page,
+}) => {
+  await mockPlayer(page);
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({
+      json: {
+        videos: [
+          { ...videos[0], id: "abcdefghijk", title: "New search result" },
+        ],
+        nextPageToken: null,
+      },
+    }),
+  );
+  await page.route("**/api/videos/details", (route) =>
+    route.fulfill({ json: videos }),
+  );
+  await page.addInitScript(() =>
+    localStorage.setItem(
+      "curiosity-video-progress-v1",
+      JSON.stringify([
+        {
+          video_id: "Kgcfj_KV-mo",
+          topic_key: "computing:gpu",
+          position_seconds: 90,
+          duration_seconds: 234,
+          completed: false,
+        },
+      ]),
+    ),
+  );
+  await page.goto("/");
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByRole("region", { name: "Continue watching" })
+    .getByRole("button")
+    .click();
+  await expect(page.locator(".video-result .player-section h3")).toHaveText(
+    "How GPUs work",
+  );
+  await expect
+    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.seeks))
+    .toEqual([90]);
+  await page.evaluate(() => (window as any).mockPlayers[0].finish());
+  await expect(
+    page.getByRole("region", { name: "Continue watching" }),
+  ).toHaveCount(0);
+  await expect(page.locator(".video-card.selected")).toContainText("Watched");
+});
+
+test("Home starts with Trending only; searched subjects appear once, and Home keeps an independent mix", async ({
+  page,
+}) => {
+  const short = {
+    ...videos[0],
+    id: "abcdefghijk",
+    title: "A quick learning idea",
+    details: { ...videos[0].details, duration: "PT45S" },
+  };
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/search", (route) =>
+    route.fulfill({ json: { videos, nextPageToken: null } }),
+  );
+  await page.route("**/api/feed/home", (route) =>
+    route.fulfill({
+      json: { trending: [videos[0], short], recommendations: [], messages: [] },
+    }),
+  );
+  await page.goto("/");
+  await expect(
+    page.getByRole("navigation", { name: "Feed topics" }).getByRole("button"),
+  ).toHaveText(["Trending"]);
+  await expect(page.locator(".feed-section .video-thumbnail")).toHaveCount(1);
+  await expect(
+    page
+      .getByRole("region", { name: "Shorts", exact: true })
+      .locator(".portrait"),
+  ).toHaveCount(1);
+  await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page.getByLabel("Search any topic").fill("AMD");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  const tabs = page.getByRole("navigation", { name: "Feed topics" });
+  await expect(tabs.getByRole("button")).toHaveText([
+    "Trending",
+    "Computing & Tech",
+  ]);
+  await tabs.getByRole("button", { name: "Trending", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Trending", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("region", { name: "Shorts", exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "/tmp/curiosity-redesign-home-desktop.png",
+    fullPage: true,
+  });
+  await page.reload();
+  await expect(tabs.getByRole("button")).toHaveText([
+    "Trending",
+    "Computing & Tech",
+  ]);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole("button", { name: "Toggle navigation" }).click();
+  await expect(
+    page.getByRole("complementary", { name: "Main navigation" }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Close navigation", exact: true })
+    .click();
+  await expect(
+    page.getByRole("complementary", { name: "Main navigation" }),
+  ).toBeHidden();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: "/tmp/curiosity-redesign-home-mobile.png",
+    fullPage: true,
+  });
+});
+
+test("A Trending video plays without creating a searched-topic tab; empty history and home errors offer clear paths", async ({
+  page,
+}) => {
+  await mockPlayer(page);
+  await page.route("**/api/config", (route) =>
+    route.fulfill({ json: { supabaseConfigured: false } }),
+  );
+  await page.route("**/api/feed/home", (route) =>
+    route.fulfill({
+      json: { trending: videos, recommendations: [], messages: [] },
+    }),
+  );
+  await page.goto("/");
+  await page
+    .getByRole("button", { name: "How GPUs work", exact: true })
+    .click();
+  await expect(page.locator(".video-result .player-section")).toHaveCount(1);
+  await expect(
+    page.getByRole("navigation", { name: "Feed topics" }).getByRole("button"),
+  ).toHaveText(["Trending"]);
+  await page
+    .getByRole("complementary", { name: "Main navigation" })
+    .getByRole("button", { name: "Continue watching", exact: true })
+    .click();
+  await expect(
+    page.getByText(
+      "Your unfinished videos will appear here after you start watching.",
+    ),
+  ).toBeVisible();
+  await page.route("**/api/feed/home", (route) =>
+    route.fulfill({
+      status: 400,
+      json: { message: "Home videos are unavailable." },
+    }),
+  );
+  await page.getByRole("button", { name: "Home", exact: true }).click();
+  await expect(page.getByRole("alert")).toContainText(
+    "Home videos are unavailable.",
+  );
+  await expect(
+    page.getByRole("button", { name: "Try again", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByLabel("Search any topic")).toBeVisible();
+});
