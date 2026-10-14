@@ -1,0 +1,16 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "curiosity_cache",
+      "fieldPath": "payload",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "curiosity_cache",
+      "fieldPath": "purgeAt",
+      "ttl": true,
+      "indexes": []
+    }
+  ]
+}

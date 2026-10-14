@@ -2,9 +2,9 @@ import { loadLocalEnvironment } from "../../config/local-environment.mjs";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { performance } from "node:perf_hooks";
 import { createGeminiClient } from "./services/gemini.mjs";
-import { gpuNotes } from "./content/gpu-notes.mjs";
-import { createUsageLimiter } from "../../server/usage.mjs";
-import { ServiceError } from "./services/request-json.mjs";
+import { gpuNotes } from "../../backend/content/gpu-notes.mjs";
+import { createUsageLimiter } from "../../backend/usage.mjs";
+import { ServiceError } from "../../backend/providers/request-json.mjs";
 
 try {
   const environment = loadLocalEnvironment();

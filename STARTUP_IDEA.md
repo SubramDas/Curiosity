@@ -479,3 +479,28 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 - **Implemented:** Header search/account controls, broad topics in the left panel, YouTube thumbnail cards and Shorts, chat beside topic results, automatic playback saving, and Continue watching. The mobile version uses a sidebar drawer.
 - **Home feed:** Show recent popular learning content plus suggestions from at most two saved searches. Popularity is a discovery signal, not a content-quality or knowledge score. New Trending clicks do not automatically create searched-topic tabs.
 - **Optional:** Manual watch-later saving, quizzes, and a knowledge graph remain later work. See `design/review/DESIGN_REVIEW.md` for the approved design and implementation details.
+
+
+### Design tool change — Penpot
+
+- **Founder:** Move the entire existing design to Penpot and use Penpot for future design work because Figma MCP has a call limit.
+- **Decision:** Penpot is the primary design tool. Preserve the previous Figma design as an archive; retain Home, GPU topic, Shorts, and the approved Trending-first tab bar.
+- **Transfer status (2026-10-14):** Completed in Penpot's **New File 1 → Curiosity — Desktop**. Home, GPU topic, and Shorts were rebuilt as native editable layers, with four reusable components. Screen previews were inspected, file validation passed, and a named version was saved. See `design/penpot/README.md` for references and reconstruction limitations.
+
+### Chatbot direction — teacher and video guide (2026-10-14)
+
+- **Founder request:** Chat should accept questions across topics and recommend a relevant video even when the question is unrelated to the video currently playing. It should act as a teacher explaining doubts and pointing to further explanations.
+- **Founder request:** When the current video covers the question, provide a clickable timestamp that opens the relevant part.
+- **Current implementation:** The chat endpoint is limited to a checked CUDA note. The displayed related-video suggestion is selected by a CUDA title match; it is not a question-specific recommendation or verified timestamp. These requests require a chatbot redesign.
+- **Technical finding:** YouTube's official embedded-player API supports seeking to a time. The Data API does not provide unrestricted transcript download for arbitrary public videos; captions download requires permission to edit the video. See [player API](https://developers.google.com/youtube/iframe_api_reference) and [caption permissions](https://developers.google.com/youtube/v3/docs/captions/download).
+- **Candidate to test:** Gemini's documented public YouTube URL input can support questions about video content and timestamp references. This is a separate AI capability, not a feature of our existing YouTube Data API client. Compatibility, accuracy, model usage, and account limits have not been tested for this project. See [Gemini video understanding](https://ai.google.dev/gemini-api/docs/video-understanding).
+- **Suggested flow, pending founder discussion:** Resolve the question using conversation context, explain it, and offer 1–3 actual relevant videos from cached/provider search. Use current-video context when relevant; support other topics without forcing a video switch. Keep answer sources separate from videos suggested only by metadata. Timestamp links require video-content evidence and must not be inferred from titles. If a matching segment cannot be established, offer a whole-video suggestion without a guessed time.
+- **Suggested improvements, not yet approved for implementation:** Follow-up conversation, adjustable explanation depth, question-specific video relevance, reasons for each suggestion, explicit source links, optional save of a new topic, and user-requested understanding checks. Formal quizzes remain optional.
+- **Implementation order proposed:** Broad-topic conversation and relevant-video recommendations; then a small video-analysis/timestamp experiment; then expand timestamps only after accuracy and allowance checks. No chatbot code was changed during this discussion.
+
+### Teacher chat approved and implemented — 2026-10-14
+
+- **Founder:** Proceed with the teacher flow. Explicitly explain when a question is unrelated to the video, then answer and offer 1–2 relevant videos; provide a timestamp when the question relates to a matching video section.
+- **Implementation:** General teaching and follow-ups, relevance labels, up to two real question-specific YouTube results, public-video analysis, and AI-matched timestamp buttons are implemented. Questions need not remain within the current topic or require a selected video. Uncertain/title-only relevance is labeled honestly, and no timestamp is shown without media analysis and a valid supported range.
+- **Extra controls:** Simpler/example/deeper follow-ups, Explain this part, and New conversation. History remains in memory across navigation and clears on refresh or account changes. Suggestions do not automatically switch playback or create topic tiles.
+- **Evidence and limits:** See CHATBOT_PLAN.md for automated checks, the live examples, analysis limits, and remaining accuracy review. General replies do not have live web fact-checking. A live AI timestamp is not proof of precise accuracy. Formal learner tests and durable chat saving remain later work.

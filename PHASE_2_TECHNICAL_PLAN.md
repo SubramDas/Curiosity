@@ -1,5 +1,11 @@
 # Phase 2: developer answers and free starting tools
 
+**Latest hosting choice:** The founder selected Google Cloud instead of Cloudflare. The proposed hosted path is Cloud Run for the Node API and website, Secret Manager for provider secrets, and a shared storage adapter (Firestore candidate) for public metadata/usage counters. Supabase accounts and user storage remain. Earlier Cloudflare entries are historical proposals. See [GOOGLE_CLOUD_DEPLOYMENT.md](GOOGLE_CLOUD_DEPLOYMENT.md); hosting has not been implemented or deployed yet.
+
+## Current folder structure
+
+The founder approved separating the existing project into `backend`, `desktop-ui`, and `mobile-ui`, with reusable frontend features in `shared` and the app entry in `src`. Both layouts now use the shared features; the approved mobile design is implemented with bottom navigation, full-screen teacher/account screens and responsive sizing. The desktop layout is retained. See [ARCHITECTURE.md](ARCHITECTURE.md) and [the mobile implementation guide](mobile-ui/README.md). Root commands and provider configuration remain the same.
+
 Date: 2026-10-12  
 Based on the latest founder choices in [DEVELOPMENT_TASKLIST.md](DEVELOPMENT_TASKLIST.md).
 
@@ -258,3 +264,20 @@ The approved Figma layout is implemented in the local React app. The header cont
 - The same progress controller feeds Home, Continue watching, and the topic workspace. Guest/account records remain separate. No new database migration was added for the visual redesign.
 - Restart `npm run dev` to load the new backend route. If account video progress is not set up yet, run the existing `supabase/migrations/002_video_progress.sql` and `supabase/tests/video_progress_access.sql` in the development project.
 - Manual watch-later saving and knowledge tests remain optional. Chat retains its checked-GPU-notes limitation. Deployment, reviewed recommendations, billing/allowance verification, and wider Phase 2 evaluation remain open.
+
+
+### Account sessions corrected — 2026-10-14
+
+Use the official `@supabase/supabase-js` library for browser authentication. It stores and restores sessions, renews expired tokens, receives account changes across tabs, and handles sign-out. The local configuration route exposes only the validated publishable/anon key and project URL. Protected topic/progress routes continue to check identity and database ownership rules. The unused custom password-login/signup routes have been removed.
+
+“Create account” first tries signing in with the supplied password. A confirmed existing account signs in without a signup request; only invalid-credential responses lead to signup. Unconfirmed accounts are directed to their existing confirmation email. Network/service errors do not trigger signup. Failed credential checks never grant access. Supabase controls the response for duplicate signup with a different password; our app does not disclose whether that email already exists.
+
+Guest topics stay separate during restoration and sign-out, and stale account loads are ignored. A saved-topic fetch failure does not undo a successful sign-in. Browser checks simulate the provider; live email delivery and account sessions still need founder confirmation after restarting the local server.
+
+### Persistent metadata cache — 2026-10-14
+
+Search pages and video details now use a six-hour disk cache; Trending uses a one-hour disk cache. Cached hits bypass local reservations, and identical concurrent misses share a request. Storage is limited to 500 entries with expiry/deletion and contains no account credentials or downloaded media. The local prototype implementation still needs shared storage before hosting. Google's current separate daily search quota is documented in [YOUTUBE_QUOTAS.md](YOUTUBE_QUOTAS.md); older quota assumptions should be read against that update.
+
+### Teacher chat expanded — 2026-10-14
+
+The founder approved broader questions, explicit relevance labels, 1–2 real recommended videos, and matching timestamps where video content supports them. The new modular teacher route replaces the browser's CUDA-only restriction while retaining supplied notes and labeling general explanations. Supported public YouTube URLs can be analyzed by the configured Gemini model; the player can seek to AI-matched sections. Browser history stays in memory and is cleared across accounts. See [CHATBOT_PLAN.md](CHATBOT_PLAN.md) for current behaviour, input/source/timestamp checks, allowances, evidence, and remaining evaluation. This supersedes the earlier browser-chat coverage limitation, while the original note-only experiment remains available. Phase 2 remains open for independent content/accuracy review and the other recorded checks.

@@ -10,6 +10,8 @@ const projectSettings = [
   "SUPABASE_PUBLISHABLE_KEY",
   "SEARCH_DAILY_LIMIT",
   "CHAT_DAILY_LIMIT",
+  "CHAT_VIDEO_CONTEXT",
+  "VIDEO_CHAT_DAILY_LIMIT",
 ];
 
 // Project settings deliberately override ambient keys, including with empty values.

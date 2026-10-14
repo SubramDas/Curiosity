@@ -1,0 +1,229 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+  "pageName": "Curiosity — Mobile",
+  "boards": [
+    {
+      "key": "shorts",
+      "id": "c5f19b81-2139-8092-8008-c9b1833122d7",
+      "name": "09 · Shorts / vertical viewing",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "search",
+      "id": "c5f19b81-2139-8092-8008-c9b17a0952da",
+      "name": "03 · Search / typing",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "results",
+      "id": "c5f19b81-2139-8092-8008-c9b17b0088b6",
+      "name": "04 · Search results / mixed feed",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "resume",
+      "id": "c5f19b81-2139-8092-8008-c9b1814a8c59",
+      "name": "08 · Continue watching / saved position",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "topic",
+      "id": "c5f19b81-2139-8092-8008-c9b17c18f62b",
+      "name": "05 · Broad topic / related searches",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "related",
+      "id": "c5f19b81-2139-8092-8008-c9b1872782c9",
+      "name": "11 · Teacher / related answer + timestamp",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "components",
+      "id": "c5f19b81-2139-8092-8008-c9b1d680c3e0",
+      "name": "27 · Mobile components / editable",
+      "width": 940,
+      "height": 800
+    },
+    {
+      "key": "breakclips",
+      "id": "c5f19b81-2139-8092-8008-c9b1923f707c",
+      "name": "15 · Related break / max 3 candidates",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "signedin",
+      "id": "c5f19b81-2139-8092-8008-c9b19dcb6634",
+      "name": "18 · Account / signed in",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "unrelated",
+      "id": "c5f19b81-2139-8092-8008-c9b18a228fa7",
+      "name": "12 · Teacher / unrelated question + videos",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "watch",
+      "id": "c5f19b81-2139-8092-8008-c9b17f74a9e5",
+      "name": "07 · Long video / inline playback",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "welcome",
+      "id": "c5f19b81-2139-8092-8008-c9b179447667",
+      "name": "02 · Home / first visit",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "home430",
+      "id": "c5f19b81-2139-8092-8008-c9b1c59f20fb",
+      "name": "24 · Home / 430px width",
+      "width": 430,
+      "height": 932
+    },
+    {
+      "key": "home",
+      "id": "c5f19b81-2139-8092-8008-c9b1786bc51d",
+      "name": "01 · Home / returning learner",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "playererror",
+      "id": "c5f19b81-2139-8092-8008-c9b1ae019706",
+      "name": "22 · Player unavailable / retry",
+      "width": 390,
+      "height": 843.9999999999964
+    },
+    {
+      "key": "home320",
+      "id": "c5f19b81-2139-8092-8008-c9b1b79e0aef",
+      "name": "24 · Home / 320px width",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "key": "empty",
+      "id": "c5f19b81-2139-8092-8008-c9b1a62fa10e",
+      "name": "20 · Empty results / next step",
+      "width": 390,
+      "height": 843.9999999999964
+    },
+    {
+      "key": "break",
+      "id": "c5f19b81-2139-8092-8008-c9b18f56a34e",
+      "name": "14 · Related break / optional prompt",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "rules",
+      "id": "c5f19b81-2139-8092-8008-c9b1cfdb3abc",
+      "name": "26 · Responsive layout / handoff",
+      "width": 940,
+      "height": 1060
+    },
+    {
+      "key": "keyboard",
+      "id": "c5f19b81-2139-8092-8008-c9b18d3427a2",
+      "name": "13 · Teacher / keyboard open",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "home360",
+      "id": "c5f19b81-2139-8092-8008-c9b1be342443",
+      "name": "24 · Home / 360px width",
+      "width": 360,
+      "height": 932
+    },
+    {
+      "key": "error",
+      "id": "c5f19b81-2139-8092-8008-c9b1a9c9e378",
+      "name": "21 · Search limit / useful fallback",
+      "width": 390,
+      "height": 843.9999999999964
+    },
+    {
+      "key": "chaterror",
+      "id": "c5f19b81-2139-8092-8008-c9b1b2fa2bb4",
+      "name": "23 · Teacher unavailable / keep context",
+      "width": 390,
+      "height": 843.9999999999964
+    },
+    {
+      "key": "confirm",
+      "id": "c5f19b81-2139-8092-8008-c9b19a4b15df",
+      "name": "17 · Account / confirm email",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "topics",
+      "id": "c5f19b81-2139-8092-8008-c9b17dccd8b6",
+      "name": "06 · Your topics",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "landscape",
+      "id": "c5f19b81-2139-8092-8008-c9b1cd64fafc",
+      "name": "25 · Landscape / video first",
+      "width": 843.9999999999982,
+      "height": 390
+    },
+    {
+      "key": "account",
+      "id": "c5f19b81-2139-8092-8008-c9b195e1b82d",
+      "name": "16 · Sign in / guest",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "key": "loading",
+      "id": "c5f19b81-2139-8092-8008-c9b1a249ccc7",
+      "name": "19 · Loading / results",
+      "width": 390,
+      "height": 843.9999999999964
+    },
+    {
+      "key": "chat",
+      "id": "c5f19b81-2139-8092-8008-c9b184d44314",
+      "name": "10 · Teacher / new conversation",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "interactionCount": 218,
+  "validation": [],
+  "checkedPreviews": [
+    "home",
+    "watch",
+    "related",
+    "shorts",
+    "home320",
+    "account",
+    "unrelated",
+    "keyboard",
+    "topic",
+    "break",
+    "landscape",
+    "components"
+  ],
+  "version": "Curiosity — mobile review ready",
+  "desktopUnchanged": true
+}

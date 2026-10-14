@@ -1,11 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { validateVideoProgress } from "../server/video-progress.mjs";
+import { validateVideoProgress } from "../backend/video-progress.mjs";
 import {
   durationSeconds,
   isShortVideo,
-} from "../src/features/videos/video-format";
-import { isValidProgress } from "../src/features/progress/useVideoProgress";
+} from "../shared/features/videos/video-format";
+import { isValidProgress } from "../shared/features/progress/useVideoProgress";
 const valid = {
   video_id: "Kgcfj_KV-mo",
   topic_key: "computing:gpu",
@@ -43,7 +43,7 @@ test("Short video grouping uses duration and leaves unknown and longer videos in
 });
 
 test("Account writes use the verified user identity and require a token", async () => {
-  const { createSupabaseClient } = await import("../server/supabase.mjs");
+  const { createSupabaseClient } = await import("../backend/supabase.mjs");
   const original = globalThis.fetch;
   const requests: { url: string; options: RequestInit }[] = [];
   globalThis.fetch = (async (

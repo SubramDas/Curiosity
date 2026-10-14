@@ -53,7 +53,7 @@ GEMINI_MODEL=your_available_free_text_model
 ALLOW_GEMINI_FREE_TEST=true
 ```
 
-The above values are examples, not real keys. `.gitignore` excludes `.env`, local deployment secrets, and experiment output. This prevents normal Git staging; it does not encrypt the file or prevent someone with filesystem access from reading it. Do not paste keys into chat, Markdown, screenshots, or browser code. Tell me **“The keys are added”** when done; I can run the checks without printing them.
+The above values are examples, not real keys. `.gitignore` excludes `.env`, local deployment secrets, and experiment output. This prevents normal Git staging; it does not encrypt the file or prevent someone with filesystem access from reading it. Do not paste secret keys into chat, Markdown, screenshots, or browser code. The account library receives only the validated Supabase publishable/anon key and project URL from the local configuration route; this key is designed for public browser use. Tell me **“The keys are added”** when done; I can run the checks without printing them.
 
 Node's `--env-file` normally gives existing process values precedence. The project's configuration loader now explicitly gives settings in `.env` precedence for our API keys, models, and limits, so an inherited key from another project is not silently selected. Empty local settings also override inherited ones. The loader leaves unrelated environment settings alone.
 
@@ -75,7 +75,7 @@ npm run phase2:search -- "I want to know about GPUs"
 npm run phase2:chat -- "How do the CPU and GPU work together in CUDA?"
 ```
 
-The search box is not restricted to computing: the search command accepts other subjects too. Chat currently has only a GPU note fixture, so a question beyond its notes should get an honest limitation. Results are unreviewed, not recommendations endorsed as the best content. No provider response is saved automatically.
+The search box is not restricted to computing: the search command accepts other subjects too. The original note-only experiment retains its GPU fixture. Browser chat has since expanded to general teaching and supported public-video analysis; general explanations are explicitly labeled and live fact-checking is not enabled. Results are unreviewed, not recommendations endorsed as the best content. The original experiments do not save responses automatically. The browser server now caches public YouTube metadata as documented in README.md.
 
 ## What the developer will verify next
 
@@ -94,7 +94,7 @@ The search box is not restricted to computing: the search command accepts other 
 - Supabase account/saving code and database setup files exist, but the founder reports that real account save/reopen and the database ownership check work. Graph import and deployment are not implemented.
 - Browser API calls use a daily allowance stored for one local server process. Hosting still needs a shared atomic limiter. The example command-line checks have separate per-run bounds; the chat review uses the local daily record.
 - There are no automatic retries or paid fallbacks. Failures show sanitized messages.
-- Chat links come from our notes. Chat does not recommend a video yet; adding a real, relevant video requires content review rather than just using a search result.
+- Original chat references come from our notes. The newer teacher route also offers question-specific YouTube search results and AI-matched timestamps; these suggestions still need independent content/accuracy review. See CHATBOT_PLAN.md.
 - The chat check measures full-answer time. It does not measure the planned streaming first-output target.
 - Final package versions, deployment, privacy review, free account limits, and real model quality remain open.
 
@@ -107,3 +107,13 @@ Run `npm run phase2:check-config`, `npm run phase2:search`, and `npm run phase2:
 The 20-question review set is in `experiments/phase-2/content/CHAT_REVIEW.md`. A live review ran successfully using an inherited Gemini key before the project loader was fixed. Its results evaluate the configured model and narrow note fixture, not the founder project's limits or billing. A subsequent supported example succeeded with the actual project key. Details and limitations are recorded in PHASE_2_RESULTS.md.
 
 Local checks and progress are recorded in `PHASE_2_TECHNICAL_PLAN.md`. Local simulated responses verify our handling; they do not prove provider access, live model quality, or playable videos.
+
+## Missing confirmation emails
+
+The app uses email and password sign-in. New accounts must confirm their address first; the confirmation email is not a passwordless sign-in link. For an unconfirmed account, the app offers **Resend confirmation email** and reports provider errors rather than assuming delivery.
+
+1. Check the inbox and spam folder, then request one resend in the app. Avoid repeated requests when the sender reports a rate limit.
+2. In Supabase, open Authentication → Logs and inspect the failed signup/resend event. Do not share passwords, tokens, full email addresses, or secret settings when reporting errors.
+3. Check Authentication's email/SMTP settings. Supabase's default sender currently sends only to project-team addresses and has a small hourly limit. Other learner addresses need a configured custom SMTP sender. Do not disable email confirmation to bypass a delivery problem. See [Supabase email setup](https://supabase.com/docs/guides/auth/auth-smtp).
+4. Under Authentication → URL Configuration, set the development Site URL and allowed redirects to the local app address you use (`http://127.0.0.1:5173`, and `http://localhost:5173` if used). Signup and resend request a return to the current app origin; Supabase applies its redirect allowlist.
+5. After confirming, return to the app and sign in with the existing password. The public project key cannot inspect or change SMTP settings; an authorised project owner must configure them in the dashboard.

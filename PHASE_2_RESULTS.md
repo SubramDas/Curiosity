@@ -1,5 +1,19 @@
 # Phase 2 check results
 
+## Approved mobile UI implemented
+
+- Added the phone shell, compact search/account header, bottom navigation, broad-topic screen, recent searches, full-screen teacher, viewport/keyboard handling and landscape player layout in `mobile-ui`. Existing desktop layout modules are retained.
+- Reused shared accounts, teacher history, topic classification, search/cache, player and saved progress. Teacher opening pauses hidden playback; returning preserves the selected Short. Timestamp buttons return to the matching player. Previous/Next controls supplement Shorts scrolling. The account screen uses the existing confirmation/resend/sign-out actions.
+- Build and TypeScript checks pass. All 35 existing service/rule checks and all 30 browser journeys pass. Nine mobile journeys cover 320/360/390/430-pixel widths, search/topics, video/teacher context, timestamps, simulated keyboard resize, Shorts, account access, saved playback, landscape, related breaks and allowance errors. A subsequent focused check confirms player positioning after rotation. `git diff --check` passes.
+- Representative phone and landscape screenshots were inspected. Providers, accounts and the player are simulated in browser tests; physical-phone Safari/Android keyboard/autoplay and real account-sync checks remain before a wider release. No live API calls, database changes, quota changes or deployment were required for the UI work.
+
+## Folder separation before mobile implementation
+
+- Moved API modules to `backend`, navigation/layout/styles to `desktop-ui`, reusable frontend features to `shared`, and reserved `mobile-ui` with its approved design handoff. `src` retains the React entry and feature coordination.
+- Extracted the current layout while preserving the rendered page structure. Moved the production YouTube provider, HTTP helper and checked source fixture into the backend, removing production imports from the experiments folder. Updated experiment/test imports and root dev/build configuration.
+- `npm run build` passes, including TypeScript checks. All 35 existing service/rule checks and all 21 simulated browser journeys pass after the move. Browser journeys cover account persistence and isolation, search/topic grouping, playback/resume, Shorts, breaks, and teacher conversations/timestamps. These checks do not constitute new live provider or real-account verification.
+- No new mobile UI, layout switching, database changes, quota changes, commit, or deployment was performed. Restart the root `npm run dev` process after the move.
+
 Date: 2026-10-13.
 
 ## Configuration
@@ -50,7 +64,7 @@ This update supersedes earlier statements that no browser app exists.
 - Note-based chat and an optional related CUDA video drawn from actual search titles. This suggestion is unreviewed and is not cited as evidence for the answer.
 - Guest query/category storage, broad topic tiles, alias reuse, ambiguity handling for CA, and related-subject previews that do not create tiles or move topics.
 - A 12-minute active-learning timer with a 30-second demo mode. It excludes background pages, offscreen/non-playing videos, long suspended intervals, and double-counting simultaneous activity. It retains offered-break state across reopening and allows returning without requesting clips. Break candidates are capped at three and remain unreviewed.
-- Supabase sign-up/sign-in, save/list code, a migration, and a rollback-only SQL ownership check. Login is held in memory; session refresh/revocation and guest transfer remain later work.
+- Supabase sign-up/sign-in, save/list code, a migration, and a rollback-only SQL ownership check. At this stage login was held in memory; this limitation was corrected on 2026-10-14 using the official Supabase library (see the account-session update below). Guest transfer remains later work.
 - Persistent local request allowances and sanitized failure handling. These are for one developer server, not distributed hosting.
 
 ### Observed live behavior
@@ -110,3 +124,47 @@ This update supersedes earlier statements that no browser app exists.
 - The founder's running server was still serving old routes; it was not terminated. Restarting that development process is required to use the new feed route. The previously supplied account-progress migration and live ownership/progress checks remain founder actions if not already completed.
 
 - The final balanced provider adapter returned 20 videos from two successful search batches and one details call. The full home route then returned its empty/error state because the existing daily search counter was at 40. The limit was not raised or reset. A focused check verifies that the exhausted allowance makes no provider calls, names the limit, and returns no invented results. A final live Home screenshot attempt timed out waiting for cards under that limit; earlier live screenshots and the passing simulated layout checks provide the visual evidence.
+
+
+## Account-session update — 2026-10-14
+
+- Fixed lost login after refresh by adopting Supabase's official JavaScript library for persistent sessions and automatic token renewal.
+- “Create account” signs in confirmed existing users with matching credentials before any signup request. New users still receive confirmation; unconfirmed accounts are asked to use their existing email.
+- Sign-out uses Supabase and clears the saved browser session. Account topics are kept out of guest storage during sign-out; late account loads cannot replace a guest's topics.
+- Verification: all 26 existing rule/service checks, 15 simulated browser journeys (including all six new account journeys), and TypeScript/production build pass. The first regression run passed 14 journeys; the Home/mobile-navigation test clicked a part of the backdrop covered by the sidebar. After correcting its click position, that journey passed separately. Account checks cover refresh, expired-token renewal, sign-out followed by refresh, guest/account separation, repeat account creation, new-account confirmation, unconfirmed accounts, wrong credentials, and account video progress.
+- A temporary instance of the real local server returned the expected public account configuration; only presence and field names were printed, not key values. No real signups, confirmation emails, or authenticated Supabase calls were made for these checks. Live email and session behavior remain for the founder to verify after restarting `npm run dev`.
+
+## Playback, sign-out, and email follow-up — 2026-10-14
+
+- The founder reported a black player when reopening Continue watching, account topics remaining after sign-out, and no email for an unconfirmed second account.
+- Saved playback now opens the known video directly instead of spending another search request and rebuilding the result feed first. The player cues the saved position without immediately seeking and pausing an unstarted video. Long players have an explicit Play/Resume button, scroll into view, and offer retry after player errors. A failed YouTube API load can be retried instead of retaining a rejected promise forever.
+- Account changes reset the active search, selected video, topic view, and query. Pending searches are invalidated so a response arriving after sign-out cannot restore account results. Guest history remains separate.
+- Unconfirmed accounts now have an explicit resend button. Signup/resend request a return to the current app origin. Delivery restrictions and email-rate errors have clear messages. Confirmation messages do not claim that an email was delivered.
+- Read-only Supabase settings returned HTTP 200 and confirmed email signup and email confirmation are enabled. SMTP settings are not accessible with the publishable key; no account was created and no real email was sent in these checks.
+- Verification: 26 rule/service checks and the production build pass. Browser regression and focused reruns cover 18 journeys, including leaving a video and resuming without another search, sign-out from an account topic, and confirmation resend/rate-limit errors. Initial new-test failures were corrected for signup/resend redirect query strings and the saved video's Continue label.
+- A real YouTube iframe was created and reached its ready event without a player error in a guest browser check. Search/configuration responses were simulated to avoid spending API allowance; actual playback and live account progress still need founder confirmation. Email delivery remains unverified until the project sender is configured or its error is inspected.
+
+## Persistent YouTube cache — 2026-10-14
+
+- Added a bounded disk cache for search pages (six hours), individual video metadata (six hours), and Trending (one hour). Shared identical pending requests avoid duplicate calls; cached metadata survives restart. Home suggestions and topic search share the provider wrapper.
+- Cache hits do not reserve local allowance. Failed requests are not cached; expired entries require a fresh permitted lookup rather than silently returning stale results. Expired data is removed on startup and periodic cleanup. The exhausted local usage record was not reset, and no real provider request was made for these tests.
+- Verification: all 29 rule/service tests and TypeScript/production build pass. New checks cover concurrent requests, pagination, expiry/deletion, failed loads, bounds, overlapping metadata batches, and restart. An actual local-server route check uses simulated YouTube responses and isolated storage; it verifies search/details return HTTP 200 from cache after exhaustion/restart, while an uncached page remains blocked without a provider call.
+- Documented Google's current separate search bucket and the daily/per-minute distinction in YOUTUBE_QUOTAS.md. This cache remains for one local server; shared hosted storage remains Phase 2 work.
+
+## Teacher chat implementation — 2026-10-14
+
+- Added general/topic-independent explanations, follow-up history, explicit related/unrelated/uncertain labels, real question-specific video search, and timestamp links derived from public-video input. Missing suggestions or unavailable video analysis do not fabricate results/times. Metadata-only decisions are tentative.
+- Current-video context tracks both the selected long video and the active short. Timestamp buttons seek using the official player. Old replies identify their original video and can reopen it at the suggested point. Recommendations do not change the player until selected.
+- Chat is also available before search. History is kept in memory across navigation; account changes and New conversation invalidate late replies. No database chat history or learner quizzes were added.
+- 35 rule/service checks and type checks/build pass. Twenty existing/new browser journeys passed in the regression run; the added standalone-chat journey and expanded timestamp-navigation checks passed in focused reruns, for 21 covered journeys. Desktop/mobile chat screenshots were inspected and the 390-pixel check found no horizontal overflow.
+- Live general example returned a compound-interest explanation with two provider video suggestions in 2.167 seconds. The first video example timed out at 20 seconds; video-specific requests now allow 60 seconds. A bounded manual check returned a related 00:37–00:43 section in 5.620 seconds using the configured Gemini 3.5 Flash-Lite model. The returned time is an AI suggestion, not independently verified accuracy. Developer checks used a separate recorded cap of three model requests, two media attempts, and six YouTube operations; it was not an unrestricted retry loop.
+- Full details, default video-analysis limits, privacy/history behaviour, provider references, and remaining wider accuracy/load checks are in CHATBOT_PLAN.md. General explanations do not have live web grounding. No public release or complete Phase 2 is implied.
+
+## Google Cloud deployment — 2026-10-14
+
+- Deployed a public adult hackathon demo to https://curiosity-u2ubbw6fra-el.a.run.app in Mumbai. Ready revision `curiosity-00004-28h` receives all traffic. Founder availability target is December 31, 2026; this is not a scheduled shutdown or uptime guarantee.
+- Production uses Node 24, Secret Manager, dedicated service identities and Firestore Standard cache/counters. Existing Supabase accounts remain. Founder confirmed the hosted return URLs.
+- All 41 service/rule checks and the production build pass; thirty simulated desktop/mobile browser journeys passed. Hosted storage tests simulate Firestore transactions, while the deployed search/teacher checks use real services. The real Cloud Build container succeeded; local Podman execution was unavailable.
+- Live pages/configuration/health return HTTP 200. Three simultaneous GPU searches returned ten videos each. A repeat after redeployment did not increase the stored daily provider count. Generic teacher returned an answer and two video recommendations. Firestore rules passed ten actual rules-API deny-access cases before deployment.
+- Hosted account email delivery, real-device playback/progress, teaching accuracy and sustained load remain trial checks. Full Phase 2 and hackathon submission are not marked complete. See GOOGLE_CLOUD_DEPLOYMENT.md.
+- Hosted desktop/mobile screenshots were inspected at 1440/390 pixels: ten search cards and no horizontal overflow. The live YouTube iframe opened without an app player alert. A browser-console 404 had no matching application failure and remains unattributed. Physical-phone playback is still a founder check. Firestore cache TTL policy is ACTIVE.

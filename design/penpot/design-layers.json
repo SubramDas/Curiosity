@@ -1,0 +1,6247 @@
+{
+  "version": 1,
+  "source": "../review/desktop-design.html",
+  "screens": [
+    {
+      "name": "Home",
+      "width": 1440,
+      "height": 1456,
+      "layers": [
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 68,
+          "radius": 0,
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Bottom",
+          "x": 0,
+          "y": 67,
+          "width": 1440,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#F4F4F4",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 28,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6h16M4 12h16M4 18h16\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "mark",
+          "x": 75,
+          "y": 21,
+          "width": 32,
+          "height": 25,
+          "radius": 7,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 81.5,
+          "y": 22.5,
+          "width": 19,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 4 12 8-12 8Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "curiosity",
+          "x": 114,
+          "y": 19,
+          "width": 95.203125,
+          "height": 28,
+          "text": "curiosity",
+          "fontSize": 25,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -1
+        },
+        {
+          "type": "text",
+          "name": "IN",
+          "x": 217.203125,
+          "y": 25,
+          "width": 10,
+          "height": 11,
+          "text": "IN",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#666666",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "search border",
+          "x": 360,
+          "y": 12.5,
+          "width": 610,
+          "height": 42,
+          "radius": 24,
+          "stroke": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Search anything you’re curious about",
+          "x": 381,
+          "y": 25,
+          "width": 247.65625,
+          "height": 17,
+          "text": "Search anything you’re curious about",
+          "fontSize": 15,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 905,
+          "y": 13.5,
+          "width": 64,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#F8F8F8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Left",
+          "x": 905,
+          "y": 13.5,
+          "width": 1,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 926.5,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(34, 34, 34)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 5 5\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Your learning, together",
+          "x": 1224.9375,
+          "y": 26,
+          "width": 131.0625,
+          "height": 15,
+          "text": "Your learning, together",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "avatar",
+          "x": 1378,
+          "y": 16.5,
+          "width": 34,
+          "height": 34,
+          "radius": 50,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "S",
+          "x": 1389.65625,
+          "y": 24.5,
+          "width": 10.671875,
+          "height": 17,
+          "text": "S",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "nav active",
+          "x": 12,
+          "y": 86,
+          "width": 200,
+          "height": 43,
+          "radius": 10,
+          "fill": {
+            "hex": "#F0F0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 96.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 10 9-7 9 7v10H3Z\"></path><path d=\"M9 20v-7h6v7\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Home",
+          "x": 64,
+          "y": 100,
+          "width": 36.125,
+          "height": 15,
+          "text": "Home",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 139.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 3 9 4-5 4 5 3-9 7-6-4 5-5-5-3Z\"></path><path d=\"m10 10 5 3-5 3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 64,
+          "y": 143,
+          "width": 72.265625,
+          "height": 15,
+          "text": "Short videos",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 182.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M12 7v5l4 2\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Continue watching",
+          "x": 64,
+          "y": 186,
+          "width": 106.96875,
+          "height": 15,
+          "text": "Continue watching",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 233,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Your topics",
+          "x": 24,
+          "y": 252,
+          "width": 81.40625,
+          "height": 17,
+          "text": "Your topics",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 291.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"M9 1v5m6-5v5M9 18v5m6-5v5M1 9h5m-5 6h5m12-6h5m-5 6h5\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech",
+          "x": 64,
+          "y": 295,
+          "width": 106,
+          "height": 15,
+          "text": "Computing & Tech",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "12",
+          "x": 188,
+          "y": 296.5,
+          "width": 12.25,
+          "height": 12,
+          "text": "12",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 334.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M15 8h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9m3-10v12\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Money & Business",
+          "x": 64,
+          "y": 338,
+          "width": 107.671875,
+          "height": 15,
+          "text": "Money & Business",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "4",
+          "x": 193.875,
+          "y": 339.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "4",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 377.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3h6m-5 0v7L4 20h16l-6-10V3M7 15h10\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Science & Nature",
+          "x": 64,
+          "y": 381,
+          "width": 101.171875,
+          "height": 15,
+          "text": "Science & Nature",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "3",
+          "x": 193.875,
+          "y": 382.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "3",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "New searches find a home",
+          "x": 24,
+          "y": 427,
+          "width": 130.234375,
+          "height": 12,
+          "text": "New searches find a home",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "in your topics automatically.",
+          "x": 24,
+          "y": 444,
+          "width": 134.3125,
+          "height": 12,
+          "text": "in your topics automatically.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 477,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 506.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18l-6-4-6 4Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Saved for later",
+          "x": 64,
+          "y": 510,
+          "width": 84.546875,
+          "height": 15,
+          "text": "Saved for later",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 549.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4h18v13H9l-6 4Z\"></path><path d=\"M7 8h10m-10 5h6\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Ask a question",
+          "x": 64,
+          "y": 553,
+          "width": 85.28125,
+          "height": 15,
+          "text": "Ask a question",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "About · Help · Privacy",
+          "x": 24,
+          "y": 613,
+          "width": 106.984375,
+          "height": 12,
+          "text": "About · Help · Privacy",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Content from YouTube",
+          "x": 24,
+          "y": 631,
+          "width": 109.671875,
+          "height": 12,
+          "text": "Content from YouTube",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "© 2026 Curiosity",
+          "x": 24,
+          "y": 667,
+          "width": 81.484375,
+          "height": 12,
+          "text": "© 2026 Curiosity",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip selected",
+          "x": 256,
+          "y": 90,
+          "width": 80.890625,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Trending",
+          "x": 269,
+          "y": 99,
+          "width": 54.890625,
+          "height": 15,
+          "text": "Trending",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 347.890625,
+          "y": 90,
+          "width": 140.59375,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech",
+          "x": 360.890625,
+          "y": 99,
+          "width": 114.59375,
+          "height": 15,
+          "text": "Computing & Tech",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 499.484375,
+          "y": 90,
+          "width": 141.59375,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Money & Business",
+          "x": 512.484375,
+          "y": 99,
+          "width": 115.59375,
+          "height": 15,
+          "text": "Money & Business",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 652.078125,
+          "y": 90,
+          "width": 132.9375,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Science & Nature",
+          "x": 665.078125,
+          "y": 99,
+          "width": 106.9375,
+          "height": 15,
+          "text": "Science & Nature",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Continue watching",
+          "x": 256,
+          "y": 153,
+          "width": 182.734375,
+          "height": 23,
+          "text": "Continue watching",
+          "fontSize": 21,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "Pick up where you left off.",
+          "x": 256,
+          "y": 185,
+          "width": 148.625,
+          "height": 15,
+          "text": "Pick up where you left off.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "View all →",
+          "x": 1343.921875,
+          "y": 168,
+          "width": 64.078125,
+          "height": 15,
+          "text": "View all →",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 256,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 256,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 256,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "INSIDE A GPU",
+          "x": 276,
+          "y": 364,
+          "width": 162.828125,
+          "height": 28,
+          "text": "INSIDE A GPU",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 579.1875,
+          "y": 390,
+          "width": 38.140625,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "12:06",
+          "x": 584.1875,
+          "y": 393,
+          "width": 28.140625,
+          "height": 12,
+          "text": "12:06",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "progress",
+          "x": 256,
+          "y": 413,
+          "width": 369.328125,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#DDDDDD",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 256,
+          "y": 413,
+          "width": 103.40625,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 256,
+          "y": 428,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "T",
+          "x": 268.015625,
+          "y": 436.5,
+          "width": 7.953125,
+          "height": 15,
+          "text": "T",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "How GPUs actually work — a visual",
+          "x": 299,
+          "y": 430,
+          "width": 254.265625,
+          "height": 17,
+          "text": "How GPUs actually work — a visual",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "explanation",
+          "x": 299,
+          "y": 451,
+          "width": 83.359375,
+          "height": 17,
+          "text": "explanation",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Tech Explained",
+          "x": 299,
+          "y": 477,
+          "width": 81.390625,
+          "height": 14,
+          "text": "Tech Explained",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Continue at 3:24 · 8:42 left",
+          "x": 299,
+          "y": 496,
+          "width": 141.4375,
+          "height": 14,
+          "text": "Continue at 3:24 · 8:42 left",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 618.890625,
+          "y": 427,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 647.328125,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 647.328125,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "34576ea2f164",
+            "mime": "image/jpeg",
+            "path": "assets/34576ea2f164.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 647.328125,
+          "y": 218,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "PYTHON, SIMPLIFIED",
+          "x": 667.328125,
+          "y": 364,
+          "width": 251.15625,
+          "height": 28,
+          "text": "PYTHON, SIMPLIFIED",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 970.515625,
+          "y": 390,
+          "width": 38.140625,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "16:18",
+          "x": 975.515625,
+          "y": 393,
+          "width": 28.140625,
+          "height": 12,
+          "text": "16:18",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "progress",
+          "x": 647.328125,
+          "y": 413,
+          "width": 369.328125,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#DDDDDD",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 647.328125,
+          "y": 413,
+          "width": 103.40625,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 647.328125,
+          "y": 428,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "C",
+          "x": 658.625,
+          "y": 436.5,
+          "width": 9.390625,
+          "height": 15,
+          "text": "C",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Your first Python project, step by step",
+          "x": 690.328125,
+          "y": 430,
+          "width": 270.59375,
+          "height": 17,
+          "text": "Your first Python project, step by step",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Code Studio",
+          "x": 690.328125,
+          "y": 456,
+          "width": 66.046875,
+          "height": 14,
+          "text": "Code Studio",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Continue at 5:10 · 11:08 left",
+          "x": 690.328125,
+          "y": 475,
+          "width": 147.21875,
+          "height": 14,
+          "text": "Continue at 5:10 · 11:08 left",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 1010.21875,
+          "y": 427,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 1038.65625,
+          "y": 218,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 1038.65625,
+          "y": 218,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "0a3a625d98fb",
+            "mime": "image/jpeg",
+            "path": "assets/0a3a625d98fb.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 1038.65625,
+          "y": 218,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "MONEY BASICS",
+          "x": 1058.65625,
+          "y": 364,
+          "width": 187.828125,
+          "height": 28,
+          "text": "MONEY BASICS",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 1361.859375,
+          "y": 390,
+          "width": 38.140625,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "10:12",
+          "x": 1366.859375,
+          "y": 393,
+          "width": 28.140625,
+          "height": 12,
+          "text": "10:12",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "progress",
+          "x": 1038.65625,
+          "y": 413,
+          "width": 369.34375,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#DDDDDD",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 1038.65625,
+          "y": 413,
+          "width": 103.40625,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 1038.65625,
+          "y": 428,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "M",
+          "x": 1049.234375,
+          "y": 436.5,
+          "width": 10.84375,
+          "height": 15,
+          "text": "M",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Income tax basics for your first salary",
+          "x": 1081.65625,
+          "y": 430,
+          "width": 270.125,
+          "height": 17,
+          "text": "Income tax basics for your first salary",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Money Made Clear",
+          "x": 1081.65625,
+          "y": 456,
+          "width": 101.390625,
+          "height": 14,
+          "text": "Money Made Clear",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Continue at 1:42 · 8:30 left",
+          "x": 1081.65625,
+          "y": 475,
+          "width": 141.4375,
+          "height": 14,
+          "text": "Continue at 1:42 · 8:30 left",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 1401.5625,
+          "y": 427,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Recommended for you",
+          "x": 256,
+          "y": 544,
+          "width": 221.84375,
+          "height": 23,
+          "text": "Recommended for you",
+          "fontSize": 21,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "A mix of your topics and new things to explore.",
+          "x": 256,
+          "y": 576,
+          "width": 268.09375,
+          "height": 15,
+          "text": "A mix of your topics and new things to explore.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 256,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 256,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 256,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "NVIDIA vs AMD",
+          "x": 276,
+          "y": 755,
+          "width": 176.3125,
+          "height": 28,
+          "text": "NVIDIA vs AMD",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 585.296875,
+          "y": 781,
+          "width": 32.03125,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "9:38",
+          "x": 590.296875,
+          "y": 784,
+          "width": 22.03125,
+          "height": 12,
+          "text": "9:38",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 256,
+          "y": 819,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "H",
+          "x": 267.296875,
+          "y": 827.5,
+          "width": 9.390625,
+          "height": 15,
+          "text": "H",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "NVIDIA vs AMD: what matters beyond the",
+          "x": 299,
+          "y": 821,
+          "width": 294.765625,
+          "height": 17,
+          "text": "NVIDIA vs AMD: what matters beyond the",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "specs?",
+          "x": 299,
+          "y": 842,
+          "width": 51.703125,
+          "height": 17,
+          "text": "specs?",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Hardware Lab",
+          "x": 299,
+          "y": 868,
+          "width": 75.375,
+          "height": 14,
+          "text": "Hardware Lab",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech · Sample recommendation",
+          "x": 299,
+          "y": 887,
+          "width": 241.90625,
+          "height": 14,
+          "text": "Computing & Tech · Sample recommendation",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Because you explored GPUs",
+          "x": 299,
+          "y": 910,
+          "width": 141.25,
+          "height": 12,
+          "text": "Because you explored GPUs",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 618.890625,
+          "y": 818,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 647.328125,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 647.328125,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "13ad85987d1f",
+            "mime": "image/jpeg",
+            "path": "assets/13ad85987d1f.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 647.328125,
+          "y": 609,
+          "width": 369.328125,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "WHY WE ORBIT",
+          "x": 667.328125,
+          "y": 755,
+          "width": 185.015625,
+          "height": 28,
+          "text": "WHY WE ORBIT",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 976.625,
+          "y": 781,
+          "width": 32.03125,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "7:24",
+          "x": 981.625,
+          "y": 784,
+          "width": 22.03125,
+          "height": 12,
+          "text": "7:24",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 647.328125,
+          "y": 819,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "S",
+          "x": 658.984375,
+          "y": 827.5,
+          "width": 8.671875,
+          "height": 15,
+          "text": "S",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Why satellites don’t fall back to Earth",
+          "x": 690.328125,
+          "y": 821,
+          "width": 265.890625,
+          "height": 17,
+          "text": "Why satellites don’t fall back to Earth",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Science Stories",
+          "x": 690.328125,
+          "y": 847,
+          "width": 83.375,
+          "height": 14,
+          "text": "Science Stories",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Science & Nature · Sample recommendation",
+          "x": 690.328125,
+          "y": 866,
+          "width": 237.453125,
+          "height": 14,
+          "text": "Science & Nature · Sample recommendation",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Explore something new",
+          "x": 690.328125,
+          "y": 889,
+          "width": 114.34375,
+          "height": 12,
+          "text": "Explore something new",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 1010.21875,
+          "y": 818,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 1038.65625,
+          "y": 609,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 1038.65625,
+          "y": 609,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "2fc7edb01ff3",
+            "mime": "image/jpeg",
+            "path": "assets/2fc7edb01ff3.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 1038.65625,
+          "y": 609,
+          "width": 369.34375,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "AI IN REAL LIFE",
+          "x": 1058.65625,
+          "y": 755,
+          "width": 186.609375,
+          "height": 28,
+          "text": "AI IN REAL LIFE",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 1362.46875,
+          "y": 781,
+          "width": 37.53125,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "11:02",
+          "x": 1367.46875,
+          "y": 784,
+          "width": 27.53125,
+          "height": 12,
+          "text": "11:02",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 1038.65625,
+          "y": 819,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "F",
+          "x": 1050.671875,
+          "y": 827.5,
+          "width": 7.953125,
+          "height": 15,
+          "text": "F",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "What can AI actually do for your first job?",
+          "x": 1081.65625,
+          "y": 821,
+          "width": 296.96875,
+          "height": 17,
+          "text": "What can AI actually do for your first job?",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Future Skills",
+          "x": 1081.65625,
+          "y": 847,
+          "width": 66.03125,
+          "height": 14,
+          "text": "Future Skills",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech · Sample recommendation",
+          "x": 1081.65625,
+          "y": 866,
+          "width": 241.90625,
+          "height": 14,
+          "text": "Computing & Tech · Sample recommendation",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Related to your interests",
+          "x": 1081.65625,
+          "y": 889,
+          "width": 119.234375,
+          "height": 12,
+          "text": "Related to your interests",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 1401.5625,
+          "y": 818,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 256,
+          "y": 961,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(25, 108, 87)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 3 9 4-5 4 5 3-9 7-6-4 5-5-5-3Z\"></path><path d=\"m10 10 5 3-5 3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 290,
+          "y": 960,
+          "width": 123.59375,
+          "height": 23,
+          "text": "Short videos",
+          "fontSize": 21,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "Small ideas. Fresh perspectives.",
+          "x": 1234.59375,
+          "y": 965,
+          "width": 173.40625,
+          "height": 14,
+          "text": "Small ideas. Fresh perspectives.",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb vertical",
+          "x": 256,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 256,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 256,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "RAY TRACING",
+          "x": 271,
+          "y": 1228,
+          "width": 145.96875,
+          "height": 25,
+          "text": "RAY TRACING",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "IN 60 SECONDS",
+          "x": 271,
+          "y": 1254,
+          "width": 162.296875,
+          "height": 25,
+          "text": "IN 60 SECONDS",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "Ray tracing, explained with a",
+          "x": 256,
+          "y": 1316,
+          "width": 205.90625,
+          "height": 17,
+          "text": "Ray tracing, explained with a",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "mirror",
+          "x": 256,
+          "y": 1337,
+          "width": 44.1875,
+          "height": 17,
+          "text": "mirror",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Computing · 0:58",
+          "x": 256,
+          "y": 1363,
+          "width": 92.0625,
+          "height": 14,
+          "text": "Computing · 0:58",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb vertical",
+          "x": 489.59375,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 489.59375,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "13ad85987d1f",
+            "mime": "image/jpeg",
+            "path": "assets/13ad85987d1f.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 489.59375,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "SPACE IS",
+          "x": 504.59375,
+          "y": 1228,
+          "width": 97.875,
+          "height": 25,
+          "text": "SPACE IS",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "STRANGE",
+          "x": 504.59375,
+          "y": 1254,
+          "width": 104.765625,
+          "height": 25,
+          "text": "STRANGE",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "A tiny fact about a very big",
+          "x": 489.59375,
+          "y": 1316,
+          "width": 191.15625,
+          "height": 17,
+          "text": "A tiny fact about a very big",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "universe",
+          "x": 489.59375,
+          "y": 1337,
+          "width": 61.703125,
+          "height": 17,
+          "text": "universe",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Science · 0:42",
+          "x": 489.59375,
+          "y": 1363,
+          "width": 76.71875,
+          "height": 14,
+          "text": "Science · 0:42",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb vertical",
+          "x": 723.1875,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 723.1875,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "0a3a625d98fb",
+            "mime": "image/jpeg",
+            "path": "assets/0a3a625d98fb.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 723.1875,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "YOUR FIRST",
+          "x": 738.1875,
+          "y": 1228,
+          "width": 129.234375,
+          "height": 25,
+          "text": "YOUR FIRST",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "PAYSLIP",
+          "x": 738.1875,
+          "y": 1254,
+          "width": 87.6875,
+          "height": 25,
+          "text": "PAYSLIP",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "Where does your salary",
+          "x": 723.1875,
+          "y": 1316,
+          "width": 169.234375,
+          "height": 17,
+          "text": "Where does your salary",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "actually go?",
+          "x": 723.1875,
+          "y": 1337,
+          "width": 87.53125,
+          "height": 17,
+          "text": "actually go?",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Money · 1:12",
+          "x": 723.1875,
+          "y": 1363,
+          "width": 70.046875,
+          "height": 14,
+          "text": "Money · 1:12",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb vertical",
+          "x": 956.796875,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 956.796875,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "34576ea2f164",
+            "mime": "image/jpeg",
+            "path": "assets/34576ea2f164.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 956.796875,
+          "y": 1006,
+          "width": 217.59375,
+          "height": 298,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "ONE LINE.",
+          "x": 971.796875,
+          "y": 1228,
+          "width": 106.421875,
+          "height": 25,
+          "text": "ONE LINE.",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "BIG DIFFERENCE.",
+          "x": 971.796875,
+          "y": 1254,
+          "width": 185.90625,
+          "height": 25,
+          "text": "BIG DIFFERENCE.",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "A Python trick you’ll use",
+          "x": 956.796875,
+          "y": 1316,
+          "width": 174.484375,
+          "height": 17,
+          "text": "A Python trick you’ll use",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "every day",
+          "x": 956.796875,
+          "y": 1337,
+          "width": 69.234375,
+          "height": 17,
+          "text": "every day",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Computing · 0:49",
+          "x": 956.796875,
+          "y": 1363,
+          "width": 92.0625,
+          "height": 14,
+          "text": "Computing · 0:49",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb vertical",
+          "x": 1190.390625,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 1190.390625,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "7b239a732085",
+            "mime": "image/jpeg",
+            "path": "assets/7b239a732085.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 1190.390625,
+          "y": 1006,
+          "width": 217.609375,
+          "height": 298,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "NATURE",
+          "x": 1205.390625,
+          "y": 1228,
+          "width": 87.640625,
+          "height": 25,
+          "text": "NATURE",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "HAD IT FIRST",
+          "x": 1205.390625,
+          "y": 1254,
+          "width": 138.203125,
+          "height": 25,
+          "text": "HAD IT FIRST",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "The original solar panel? A",
+          "x": 1190.390625,
+          "y": 1316,
+          "width": 191.421875,
+          "height": 17,
+          "text": "The original solar panel? A",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "leaf.",
+          "x": 1190.390625,
+          "y": 1337,
+          "width": 30.015625,
+          "height": 17,
+          "text": "leaf.",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Science · 1:05",
+          "x": 1190.390625,
+          "y": 1363,
+          "width": 76.71875,
+          "height": 14,
+          "text": "Science · 1:05",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Illustrative content and thumbnails for design review.",
+          "x": 256,
+          "y": 1409,
+          "width": 254.984375,
+          "height": 12,
+          "text": "Illustrative content and thumbnails for design review.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#929292",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        }
+      ]
+    },
+    {
+      "name": "GPU topic",
+      "width": 1440,
+      "height": 1288,
+      "layers": [
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 68,
+          "radius": 0,
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Bottom",
+          "x": 0,
+          "y": 67,
+          "width": 1440,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#F4F4F4",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 28,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6h16M4 12h16M4 18h16\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "mark",
+          "x": 75,
+          "y": 21,
+          "width": 32,
+          "height": 25,
+          "radius": 7,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 81.5,
+          "y": 22.5,
+          "width": 19,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 4 12 8-12 8Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "curiosity",
+          "x": 114,
+          "y": 19,
+          "width": 95.203125,
+          "height": 28,
+          "text": "curiosity",
+          "fontSize": 25,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -1
+        },
+        {
+          "type": "text",
+          "name": "IN",
+          "x": 217.203125,
+          "y": 25,
+          "width": 10,
+          "height": 11,
+          "text": "IN",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#666666",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "search border",
+          "x": 360,
+          "y": 12.5,
+          "width": 610,
+          "height": 42,
+          "radius": 24,
+          "stroke": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Search anything you’re curious about",
+          "x": 381,
+          "y": 25,
+          "width": 247.65625,
+          "height": 17,
+          "text": "Search anything you’re curious about",
+          "fontSize": 15,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 905,
+          "y": 13.5,
+          "width": 64,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#F8F8F8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Left",
+          "x": 905,
+          "y": 13.5,
+          "width": 1,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 926.5,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(34, 34, 34)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 5 5\"></path></svg>"
+        },
+        {
+          "type": "outline",
+          "name": "signin border",
+          "x": 1305.328125,
+          "y": 13.5,
+          "width": 106.671875,
+          "height": 40,
+          "radius": 24,
+          "stroke": {
+            "hex": "#DEDEDE",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 1320.328125,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(25, 108, 87)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"4\"></circle><path d=\"M4 22v-3a8 8 0 0 1 16 0v3\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Sign in",
+          "x": 1350.328125,
+          "y": 25.5,
+          "width": 46.671875,
+          "height": 16,
+          "text": "Sign in",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 96.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 10 9-7 9 7v10H3Z\"></path><path d=\"M9 20v-7h6v7\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Home",
+          "x": 64,
+          "y": 100,
+          "width": 34.6875,
+          "height": 15,
+          "text": "Home",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 139.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 3 9 4-5 4 5 3-9 7-6-4 5-5-5-3Z\"></path><path d=\"m10 10 5 3-5 3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 64,
+          "y": 143,
+          "width": 72.265625,
+          "height": 15,
+          "text": "Short videos",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 182.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M12 7v5l4 2\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Continue watching",
+          "x": 64,
+          "y": 186,
+          "width": 106.96875,
+          "height": 15,
+          "text": "Continue watching",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 233,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Your topics",
+          "x": 24,
+          "y": 252,
+          "width": 81.40625,
+          "height": 17,
+          "text": "Your topics",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "nav active",
+          "x": 12,
+          "y": 281,
+          "width": 200,
+          "height": 43,
+          "radius": 10,
+          "fill": {
+            "hex": "#F0F0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 291.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"M9 1v5m6-5v5M9 18v5m6-5v5M1 9h5m-5 6h5m12-6h5m-5 6h5\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech",
+          "x": 64,
+          "y": 295,
+          "width": 114.59375,
+          "height": 15,
+          "text": "Computing & Tech",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "12",
+          "x": 196.59375,
+          "y": 296.5,
+          "width": 12.25,
+          "height": 12,
+          "text": "12",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "GPUs",
+          "x": 63,
+          "y": 337,
+          "width": 32.6875,
+          "height": 14,
+          "text": "GPUs",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Artificial intelligence",
+          "x": 63,
+          "y": 369,
+          "width": 105.390625,
+          "height": 14,
+          "text": "Artificial intelligence",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Python",
+          "x": 63,
+          "y": 401,
+          "width": 37.359375,
+          "height": 14,
+          "text": "Python",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 442.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M15 8h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9m3-10v12\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Money & Business",
+          "x": 64,
+          "y": 446,
+          "width": 107.671875,
+          "height": 15,
+          "text": "Money & Business",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "4",
+          "x": 193.875,
+          "y": 447.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "4",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 485.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3h6m-5 0v7L4 20h16l-6-10V3M7 15h10\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Science & Nature",
+          "x": 64,
+          "y": 489,
+          "width": 101.171875,
+          "height": 15,
+          "text": "Science & Nature",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "3",
+          "x": 193.875,
+          "y": 490.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "3",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "New searches find a home",
+          "x": 24,
+          "y": 535,
+          "width": 130.234375,
+          "height": 12,
+          "text": "New searches find a home",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "in your topics automatically.",
+          "x": 24,
+          "y": 552,
+          "width": 134.3125,
+          "height": 12,
+          "text": "in your topics automatically.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 585,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 614.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18l-6-4-6 4Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Saved for later",
+          "x": 64,
+          "y": 618,
+          "width": 84.546875,
+          "height": 15,
+          "text": "Saved for later",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 657.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4h18v13H9l-6 4Z\"></path><path d=\"M7 8h10m-10 5h6\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Ask a question",
+          "x": 64,
+          "y": 661,
+          "width": 85.28125,
+          "height": 15,
+          "text": "Ask a question",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "About · Help · Privacy",
+          "x": 24,
+          "y": 721,
+          "width": 106.984375,
+          "height": 12,
+          "text": "About · Help · Privacy",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Content from YouTube",
+          "x": 24,
+          "y": 739,
+          "width": 109.671875,
+          "height": 12,
+          "text": "Content from YouTube",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "© 2026 Curiosity",
+          "x": 24,
+          "y": 775,
+          "width": 81.484375,
+          "height": 12,
+          "text": "© 2026 Curiosity",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Your topics / Computing & Tech / GPUs",
+          "x": 256,
+          "y": 92,
+          "width": 208.78125,
+          "height": 14,
+          "text": "Your topics / Computing & Tech / GPUs",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "GPUs",
+          "x": 256,
+          "y": 136,
+          "width": 56,
+          "height": 23,
+          "text": "GPUs",
+          "fontSize": 21,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "Explore graphics cards, rendering, and parallel computing.",
+          "x": 256,
+          "y": 168,
+          "width": 336.03125,
+          "height": 15,
+          "text": "Explore graphics cards, rendering, and parallel computing.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 256,
+          "y": 201,
+          "width": 130.953125,
+          "height": 22,
+          "radius": 5,
+          "fill": {
+            "hex": "#F5F5F5",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Also related to: Gaming",
+          "x": 264,
+          "y": 206,
+          "width": 114.953125,
+          "height": 12,
+          "text": "Also related to: Gaming",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 396.953125,
+          "y": 201,
+          "width": 108.34375,
+          "height": 22,
+          "radius": 5,
+          "fill": {
+            "hex": "#F5F5F5",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "12 videos explored",
+          "x": 404.953125,
+          "y": 206,
+          "width": 92.34375,
+          "height": 12,
+          "text": "12 videos explored",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 515.296875,
+          "y": 201,
+          "width": 115.671875,
+          "height": 22,
+          "radius": 5,
+          "fill": {
+            "hex": "#F5F5F5",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "No knowledge score",
+          "x": 523.296875,
+          "y": 206,
+          "width": 99.671875,
+          "height": 12,
+          "text": "No knowledge score",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip selected",
+          "x": 256,
+          "y": 245,
+          "width": 42.625,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "All",
+          "x": 269,
+          "y": 254,
+          "width": 16.625,
+          "height": 15,
+          "text": "All",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 309.625,
+          "y": 245,
+          "width": 98.265625,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "GPU basics",
+          "x": 322.625,
+          "y": 254,
+          "width": 72.265625,
+          "height": 15,
+          "text": "GPU basics",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 418.890625,
+          "y": 245,
+          "width": 115.3125,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "NVIDIA & AMD",
+          "x": 431.890625,
+          "y": 254,
+          "width": 89.3125,
+          "height": 15,
+          "text": "NVIDIA & AMD",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 545.203125,
+          "y": 245,
+          "width": 96.8125,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Ray tracing",
+          "x": 558.203125,
+          "y": 254,
+          "width": 70.8125,
+          "height": 15,
+          "text": "Ray tracing",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 653.015625,
+          "y": 245,
+          "width": 63.5625,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "CUDA",
+          "x": 666.015625,
+          "y": 254,
+          "width": 37.5625,
+          "height": 15,
+          "text": "CUDA",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chip ",
+          "x": 727.578125,
+          "y": 245,
+          "width": 104.75,
+          "height": 33,
+          "radius": 8,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 740.578125,
+          "y": 254,
+          "width": 78.75,
+          "height": 15,
+          "text": "Short videos",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "inline-player",
+          "x": 256,
+          "y": 306,
+          "width": 742,
+          "height": 417,
+          "radius": 12,
+          "fill": {
+            "hex": "#111111",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb player-art",
+          "x": 256,
+          "y": 306,
+          "width": 742,
+          "height": 417,
+          "radius": 0,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 256,
+          "y": 306,
+          "width": 742,
+          "height": 417,
+          "radius": 0,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 256,
+          "y": 306,
+          "width": 742,
+          "height": 417,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "HOW A GPU",
+          "x": 296,
+          "y": 537,
+          "width": 246.421875,
+          "height": 48,
+          "text": "HOW A GPU",
+          "fontSize": 43,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "ACTUALLY WORKS",
+          "x": 296,
+          "y": 586,
+          "width": 398.140625,
+          "height": 48,
+          "text": "ACTUALLY WORKS",
+          "fontSize": 43,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "gradient",
+          "name": "player-bar",
+          "x": 256,
+          "y": 662,
+          "width": 742,
+          "height": 61,
+          "radius": 0,
+          "gradient": "linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9))"
+        },
+        {
+          "type": "rectangle",
+          "name": "timeline",
+          "x": 272,
+          "y": 674,
+          "width": 710,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 272,
+          "y": 674,
+          "width": 198.796875,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#FF3333",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 272,
+          "y": 689,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 4 12 8-12 8Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "3:24 / 12:06",
+          "x": 312,
+          "y": 693,
+          "width": 63.390625,
+          "height": 14,
+          "text": "3:24 / 12:06",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 920,
+          "y": 689,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 9 5 0 5-5v16l-5-5H3Zm14-1 4 8m0-8-4 8\"></path></svg>"
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 960,
+          "y": 689,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "selected-result border Bottom",
+          "x": 256,
+          "y": 878,
+          "width": 742,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#EEEEEE",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "NOW PLAYING",
+          "x": 256,
+          "y": 739,
+          "width": 70.75,
+          "height": 11,
+          "text": "NOW PLAYING",
+          "fontSize": 10,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "How GPUs actually work — a visual explanation",
+          "x": 256,
+          "y": 761,
+          "width": 419.421875,
+          "height": 21,
+          "text": "How GPUs actually work — a visual explanation",
+          "fontSize": 19,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "Tech Explained · YouTube",
+          "x": 256,
+          "y": 807,
+          "width": 139,
+          "height": 14,
+          "text": "Tech Explained · YouTube",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "save-pill",
+          "x": 879.625,
+          "y": 798,
+          "width": 118.375,
+          "height": 32,
+          "radius": 24,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 891.625,
+          "y": 806,
+          "width": 16,
+          "height": 16,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(34, 34, 34)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18l-6-4-6 4Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Save for later",
+          "x": 914.625,
+          "y": 807,
+          "width": 71.375,
+          "height": 14,
+          "text": "Save for later",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#222222",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "green-dot",
+          "x": 256,
+          "y": 847,
+          "width": 6,
+          "height": 6,
+          "radius": 50,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Progress saved · Continue at 3:24",
+          "x": 269,
+          "y": 844,
+          "width": 166.9375,
+          "height": 12,
+          "text": "Progress saved · Continue at 3:24",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "8 min active · Break in about 4 min",
+          "x": 828.640625,
+          "y": 844,
+          "width": 169.359375,
+          "height": 12,
+          "text": "8 min active · Break in about 4 min",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "More about GPUs",
+          "x": 256,
+          "y": 902,
+          "width": 142.625,
+          "height": 19,
+          "text": "More about GPUs",
+          "fontSize": 17,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 256,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 256,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 256,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "NVIDIA vs AMD",
+          "x": 276,
+          "y": 1084,
+          "width": 176.3125,
+          "height": 28,
+          "text": "NVIDIA vs AMD",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 575.96875,
+          "y": 1110,
+          "width": 32.03125,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "9:38",
+          "x": 580.96875,
+          "y": 1113,
+          "width": 22.03125,
+          "height": 12,
+          "text": "9:38",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 256,
+          "y": 1148,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "H",
+          "x": 267.296875,
+          "y": 1156.5,
+          "width": 9.390625,
+          "height": 15,
+          "text": "H",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Choosing a GPU: NVIDIA or AMD?",
+          "x": 299,
+          "y": 1150,
+          "width": 243.890625,
+          "height": 17,
+          "text": "Choosing a GPU: NVIDIA or AMD?",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Hardware Lab",
+          "x": 299,
+          "y": 1176,
+          "width": 75.375,
+          "height": 14,
+          "text": "Hardware Lab",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Related to GPUs",
+          "x": 299,
+          "y": 1195,
+          "width": 90.046875,
+          "height": 14,
+          "text": "Related to GPUs",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 609.5625,
+          "y": 1147,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 638,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 12,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 638,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 12,
+          "fit": "cover",
+          "asset": {
+            "id": "34576ea2f164",
+            "mime": "image/jpeg",
+            "path": "assets/34576ea2f164.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 638,
+          "y": 938,
+          "width": 360,
+          "height": 198,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "PARALLEL POWER",
+          "x": 658,
+          "y": 1084,
+          "width": 226.8125,
+          "height": 28,
+          "text": "PARALLEL POWER",
+          "fontSize": 25,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 957.96875,
+          "y": 1110,
+          "width": 32.03125,
+          "height": 18,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "6:48",
+          "x": 962.96875,
+          "y": 1113,
+          "width": 22.03125,
+          "height": 12,
+          "text": "6:48",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "channel-icon",
+          "x": 638,
+          "y": 1148,
+          "width": 32,
+          "height": 32,
+          "radius": 50,
+          "fill": {
+            "hex": "#EEF0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "C",
+          "x": 649.296875,
+          "y": 1156.5,
+          "width": 9.390625,
+          "height": 15,
+          "text": "C",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "CUDA: what happens behind the scenes?",
+          "x": 681,
+          "y": 1150,
+          "width": 296.71875,
+          "height": 17,
+          "text": "CUDA: what happens behind the scenes?",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Code Studio",
+          "x": 681,
+          "y": 1176,
+          "width": 66.046875,
+          "height": 14,
+          "text": "Code Studio",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Related to GPUs",
+          "x": 681,
+          "y": 1195,
+          "width": 90.046875,
+          "height": 14,
+          "text": "Related to GPUs",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "⋮",
+          "x": 991.5625,
+          "y": 1147,
+          "width": 6.4375,
+          "height": 27,
+          "text": "⋮",
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "chat border",
+          "x": 1024,
+          "y": 306,
+          "width": 384,
+          "height": 666,
+          "radius": 14,
+          "stroke": {
+            "hex": "#E5E5E5",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 1045,
+          "y": 327,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(25, 108, 87)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Ask about this topic",
+          "x": 1076,
+          "y": 329.5,
+          "width": 143.34375,
+          "height": 17,
+          "text": "Ask about this topic",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "−",
+          "x": 1377.65625,
+          "y": 329,
+          "width": 9.34375,
+          "height": 17,
+          "text": "−",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Understand the idea without leaving your video.",
+          "x": 1045,
+          "y": 363,
+          "width": 252.828125,
+          "height": 14,
+          "text": "Understand the idea without leaving your video.",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "user-bubble",
+          "x": 1080,
+          "y": 403,
+          "width": 307,
+          "height": 45,
+          "radius": 12,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "How is a GPU different from a CPU?",
+          "x": 1096,
+          "y": 418,
+          "width": 210.734375,
+          "height": 15,
+          "text": "How is a GPU different from a CPU?",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "CURiosity tutor",
+          "x": 1045,
+          "y": 476,
+          "width": 103.3125,
+          "height": 11,
+          "text": "CURiosity tutor",
+          "fontSize": 10,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0.8
+        },
+        {
+          "type": "text",
+          "name": "A CPU handles a wide range of tasks. A GPU uses many",
+          "x": 1045,
+          "y": 507,
+          "width": 327.34375,
+          "height": 15,
+          "text": "A CPU handles a wide range of tasks. A GPU uses many",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "processing units to work on similar tasks at the same time.",
+          "x": 1045,
+          "y": 528,
+          "width": 335.96875,
+          "height": 15,
+          "text": "processing units to work on similar tasks at the same time.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Think of a CPU as a few versatile workers, and a GPU as a",
+          "x": 1045,
+          "y": 561,
+          "width": 341.03125,
+          "height": 15,
+          "text": "Think of a CPU as a few versatile workers, and a GPU as a",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "large team doing parallel work.",
+          "x": 1045,
+          "y": 582,
+          "width": 177.046875,
+          "height": 15,
+          "text": "large team doing parallel work.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "source border",
+          "x": 1045,
+          "y": 612,
+          "width": 342,
+          "height": 41,
+          "radius": 6,
+          "stroke": {
+            "hex": "#E1EAE6",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Checked notes · GPU fundamentals ↗",
+          "x": 1056,
+          "y": 626,
+          "width": 185.953125,
+          "height": 12,
+          "text": "Checked notes · GPU fundamentals ↗",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "chat-related border Top",
+          "x": 1045,
+          "y": 675,
+          "width": 342,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#EEEEEE",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "A related video",
+          "x": 1045,
+          "y": 694,
+          "width": 85.59375,
+          "height": 14,
+          "text": "A related video",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb ",
+          "x": 1045,
+          "y": 720,
+          "width": 118,
+          "height": 68,
+          "radius": 6,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 1045,
+          "y": 720,
+          "width": 118,
+          "height": 68,
+          "radius": 6,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 1045,
+          "y": 720,
+          "width": 118,
+          "height": 68,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.08))"
+        },
+        {
+          "type": "text",
+          "name": "CPU vs GPU",
+          "x": 1053,
+          "y": 746,
+          "width": 67.359375,
+          "height": 14,
+          "text": "CPU vs GPU",
+          "fontSize": 12,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "duration",
+          "x": 1122.96875,
+          "y": 756,
+          "width": 32.03125,
+          "height": 24,
+          "radius": 4,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.85
+          }
+        },
+        {
+          "type": "text",
+          "name": "4:20",
+          "x": 1127.96875,
+          "y": 762,
+          "width": 22.03125,
+          "height": 12,
+          "text": "4:20",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "See the difference visually",
+          "x": 1173,
+          "y": 737.5,
+          "width": 139.875,
+          "height": 14,
+          "text": "See the difference visually",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "YouTube · Not reviewed",
+          "x": 1173,
+          "y": 757.5,
+          "width": 106.546875,
+          "height": 11,
+          "text": "YouTube · Not reviewed",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "chat-suggestion border",
+          "x": 1045,
+          "y": 812,
+          "width": 151.203125,
+          "height": 34,
+          "radius": 18,
+          "stroke": {
+            "hex": "#E5E5E5",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Try: What does CUDA do?",
+          "x": 1056,
+          "y": 823,
+          "width": 129.203125,
+          "height": 12,
+          "text": "Try: What does CUDA do?",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "chat-input border",
+          "x": 1045,
+          "y": 860,
+          "width": 342,
+          "height": 65,
+          "radius": 10,
+          "stroke": {
+            "hex": "#DDDDDD",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Ask a follow-up question…",
+          "x": 1058,
+          "y": 885.5,
+          "width": 142.078125,
+          "height": 14,
+          "text": "Ask a follow-up question…",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 1346.5,
+          "y": 877.5,
+          "width": 27.5,
+          "height": 30,
+          "radius": 50,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "↑",
+          "x": 1355.5,
+          "y": 881.5,
+          "width": 9.5,
+          "height": 21,
+          "text": "↑",
+          "fontSize": 19,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Answers use available notes. Ask for sources.",
+          "x": 1045,
+          "y": 937,
+          "width": 203.4375,
+          "height": 11,
+          "text": "Answers use available notes. Ask for sources.",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#888888",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Playback and chat shown as a design example, not a live answer.",
+          "x": 256,
+          "y": 1241,
+          "width": 319.8125,
+          "height": 12,
+          "text": "Playback and chat shown as a design example, not a live answer.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#929292",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        }
+      ]
+    },
+    {
+      "name": "Shorts",
+      "width": 1440,
+      "height": 1100,
+      "layers": [
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 68,
+          "radius": 0,
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Bottom",
+          "x": 0,
+          "y": 67,
+          "width": 1440,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#F4F4F4",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 28,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6h16M4 12h16M4 18h16\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "mark",
+          "x": 75,
+          "y": 21,
+          "width": 32,
+          "height": 25,
+          "radius": 7,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 81.5,
+          "y": 22.5,
+          "width": 19,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 4 12 8-12 8Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "curiosity",
+          "x": 114,
+          "y": 19,
+          "width": 95.203125,
+          "height": 28,
+          "text": "curiosity",
+          "fontSize": 25,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -1
+        },
+        {
+          "type": "text",
+          "name": "IN",
+          "x": 217.203125,
+          "y": 25,
+          "width": 10,
+          "height": 11,
+          "text": "IN",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#666666",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "search border",
+          "x": 360,
+          "y": 12.5,
+          "width": 610,
+          "height": 42,
+          "radius": 24,
+          "stroke": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Search anything you’re curious about",
+          "x": 381,
+          "y": 25,
+          "width": 247.65625,
+          "height": 17,
+          "text": "Search anything you’re curious about",
+          "fontSize": 15,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 905,
+          "y": 13.5,
+          "width": 64,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#F8F8F8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": " border Left",
+          "x": 905,
+          "y": 13.5,
+          "width": 1,
+          "height": 40,
+          "radius": 0,
+          "fill": {
+            "hex": "#D2D2D2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 926.5,
+          "y": 22.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(34, 34, 34)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 5 5\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Your learning, together",
+          "x": 1224.9375,
+          "y": 26,
+          "width": 131.0625,
+          "height": 15,
+          "text": "Your learning, together",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#606060",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "avatar",
+          "x": 1378,
+          "y": 16.5,
+          "width": 34,
+          "height": 34,
+          "radius": 50,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "S",
+          "x": 1389.65625,
+          "y": 24.5,
+          "width": 10.671875,
+          "height": 17,
+          "text": "S",
+          "fontSize": 16,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 96.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 10 9-7 9 7v10H3Z\"></path><path d=\"M9 20v-7h6v7\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Home",
+          "x": 64,
+          "y": 100,
+          "width": 34.6875,
+          "height": 15,
+          "text": "Home",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "nav active",
+          "x": 12,
+          "y": 129,
+          "width": 200,
+          "height": 43,
+          "radius": 10,
+          "fill": {
+            "hex": "#F0F0F0",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 139.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 3 9 4-5 4 5 3-9 7-6-4 5-5-5-3Z\"></path><path d=\"m10 10 5 3-5 3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 64,
+          "y": 143,
+          "width": 78.75,
+          "height": 15,
+          "text": "Short videos",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 182.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M12 7v5l4 2\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Continue watching",
+          "x": 64,
+          "y": 186,
+          "width": 106.96875,
+          "height": 15,
+          "text": "Continue watching",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 233,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Your topics",
+          "x": 24,
+          "y": 252,
+          "width": 81.40625,
+          "height": 17,
+          "text": "Your topics",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 291.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"></rect><path d=\"M9 1v5m6-5v5M9 18v5m6-5v5M1 9h5m-5 6h5m12-6h5m-5 6h5\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech",
+          "x": 64,
+          "y": 295,
+          "width": 106,
+          "height": 15,
+          "text": "Computing & Tech",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "12",
+          "x": 188,
+          "y": 296.5,
+          "width": 12.25,
+          "height": 12,
+          "text": "12",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 334.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M15 8h-4a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4H9m3-10v12\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Money & Business",
+          "x": 64,
+          "y": 338,
+          "width": 107.671875,
+          "height": 15,
+          "text": "Money & Business",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "4",
+          "x": 193.875,
+          "y": 339.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "4",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 377.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3h6m-5 0v7L4 20h16l-6-10V3M7 15h10\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Science & Nature",
+          "x": 64,
+          "y": 381,
+          "width": 101.171875,
+          "height": 15,
+          "text": "Science & Nature",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "3",
+          "x": 193.875,
+          "y": 382.5,
+          "width": 6.125,
+          "height": 12,
+          "text": "3",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "New searches find a home",
+          "x": 24,
+          "y": 427,
+          "width": 130.234375,
+          "height": 12,
+          "text": "New searches find a home",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "in your topics automatically.",
+          "x": 24,
+          "y": 444,
+          "width": 134.3125,
+          "height": 12,
+          "text": "in your topics automatically.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#808080",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": " border Top",
+          "x": 12,
+          "y": 477,
+          "width": 200,
+          "height": 1,
+          "radius": 0,
+          "fill": {
+            "hex": "#E8E8E8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 506.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18l-6-4-6 4Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Saved for later",
+          "x": 64,
+          "y": 510,
+          "width": 84.546875,
+          "height": 15,
+          "text": "Saved for later",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 24,
+          "y": 549.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4h18v13H9l-6 4Z\"></path><path d=\"M7 8h10m-10 5h6\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Ask a question",
+          "x": 64,
+          "y": 553,
+          "width": 85.28125,
+          "height": 15,
+          "text": "Ask a question",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "About · Help · Privacy",
+          "x": 24,
+          "y": 613,
+          "width": 106.984375,
+          "height": 12,
+          "text": "About · Help · Privacy",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Content from YouTube",
+          "x": 24,
+          "y": 631,
+          "width": 109.671875,
+          "height": 12,
+          "text": "Content from YouTube",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "© 2026 Curiosity",
+          "x": 24,
+          "y": 667,
+          "width": 81.484375,
+          "height": 12,
+          "text": "© 2026 Curiosity",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech / GPUs",
+          "x": 256,
+          "y": 144,
+          "width": 139.84375,
+          "height": 14,
+          "text": "Computing & Tech / GPUs",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#737373",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Short videos",
+          "x": 256,
+          "y": 170,
+          "width": 147.828125,
+          "height": 28,
+          "text": "Short videos",
+          "fontSize": 25,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "A quick way into a big idea.",
+          "x": 256,
+          "y": 213,
+          "width": 156.828125,
+          "height": 15,
+          "text": "A quick way into a big idea.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "short-tag",
+          "x": 256,
+          "y": 255,
+          "width": 110.046875,
+          "height": 34,
+          "radius": 7,
+          "fill": {
+            "hex": "#F1F5F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Related to GPUs",
+          "x": 266,
+          "y": 265,
+          "width": 90.046875,
+          "height": 14,
+          "text": "Related to GPUs",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "outline",
+          "name": "mini-topic-card border",
+          "x": 256,
+          "y": 313,
+          "width": 220,
+          "height": 83,
+          "radius": 10,
+          "stroke": {
+            "hex": "#EEEEEE",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "name": "Your topic stays together.",
+          "x": 274,
+          "y": 335,
+          "width": 145.515625,
+          "height": 15,
+          "text": "Your topic stays together.",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Go deeper whenever you’re ready.",
+          "x": 274,
+          "y": 360,
+          "width": 168.5625,
+          "height": 12,
+          "text": "Go deeper whenever you’re ready.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "← Back to GPU videos",
+          "x": 256,
+          "y": 420,
+          "width": 132.953125,
+          "height": 15,
+          "text": "← Back to GPU videos",
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "thumb reel-art",
+          "x": 500,
+          "y": 96,
+          "width": 440,
+          "height": 782,
+          "radius": 0,
+          "fill": {
+            "hex": "#193830",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "image",
+          "name": "Thumbnail",
+          "x": 500,
+          "y": 96,
+          "width": 440,
+          "height": 782,
+          "radius": 0,
+          "fit": "cover",
+          "asset": {
+            "id": "66e8217ee9d5",
+            "mime": "image/jpeg",
+            "path": "assets/66e8217ee9d5.jpg"
+          }
+        },
+        {
+          "type": "gradient",
+          "name": "shade",
+          "x": 500,
+          "y": 96,
+          "width": 440,
+          "height": 782,
+          "radius": 0,
+          "gradient": "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3))"
+        },
+        {
+          "type": "text",
+          "name": "WHAT DOES",
+          "x": 530,
+          "y": 278,
+          "width": 225.796875,
+          "height": 42,
+          "text": "WHAT DOES",
+          "fontSize": 38,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "RAY TRACING",
+          "x": 530,
+          "y": 324,
+          "width": 255.3125,
+          "height": 42,
+          "text": "RAY TRACING",
+          "fontSize": 38,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "text",
+          "name": "ACTUALLY DO?",
+          "x": 530,
+          "y": 370,
+          "width": 286.546875,
+          "height": 42,
+          "text": "ACTUALLY DO?",
+          "fontSize": 38,
+          "fontWeight": "800",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.4
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 520,
+          "y": 116,
+          "width": 42,
+          "height": 42,
+          "radius": 50,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.35
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 530,
+          "y": 126,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m8 4 12 8-12 8Z\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 878,
+          "y": 116,
+          "width": 42,
+          "height": 42,
+          "radius": 50,
+          "fill": {
+            "hex": "#000000",
+            "opacity": 0.35
+          }
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 888,
+          "y": 126,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(255, 255, 255)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 9 5 0 5-5v16l-5-5H3Zm14-1 4 8m0-8-4 8\"></path></svg>"
+        },
+        {
+          "type": "rectangle",
+          "name": "topic-on-video",
+          "x": 524,
+          "y": 680,
+          "width": 148.796875,
+          "height": 26,
+          "radius": 6,
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 0.16
+          }
+        },
+        {
+          "type": "text",
+          "name": "Computing & Tech · GPUs",
+          "x": 534,
+          "y": 687,
+          "width": 128.796875,
+          "height": 12,
+          "text": "Computing & Tech · GPUs",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Ray tracing, explained",
+          "x": 524,
+          "y": 718,
+          "width": 226.9375,
+          "height": 25,
+          "text": "Ray tracing, explained",
+          "fontSize": 22,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "with a mirror",
+          "x": 524,
+          "y": 747,
+          "width": 129.359375,
+          "height": 25,
+          "text": "with a mirror",
+          "fontSize": 22,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": -0.3
+        },
+        {
+          "type": "text",
+          "name": "Tech Explained · YouTube",
+          "x": 524,
+          "y": 786,
+          "width": 139,
+          "height": 14,
+          "text": "Tech Explained · YouTube",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "reel-progress",
+          "x": 524,
+          "y": 824,
+          "width": 392,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 524,
+          "y": 824,
+          "width": 117.59375,
+          "height": 3,
+          "radius": 0,
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "0:18 / 0:58 · Progress saved",
+          "x": 524,
+          "y": 837,
+          "width": 125.625,
+          "height": 11,
+          "text": "0:18 / 0:58 · Progress saved",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#CCCCCC",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 964,
+          "y": 625,
+          "width": 48,
+          "height": 48,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12v18l-6-4-6 4Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Save",
+          "x": 977.5625,
+          "y": 680,
+          "width": 20.875,
+          "height": 10,
+          "text": "Save",
+          "fontSize": 9.16667,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 964,
+          "y": 712,
+          "width": 48,
+          "height": 48,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4h18v13H9l-6 4Z\"></path><path d=\"M7 8h10m-10 5h6\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "Ask",
+          "x": 980.359375,
+          "y": 767,
+          "width": 15.265625,
+          "height": 10,
+          "text": "Ask",
+          "fontSize": 9.16667,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 964,
+          "y": 799,
+          "width": 48,
+          "height": 48,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(15, 15, 15)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m9 5 7 7-7 7\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "YouTube",
+          "x": 970,
+          "y": 854,
+          "width": 35.984375,
+          "height": 10,
+          "text": "YouTube",
+          "fontSize": 9.16667,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 1321.75,
+          "y": 399,
+          "width": 48,
+          "height": 48,
+          "radius": 50,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "↑",
+          "x": 1340,
+          "y": 409.5,
+          "width": 11.5,
+          "height": 26,
+          "text": "↑",
+          "fontSize": 23,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "",
+          "x": 1321.75,
+          "y": 467,
+          "width": 48,
+          "height": 48,
+          "radius": 50,
+          "fill": {
+            "hex": "#F2F2F2",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "↓",
+          "x": 1340,
+          "y": 477.5,
+          "width": 11.5,
+          "height": 26,
+          "text": "↓",
+          "fontSize": 23,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Scroll for",
+          "x": 1324.046875,
+          "y": 549,
+          "width": 43.40625,
+          "height": 12,
+          "text": "Scroll for",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "the next video",
+          "x": 1311.5,
+          "y": 567,
+          "width": 68.5,
+          "height": 12,
+          "text": "the next video",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "break-example",
+          "x": 256,
+          "y": 908,
+          "width": 1152,
+          "height": 75,
+          "radius": 12,
+          "fill": {
+            "hex": "#F7FAF8",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "outline",
+          "name": "break-example border",
+          "x": 256,
+          "y": 908,
+          "width": 1152,
+          "height": 75,
+          "radius": 12,
+          "stroke": {
+            "hex": "#E2E9E5",
+            "opacity": 1
+          },
+          "strokeWidth": 1
+        },
+        {
+          "type": "vector",
+          "name": "Icon",
+          "x": 275,
+          "y": 932.5,
+          "width": 22,
+          "height": 22,
+          "svg": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"rgb(25, 108, 87)\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z\"></path></svg>"
+        },
+        {
+          "type": "text",
+          "name": "A small change of pace?",
+          "x": 313,
+          "y": 928,
+          "width": 163.640625,
+          "height": 16,
+          "text": "A small change of pace?",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#0F0F0F",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "After 12 minutes, try up to 3 creative clips related to GPUs.",
+          "x": 313,
+          "y": 950,
+          "width": 312.140625,
+          "height": 14,
+          "text": "After 12 minutes, try up to 3 creative clips related to GPUs.",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#777777",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "rectangle",
+          "name": "break-button",
+          "x": 1157.546875,
+          "y": 928.5,
+          "width": 125.390625,
+          "height": 34,
+          "radius": 20,
+          "fill": {
+            "hex": "#196C57",
+            "opacity": 1
+          }
+        },
+        {
+          "type": "text",
+          "name": "Show related clips",
+          "x": 1171.546875,
+          "y": 938.5,
+          "width": 97.390625,
+          "height": 14,
+          "text": "Show related clips",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#FFFFFF",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "Keep learning",
+          "x": 1306.9375,
+          "y": 938.5,
+          "width": 74.0625,
+          "height": 14,
+          "text": "Keep learning",
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#555555",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        },
+        {
+          "type": "text",
+          "name": "The break prompt appears only after active learning, not when opening ",
+          "x": 256,
+          "y": 1011,
+          "width": 382.796875,
+          "height": 12,
+          "text": "The break prompt appears only after active learning, not when opening Shorts.",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fontFamily": "Roboto",
+          "fill": {
+            "hex": "#929292",
+            "opacity": 1
+          },
+          "letterSpacing": 0
+        }
+      ]
+    }
+  ]
+}

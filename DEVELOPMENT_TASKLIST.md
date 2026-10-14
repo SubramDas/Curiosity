@@ -145,6 +145,8 @@ These are implementation defaults, not extra founder commitments. They can be ad
 
 ## Phase 2 — Choose the tools and prove the main features can work
 
+**Teacher chat update — 2026-10-14:** The founder's broader teacher flow is implemented: unrelated questions are answered with up to two real videos, related questions can receive AI-matched timestamps, and uncertain relevance is labeled. Chat can start before search and supports follow-ups. See CHATBOT_PLAN.md for the 35 rule/service checks, browser evidence, live examples, limitations, and remaining accuracy review. Formal learner quizzes remain optional.
+
 **Layout update — 2026-10-14:** Founder approved the Figma design with Trending followed by saved broad subjects in the top bar. The desktop/mobile layout and a real YouTube home feed are implemented. Build/type checks, 26 rule/service checks, and nine simulated browser journeys pass. Search, chat limitations, topic grouping, related breaks, and playback progress are retained. Restart the local server for the new feed route. Reviewed content, account-progress migration/live verification if not yet done, hosting, and wider Phase 2 evaluation remain open; Phase 2 is not marked complete.
 
 **Progress — 2026-10-13:** Local API experiments and ten simulated-response tests are implemented. Follow [PHASE_2_SETUP.md](PHASE_2_SETUP.md) to configure YouTube and Gemini. Live checks, browser playback, saving, model comparison, and measured service limits remain open; implementation tasks are not marked complete based on simulated tests.

@@ -1,22 +1,33 @@
-import { useEffect, useState } from "react";
-import { AccountPanel } from "./features/accounts/AccountPanel";
-import { LearningWorkspace } from "./features/learning/LearningWorkspace";
-import { Header } from "./features/navigation/Header";
-import { Sidebar, type PageView } from "./features/navigation/Sidebar";
-import { TopicFilters } from "./features/navigation/TopicFilters";
-import { HomeFeed } from "./features/home/HomeFeed";
-import { useHomeFeed } from "./features/home/useHomeFeed";
-import { ContinueWatching } from "./features/progress/ContinueWatching";
-import { useVideoProgress } from "./features/progress/useVideoProgress";
+import { MobileLayout } from "../mobile-ui/MobileLayout";
+import { MobileHeader } from "../mobile-ui/MobileHeader";
+import { MobileNavigation } from "../mobile-ui/MobileNavigation";
+import { MobileMenu } from "../mobile-ui/MobileMenu";
+import { MobileTopics } from "../mobile-ui/MobileTopics";
+import { MobileSearchSuggestions } from "../mobile-ui/MobileSearchSuggestions";
+import { MobileLearningLayout } from "../mobile-ui/MobileLearningLayout";
+import { useMediaQuery } from "../shared/lib/useMediaQuery";
+import { DesktopLayout } from "../desktop-ui/DesktopLayout";
+import { useEffect, useRef, useState } from "react";
+import { useTutorChat } from "../shared/features/chat/useTutorChat";
+import { useAccountSession } from "../shared/features/accounts/useAccountSession";
+import { AccountPanel } from "../shared/features/accounts/AccountPanel";
+import { LearningWorkspace } from "../shared/features/learning/LearningWorkspace";
+import { Header } from "../desktop-ui/components/Header";
+import { Sidebar } from "../desktop-ui/components/Sidebar";
+import { TopicFilters } from "../desktop-ui/components/TopicFilters";
+import { HomeFeed } from "../shared/features/home/HomeFeed";
+import { useHomeFeed } from "../shared/features/home/useHomeFeed";
+import { ContinueWatching } from "../shared/features/progress/ContinueWatching";
+import { useVideoProgress } from "../shared/features/progress/useVideoProgress";
 import {
   categories,
   classifyTopic,
   findSavedTopic,
   saveUniqueTopic,
-} from "./features/topics/topic-rules";
-import { useVideoSearch } from "./features/videos/useVideoSearch";
-import { callApi } from "./lib/api";
-import type { Topic, Video } from "./types";
+} from "../shared/features/topics/topic-rules";
+import { useVideoSearch } from "../shared/features/videos/useVideoSearch";
+import { callApi } from "../shared/lib/api";
+import type { PageView, Topic, Video, VideoSeekRequest } from "../shared/types";
 
 const GUEST_STORE = "curiosity-guest-topics-v1";
 function readGuestTopics(): Topic[] {
@@ -41,16 +52,26 @@ function readGuestTopics(): Topic[] {
 }
 
 export default function App() {
+  const isMobile = useMediaQuery(
+    "(max-width: 600px), (max-width: 900px) and (max-height: 500px)",
+  );
+  const [mobileChatOpen, setMobileChatOpen] = useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [topics, setTopics] = useState<Topic[]>(readGuestTopics);
-  const [token, setToken] = useState<string | undefined>();
-  const [supabaseEnabled, setSupabaseEnabled] = useState(false);
+  const account = useAccountSession();
+  const chat = useTutorChat(account.userId);
+  const token = account.token;
+  const currentToken = useRef(token);
+  currentToken.current = token;
+  const [topicsBelongToAccount, setTopicsBelongToAccount] = useState(false);
   const [message, setMessage] = useState("");
   const [ambiguous, setAmbiguous] = useState(false);
   const [demo, setDemo] = useState(false);
   const [view, setView] = useState<PageView>("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [initialVideo, setInitialVideo] = useState<Video>();
+  const [initialSeek, setInitialSeek] = useState<VideoSeekRequest>();
   const [discovery, setDiscovery] = useState<{
     topic: Topic;
     videos: Video[];
@@ -72,14 +93,7 @@ export default function App() {
   const currentTopic = discovery?.topic ?? search.topic;
   const currentVideos = discovery?.videos ?? search.videos;
   useEffect(() => {
-    callApi<{ supabaseConfigured: boolean }>("config")
-      .then((config) => setSupabaseEnabled(config.supabaseConfigured))
-      .catch(() =>
-        setMessage("The local API is unavailable. Restart npm run dev."),
-      );
-  }, []);
-  useEffect(() => {
-    if (token) return;
+    if (token || !account.ready || topicsBelongToAccount) return;
     try {
       localStorage.setItem(GUEST_STORE, JSON.stringify(topics));
     } catch {
@@ -87,8 +101,10 @@ export default function App() {
         "Browser storage is unavailable. These guest topics will not survive a refresh.",
       );
     }
-  }, [topics, token]);
+  }, [topics, token, account.ready, topicsBelongToAccount]);
   function navigate(next: PageView) {
+    setMobileChatOpen(false);
+    setMobileSearchOpen(false);
     if (next === "shorts" && view === "home")
       setDiscovery({
         topic: classifyTopic("Trending learning videos")!,
@@ -96,12 +112,15 @@ export default function App() {
       });
     setView(next);
     setMenuOpen(false);
+    setInitialSeek(undefined);
     setInitialVideo(undefined);
     if (next === "home") setDiscovery(undefined);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   async function openTopic(topic: Topic, video?: Video) {
     if (search.busy) return;
+    setMobileChatOpen(false);
+    setMobileSearchOpen(false);
     const chosen = findSavedTopic(topics, topic) ?? topic;
     setDiscovery(undefined);
     setInitialVideo(video);
@@ -112,6 +131,7 @@ export default function App() {
     if (token) {
       try {
         await callApi("topics/save", chosen, token);
+        if (currentToken.current !== token) return;
         setTopics((current) => saveUniqueTopic(current, chosen));
         setMessage("Saved to your account.");
       } catch (error) {
@@ -125,7 +145,10 @@ export default function App() {
     }
   }
   function openVideo(video: Video, topic?: Topic, savedKey?: string) {
-    if (topic) {
+    setMobileChatOpen(false);
+    setMobileSearchOpen(false);
+    setInitialSeek(undefined);
+    if (topic && !savedKey) {
       void openTopic(topic, video);
       return;
     }
@@ -133,17 +156,32 @@ export default function App() {
     const derived =
       classifyTopic(video.title) ?? classifyTopic("Trending learning videos")!;
     const savedCategory = savedKey?.split(":")[0] as Topic["category"];
-    const chosen = savedKey
-      ? {
-          ...derived,
-          key: savedKey,
-          category:
-            savedCategory in categories ? savedCategory : derived.category,
-        }
-      : derived;
-    setDiscovery({ topic: chosen, videos: homeVideos });
+    const chosen =
+      topic ??
+      (savedKey
+        ? {
+            ...derived,
+            key: savedKey,
+            category:
+              savedCategory in categories ? savedCategory : derived.category,
+          }
+        : derived);
+    const related = savedKey
+      ? search.topic?.key === chosen.key
+        ? search.videos
+        : []
+      : homeVideos;
+    setDiscovery({
+      topic: chosen,
+      videos: [video, ...related.filter((item) => item.id !== video.id)],
+    });
     setInitialVideo(video);
     setView("topic");
+  }
+  function openChatVideo(video: Video, seconds?: number) {
+    openVideo(video);
+    if (seconds !== undefined)
+      setInitialSeek({ videoId: video.id, seconds, requestId: Date.now() });
   }
   function submit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -155,82 +193,160 @@ export default function App() {
     setAmbiguous(false);
     void openTopic(topic);
   }
-  async function signIn(accessToken: string) {
-    const rows = await callApi<
+  const previousAccount = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (!account.ready || previousAccount.current === account.userId) return;
+    previousAccount.current = account.userId;
+    search.reset();
+    setInitialSeek(undefined);
+    setDiscovery(undefined);
+    setInitialVideo(undefined);
+    setQuery("");
+    setMobileChatOpen(false);
+    setMobileSearchOpen(false);
+    setView("home");
+    setMenuOpen(false);
+    setMessage("");
+    setAmbiguous(false);
+  }, [account.ready, account.userId, search.reset]);
+  useEffect(() => {
+    if (!account.ready) return;
+    if (!token) {
+      setTopics(readGuestTopics());
+      setTopicsBelongToAccount(false);
+      return;
+    }
+    let active = true;
+    setTopicsBelongToAccount(true);
+    setTopics([]);
+    callApi<
       {
         topic_key: string;
         query: string;
         category: Topic["category"];
         related_categories: Topic["relatedCategories"];
       }[]
-    >("topics/list", {}, accessToken);
-    setToken(accessToken);
-    setTopics(
-      rows.map((row) => ({
-        key: row.topic_key,
-        query: row.query,
-        category: row.category,
-        relatedCategories: row.related_categories,
-      })),
-    );
-  }
-  function signOut() {
-    setToken(undefined);
-    setTopics(readGuestTopics());
-    setMessage("Signed out in this tab.");
-  }
+    >("topics/list", {}, token)
+      .then((rows) => {
+        if (!active) return;
+        setTopics(
+          rows.map((row) => ({
+            key: row.topic_key,
+            query: row.query,
+            category: row.category,
+            relatedCategories: row.related_categories,
+          })),
+        );
+      })
+      .catch(() => {
+        if (active)
+          setMessage(
+            "You are signed in, but saved topics could not load. Check your connection and refresh.",
+          );
+      });
+    return () => {
+      active = false;
+    };
+  }, [token, account.ready]);
   function askQuestion() {
-    if (currentTopic) {
-      setView("topic");
-      setMenuOpen(false);
-      setTimeout(() => document.getElementById("question")?.focus(), 50);
-    } else {
-      setMessage(
-        "Search a topic first, then ask a question beside its videos.",
-      );
-      document.getElementById("search")?.focus();
+    setMobileChatOpen(true);
+    setMobileSearchOpen(false);
+    if (!currentTopic) {
+      search.reset();
+      setDiscovery({ topic: classifyTopic("Ask a question")!, videos: [] });
+      setInitialVideo(undefined);
     }
+    if (view !== "topic" && view !== "shorts") setView("topic");
+    setMenuOpen(false);
+    setMessage("");
+    setTimeout(() => document.getElementById("question")?.focus(), 50);
   }
   const workspaceTopic =
     currentTopic ?? classifyTopic("Trending learning videos")!;
   const workspaceVideos = currentTopic ? currentVideos : homeVideos;
+  const Layout = isMobile ? MobileLayout : DesktopLayout;
+  const PageHeader = isMobile ? MobileHeader : Header;
   return (
-    <>
-      <Header
-        query={query}
-        onQuery={setQuery}
-        onSearch={submit}
-        busy={search.busy}
-        menuOpen={menuOpen}
-        onMenu={() => setMenuOpen((value) => !value)}
-        onHome={() => navigate("home")}
-        account={
-          <AccountPanel
-            enabled={supabaseEnabled}
-            signedIn={Boolean(token)}
-            onSignIn={signIn}
-            onSignOut={signOut}
+    <Layout
+      {...{
+        searchOpen: mobileSearchOpen,
+        chatOpen: mobileChatOpen,
+        navigation: (
+          <MobileNavigation
+            view={view}
+            chatOpen={mobileChatOpen}
+            onNavigate={navigate}
+            onAsk={askQuestion}
           />
-        }
-      />
-      {menuOpen && (
-        <button
-          className="navigation-backdrop"
-          aria-label="Close navigation"
-          onClick={() => setMenuOpen(false)}
+        ),
+      }}
+      menuOpen={menuOpen}
+      onCloseMenu={() => setMenuOpen(false)}
+      header={
+        <PageHeader
+          {...{
+            searchOpen: mobileSearchOpen,
+            onSearchOpen: setMobileSearchOpen,
+            chatOpen: mobileChatOpen,
+            onCloseChat: () => setMobileChatOpen(false),
+          }}
+          query={query}
+          onQuery={setQuery}
+          onSearch={submit}
+          busy={search.busy}
+          menuOpen={menuOpen}
+          onMenu={() => setMenuOpen((value) => !value)}
+          onHome={() => navigate("home")}
+          account={
+            <AccountPanel
+              presentation={isMobile ? "screen" : "popover"}
+              enabled={account.enabled}
+              ready={account.ready}
+              accountEmail={account.email}
+              accountError={account.error}
+              signedIn={Boolean(token)}
+              onAuthenticate={account.authenticate}
+              onResendConfirmation={account.resendConfirmation}
+              onSignOut={account.signOut}
+            />
+          }
+        />
+      }
+      sidebar={
+        isMobile ? (
+          <MobileMenu
+            open={menuOpen}
+            onNavigate={navigate}
+            onClose={() => setMenuOpen(false)}
+            demo={demo}
+            onDemo={setDemo}
+          />
+        ) : (
+          <Sidebar
+            topics={topics}
+            view={view}
+            open={menuOpen}
+            onNavigate={navigate}
+            onTopic={(topic) => void openTopic(topic)}
+            onAsk={askQuestion}
+            demo={demo}
+            onDemo={setDemo}
+          />
+        )
+      }
+    >
+      {isMobile && mobileSearchOpen && (
+        <MobileSearchSuggestions
+          topics={topics}
+          onOpen={(topic) => void openTopic(topic)}
+          onAsk={askQuestion}
         />
       )}
-      <Sidebar
-        topics={topics}
-        view={view}
-        open={menuOpen}
-        onNavigate={navigate}
-        onTopic={(topic) => void openTopic(topic)}
-        onAsk={askQuestion}
-        demo={demo}
-        onDemo={setDemo}
-      />
-      <main className="main-content">
+      {(!isMobile ||
+        (!mobileChatOpen &&
+          view !== "topics" &&
+          view !== "history" &&
+          view !== "shorts")) && (
         <TopicFilters
           topics={topics}
           active={
@@ -242,39 +358,125 @@ export default function App() {
           onTrending={() => navigate("home")}
           onTopic={(topic) => void openTopic(topic)}
         />
-        {ambiguous && (
-          <aside className="notice">
-            <p>What do you mean by CA?</p>
-            {["Chartered accountant", "California"].map((choice) => (
+      )}
+      {ambiguous && (
+        <aside className="notice">
+          <p>What do you mean by CA?</p>
+          {["Chartered accountant", "California"].map((choice) => (
+            <button
+              key={choice}
+              onClick={() => {
+                setAmbiguous(false);
+                void openTopic(classifyTopic(choice)!);
+              }}
+            >
+              {choice}
+            </button>
+          ))}
+        </aside>
+      )}
+      {message && (
+        <p className="status-message" role="status">
+          {message}
+        </p>
+      )}
+      {isMobile && view === "topics" && (
+        <MobileTopics
+          topics={topics}
+          onOpen={(topic) => void openTopic(topic)}
+          onSearch={() => setMobileSearchOpen(true)}
+          onHistory={() => navigate("history")}
+        />
+      )}
+      {isMobile && view === "home" && topics.length === 0 && (
+        <section className="mobile-welcome">
+          <h1>Follow your curiosity.</h1>
+          <p>
+            Videos to explore. A teacher to ask.
+            <br />
+            Your topics, kept together.
+          </p>
+          <button onClick={() => setMobileSearchOpen(true)}>
+            Search anything
+          </button>
+        </section>
+      )}
+      {view === "home" && (
+        <>
+          {progress.message && (
+            <p className="notice" role="status">
+              {progress.message}
+            </p>
+          )}
+          <ContinueWatching
+            limit={3}
+            onViewAll={() => navigate("history")}
+            rows={progress.rows}
+            videos={homeVideos}
+            onSelect={(video, key) =>
+              openVideo(
+                video,
+                topics.find((topic) => topic.key === key),
+                key,
+              )
+            }
+          />
+          <div className="suggestions">
+            <span>Try a topic</span>
+            {[
+              ["GPUs", "I want to know about GPUs"],
+              ["Income tax", "Income tax"],
+              ["Cooking", "Cooking"],
+            ].map(([label, text]) => (
               <button
-                key={choice}
-                onClick={() => {
-                  setAmbiguous(false);
-                  void openTopic(classifyTopic(choice)!);
-                }}
+                key={label}
+                disabled={search.busy}
+                onClick={() => void openTopic(classifyTopic(text)!)}
               >
-                {choice}
+                {label}
               </button>
             ))}
-          </aside>
-        )}
-        {message && (
-          <p className="status-message" role="status">
-            {message}
-          </p>
-        )}
-        {view === "home" && (
-          <>
-            {progress.message && (
-              <p className="notice" role="status">
-                {progress.message}
-              </p>
-            )}
+          </div>
+          {home.busy && (
+            <div className="feed-loading" role="status">
+              <div className="skeleton-grid">
+                {[1, 2, 3].map((id) => (
+                  <div className="skeleton-card" key={id} />
+                ))}
+              </div>
+              <p>Finding videos for your feed…</p>
+            </div>
+          )}
+          {home.error && (
+            <p className="notice" role="alert">
+              {home.error} <button onClick={home.retry}>Try again</button>
+            </p>
+          )}
+          {home.messages.map((text) => (
+            <p className="notice" key={text} role="status">
+              {text} <button onClick={home.retry}>Try again</button>
+            </p>
+          ))}
+          {!home.busy && (
+            <HomeFeed
+              data={home}
+              topics={topics}
+              progress={progress.rows}
+              onSelect={openVideo}
+            />
+          )}
+        </>
+      )}
+      {view === "history" && (
+        <section className="feed-section">
+          <h1>Continue watching</h1>
+          <p className="muted">Pick up a video where you left off.</p>
+          {progress.loading ? (
+            <p role="status">Loading your video progress…</p>
+          ) : (
             <ContinueWatching
-              limit={3}
-              onViewAll={() => navigate("history")}
               rows={progress.rows}
-              videos={homeVideos}
+              videos={[...homeVideos, ...search.videos]}
               onSelect={(video, key) =>
                 openVideo(
                   video,
@@ -283,121 +485,86 @@ export default function App() {
                 )
               }
             />
-            <div className="suggestions">
-              <span>Try a topic</span>
-              {[
-                ["GPUs", "I want to know about GPUs"],
-                ["Income tax", "Income tax"],
-                ["Cooking", "Cooking"],
-              ].map(([label, text]) => (
-                <button
-                  key={label}
-                  disabled={search.busy}
-                  onClick={() => void openTopic(classifyTopic(text)!)}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            {home.busy && (
-              <div className="feed-loading" role="status">
-                <div className="skeleton-grid">
-                  {[1, 2, 3].map((id) => (
-                    <div className="skeleton-card" key={id} />
-                  ))}
-                </div>
-                <p>Finding videos for your feed…</p>
-              </div>
-            )}
-            {home.error && (
-              <p className="notice" role="alert">
-                {home.error} <button onClick={home.retry}>Try again</button>
-              </p>
-            )}
-            {home.messages.map((text) => (
-              <p className="notice" key={text} role="status">
-                {text} <button onClick={home.retry}>Try again</button>
-              </p>
-            ))}
-            {!home.busy && (
-              <HomeFeed
-                data={home}
-                topics={topics}
-                progress={progress.rows}
-                onSelect={openVideo}
-              />
-            )}
-          </>
-        )}
-        {view === "history" && (
-          <section className="feed-section">
-            <h1>Continue watching</h1>
-            <p className="muted">Pick up a video where you left off.</p>
-            {progress.loading ? (
-              <p role="status">Loading your video progress…</p>
-            ) : (
-              <ContinueWatching
-                rows={progress.rows}
-                videos={[...homeVideos, ...search.videos]}
-                onSelect={(video, key) =>
-                  openVideo(
-                    video,
-                    topics.find((topic) => topic.key === key),
-                    key,
-                  )
-                }
-              />
-            )}
-            {progress.message && (
-              <p className="notice" role="status">
-                {progress.message}
-              </p>
-            )}
-            {!progress.loading &&
-              !progress.rows.some(
-                (row) => !row.completed && row.position_seconds > 0,
-              ) && (
-                <p className="empty-state">
-                  Your unfinished videos will appear here after you start
-                  watching.
-                </p>
-              )}
-          </section>
-        )}
-        {(view === "topic" || view === "shorts") && (
-          <>
-            {search.error && (
-              <p className="notice" role="alert">
-                {search.error}
-              </p>
-            )}
-            {search.busy && <p role="status">Finding videos…</p>}
-            <LearningWorkspace
-              key={`${workspaceTopic.key}:${demo}:${token ? "account" : "guest"}:${initialVideo?.id ?? ""}:${view}`}
-              topic={workspaceTopic}
-              videos={workspaceVideos}
-              demo={demo}
-              progress={progress}
-              initialVideo={initialVideo}
-              initialMode={view === "shorts" ? "short" : "all"}
-            />
-            {!discovery && search.nextPage && (
-              <button
-                className="load-more"
-                disabled={search.busy}
-                onClick={() => void search.load(search.topic!, true)}
-              >
-                {search.busy ? "Loading…" : "Load more videos"}
-              </button>
-            )}
-            {!search.busy && !workspaceVideos.length && (
+          )}
+          {progress.message && (
+            <p className="notice" role="status">
+              {progress.message}
+            </p>
+          )}
+          {!progress.loading &&
+            !progress.rows.some(
+              (row) => !row.completed && row.position_seconds > 0,
+            ) && (
               <p className="empty-state">
-                No videos returned. Try a clearer search.
+                Your unfinished videos will appear here after you start
+                watching.
               </p>
             )}
-          </>
-        )}
-      </main>
-    </>
+        </section>
+      )}
+      {(view === "topic" || view === "shorts") && (
+        <>
+          {search.error && (
+            <p className="notice" role="alert">
+              {search.error}
+              {isMobile && (
+                <>
+                  <button onClick={() => setMobileSearchOpen(true)}>
+                    Change search
+                  </button>
+                  <button onClick={() => navigate("history")}>
+                    Continue watching
+                  </button>
+                </>
+              )}
+            </p>
+          )}
+          {search.busy && <p role="status">Finding videos…</p>}
+          <LearningWorkspace
+            key={`${workspaceTopic.key}:${demo}:${token ? "account" : "guest"}:${initialVideo?.id ?? ""}:${view}`}
+            showReelControls={isMobile}
+            feedHidden={isMobile && mobileChatOpen}
+            onReturnToVideo={
+              isMobile ? () => setMobileChatOpen(false) : undefined
+            }
+            renderContent={
+              isMobile
+                ? (content) => (
+                    <MobileLearningLayout
+                      {...content}
+                      chatOpen={mobileChatOpen}
+                      onAsk={askQuestion}
+                      onCloseChat={() => setMobileChatOpen(false)}
+                    />
+                  )
+                : undefined
+            }
+            topic={workspaceTopic}
+            videos={workspaceVideos}
+            demo={demo}
+            progress={progress}
+            chat={chat}
+            onRelatedVideo={openChatVideo}
+            initialSeek={initialSeek}
+            initialVideo={initialVideo}
+            initialMode={view === "shorts" ? "short" : "all"}
+          />
+          {!discovery && search.nextPage && (
+            <button
+              className="load-more"
+              disabled={search.busy}
+              onClick={() => void search.load(search.topic!, true)}
+            >
+              {search.busy ? "Loading…" : "Load more videos"}
+            </button>
+          )}
+          {!search.busy && !workspaceVideos.length && !discovery && (
+            <p className="empty-state">
+              No videos returned. Try a clearer search.
+            </p>
+          )}
+        </>
+      )}
+    </Layout>
   );
 }

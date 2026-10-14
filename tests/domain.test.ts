@@ -3,13 +3,13 @@ import assert from "node:assert/strict";
 import {
   classifyTopic,
   saveUniqueTopic,
-} from "../src/features/topics/topic-rules";
+} from "../shared/features/topics/topic-rules";
 import {
   advanceBreakClock,
   resetBreakClock,
-} from "../src/features/learning/break-clock";
-import { createUsageLimiter } from "../server/usage.mjs";
-import { createSupabaseClient } from "../server/supabase.mjs";
+} from "../shared/features/learning/break-clock";
+import { createUsageLimiter } from "../backend/usage.mjs";
+import { createSupabaseClient } from "../backend/supabase.mjs";
 import { loadLocalEnvironment } from "../config/local-environment.mjs";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";

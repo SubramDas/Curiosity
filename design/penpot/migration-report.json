@@ -1,0 +1,83 @@
+{
+  "file": {
+    "id": "129977ce-683b-806a-8008-c8f2a3fe903e",
+    "name": "New File 1"
+  },
+  "page": {
+    "id": "129977ce-683b-806a-8008-c8f2a3fe903f",
+    "name": "Curiosity — Desktop"
+  },
+  "boards": [
+    {
+      "id": "c5f19b81-2139-8092-8008-c8fd75b0235f",
+      "name": "Home",
+      "width": 1440,
+      "height": 1456,
+      "textLayers": 106,
+      "imageLayers": 11,
+      "fonts": [
+        "Roboto"
+      ]
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-c8fd8896fc0c",
+      "name": "GPU topic",
+      "width": 1440,
+      "height": 1288,
+      "textLayers": 80,
+      "imageLayers": 4,
+      "fonts": [
+        "Roboto"
+      ]
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-c8fd9815edbd",
+      "name": "Shorts",
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 49,
+      "imageLayers": 1,
+      "fonts": [
+        "Roboto"
+      ]
+    }
+  ],
+  "componentBoard": {
+    "id": "c5f19b81-2139-8092-8008-c8fdfa4b1049",
+    "name": "Reusable components"
+  },
+  "components": [
+    {
+      "name": "Header / Signed in",
+      "id": "c5f19b81-2139-8092-8008-c8fdfa6de55a",
+      "layerCount": 15
+    },
+    {
+      "name": "Header / Signed out",
+      "id": "c5f19b81-2139-8092-8008-c8fdfa8756e7",
+      "layerCount": 15
+    },
+    {
+      "name": "Video card / Continue watching",
+      "id": "c5f19b81-2139-8092-8008-c8fdfa9edb65",
+      "layerCount": 15
+    },
+    {
+      "name": "Short card",
+      "id": "c5f19b81-2139-8092-8008-c8fdfab37a1c",
+      "layerCount": 8
+    }
+  ],
+  "validationErrors": [],
+  "transferredAt": "2026-10-14",
+  "source": "design/review/desktop-design.html",
+  "method": "Native layers rebuilt from saved approved design",
+  "previewChecks": [
+    "Home",
+    "GPU topic",
+    "Shorts",
+    "Reusable components"
+  ],
+  "savedVersion": "Curiosity — approved desktop design migrated from Figma",
+  "shareUrl": null
+}

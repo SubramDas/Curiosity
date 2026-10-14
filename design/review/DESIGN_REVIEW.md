@@ -2,7 +2,7 @@
 
 Status: approved by the founder on 2026-10-14, with Trending first in the top bar, followed by subjects the user has searched. Implemented in the local app.
 
-Figma file: https://www.figma.com/design/miSY1sBxnsGIfjjUgx6Djp?node-id=5-2
+Archived Figma file: https://www.figma.com/design/miSY1sBxnsGIfjjUgx6Djp?node-id=5-2
 
 Direct screens:
 
@@ -59,3 +59,8 @@ The three Figma screens contain editable text, vector icons, layout frames, and 
 - Restart the existing local dev process to load the new backend. Account video progress still requires the previously supplied `002_video_progress.sql` migration and ownership check, if not already run.
 
 The final balanced provider adapter returned 20 live videos. A subsequent request through the full home route was blocked by the existing local daily allowance; its counter was already 40. That limit was not raised or reset. The app now names this limit explicitly. Restarting loads the code but does not reset the daily allowance.
+
+
+## Penpot selected for future design work
+
+The founder requested migration of all three screens to Penpot and Penpot-only design work going forward. The migration was completed on 2026-10-14 in **New File 1 → Curiosity — Desktop**. Home, GPU topic, and Shorts have native editable text, vector icons, and individual thumbnail fills. Four reusable components were added. All screen and component previews were inspected, file validation passed, and a named version was saved. See [the transfer handoff](../penpot/README.md) for IDs and reconstruction limitations. The saved approved HTML supplied the design source; the rate-limited Figma server was not used.

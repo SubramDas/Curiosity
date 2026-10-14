@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { requestJson } from '../services/request-json.mjs';
-import { createYouTubeClient, mergeVideoPages } from '../services/youtube.mjs';
+import { requestJson } from '../../../backend/providers/request-json.mjs';
+import { createYouTubeClient, mergeVideoPages } from '../../../backend/providers/youtube.mjs';
 import { createGeminiClient, validateAnswer } from '../services/gemini.mjs';
-import { gpuNotes } from '../content/gpu-notes.mjs';
+import { gpuNotes } from '../../../backend/content/gpu-notes.mjs';
 
 const jsonResponse = (value) => new Response(JSON.stringify(value));
 

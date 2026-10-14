@@ -1,4 +1,4 @@
-import { requestJson, ServiceError } from './request-json.mjs';
+import { requestJson, ServiceError } from '../../../backend/providers/request-json.mjs';
 
 export function validateAnswer(answer, sources) {
   const allowedSourceIds = new Set(sources.map((source) => source.id));

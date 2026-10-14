@@ -1,0 +1,43 @@
+# Penpot design transfer
+
+Status: transferred and checked in Penpot on 2026-10-14.
+
+Open **New File 1 → Curiosity — Desktop** in the connected Penpot workspace. It contains Home, GPU topic, Shorts, and a Reusable components board. The Home screen retains Trending followed by the user's searched subjects.
+
+Destination file ID: `129977ce-683b-806a-8008-c8f2a3fe903e`. Page ID: `129977ce-683b-806a-8008-c8f2a3fe903f`. Full board and component IDs are recorded in `migration-report.json`. The MCP API does not expose the workspace's public/share URL; use the connected file in Penpot.
+
+The three screens contain 106, 80, and 49 native editable text layers, all using Roboto. Icons are native vector groups; thumbnails are individual image fills with their aspect ratio preserved. Headers, sidebar sections, and topic tabs are grouped. The local component library includes signed-in and signed-out headers, a continue-watching video card, and a short card.
+
+All three screen previews and the component preview were inspected. Penpot file validation returned no errors. A version was saved as **Curiosity — approved desktop design migrated from Figma**.
+
+The founder selected Penpot for all future design work. The Figma file remains an archive of the earlier review. Do not use Figma MCP for new edits unless the founder requests it.
+
+## Screens
+
+- `1-home.svg`: Home, including Trending followed by the illustrative user's searched subjects.
+- `2-gpu-topic.svg`: GPU topic, video player, related results, chat, and break example.
+- `3-shorts.svg`: Shorts screen with topic context and related-break example.
+
+These exports are reconstructed from the saved design source in `../review/desktop-design.html`, including its approved tab update. They contain SVG text, rectangles, vectors, and individual embedded thumbnail images; they are not screenshots of entire screens. They are not native `.penpot` files and do not retain Figma component IDs or library links.
+
+`design-layers.json` contains screen dimensions and individual layer properties for rebuilding native Penpot shapes. The six original thumbnail assets are in `assets/`. Importing the SVGs alone does not establish that Penpot has retained editable text or recreated reusable component relationships; that must be checked in Penpot.
+
+## Future editing
+
+### Mobile proposal
+
+The separate **Curiosity — Mobile** page now contains 29 editable boards for phone layouts and learning/account/error flows. Desktop boards remain unchanged. See [the mobile handoff](mobile/README.md) for scope, responsive rules, review status, and IDs. The mobile proposal is saved in Penpot as **Curiosity — mobile review ready**; it has not been implemented in the application.
+
+Keep the destination file and MCP Plugin connected while using Penpot tools. Never put the connection token in this repository or share it in conversation. Use the native Penpot boards for future edits; the local SVGs preserve the initial transfer source.
+
+This was a reconstruction from the saved approved design, rather than a direct Figma file conversion. Figma IDs and library links were not preserved. The new local components provide reusable starting points; existing cards are independently editable and are not all instances of one shared component. Videos and chat shown in these designs are illustrative.
+
+## Regenerate exports
+
+From the project root, with dependencies installed:
+
+```bash
+node design/penpot/export-design.mjs
+```
+
+The exporter uses the existing Playwright dependency and Chrome installation. It makes no YouTube or AI API requests. All three generated SVGs passed XML validation; they contain 106, 80, and 49 text elements respectively.

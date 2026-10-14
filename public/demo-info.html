@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Curiosity demo information</title>
+    <style>
+      body {
+        font:
+          16px/1.65 system-ui,
+          sans-serif;
+        color: #17221d;
+        margin: 32px auto;
+        padding: 0 20px;
+        max-width: 760px;
+      }
+      h1,
+      h2 {
+        line-height: 1.3;
+      }
+      a {
+        color: #176b4c;
+      }
+      li {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/">← Back to Curiosity</a>
+    <h1>About this demo</h1>
+    <p>
+      Curiosity is an experimental learning app submitted to AI Builder Cup
+      2026. It is intended for adult learners aged 18 or older. Search results,
+      entertaining-break candidates and AI explanations are not independently
+      reviewed for accuracy or suitability. Watching a video does not establish
+      mastery.
+    </p>
+    <h2>Your information</h2>
+    <ul>
+      <li>
+        Guest topics and playback positions are saved in your browser. Clear the
+        site's browser data to remove them from that device. Signing out returns
+        to separate guest data; it does not delete account records.
+      </li>
+      <li>
+        If you create an account, Supabase processes your email, password and
+        sign-in session. Saved account topics and playback positions are stored
+        in Supabase under user access rules.
+      </li>
+      <li>
+        Questions, recent conversation context and the selected video's public
+        URL/title may be sent to Google's Gemini service for explanations and
+        video analysis. Avoid entering sensitive personal or confidential
+        information. This app keeps the conversation in memory and clears it on
+        refresh, a new conversation or an account change.
+      </li>
+      <li>
+        Searches request results from YouTube. Videos play through the official
+        YouTube player. Public video metadata is temporarily cached in
+        Firestore; cache lookup keys are hashed. Daily service-use counters are
+        retained to enforce budgets.
+      </li>
+      <li>
+        Google Cloud serves this website. Its infrastructure and the external
+        services may maintain their own operational records under their
+        policies. The app does not deliberately log question bodies, email
+        addresses or passwords.
+      </li>
+    </ul>
+    <h2>External services and limitations</h2>
+    <p>
+      YouTube videos belong to their creators. Google, YouTube and Supabase
+      apply their own service terms and data policies. AI can make mistakes, and
+      suggested video timestamps can be approximate. Daily limits and temporary
+      outages may make new searches or answers unavailable.
+    </p>
+    <p>
+      This is a demonstration, not a validated assessment system. For
+      account-data or support requests, contact the project team through the
+      hackathon submission contact details. Account deletion is not yet
+      available as an in-app button.
+    </p>
+  </body>
+</html>

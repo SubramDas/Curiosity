@@ -1,10 +1,14 @@
-# Curiosity: local Phase 2 prototype
+# Curiosity
 
-A learning app experiment: search any topic, choose YouTube videos, ask a doubt, and return to grouped subjects. It is a private adult developer prototype, not ready for public launch.
+A learning app experiment: search any topic, choose YouTube videos, ask a doubt, and return to grouped subjects. A public adult hackathon demo is deployed on Google Cloud; wider release checks remain.
+
+**Live demo: https://curiosity-u2ubbw6fra-el.a.run.app**
+
+Availability target: December 31, 2026. See [deployment details](GOOGLE_CLOUD_DEPLOYMENT.md) for configuration, verification and remaining checks.
 
 ## Run locally
 
-Use Node 20.19 or newer. From the project folder:
+Use Node 22 or newer. From the project folder:
 
 ```bash
 npm ci
@@ -27,7 +31,7 @@ If npm cannot write to its normal cache, use `npm --cache /tmp/startup-npm-cache
 4. Search AMD; both searches belong to Computing, as separate smaller topics.
 5. Search “Income tax on GPU imports”; it has one home in Money and Business with related tags.
 6. Open a related tag; it shows a preview without duplicating the topic or creating a tile.
-7. Refresh; guest subject tiles remain in this browser. Reopening a saved query performs a fresh search, not a stored-video replay.
+7. Refresh; guest subject tiles remain in this browser. Reopening a saved query reuses cached results when available; YouTube still streams the video.
 8. Enable the 30-second timer demo, then play a visible video or interact with chat. The normal setting is 12 active minutes. Skip the break or request up to three related candidates.
 
 No understanding scores, learner tests, paid courses, or tile editing are included. The category labels are provisional and the fallback is General/Unsorted.
@@ -40,7 +44,10 @@ Add `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` to `.env`, then restart the lo
 2. Run [the ownership check](supabase/tests/saved_topics_access.sql) in the development SQL Editor. It temporarily creates test records and rolls them back. If it errors, run `rollback;` before further SQL work and share the error without credentials.
 3. Expand “Save across devices” in the app, create an account, confirm its email, then sign in.
 4. Search a topic. Check for “Saved to your account,” not just a successful video search.
-5. Refresh and sign in again. Your account topics should reopen. This prototype holds login tokens in memory and does not yet restore or refresh a login session automatically.
+5. Refresh. You should remain signed in and your account topics should reopen. The official Supabase JavaScript library saves the session in this browser, renews expired tokens, and clears the saved session when you sign out.
+6. If you already have a confirmed account, entering its correct email and password under “Create account” signs you in without another confirmation email. A new account still needs confirmation; an existing unconfirmed account can request another confirmation email. A wrong password never grants access.
+
+The browser receives only the Supabase URL and the validated publishable (or legacy anon) key from `/api/config`. This public key is intended for browser use; privileged keys are rejected by the server. YouTube and Gemini secrets remain on the server. Sign-in now goes directly to Supabase through its official library; saved-topic and progress routes still verify the user and use database access rules.
 
 Guest topics and account topics are separate; guest-to-account transfer is not implemented. The founder reports that the SQL ownership check and account save/reopen work in the development project. Independent checks with two real accounts remain before a wider trial. No privileged Supabase key is needed by the app.
 
@@ -61,29 +68,36 @@ Local browser API limits default to 40 search calls and 25 chat calls per UTC da
 
 ## Project layout
 
-- `src/features`: accounts, topics, videos, chat, learning timer.
-- `src/lib`: browser-to-server requests and display helpers.
-- `server`: local API, Supabase connection, local usage limits.
-- `experiments/phase-2`: provider experiments and the source-note fixture.
+- `backend`: local and hosted API, provider connections, caching, Supabase access and usage limits.
+- `desktop-ui`: current layout, navigation and styles, including the existing narrow-screen fallback.
+- `mobile-ui`: approved phone layout, bottom navigation, full-screen chat, search/topics screens and mobile styles.
+- `shared/features`: reusable accounts, topics, videos, chat, progress and learning timer.
+- `shared/lib` and `shared/components`: frontend API helpers and reusable visual helpers.
+- `src`: React entry and application state coordination.
+- `experiments/phase-2`: developer checks and the legacy note-only chat experiment.
 - `supabase`: development database migration and ownership check.
 - `tests`: rule tests and repeatable browser journeys.
+
+See [the architecture guide](ARCHITECTURE.md) for module responsibilities and dependency rules. Run commands from the root; `npm run dev` starts `backend/dev.mjs`. The app now selects the mobile layout by screen size while retaining the desktop layout. See [the mobile implementation guide](mobile-ui/README.md) for behaviour and checks.
 
 ## Limits before wider use
 
 - Video results and break candidates are unreviewed. Search ranking is not a quality guarantee. Entertainment relevance needs manual review.
-- Chat has one small CUDA note fixture. It cannot inspect video contents, and validated source IDs do not prove answer accuracy.
+- Chat now answers broader questions, uses supplied CUDA notes where applicable, and can analyze supported public YouTube videos for relevant sections. General explanations are labeled separately from supplied-note/video explanations. Recommendations and AI timestamps are not independently reviewed; see [CHATBOT_PLAN.md](CHATBOT_PLAN.md).
 - Guest saving stores our own query/category records, not YouTube metadata or transcripts. Browser storage can be cleared or unavailable.
-- The API and limits are for one local developer process. A hosted version needs shared atomic limits, session refresh/revocation, stronger authentication controls, deletion/export, and release review.
-- The selected dependencies are pinned in `package.json` and `package-lock.json`. A successful browser build does not establish Cloudflare deployment compatibility; that check is still pending.
+- Hosted cache and daily counters use Firestore transactions. Stronger abuse controls, deletion/export and broader release review remain.
+- Dependencies are pinned in `package.json` and `package-lock.json`. The Google Cloud container build and live provider checks passed.
 
 Current evidence and remaining checks: [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md).
+
+The founder selected Google Cloud for hosting. See [the Cloud Run deployment preparation](GOOGLE_CLOUD_DEPLOYMENT.md). Production startup, persistent shared cache/counters and hosted configuration are implemented. The service is deployed in Mumbai.
 
 ## Scrolling videos and continuing playback
 
 - Choose **Short videos** for a vertical scrolling feed. Only the current card has a player; short videos start muted when visible. YouTube controls remain available. The grouping uses duration up to three minutes, not confirmed official Shorts status or video orientation.
 - Longer videos play directly above their selected result. **Continue watching** shows unfinished videos for the current topic, including saved videos no longer returned in the latest search.
 - Progress is recorded every five seconds while playing, on pause/end, when leaving view, and when the player closes. Finished videos restart from the beginning. This records the last position, not verified learning or a percentage of content understood.
-- Guests retain up to 200 recent playback records in this browser. Signed-in users save to their own Supabase records; guest records do not transfer into the account. After refreshing, sign in again to load account progress.
+- Guests retain up to 200 recent playback records in this browser. Signed-in users save to their own Supabase records; guest records do not transfer into the account. After refreshing, the saved sign-in restores account progress automatically.
 - For account progress, run [002_video_progress.sql](supabase/migrations/002_video_progress.sql) once in the development SQL Editor, then run [video_progress_access.sql](supabase/tests/video_progress_access.sql). This adds a separate table without changing saved topics. The test rolls back its temporary records; if it errors, run `rollback;` before further SQL work.
 - Restart `npm run dev` to load the new server routes. The account migration and live account progress check remain pending until the founder runs them. Connection loss or abruptly closing the browser can lose the latest unsynced account position; the interface reports sync failures when the page remains open.
 # Curiosity
@@ -97,3 +111,32 @@ The top bar shows **Trending**, then subjects from successful saved searches. Tr
 **Restart your existing `npm run dev` process** to load the new `/api/feed/home` route. No new keys, packages, or database migration are required for the redesign. Account playback sync still needs the previously documented video-progress setup.
 
 See [the design handoff](design/review/DESIGN_REVIEW.md) for the implementation, optional features, and verification details.
+
+
+### Playback and account troubleshooting
+
+- Continue watching reopens a saved video directly. Use **Resume video** to play from the saved position. Player failures offer **Retry player** and an Open on YouTube link.
+- Signing out closes the account's active topic view and returns to guest history. Guest searches made before signing in may still appear; they do not belong to the signed-out account.
+- If an account is unconfirmed, use **Resend confirmation email**. A successful request does not guarantee inbox delivery. Sender setup, rate limits, and allowed confirmation-return URLs are documented in [PHASE_2_SETUP.md](PHASE_2_SETUP.md#missing-confirmation-emails).
+
+## YouTube result cache
+
+Search pages and individual video details are reused for **six hours**; Trending is reused for **one hour**. The server stores this metadata in ignored `.local-data/youtube-cache.json`, so it survives page refreshes and server restarts. It caches video IDs, titles, channels, and playback details; YouTube continues streaming media directly. It never stores account records or credentials in this cache.
+
+- Identical simultaneous requests share one provider request. Pagination tokens and search settings distinguish result pages.
+- Home recommendations and topic searches use the same search/detail cache. Overlapping video-detail batches reuse individual records.
+- Fresh cache hits spend no local allowance and remain available after the local limit is reached. New or expired results still require allowance. Failures are not cached; expired data is not served as a fallback.
+- Up to 500 entries are retained. Expired entries are deleted on startup, writes, and a 15-minute cleanup while the server runs. Cache files have restricted permissions. Query keys are hashed rather than storing the original query as the key.
+- Restart `npm run dev` to use this change. Existing exhausted usage is not reset, and results fetched before this cache existed are not automatically recovered. Future successful requests populate the cache.
+- This is a cache for one local server. Hosted deployments need shared storage. See [YouTube quota explanations](YOUTUBE_QUOTAS.md).
+
+
+## Teacher chat
+
+Use **Ask a question** before selecting a video, or ask beside the video you are watching. You can ask about another subject without changing the player. Replies explain whether the question relates to the video, give an answer, and offer up to two actual YouTube results when a matching video section is unavailable. **Watch at …** seeks to an AI-matched section; timing may be approximate. An older reply can reopen its original video at the suggested time.
+
+Follow-up buttons offer simpler explanations, examples, or more depth. The conversation remains available while navigating this page; refresh, New conversation, or an account change clears it. No conversation is stored in the database in this version. Generated recommendation keywords can use the public YouTube metadata cache; question/answer history is not stored in that cache.
+
+Restart `npm run dev` for the new chat route. `CHAT_VIDEO_CONTEXT` defaults to enabled; set it to `false` to use text and notes only. `VIDEO_CHAT_DAILY_LIMIT` defaults to eight analysis attempts per UTC day. Videos longer than 30 minutes, private/unlisted videos, missing details, or exhausted analysis allowance use a text explanation without a timestamp. Unsupported video-input HTTP 400 responses permit one text fallback; network errors are reported without automatic retries. A fallback consumes another chat request. Video requests have a 60-second deadline; ordinary text requests retain 20 seconds. Live web fact-checking is not enabled.
+
+`npm run phase2:teacher-check` runs fixed public developer examples with a separate persisted limit of three model requests, two video attempts, and six YouTube operations per UTC day. Results are ignored under `.local-data/teacher-check`. Do not erase the usage record to repeat calls. These checks consume real provider allowance; they are separate from the browser app's local counter.

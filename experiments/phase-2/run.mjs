@@ -1,8 +1,8 @@
 import { performance } from "node:perf_hooks";
-import { createYouTubeClient, mergeVideoPages } from "./services/youtube.mjs";
+import { createYouTubeClient, mergeVideoPages } from "../../backend/providers/youtube.mjs";
 import { createGeminiClient } from "./services/gemini.mjs";
-import { ServiceError } from "./services/request-json.mjs";
-import { gpuNotes } from "./content/gpu-notes.mjs";
+import { ServiceError } from "../../backend/providers/request-json.mjs";
+import { gpuNotes } from "../../backend/content/gpu-notes.mjs";
 import { loadLocalEnvironment } from "../../config/local-environment.mjs";
 const environment = loadLocalEnvironment();
 

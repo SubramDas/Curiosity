@@ -1,8 +1,8 @@
 import test from "node:test";
-import { ServiceError } from "../experiments/phase-2/services/request-json.mjs";
+import { ServiceError } from "../backend/providers/request-json.mjs";
 import assert from "node:assert/strict";
-import { createHomeFeed } from "../server/home-feed.mjs";
-import { createYouTubeClient } from "../experiments/phase-2/services/youtube.mjs";
+import { createHomeFeed } from "../backend/home-feed.mjs";
+import { createYouTubeClient } from "../backend/providers/youtube.mjs";
 
 test("Home feed caps suggestions, reuses provider data briefly, and refreshes after expiry", async () => {
   let time = 0;

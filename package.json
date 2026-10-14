@@ -3,20 +3,25 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=22"
   },
   "scripts": {
     "test": "node experiments/phase-2/tests/services.test.mjs && tsx --test tests/*.test.ts",
-    "dev": "node --env-file=.env server/dev.mjs",
+    "dev": "node --env-file=.env backend/dev.mjs",
+    "dev:lan": "node --env-file=.env backend/dev.mjs --lan",
+    "start": "node backend/production.mjs",
     "build": "tsc --noEmit && vite build",
     "test:browser": "playwright test",
     "phase2:check": "node experiments/phase-2/run.mjs check",
     "phase2:search": "node --env-file=.env experiments/phase-2/run.mjs search",
     "phase2:chat": "node --env-file=.env experiments/phase-2/run.mjs chat",
     "phase2:review-chat": "node --env-file=.env experiments/phase-2/review-chat.mjs",
-    "phase2:check-config": "node --env-file=.env experiments/phase-2/run.mjs check"
+    "phase2:check-config": "node --env-file=.env experiments/phase-2/run.mjs check",
+    "phase2:teacher-check": "node experiments/phase-2/check-teacher.mjs"
   },
   "dependencies": {
+    "@google-cloud/firestore": "9.3.1",
+    "@supabase/supabase-js": "2.109.0",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

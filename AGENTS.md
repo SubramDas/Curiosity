@@ -19,6 +19,8 @@ Apply these ideas to functions and modules as well as classes. Use abstractions 
 - Group related code by feature or responsibility, using the project's existing structure where possible.
 - Separate reusable components, application logic, external service connections, and data access when their responsibilities differ.
 - Keep module boundaries clear and avoid circular dependencies.
+- Follow `ARCHITECTURE.md`: backend code belongs in `backend`, desktop layout in `desktop-ui`, mobile layout in `mobile-ui`, and reusable frontend features in `shared`. Keep `src` for the app entry and feature coordination.
+- Shared frontend modules must not import either layout folder or backend files. Layouts may reuse shared features. Backend production code must not depend on developer experiments. Browser code calls the backend through the API.
 - Share genuinely reusable logic instead of copying it. Keep feature-specific logic close to its feature.
 
 ## 3. Keep code simple and readable
@@ -74,6 +76,14 @@ Apply these ideas to functions and modules as well as classes. Use abstractions 
 - Update relevant documentation when behavior, setup, or an agreed design changes.
 - Document required configuration using example values, never real secrets.
 - Summarize what changed, why it changed, how it was verified, and any remaining limitations in plain language.
+
+## 10. Use Penpot for design work
+
+- Penpot is the founder's chosen design tool for future work. Use its connected MCP tools for inspecting, editing, and creating designs.
+- Keep the previous Figma file as an archive. Do not use Figma MCP for new design work unless the founder explicitly requests it.
+- Read `design/review/DESIGN_REVIEW.md` and `design/penpot/README.md` for approved decisions, transfer status, and the current design location.
+- Keep transferred screens editable, with native text, vector icons, separate thumbnail images, and reusable components where possible. Do not replace whole screens with flattened screenshots.
+- Verify transferred designs visually and record the actual Penpot file link. Do not describe a local export as a completed upload.
 
 ## Guiding rule
 
