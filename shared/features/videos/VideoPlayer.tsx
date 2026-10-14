@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { loadYouTubePlayer, type Player } from "./youtube-player";
 import { readableTitle } from "../../lib/api";
 import type { Video, VideoSeekRequest } from "../../types";
 
 export function VideoPlayer({
+  playOnOpen = false,
+  showPlayButton = true,
+  renderMetadata,
   video,
   onActive,
   startSeconds = 0,
@@ -12,6 +15,9 @@ export function VideoPlayer({
   autoPlay = false,
   seekRequest,
 }: {
+  playOnOpen?: boolean;
+  showPlayButton?: boolean;
+  renderMetadata?: (video: Video, short?: boolean) => ReactNode;
   video: Video;
   seekRequest?: VideoSeekRequest;
   onActive: (active: boolean) => void;
@@ -34,6 +40,13 @@ export function VideoPlayer({
     let player: Player | undefined;
     let ready = false;
     let completed = false;
+    let waitingToStart = playOnOpen;
+    const startSelectedVideo = () => {
+      if (!waitingToStart || !ready || !visible || document.hidden || !player)
+        return;
+      waitingToStart = false;
+      player.playVideo();
+    };
     const report = () => {
       if (!ready || !player) return;
       const duration = player.getDuration();
@@ -60,6 +73,7 @@ export function VideoPlayer({
       ([entry]) => {
         const wasVisible = visible;
         visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+        startSelectedVideo();
         if (visible && !wasVisible && ready && autoPlay && !document.hidden) {
           player?.mute();
           player?.playVideo();
@@ -110,6 +124,7 @@ export function VideoPlayer({
                   });
                 if (!short)
                   container.current?.scrollIntoView({ block: "center" });
+                startSelectedVideo();
                 if (autoPlay && visible && !document.hidden) {
                   event.target.mute();
                   event.target.playVideo();
@@ -152,7 +167,15 @@ export function VideoPlayer({
       host.remove();
       onActive(false);
     };
-  }, [video.id, video.details?.embeddable, onActive, short, autoPlay, retry]);
+  }, [
+    video.id,
+    video.details?.embeddable,
+    onActive,
+    short,
+    autoPlay,
+    playOnOpen,
+    retry,
+  ]);
   useEffect(() => {
     if (
       !isReady ||
@@ -167,6 +190,7 @@ export function VideoPlayer({
   }, [isReady, seekRequest?.requestId, video.id]);
   return (
     <section className={`player-section ${short ? "short-player" : ""}`}>
+      {short && renderMetadata?.(video, true)}
       <div
         className="player-frame"
         ref={container}
@@ -180,12 +204,13 @@ export function VideoPlayer({
           </button>
         </p>
       )}
-      {isReady && !error && !short && (
+      {showPlayButton && isReady && !error && !short && (
         <button onClick={() => playerRef.current?.playVideo()}>
           {startSeconds > 0 ? "Resume video" : "Play video"}
         </button>
       )}
       <h3>{readableTitle(video.title)}</h3>
+      {!short && renderMetadata?.(video)}
       <p className="muted">{video.channel} · YouTube · Unreviewed result</p>
       <a href={video.watchUrl} target="_blank" rel="noreferrer">
         Open on YouTube ↗

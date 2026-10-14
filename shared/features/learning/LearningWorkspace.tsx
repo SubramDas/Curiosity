@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "../videos/video-presentation";
 import {
   useCallback,
   useEffect,
@@ -25,6 +26,8 @@ export interface LearningContent {
 }
 
 export function LearningWorkspace({
+  presentation,
+  headingLabel,
   topic,
   videos,
   demo,
@@ -39,6 +42,8 @@ export function LearningWorkspace({
   onReturnToVideo,
   feedHidden = false,
 }: {
+  presentation?: VideoPresentation;
+  headingLabel?: string;
   feedHidden?: boolean;
   onReturnToVideo?: () => void;
   renderContent?: (content: LearningContent) => ReactNode;
@@ -140,6 +145,7 @@ export function LearningWorkspace({
         </p>
       )}
       <ContinueWatching
+        presentation={presentation}
         rows={progress.rows}
         topicKey={topic.key}
         videos={videos}
@@ -149,6 +155,7 @@ export function LearningWorkspace({
         <p role="status">Loading your video progress…</p>
       ) : (
         <VideoFeed
+          presentation={presentation}
           showReelControls={showReelControls}
           isHidden={feedHidden}
           videos={videos}
@@ -190,7 +197,9 @@ export function LearningWorkspace({
     <section className="learning-workspace">
       <div className="section-heading">
         <div>
-          <span className="eyebrow">{categories[topic.category]}</span>
+          <span className="eyebrow">
+            {headingLabel ?? categories[topic.category]}
+          </span>
           <h2>{topic.query}</h2>
         </div>
         <span className="timer">
@@ -219,12 +228,19 @@ export function LearningWorkspace({
           </div>
           {breakMessage && <p role="status">{breakMessage}</p>}
           <VideoResults
+            presentation={presentation}
             videos={breakVideos}
             selectedId={breakSelected?.id}
             onSelect={setBreakSelected}
           />
           {breakSelected && (
-            <VideoPlayer video={breakSelected} onActive={ignoreBreakPlayback} />
+            <VideoPlayer
+              video={breakSelected}
+              onActive={ignoreBreakPlayback}
+              playOnOpen={presentation?.playOnOpen}
+              showPlayButton={presentation?.showPlayButton}
+              renderMetadata={presentation?.renderMetadata}
+            />
           )}
         </section>
       ) : (

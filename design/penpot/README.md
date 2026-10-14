@@ -41,3 +41,7 @@ node design/penpot/export-design.mjs
 ```
 
 The exporter uses the existing Playwright dependency and Chrome installation. It makes no YouTube or AI API requests. All three generated SVGs passed XML validation; they contain 106, 80, and 49 text elements respectively.
+
+## Latest review: Universes
+
+The founder agreed on Science & Technology, Commerce & Business, and Arts & Humanities as the three **Universes**, with Trending as default. The native boards named **Universe ·** now live on the separate **curiosity-desktop-universe** and **curiosity-mobile-universe** pages. Open the saved version **Curiosity — Universe designs on separate pages**. See [the Universe review handoff](universes/README.md) for the sixteen boards, agreed behaviour, verification and review status. The deployed app has not changed for this proposal.

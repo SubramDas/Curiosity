@@ -1,0 +1,236 @@
+{
+  "pages": [
+    {
+      "id": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "name": "curiosity-desktop-universe",
+      "boards": 7
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "name": "curiosity-mobile-universe",
+      "boards": 9
+    }
+  ],
+  "boards": [
+    {
+      "key": "d-home",
+      "id": "c5f19b81-2139-8092-8008-ca1d26b013d0",
+      "previousId": "c5f19b81-2139-8092-8008-ca189f62edf6",
+      "name": "Universe · 01 · Trending / all Universes",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1540,
+      "textLayers": 53,
+      "imageLayers": 10
+    },
+    {
+      "key": "d-science",
+      "id": "c5f19b81-2139-8092-8008-ca1d2afcd301",
+      "previousId": "c5f19b81-2139-8092-8008-ca18a340f534",
+      "name": "Universe · 02 · Science & Technology / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 1560,
+      "y": 0,
+      "width": 1440,
+      "height": 1540,
+      "textLayers": 57,
+      "imageLayers": 10
+    },
+    {
+      "key": "d-commerce",
+      "id": "c5f19b81-2139-8092-8008-ca1d3460bbd1",
+      "previousId": "c5f19b81-2139-8092-8008-ca18aa67bc7b",
+      "name": "Universe · 03 · Commerce & Business / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 3120,
+      "y": 0,
+      "width": 1440,
+      "height": 1540,
+      "textLayers": 58,
+      "imageLayers": 10
+    },
+    {
+      "key": "d-arts",
+      "id": "c5f19b81-2139-8092-8008-ca1d4474e0ce",
+      "previousId": "c5f19b81-2139-8092-8008-ca18b5004d4a",
+      "name": "Universe · 04 · Arts & Humanities / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 0,
+      "y": 1640,
+      "width": 1440,
+      "height": 1540.000000000001,
+      "textLayers": 57,
+      "imageLayers": 10
+    },
+    {
+      "key": "d-search",
+      "id": "c5f19b81-2139-8092-8008-ca1dc3e5adb9",
+      "previousId": "c5f19b81-2139-8092-8008-ca192bb25bfc",
+      "name": "Universe · 05 · Search / mixed Universes",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 1560,
+      "y": 1640,
+      "width": 1440,
+      "height": 1400,
+      "textLayers": 48,
+      "imageLayers": 6
+    },
+    {
+      "key": "d-watch",
+      "id": "c5f19b81-2139-8092-8008-ca1dc7a9f97f",
+      "previousId": "c5f19b81-2139-8092-8008-ca19335eaf0b",
+      "name": "Universe · 06 · Watch / label and inline player",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 3120,
+      "y": 1640,
+      "width": 1440,
+      "height": 1400,
+      "textLayers": 29,
+      "imageLayers": 2
+    },
+    {
+      "key": "d-shorts",
+      "id": "c5f19b81-2139-8092-8008-ca1dcba4a8e1",
+      "previousId": "c5f19b81-2139-8092-8008-ca193aaaa4a0",
+      "name": "Universe · 07 · Shorts / Universe label",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "x": 0,
+      "y": 3280,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 19,
+      "imageLayers": 1
+    },
+    {
+      "key": "m-home",
+      "id": "c5f19b81-2139-8092-8008-ca1dd3cce898",
+      "previousId": "c5f19b81-2139-8092-8008-ca197392bfca",
+      "name": "Universe · 01 · Trending / all Universes",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 20,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-science",
+      "id": "c5f19b81-2139-8092-8008-ca1dd521b710",
+      "previousId": "c5f19b81-2139-8092-8008-ca197647395f",
+      "name": "Universe · 02 · Science & Technology / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 520,
+      "y": 0,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 26,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-commerce",
+      "id": "c5f19b81-2139-8092-8008-ca1dd7738c8b",
+      "previousId": "c5f19b81-2139-8092-8008-ca197b7ba83d",
+      "name": "Universe · 03 · Commerce & Business / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 1040,
+      "y": 0,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 26,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-arts",
+      "id": "c5f19b81-2139-8092-8008-ca1ddab0960e",
+      "previousId": "c5f19b81-2139-8092-8008-ca1981f9fce1",
+      "name": "Universe · 04 · Arts & Humanities / direct feed",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 1560,
+      "y": 0,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 26,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-search",
+      "id": "c5f19b81-2139-8092-8008-ca1ddef87b83",
+      "previousId": "c5f19b81-2139-8092-8008-ca1998cb09d2",
+      "name": "Universe · 05 · Search / mixed Universes",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 2080,
+      "y": 0,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 26,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-watch",
+      "id": "c5f19b81-2139-8092-8008-ca1dff603fae",
+      "previousId": "c5f19b81-2139-8092-8008-ca199dbec650",
+      "name": "Universe · 06 · Watch / label and inline player",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 0,
+      "y": 1250,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 15,
+      "imageLayers": 2
+    },
+    {
+      "key": "m-shorts",
+      "id": "c5f19b81-2139-8092-8008-ca1e00c60044",
+      "previousId": "c5f19b81-2139-8092-8008-ca19a1a79d72",
+      "name": "Universe · 07 · Shorts / Universe label",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 520,
+      "y": 1250,
+      "width": 390,
+      "height": 844.0000000000073,
+      "textLayers": 8,
+      "imageLayers": 1
+    },
+    {
+      "key": "m-universes",
+      "id": "c5f19b81-2139-8092-8008-ca1e01e742c3",
+      "previousId": "c5f19b81-2139-8092-8008-ca19a45c2091",
+      "name": "Universe · 08 · Your Universes / direct feed links",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 1040,
+      "y": 1250,
+      "width": 390,
+      "height": 1120,
+      "textLayers": 14,
+      "imageLayers": 0
+    },
+    {
+      "key": "m-small",
+      "id": "c5f19b81-2139-8092-8008-ca1e040fdf89",
+      "previousId": "c5f19b81-2139-8092-8008-ca19a7379f26",
+      "name": "Universe · 09 · Trending / 320px width",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "x": 1560,
+      "y": 1250,
+      "width": 320,
+      "height": 960,
+      "textLayers": 20,
+      "imageLayers": 2
+    }
+  ],
+  "oldPages": [
+    {
+      "name": "Curiosity — Desktop",
+      "universeBoardsRemaining": 0
+    },
+    {
+      "name": "Curiosity — Mobile",
+      "universeBoardsRemaining": 0
+    }
+  ],
+  "savedVersion": "Curiosity — Universe designs on separate pages",
+  "validationErrors": []
+}

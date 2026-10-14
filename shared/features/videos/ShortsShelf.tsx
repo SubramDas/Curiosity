@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "./video-presentation";
 import type { Video } from "../../types";
 import { readableTitle } from "../../lib/api";
 import { Icon } from "../../components/Icon";
@@ -5,10 +6,12 @@ import { VideoThumbnail } from "./VideoThumbnail";
 import type { VideoProgress } from "../progress/useVideoProgress";
 
 export function ShortsShelf({
+  presentation,
   videos,
   onSelect,
   progress = [],
 }: {
+  presentation?: VideoPresentation;
   videos: Video[];
   onSelect: (video: Video) => void;
   progress?: VideoProgress[];
@@ -27,6 +30,7 @@ export function ShortsShelf({
             key={video.id}
             onClick={() => onSelect(video)}
           >
+            {presentation?.renderMetadata?.(video, true)}
             <VideoThumbnail
               video={video}
               short

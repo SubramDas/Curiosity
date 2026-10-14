@@ -15,7 +15,7 @@ export function DesktopLayout({
   children: ReactNode;
 }) {
   return (
-    <>
+    <div className="desktop-app">
       {header}
       {menuOpen && (
         <button
@@ -26,6 +26,6 @@ export function DesktopLayout({
       )}
       {sidebar}
       <main className="main-content">{children}</main>
-    </>
+    </div>
   );
 }

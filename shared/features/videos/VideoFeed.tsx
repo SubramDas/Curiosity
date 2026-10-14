@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "./video-presentation";
 import { useEffect, useRef, useState } from "react";
 import type { Video, VideoSeekRequest } from "../../types";
 import type { VideoProgress } from "../progress/useVideoProgress";
@@ -8,6 +9,7 @@ import { VideoResults } from "./VideoResults";
 import { isShortVideo } from "./video-format";
 
 export function VideoFeed({
+  presentation,
   videos,
   selected,
   onSelect,
@@ -20,6 +22,7 @@ export function VideoFeed({
   showReelControls = false,
   isHidden = false,
 }: {
+  presentation?: VideoPresentation;
   isHidden?: boolean;
   showReelControls?: boolean;
   initialMode?: "all" | "short";
@@ -103,6 +106,9 @@ export function VideoFeed({
         startSeconds={saved?.completed ? 0 : (saved?.position_seconds ?? 0)}
         short={short}
         autoPlay={short}
+        playOnOpen={!short && presentation?.playOnOpen}
+        showPlayButton={presentation?.showPlayButton}
+        renderMetadata={presentation?.renderMetadata}
         onProgress={(position, duration, completed) =>
           onProgress(video, position, duration, completed)
         }
@@ -197,6 +203,7 @@ export function VideoFeed({
       ) : (
         <>
           <VideoResults
+            presentation={presentation}
             videos={shown}
             selectedId={selected?.id}
             onSelect={onSelect}
@@ -205,6 +212,7 @@ export function VideoFeed({
           />
           {mode === "all" && (
             <ShortsShelf
+              presentation={presentation}
               videos={shortVideos}
               onSelect={onSelect}
               progress={progress}
@@ -212,16 +220,17 @@ export function VideoFeed({
           )}
         </>
       )}
-      {progress.some(
-        (row) =>
-          !row.completed &&
-          row.position_seconds > 0 &&
-          videos.some((video) => video.id === row.video_id),
-      ) && (
-        <p className="fine-print">
-          Choose a video marked “Continue” to resume where you stopped.
-        </p>
-      )}
+      {presentation?.showProgressLabel !== false &&
+        progress.some(
+          (row) =>
+            !row.completed &&
+            row.position_seconds > 0 &&
+            videos.some((video) => video.id === row.video_id),
+        ) && (
+          <p className="fine-print">
+            Choose a video marked “Continue” to resume where you stopped.
+          </p>
+        )}
     </div>
   );
 }

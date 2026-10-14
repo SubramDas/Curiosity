@@ -1,3 +1,11 @@
+import { UniverseFeed } from "../desktop-ui/features/universes/UniverseFeed";
+import { UniverseFilters } from "../desktop-ui/features/universes/UniverseNavigation";
+import { desktopVideoPresentation } from "../desktop-ui/features/universes/VideoUniverseLabel";
+import {
+  topicUniverse,
+  universes,
+  type UniverseId,
+} from "../shared/features/universes/universe-rules";
 import { MobileLayout } from "../mobile-ui/MobileLayout";
 import { MobileHeader } from "../mobile-ui/MobileHeader";
 import { MobileNavigation } from "../mobile-ui/MobileNavigation";
@@ -69,6 +77,14 @@ export default function App() {
   const [ambiguous, setAmbiguous] = useState(false);
   const [demo, setDemo] = useState(false);
   const [view, setView] = useState<PageView>("home");
+  const [activeUniverse, setActiveUniverse] = useState<UniverseId>();
+  const presentation = isMobile ? undefined : desktopVideoPresentation;
+  useEffect(() => {
+    if (isMobile && view === "universe") {
+      setView("home");
+      setActiveUniverse(undefined);
+    }
+  }, [isMobile, view]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [initialVideo, setInitialVideo] = useState<Video>();
   const [initialSeek, setInitialSeek] = useState<VideoSeekRequest>();
@@ -102,7 +118,18 @@ export default function App() {
       );
     }
   }, [topics, token, account.ready, topicsBelongToAccount]);
+  function openUniverse(id: UniverseId) {
+    search.reset();
+    setDiscovery(undefined);
+    setInitialVideo(undefined);
+    setInitialSeek(undefined);
+    setActiveUniverse(id);
+    setView("universe");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
   function navigate(next: PageView) {
+    setActiveUniverse(undefined);
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
     if (next === "shorts" && view === "home")
@@ -122,6 +149,7 @@ export default function App() {
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
     const chosen = findSavedTopic(topics, topic) ?? topic;
+    setActiveUniverse(undefined);
     setDiscovery(undefined);
     setInitialVideo(video);
     setView("topic");
@@ -144,11 +172,16 @@ export default function App() {
       setMessage("Saved in this browser as a guest topic.");
     }
   }
-  function openVideo(video: Video, topic?: Topic, savedKey?: string) {
+  function openVideo(
+    video: Video,
+    topic?: Topic,
+    savedKey?: string,
+    relatedVideos?: Video[],
+  ) {
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
     setInitialSeek(undefined);
-    if (topic && !savedKey) {
+    if (isMobile && topic && !savedKey) {
       void openTopic(topic, video);
       return;
     }
@@ -170,7 +203,8 @@ export default function App() {
       ? search.topic?.key === chosen.key
         ? search.videos
         : []
-      : homeVideos;
+      : (relatedVideos ?? homeVideos);
+    setActiveUniverse(undefined);
     setDiscovery({
       topic: chosen,
       videos: [video, ...related.filter((item) => item.id !== video.id)],
@@ -205,6 +239,7 @@ export default function App() {
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
     setView("home");
+    setActiveUniverse(undefined);
     setMenuOpen(false);
     setMessage("");
     setAmbiguous(false);
@@ -327,7 +362,9 @@ export default function App() {
             view={view}
             open={menuOpen}
             onNavigate={navigate}
+            onUniverse={openUniverse}
             onTopic={(topic) => void openTopic(topic)}
+            activeUniverse={activeUniverse}
             onAsk={askQuestion}
             demo={demo}
             onDemo={setDemo}
@@ -346,19 +383,27 @@ export default function App() {
         (!mobileChatOpen &&
           view !== "topics" &&
           view !== "history" &&
-          view !== "shorts")) && (
-        <TopicFilters
-          topics={topics}
-          active={
-            (view === "topic" || view === "shorts") &&
-            topics.some((topic) => topic.category === currentTopic?.category)
-              ? currentTopic?.category
-              : undefined
-          }
-          onTrending={() => navigate("home")}
-          onTopic={(topic) => void openTopic(topic)}
-        />
-      )}
+          view !== "shorts")) &&
+        (isMobile ? (
+          <TopicFilters
+            topics={topics}
+            active={
+              (view === "topic" || view === "shorts") &&
+              topics.some((topic) => topic.category === currentTopic?.category)
+                ? currentTopic?.category
+                : undefined
+            }
+            onTrending={() => navigate("home")}
+            onTopic={(topic) => void openTopic(topic)}
+          />
+        ) : (
+          <UniverseFilters
+            isTrending={view === "home"}
+            active={view === "universe" ? activeUniverse : undefined}
+            onSelect={openUniverse}
+            onTrending={() => navigate("home")}
+          />
+        ))}
       {ambiguous && (
         <aside className="notice">
           <p>What do you mean by CA?</p>
@@ -401,6 +446,18 @@ export default function App() {
           </button>
         </section>
       )}
+      {!isMobile && view === "universe" && activeUniverse && (
+        <UniverseFeed
+          key={activeUniverse}
+          universe={activeUniverse}
+          topics={topics}
+          progress={progress.rows}
+          onSelect={(video, videos) =>
+            openVideo(video, undefined, undefined, videos)
+          }
+          onTopic={(topic) => void openTopic(topic)}
+        />
+      )}
       {view === "home" && (
         <>
           {progress.message && (
@@ -409,6 +466,7 @@ export default function App() {
             </p>
           )}
           <ContinueWatching
+            presentation={presentation}
             limit={3}
             onViewAll={() => navigate("history")}
             rows={progress.rows}
@@ -459,6 +517,7 @@ export default function App() {
           ))}
           {!home.busy && (
             <HomeFeed
+              presentation={presentation}
               data={home}
               topics={topics}
               progress={progress.rows}
@@ -475,6 +534,7 @@ export default function App() {
             <p role="status">Loading your video progress…</p>
           ) : (
             <ContinueWatching
+              presentation={presentation}
               rows={progress.rows}
               videos={[...homeVideos, ...search.videos]}
               onSelect={(video, key) =>
@@ -521,6 +581,14 @@ export default function App() {
           )}
           {search.busy && <p role="status">Finding videos…</p>}
           <LearningWorkspace
+            presentation={presentation}
+            headingLabel={
+              !isMobile
+                ? topicUniverse(workspaceTopic)
+                  ? universes[topicUniverse(workspaceTopic)!].name
+                  : ""
+                : undefined
+            }
             key={`${workspaceTopic.key}:${demo}:${token ? "account" : "guest"}:${initialVideo?.id ?? ""}:${view}`}
             showReelControls={isMobile}
             feedHidden={isMobile && mobileChatOpen}

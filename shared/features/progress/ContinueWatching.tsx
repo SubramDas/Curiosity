@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "../videos/video-presentation";
 import { VideoResults } from "../videos/VideoResults";
 import { useEffect, useState } from "react";
 import type { Video } from "../../types";
@@ -5,6 +6,7 @@ import type { VideoProgress } from "./useVideoProgress";
 import { callApi } from "../../lib/api";
 
 export function ContinueWatching({
+  presentation,
   rows,
   topicKey,
   videos,
@@ -12,6 +14,7 @@ export function ContinueWatching({
   limit = 20,
   onViewAll,
 }: {
+  presentation?: VideoPresentation;
   limit?: number;
   onViewAll?: () => void;
   rows: VideoProgress[];
@@ -70,6 +73,7 @@ export function ContinueWatching({
       </div>
       <p className="muted">Pick up where you left off.</p>
       <VideoResults
+        presentation={presentation}
         videos={saved.flatMap((row) => {
           const video = [...videos, ...restored].find(
             (item) => item.id === row.video_id,

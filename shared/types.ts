@@ -1,4 +1,4 @@
-export type PageView = "home" | "topic" | "shorts" | "history" | "topics";
+export type PageView = "home" | "topic" | "shorts" | "history" | "topics" | "universe";
 
 export type CategoryId =
   | "computing"

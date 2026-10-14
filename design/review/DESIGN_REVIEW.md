@@ -64,3 +64,17 @@ The final balanced provider adapter returned 20 live videos. A subsequent reques
 ## Penpot selected for future design work
 
 The founder requested migration of all three screens to Penpot and Penpot-only design work going forward. The migration was completed on 2026-10-14 in **New File 1 → Curiosity — Desktop**. Home, GPU topic, and Shorts have native editable text, vector icons, and individual thumbnail fills. Four reusable components were added. All screen and component previews were inspected, file validation passed, and a named version was saved. See [the transfer handoff](../penpot/README.md) for IDs and reconstruction limitations. The saved approved HTML supplied the design source; the rate-limited Figma server was not used.
+
+## Universe navigation proposal — awaiting founder design review
+
+Latest product decisions replace the earlier broad-category navigation for the proposed next version: **Science & Technology**, **Commerce & Business**, **Arts & Humanities**, named **Universes**. Trending stays first/default. Universe feeds open directly into videos with subject filters; search mixes results across Universes. Classified videos show **Universe – subtopic** above the thumbnail/player, with related-Universe tags for overlap. Unclassified results remain watchable. Future migration must preserve saved searches and playback progress; graph work is deferred.
+
+Sixteen native Penpot review boards are on the separate **curiosity-desktop-universe** and **curiosity-mobile-universe** pages under names beginning **Universe ·**. Version: **Curiosity — Universe designs on separate pages**. Earlier approved screens remain on the original pages. The proposal is awaiting founder review; no application change or deployment was made. See [the handoff](../penpot/universes/README.md).
+
+### Desktop Universe review refinement
+
+Latest version: **Curiosity — Desktop Universe labels and seamless resume**. Desktop long-video labels now sit below the title and above the creator. Shorts remain unchanged. Clicking a previously watched video should load its saved playback position without a separate app Resume video button; a thin progress bar identifies watched examples. Mobile remains at its prior review stage. These are native Penpot design changes only; no app implementation or deployment was made. See the Universe handoff for verification and playback-policy details.
+
+### Desktop Universe implementation
+
+The latest desktop review is now implemented locally: three Universe feeds, subject filters, mixed search labels and normal-click saved playback. Shared video presentation options preserve existing mobile defaults. No public redeployment was made. See desktop-ui/features/universes/README.md for verification and remaining classification/autoplay limitations.

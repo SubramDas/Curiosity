@@ -28,7 +28,7 @@ If npm cannot write to its normal cache, use `npm --cache /tmp/startup-npm-cache
 1. Search “I want to know about GPUs”; choose a video and start playback.
 2. Load another batch of results. Repeated videos should appear once.
 3. Ask “How do the CPU and GPU work together in CUDA?” Check the source link.
-4. Search AMD; both searches belong to Computing, as separate smaller topics.
+4. Search AMD; both searches appear in Science & Technology on desktop (Computing & Tech on mobile), as separate saved searches.
 5. Search “Income tax on GPU imports”; it has one home in Money and Business with related tags.
 6. Open a related tag; it shows a preview without duplicating the topic or creating a tile.
 7. Refresh; guest subject tiles remain in this browser. Reopening a saved query reuses cached results when available; YouTube still streams the video.
@@ -140,3 +140,11 @@ Follow-up buttons offer simpler explanations, examples, or more depth. The conve
 Restart `npm run dev` for the new chat route. `CHAT_VIDEO_CONTEXT` defaults to enabled; set it to `false` to use text and notes only. `VIDEO_CHAT_DAILY_LIMIT` defaults to eight analysis attempts per UTC day. Videos longer than 30 minutes, private/unlisted videos, missing details, or exhausted analysis allowance use a text explanation without a timestamp. Unsupported video-input HTTP 400 responses permit one text fallback; network errors are reported without automatic retries. A fallback consumes another chat request. Video requests have a 60-second deadline; ordinary text requests retain 20 seconds. Live web fact-checking is not enabled.
 
 `npm run phase2:teacher-check` runs fixed public developer examples with a separate persisted limit of three model requests, two video attempts, and six YouTube operations per UTC day. Results are ignored under `.local-data/teacher-check`. Do not erase the usage record to repeat calls. These checks consume real provider allowance; they are separate from the browser app's local counter.
+
+## Desktop Universe update
+
+Desktop navigation now uses **Science & Technology**, **Commerce & Business**, and **Arts & Humanities**, with Trending as the default. Universe feeds open directly into videos and subject filters. Long-video labels appear between the title and creator name. A normal video click restores saved playback without a separate app Resume button.
+
+Older searches and progress are preserved. Classification is a provisional rule system; unclear videos remain watchable without a label. Phone navigation remains at its previous design. See [the desktop implementation guide](desktop-ui/features/universes/README.md).
+
+Restart `npm run dev` for the new backend feed route. No new keys or database migration are needed. This update has not been redeployed to the public demo.

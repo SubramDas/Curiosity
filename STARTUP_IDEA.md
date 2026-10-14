@@ -504,3 +504,19 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 - **Implementation:** General teaching and follow-ups, relevance labels, up to two real question-specific YouTube results, public-video analysis, and AI-matched timestamp buttons are implemented. Questions need not remain within the current topic or require a selected video. Uncertain/title-only relevance is labeled honestly, and no timestamp is shown without media analysis and a valid supported range.
 - **Extra controls:** Simpler/example/deeper follow-ups, Explain this part, and New conversation. History remains in memory across navigation and clears on refresh or account changes. Suggestions do not automatically switch playback or create topic tiles.
 - **Evidence and limits:** See CHATBOT_PLAN.md for automated checks, the live examples, analysis limits, and remaining accuracy review. General replies do not have live web fact-checking. A live AI timestamp is not proof of precise accuracy. Formal learner tests and durable chat saving remain later work.
+
+## Latest decision: Universe organisation — 2026-10-14
+
+The founder chose **Universe** as the name for the main learning groups: **Science & Technology**, **Commerce & Business**, and **Arts & Humanities**. Trending stays the default. Each Universe opens directly into a video feed with subject labels and filters. Search works across all three without requiring a category choice.
+
+Classified videos show **Universe – subtopic** above the video. A video has one primary Universe, with related-Universe tags for overlap. If classification is unclear, the result still appears without an assigned label. Existing saved searches and playback progress must be preserved during a future migration. The knowledge graph will be discussed later; watching alone does not establish understanding.
+
+The next step is founder review of desktop and mobile Penpot designs. Application implementation is awaiting that review. See design/penpot/universes/README.md. This decision supersedes the earlier broad-category navigation proposal for the next design iteration.
+
+### Desktop Universe review clarification
+
+For desktop long-video cards/player, show the Universe – subtopic label between the video title and creator name. Keep the reviewed Shorts design. A normal click on a previously watched video should continue at its saved position, without requiring a separate app Resume video button. Use a subtle progress bar to identify partially watched videos. These decisions are captured in Penpot; app implementation awaits design approval.
+
+### Desktop Universe implementation status
+
+The founder approved starting desktop implementation. The Universe feeds and the desktop label/resume refinement are implemented locally, using provisional English-title classification and preserved legacy topic keys. Mobile Universe implementation and the knowledge graph remain later work. No redeployment was made as part of this change.

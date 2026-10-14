@@ -62,3 +62,7 @@ npm run test:browser
 `backend/production.mjs` starts the hosted server and supplies Firestore storage implementations. Application rules depend on small storage interfaces rather than Google-specific objects. `backend/storage` owns the cache and transactional counters; `backend/http` owns static files and burst limits. Provider calls happen outside database transactions.
 
 Cloud Run serves the built website and API together. Supabase remains responsible for accounts and user records; Firestore holds public-video metadata and global usage counts. Secrets come from Secret Manager. See [deployment details](GOOGLE_CLOUD_DEPLOYMENT.md).
+
+## Desktop Universe presentation
+
+`desktop-ui/features/universes` owns the desktop Universe navigation, feed loading/filter controls and metadata rendering. Shared Universe rules classify video titles and map legacy topic records without changing storage identifiers. Shared video components accept optional presentation settings, keeping their mobile defaults. The backend Universe-feed route reuses the cached suggestion loader and skips Trending. No graph storage or migration is added.

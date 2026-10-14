@@ -95,14 +95,14 @@ export function startServer(
     return cachedYouTube;
   }
   let homeFeed;
-  function loadHomeFeed(queries) {
+  function loadHomeFeed(queries, includeTrending = true) {
     if (!homeFeed)
       homeFeed = createHomeFeed({
         youtube: youtubeClient(),
         // The provider wrapper reserves allowance only on cache misses.
         reserve: () => {},
       });
-    return homeFeed(queries);
+    return homeFeed(queries, { includeTrending });
   }
   const server = createServer(async (request, response) => {
     response.setHeader("Content-Type", "application/json");
@@ -154,6 +154,8 @@ export function startServer(
       let result;
       if (path === "/api/feed/home") {
         result = await loadHomeFeed(body.queries ?? []);
+      } else if (path === "/api/feed/universe") {
+        result = await loadHomeFeed(body.queries ?? [], false);
       } else if (path === "/api/search") {
         const query = validateText(body.query);
         if (

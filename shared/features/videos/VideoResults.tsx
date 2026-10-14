@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "./video-presentation";
 import { VideoThumbnail } from "./VideoThumbnail";
 import { readableTitle } from "../../lib/api";
 import { useEffect, useRef, type ReactNode } from "react";
@@ -6,12 +7,14 @@ import { formatPosition } from "./video-format";
 import type { Video } from "../../types";
 
 export function VideoResults({
+  presentation,
   videos,
   selectedId,
   onSelect,
   renderPlayer,
   progress = [],
 }: {
+  presentation?: VideoPresentation;
   videos: Video[];
   selectedId?: string;
   onSelect: (video: Video) => void;
@@ -48,6 +51,7 @@ export function VideoResults({
                 </span>
                 <span className="video-copy">
                   <strong>{readableTitle(video.title)}</strong>
+                  {presentation?.renderMetadata?.(video)}
                   <small>{video.channel}</small>
                   <small>
                     YouTube ·{" "}
@@ -56,7 +60,7 @@ export function VideoResults({
                   </small>
                 </span>
               </span>
-              {saved && (
+              {saved && presentation?.showProgressLabel !== false && (
                 <small className="progress-label">
                   {saved.completed
                     ? "Watched"

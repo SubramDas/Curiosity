@@ -12,7 +12,10 @@ export function createHomeFeed({ youtube, reserve, now = Date.now }) {
     if (cache.size > 50) cache.delete(cache.keys().next().value);
     return value;
   }
-  return async function homeFeed(queries = []) {
+  return async function homeFeed(
+    queries = [],
+    { includeTrending = true } = {},
+  ) {
     if (
       !Array.isArray(queries) ||
       queries.length > 2 ||
@@ -28,20 +31,21 @@ export function createHomeFeed({ youtube, reserve, now = Date.now }) {
     }
     const messages = [];
     let trending = [];
-    try {
-      trending = await cached(
-        "trending",
-        () => youtube.getPopularLearningVideos(),
-        2,
-      );
-    } catch (error) {
-      messages.push(
-        error instanceof ServiceError &&
-          ["LOCAL_LIMIT", "INVALID_CONFIG"].includes(error.code)
-          ? error.message
-          : "Trending videos could not load. You can still search any topic.",
-      );
-    }
+    if (includeTrending)
+      try {
+        trending = await cached(
+          "trending",
+          () => youtube.getPopularLearningVideos(),
+          2,
+        );
+      } catch (error) {
+        messages.push(
+          error instanceof ServiceError &&
+            ["LOCAL_LIMIT", "INVALID_CONFIG"].includes(error.code)
+            ? error.message
+            : "Trending videos could not load. You can still search any topic.",
+        );
+      }
     const recommendations = [];
     for (const query of [...new Set(queries.map((query) => query.trim()))]) {
       try {

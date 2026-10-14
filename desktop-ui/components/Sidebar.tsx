@@ -1,4 +1,5 @@
-import { TopicTiles } from "../../shared/features/topics/TopicTiles";
+import { UniverseSidebar } from "../features/universes/UniverseNavigation";
+import type { UniverseId } from "../../shared/features/universes/universe-rules";
 import { Icon } from "../../shared/components/Icon";
 import type { Topic } from "../../shared/types";
 import type { PageView } from "../../shared/types";
@@ -8,7 +9,9 @@ export function Sidebar({
   view,
   open,
   onNavigate,
+  onUniverse,
   onTopic,
+  activeUniverse,
   onAsk,
   demo,
   onDemo,
@@ -17,7 +20,9 @@ export function Sidebar({
   view: PageView;
   open: boolean;
   onNavigate: (view: PageView) => void;
+  onUniverse: (id: UniverseId) => void;
   onTopic: (topic: Topic) => void;
+  activeUniverse?: UniverseId;
   onAsk: () => void;
   demo: boolean;
   onDemo: (value: boolean) => void;
@@ -47,7 +52,12 @@ export function Sidebar({
           </button>
         ))}
       </nav>
-      <TopicTiles topics={topics} onOpen={onTopic} />
+      <UniverseSidebar
+        topics={topics}
+        active={activeUniverse}
+        onSelect={onUniverse}
+        onTopic={onTopic}
+      />
       <button className="nav-item" onClick={onAsk}>
         <Icon name="chat" />
         <span>Ask a question</span>

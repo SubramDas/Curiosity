@@ -1,0 +1,95 @@
+.desktop-app .universe-video-label {
+  display: block;
+  margin: 6px 0;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+.desktop-app .universe-related-tag {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.desktop-app .short-universe-label {
+  min-height: 36px;
+  margin: 0 0 8px;
+}
+.desktop-app .short-player {
+  display: flex;
+  flex-direction: column;
+}
+.desktop-app .short-player > .short-universe-label {
+  position: static;
+  flex: none;
+  margin: 0;
+  padding: 12px 16px;
+  background: white;
+}
+.desktop-app .short-player .player-frame {
+  flex: 1;
+  min-height: 0;
+}
+.desktop-app .universe-sidebar {
+  padding: 20px 0;
+  border-block: 1px solid var(--line);
+  margin: 18px 0;
+}
+.desktop-app .universe-sidebar h2 {
+  font-size: 14px;
+  padding: 0 12px;
+  margin: 0 0 14px;
+}
+.desktop-app .universe-sidebar .nav-item {
+  font-size: 12px;
+  gap: 10px;
+  padding: 12px;
+}
+.desktop-app .universe-sidebar small {
+  margin-left: auto;
+}
+.desktop-app .universe-sidebar .fine-print {
+  padding: 0 12px;
+}
+.desktop-app .universe-subject-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 20px;
+}
+.desktop-app .universe-subject-filters button {
+  white-space: nowrap;
+  background: #f4f6f4;
+  color: inherit;
+  font-size: 13px;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+.desktop-app .universe-subject-filters [aria-pressed="true"] {
+  color: white;
+  background: #17221d;
+}
+.desktop-app .universe-saved-searches {
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.desktop-app .universe-saved-searches summary {
+  cursor: pointer;
+}
+.desktop-app .universe-saved-searches > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.desktop-app .universe-saved-searches button {
+  background: #eaf4ee;
+  color: var(--green);
+  font-size: 13px;
+}
+.desktop-app .video-result.expanded-result > .video-card {
+  display: none;
+}

@@ -1,3 +1,4 @@
+import type { VideoPresentation } from "../videos/video-presentation";
 import type { Topic, Video } from "../../types";
 import type { HomeFeedData } from "./useHomeFeed";
 import type { VideoProgress } from "../progress/useVideoProgress";
@@ -6,11 +7,13 @@ import { ShortsShelf } from "../videos/ShortsShelf";
 import { isShortVideo } from "../videos/video-format";
 
 export function HomeFeed({
+  presentation,
   data,
   topics,
   progress,
   onSelect,
 }: {
+  presentation?: VideoPresentation;
   data: HomeFeedData;
   topics: Topic[];
   progress: VideoProgress[];
@@ -34,6 +37,7 @@ export function HomeFeed({
           India. Results may include other languages.
         </p>
         <VideoResults
+          presentation={presentation}
           videos={data.trending.filter((video) => !isShortVideo(video))}
           onSelect={(video) => onSelect(video)}
           progress={progress}
@@ -49,6 +53,7 @@ export function HomeFeed({
         <section className="feed-section" key={group.query}>
           <h2>Because you explored {group.query}</h2>
           <VideoResults
+            presentation={presentation}
             videos={group.videos
               .filter((video) => !isShortVideo(video))
               .slice(0, 6)}
@@ -63,6 +68,7 @@ export function HomeFeed({
         </section>
       ))}
       <ShortsShelf
+        presentation={presentation}
         videos={shorts}
         progress={progress}
         onSelect={(video) => {

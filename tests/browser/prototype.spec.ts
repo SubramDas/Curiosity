@@ -20,45 +20,35 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
-test("Search, pagination, grouped guest topics, reload, and related tags work without duplicates", async ({
+test("Search pagination preserves grouped guest topics across reload", async ({
   page,
 }) => {
-  await page.route("**/api/config", (route) =>
-    route.fulfill({ json: { supabaseConfigured: false } }),
+  await page.route("**/api/config", (r) =>
+    r.fulfill({ json: { supabaseConfigured: false } }),
   );
-  await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: "next" } }),
+  await page.route("**/api/search", (r) =>
+    r.fulfill({ json: { videos, nextPageToken: "next" } }),
   );
   await page.goto("/");
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
-  await expect(page.getByRole("button", { name: /How GPUs work/ })).toHaveCount(
-    1,
-  );
   await page.getByRole("button", { name: "Load more videos" }).click();
-  await expect(page.getByRole("button", { name: /How GPUs work/ })).toHaveCount(
-    1,
-  );
-  await page.getByLabel("Search any topic").fill("AMD");
-  await page.getByRole("button", { name: "Search", exact: true }).click();
-  await expect(
-    page.getByText("2 topics explored", { exact: true }),
-  ).toBeVisible();
-  await expect(page.locator(".topic-tile")).toHaveCount(1);
-  await page.getByLabel("Search any topic").fill("Income tax on GPU imports");
-  await page.getByRole("button", { name: "Search", exact: true }).click();
-  await page.getByRole("button", { name: /Money & Business.*Explore/ }).click();
-  await page
-    .getByRole("button", { name: "Society, History & Law", exact: true })
-    .click();
-  await expect(
-    page.getByText("This is a related-subject preview.", { exact: false }),
-  ).toBeVisible();
-  await expect(page.locator(".topic-tile")).toHaveCount(2);
+  await expect(page.locator(".video-card")).toHaveCount(1);
+  for (const query of ["AMD", "Income tax on GPU imports"]) {
+    await page.getByLabel("Search any topic").fill(query);
+    await page.getByRole("button", { name: "Search", exact: true }).click();
+    await expect(page.locator(".video-card")).toHaveCount(1);
+  }
   await page.reload();
-  await expect(
-    page.getByText("3 topics explored", { exact: true }),
-  ).toBeVisible();
-  await expect(page.locator(".topic-tile")).toHaveCount(2);
+  await expect(page.getByText(/3 searches explored/)).toBeVisible();
+  const saved = await page.evaluate(() =>
+    JSON.parse(localStorage.getItem("curiosity-guest-topics-v1")!),
+  );
+  expect(saved.map((s: any) => s.category)).toEqual([
+    "money",
+    "computing",
+    "computing",
+  ]);
+  expect(saved.map((s: any) => s.key)).toContain("computing:gpu");
 });
 
 test("Chat failure is visible, and an offered demo break persists without inventing clips", async ({
@@ -342,10 +332,13 @@ test("Continue watching restores a saved video missing from fresh search results
   await expect(
     page.getByRole("region", { name: "Continue watching" }),
   ).toHaveCount(0);
-  await expect(page.locator(".video-card.selected")).toContainText("Watched");
+  await expect(page.locator(".video-card.selected")).toHaveAttribute(
+    "aria-label",
+    "How GPUs work Watched",
+  );
 });
 
-test("Home starts with Trending only; searched subjects appear once, and Home keeps an independent mix", async ({
+test("Home starts with the three Universes; saved searches survive reload and Home keeps an independent mix", async ({
   page,
 }) => {
   const short = {
@@ -367,8 +360,13 @@ test("Home starts with Trending only; searched subjects appear once, and Home ke
   );
   await page.goto("/");
   await expect(
-    page.getByRole("navigation", { name: "Feed topics" }).getByRole("button"),
-  ).toHaveText(["Trending"]);
+    page.getByRole("navigation", { name: "Universes" }).getByRole("button"),
+  ).toHaveText([
+    "Trending",
+    "Science & Technology",
+    "Commerce & Business",
+    "Arts & Humanities",
+  ]);
   await expect(page.locator(".feed-section .video-thumbnail")).toHaveCount(1);
   await expect(
     page
@@ -378,10 +376,12 @@ test("Home starts with Trending only; searched subjects appear once, and Home ke
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
   await page.getByLabel("Search any topic").fill("AMD");
   await page.getByRole("button", { name: "Search", exact: true }).click();
-  const tabs = page.getByRole("navigation", { name: "Feed topics" });
+  const tabs = page.getByRole("navigation", { name: "Universes" });
   await expect(tabs.getByRole("button")).toHaveText([
     "Trending",
-    "Computing & Tech",
+    "Science & Technology",
+    "Commerce & Business",
+    "Arts & Humanities",
   ]);
   await tabs.getByRole("button", { name: "Trending", exact: true }).click();
   await expect(
@@ -397,7 +397,9 @@ test("Home starts with Trending only; searched subjects appear once, and Home ke
   await page.reload();
   await expect(tabs.getByRole("button")).toHaveText([
     "Trending",
-    "Computing & Tech",
+    "Science & Technology",
+    "Commerce & Business",
+    "Arts & Humanities",
   ]);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole("button", { name: "Toggle navigation" }).click();
@@ -444,8 +446,18 @@ test("A Trending video plays without creating a searched-topic tab; empty histor
     .click();
   await expect(page.locator(".video-result .player-section")).toHaveCount(1);
   await expect(
-    page.getByRole("navigation", { name: "Feed topics" }).getByRole("button"),
-  ).toHaveText(["Trending"]);
+    page.getByRole("navigation", { name: "Universes" }).getByRole("button"),
+  ).toHaveText([
+    "Trending",
+    "Science & Technology",
+    "Commerce & Business",
+    "Arts & Humanities",
+  ]);
+  await page.getByRole("button", { name: "Home", exact: true }).click();
+  await page.evaluate(() =>
+    localStorage.removeItem("curiosity-video-progress-v1"),
+  );
+  await page.reload();
   await page
     .getByRole("complementary", { name: "Main navigation" })
     .getByRole("button", { name: "Continue watching", exact: true })
@@ -491,9 +503,14 @@ test("Continue watching reopens a saved player without searching again", async (
   await page
     .getByRole("button", { name: "How GPUs work", exact: true })
     .click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as any).mockPlayers.at(-1)?.playing),
+    )
+    .toBe(true);
   await expect(
     page.getByRole("button", { name: "Play video", exact: true }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await page.evaluate(() => (window as any).mockPlayers[0].pause());
   await page.getByRole("button", { name: "Home", exact: true }).click();
   await page
@@ -505,11 +522,11 @@ test("Continue watching reopens a saved player without searching again", async (
     .click();
   await expect(
     page.getByRole("button", { name: "Resume video", exact: true }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await expect
     .poll(() => page.evaluate(() => (window as any).mockPlayers.at(-1).seeks))
     .toEqual([72]);
-  await page.getByRole("button", { name: "Resume video", exact: true }).click();
+
   await expect
     .poll(() => page.evaluate(() => (window as any).mockPlayers.at(-1).playing))
     .toBe(true);
@@ -571,9 +588,14 @@ test("Teacher labels unrelated questions, remembers follow-ups, and jumps to a r
   await page
     .getByRole("button", { name: "How GPUs work", exact: true })
     .click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as any).mockPlayers.at(-1)?.playing),
+    )
+    .toBe(true);
   await expect(
     page.getByRole("button", { name: "Play video", exact: true }),
-  ).toBeVisible();
+  ).toHaveCount(0);
   await page
     .getByLabel("What would you like explained?")
     .fill("What is compound interest?");

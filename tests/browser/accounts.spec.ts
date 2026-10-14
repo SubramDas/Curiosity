@@ -1,6 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { accountSession, mockAccountProvider } from "./account-fixture";
 
+test.beforeEach(async ({ page }) => {
+  await page.route("**/api/feed/universe", (r) =>
+    r.fulfill({ json: { trending: [], recommendations: [], messages: [] } }),
+  );
+});
+
 async function enterCredentials(page: import("@playwright/test").Page) {
   await page.goto("/");
   await page.locator(".account-panel summary").click();
@@ -176,8 +182,12 @@ test("Sign-out closes the account's active topic view and removes its saved subj
     page.getByRole("button", { name: "Sign out", exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("navigation", { name: "Feed topics" })
-    .getByRole("button", { name: "Computing & Tech", exact: true })
+    .getByRole("navigation", { name: "Universes" })
+    .getByRole("button", { name: "Science & Technology", exact: true })
+    .click();
+  await page.getByText("Your saved searches (1)").click();
+  await page
+    .getByRole("button", { name: "Private account GPUs", exact: true })
     .click();
   await expect(
     page.getByRole("heading", { name: "Private account GPUs", exact: true }),
@@ -187,8 +197,13 @@ test("Sign-out closes the account's active topic view and removes its saved subj
     page.getByRole("heading", { name: "Private account GPUs", exact: true }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole("navigation", { name: "Feed topics" }).getByRole("button"),
-  ).toHaveText(["Trending"]);
+    page.getByRole("navigation", { name: "Universes" }).getByRole("button"),
+  ).toHaveText([
+    "Trending",
+    "Science & Technology",
+    "Commerce & Business",
+    "Arts & Humanities",
+  ]);
   expect(
     await page.evaluate(() =>
       localStorage.getItem("curiosity-guest-topics-v1"),
