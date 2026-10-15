@@ -4,7 +4,7 @@ const TRENDING_TTL = 3600_000;
 
 export function createCachedYouTubeClient({ youtube, cache, reserve }) {
   // Include settings/version so a change in search policy cannot reuse old results.
-  const settings = "v1:IN:en:moderate:embeddable:relevance:10";
+  const settings = "v2:IN:en:moderate:embeddable:relevance:10:metadata";
   const searchPage = (query, pageToken) =>
     cache.getOrLoad(
       ["search", settings, query.trim(), pageToken ?? ""],

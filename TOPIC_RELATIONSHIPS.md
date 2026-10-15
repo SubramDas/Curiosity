@@ -1,5 +1,9 @@
 # Topic relationships and broad topic tiles
 
+## Exploration graph direction — 2026-10-15
+
+The founder now requests a game-like map across the three Universes, with gradual discovery, concept connections and weekly educational event additions. Achievements should celebrate first-time exploration of a topic; learner quizzes and mastery requirements are not part of this version. Flat topics, primary placement and related-Universe bridges remain. Four visual/navigation concepts are prepared in Penpot for selection. See [the graph plan](design/penpot/graph/PLAN.md) and [design handoff](design/penpot/graph/README.md). The exploration trigger and news publishing workflow are proposals pending implementation decisions.
+
 Date: 2026-10-13  
 Status: one main tile with related-topic tags is agreed. External knowledge sources are included in the build plan. Final category names and integrations are not implemented yet.
 
@@ -157,3 +161,7 @@ Suggested interface details, not additional founder commitments:
 3. Dewey: reference for designing understandable broad headings. Reusing its protected schedules would require suitable permission; reference use is not an agreement to copy the full classification.
 
 The source list is approved for planning. Coverage checks, permissions, efficient access, conflict handling, and integration tests remain developer tasks. Failure of an external source should not stop ordinary YouTube search or reopening already saved topics.
+
+## Video classification implemented — 2026-10-15
+
+The founder approved flat topic labels, provisional topics, and one primary Universe per video with expandable related-Universe labels. Backend Gemini extraction now retrieves Wikidata concept candidates and selected named relationships, then uses Gemini to resolve meaning and assign the primary/related Universes. This is a bounded lookup, not a full graph import or nested user interface. Existing saved-topic grouping and identifiers are preserved. See [implementation, prompts and evidence](backend/classification/README.md). One live Gemini check exercised provisional fallback because Wikidata reported replication lag; live concept matching and wider classification accuracy still need review. No deployment was made.

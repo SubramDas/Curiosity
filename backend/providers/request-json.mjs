@@ -14,7 +14,8 @@ export async function requestJson(url, options = {}, fetchRequest = fetch) {
       ...options,
       signal: AbortSignal.timeout(20_000),
     });
-  } catch {
+  } catch (error) {
+    if (error instanceof ServiceError) throw error;
     throw new ServiceError(
       "NETWORK_ERROR",
       "The service did not respond. Check your connection and retry manually.",

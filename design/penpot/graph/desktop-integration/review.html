@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Curiosity — Website to Explore map</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#070B18;color:#F4F7FF;font:14px/1.5 Arial,sans-serif}header{max-width:1648px;margin:auto;padding:28px 24px 22px}header>a{color:#73F1E7;text-decoration:none;font-size:13px}h1{font-size:26px;letter-spacing:-.6px;margin:14px 0 6px}p{color:#9EADC9;margin:6px 0}nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}button{font:inherit;cursor:pointer;color:#C4D0E7;background:#151F34;border:1px solid #25344E;border-radius:10px;padding:10px 15px}button[aria-pressed=true]{color:#082A2E;background:#73F1E7;border-color:#73F1E7}button:focus-visible,a:focus-visible{outline:3px solid #F5CD83;outline-offset:3px}main{max-width:1648px;margin:auto;padding:0 24px 40px}.stage{position:relative;width:100%;margin:auto;overflow:hidden;border:1px solid #25344E;border-radius:20px}.stage.mobile{max-width:430px}.stage.state{max-width:1000px}.stage img{width:100%;height:auto;display:block}.hotspot{position:absolute;background:transparent;border:0;border-radius:10px;padding:0}.hotspot:hover{background:#73F1E715;outline:1px solid #73F1E760}.hint{font-size:12px;margin:16px 0;color:#9EADC9}.file{color:#73F1E7}footer{color:#7185A7;font-size:12px;margin-top:16px}
+</style>
+</head>
+<body>
+<header><a href="../index.html">← All graph concepts</a><h1>From your website to your learning map.</h1><p>Home → Explore map → Map / Feed. The familiar header and sidebar stay in place.</p><nav aria-label="Design screens"></nav></header>
+<main><p class="hint" id="hint"></p><div class="stage"><img id="screen" alt=""><div id="hotspots"></div></div><footer>Native Penpot design exports · Illustrative content · Selected navigation is clickable. Learning, playback, pan/zoom and progress are design previews.</footer><p><a class="file" id="original" href="home-entry.svg">Open this screen as a separate SVG ↗</a></p></main>
+<script>
+const screens={"home-entry": {"name": "1 \u00b7 Home entry", "w": 1600, "h": 1080, "hint": "Click Explore map in the left sidebar or the green discovery card.", "links": [[12, 144, 200, 44, "website-map", "Open Explore map"], [1182, 478, 362, 48, "website-map", "Explore your learning map"]]}, "website-map": {"name": "2 \u00b7 Explore map", "w": 1600, "h": 1080, "hint": "Explore map is selected in the sidebar. Try Feed, or Home to return to the general feed.", "links": [[12, 96, 200, 44, "home-entry", "Return to Home"], [1466, 190, 98, 36, "website-feed", "Switch to the selected Universe feed"]]}, "website-feed": {"name": "3 \u00b7 Universe feed", "w": 1600, "h": 1080, "hint": "This Feed belongs to the selected Universe. Home is still the general discovery feed.", "links": [[12, 96, 200, 44, "home-entry", "Return to Home"], [12, 144, 200, 44, "website-map", "Open constellation map"], [1364, 190, 98, 36, "website-map", "Switch back to Map"], [1370, 595, 180, 38, "website-map", "Open your learning map"], [1410, 964, 150, 40, "website-map", "View your learning map"]]}};
+const nav=document.querySelector('nav');
+for(const [key,s] of Object.entries(screens)){const b=document.createElement('button');b.textContent=s.name;b.dataset.screen=key;b.onclick=()=>show(key);nav.append(b);}
+function show(key){const s=screens[key]||screens['home-entry'];if(!screens[key])key='home-entry';const stage=document.querySelector('.stage');stage.className='stage'+(key.startsWith('mobile')?' mobile':['achievement','weekly-event'].includes(key)?' state':'');const image=document.querySelector('#screen');image.src=key+'.svg';image.alt=s.name+' — Curiosity desktop integration design';document.querySelector('#hint').textContent=s.hint;const original=document.querySelector('#original');original.href=key+'.svg';for(const b of nav.children)b.setAttribute('aria-pressed',String(b.dataset.screen===key));const container=document.querySelector('#hotspots');container.replaceChildren();for(const [x,y,w,h,target,label]of s.links){const b=document.createElement('button');b.className='hotspot';b.setAttribute('aria-label',label);b.title=label;b.style.cssText=`left:${x/s.w*100}%;top:${y/s.h*100}%;width:${w/s.w*100}%;height:${h/s.h*100}%`;b.onclick=()=>show(target);container.append(b);}history.replaceState(null,'','#'+key);}
+window.addEventListener('hashchange',()=>show(location.hash.slice(1)||'home-entry'));
+show(location.hash.slice(1)||'home-entry');
+</script>
+</body>
+</html>

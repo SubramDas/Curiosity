@@ -1,0 +1,17 @@
+# Shared Gemini scheduling
+
+All Gemini requests made by the running app server use one `createGeminiRequestQueue` instance injected into the teacher and classification adapters. No model or API key is changed.
+
+- One model request runs at a time. Teacher requests take the next available slot ahead of waiting classification work. An already running request is allowed to finish.
+- `GEMINI_REQUEST_INTERVAL_MS` sets the minimum time between request starts. Default: 15,000 ms (at most four starts/minute). This is a conservative starting setting, not a measurement or guarantee of the account's RPM/TPM/RPD allowance. Zero disables spacing for controlled checks, while requests remain sequential.
+- Provider deadlines begin at dispatch: 20 seconds for text/classification and 60 seconds for teacher video analysis. Waiting does not consume the provider timeout. Teacher queue waits are bounded at 30 seconds; classification waits at 120 seconds. Overflow/expiry returns a clear busy response rather than starting an abandoned queued operation.
+- Gemini HTTP 429 responses are parsed only for safe quota metadata. Retry-After and RetryInfo delays pause new work; absent a delay, the pause is 60 seconds. Failed operations are never automatically retried. Subsequent queued operations may proceed after cooldown.
+- Recognized per-day quota violations reject pending/new model work until the Pacific calendar day changes. Unknown 429s are treated as temporary rate limits because their quota dimension cannot be inferred reliably. Actual provider quotas still apply.
+- Queue priority, pending work, daily-block detection and cooldown are per server process. Local/provider usage reservations and accepted classification caches remain persistent. Restarting does not restore provider quota; it does recreate scheduling state. The present Cloud Run deployment is capped at one instance. Additional server replicas would require shared scheduling before claiming project-wide serialization. Separate CLI experiments or other apps using the same Google project are outside this server queue and must not be run concurrently with it.
+- Classification model allowances are reserved when dispatched. Teacher retains its existing conservative attempt reservations, including failed attempts. The local daily safeguards are not increased or reset.
+
+`request.mjs` owns safe Gemini error translation and transport deadlines. `request-queue.mjs` owns scheduling, priority, pacing and cooldown. The adapters keep their existing prompt and response-validation responsibilities.
+
+Browser classification uses asynchronous jobs (`background: true` at `/api/videos/classify`) and polls only the existing job status, without repeating a model operation. Normal synchronous calls remain for the explicit developer check. One background classification pipeline runs at a time, shared across users of this server. Jobs are bounded, coalesced by video ID, expire after five minutes once finished, and retry failed work only on an explicit retry request.
+
+See [classification details](../classification/README.md) for visible-card scheduling and extraction reuse. These changes are prepared locally; no deployment or live provider requests were performed for this update.

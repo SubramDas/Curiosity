@@ -1,3 +1,4 @@
+import { VideoClassificationLabel } from "../classification/VideoClassificationLabel";
 import type { ChatTurn } from "./useTutorChat";
 import type { Video } from "../../types";
 import { formatPosition } from "../videos/video-format";
@@ -75,6 +76,7 @@ export function ChatAnswer({
           <button onClick={() => onSelect(video)}>
             {readableTitle(video.title)} →
           </button>
+          <VideoClassificationLabel video={video} />
           <small>
             YouTube search match for your question · Content not reviewed.
           </small>

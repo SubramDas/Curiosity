@@ -23,8 +23,37 @@ const mixed = [
 async function setup(page: Page) {
   await mockPlayer(page);
   await page.route("**/api/config", (r) =>
-    r.fulfill({ json: { supabaseConfigured: false } }),
+    r.fulfill({
+      json: { supabaseConfigured: false, videoClassificationEnabled: true },
+    }),
   );
+  await page.route("**/api/videos/classify", async (route) => {
+    const { id } = route.request().postDataJSON();
+    const labels: Record<string, [string | null, string, string[]]> = {
+      "Kgcfj_KV-mo": ["science", "Graphics & GPUs", []],
+      abcdefghijk: ["commerce", "Business & markets", ["science"]],
+      lmnopqrstuv: ["arts", "Literature", []],
+      mnopqrstuvw: [null, "Unclassified", []],
+      nopqrstuvwx: ["science", "Artificial intelligence", []],
+    };
+    const [primaryUniverse, label, relatedUniverses] = labels[id];
+    await route.fulfill({
+      json: {
+        videoId: id,
+        classification: {
+          topic: {
+            label,
+            wikidataId: primaryUniverse ? "Q1" : null,
+            status: primaryUniverse ? "matched" : "provisional",
+          },
+          primaryUniverse,
+          relatedUniverses,
+          reason: "Simulated metadata classification",
+          policyVersion: "1",
+        },
+      },
+    });
+  });
   await page.route("**/api/feed/home", (r) =>
     r.fulfill({ json: { trending: mixed, recommendations: [], messages: [] } }),
   );
@@ -75,7 +104,7 @@ test("Desktop Universe feeds open directly; subject filters reuse results and ol
   await expect(
     page.getByRole("heading", { name: "Science & Technology", exact: true }),
   ).toBeVisible();
-  await expect(page.locator(".universe-feed .video-card")).toHaveCount(2); // GPU and unclassified; known other Universes are excluded.
+  await expect(page.locator(".universe-feed .video-card")).toHaveCount(1); // Only the primary Universe controls placement.
   await page
     .getByRole("navigation", { name: "Subject filters" })
     .getByRole("button", { name: "Graphics & GPUs", exact: true })

@@ -120,6 +120,36 @@ function ensureAccount(id, email) {
       `--display-name=Curiosity ${id}`,
     ]);
 }
+function configureCacheFields() {
+  for (const collection of [
+    "curiosity_cache",
+    "curiosity_classification_cache",
+  ]) {
+    cloud([
+      "firestore",
+      "fields",
+      "ttls",
+      "update",
+      "purgeAt",
+      `--collection-group=${collection}`,
+      "--database=(default)",
+      "--enable-ttl",
+      "--async",
+    ]);
+    // Large public metadata strings should not generate unnecessary index entries.
+    cloud([
+      "firestore",
+      "indexes",
+      "fields",
+      "update",
+      "payload",
+      `--collection-group=${collection}`,
+      "--database=(default)",
+      "--disable-indexes",
+      "--async",
+    ]);
+  }
+}
 export async function setup() {
   const database = JSON.parse(
     cloud([
@@ -156,29 +186,7 @@ export async function setup() {
   ]);
   console.log("Dedicated runtime/build identities configured.");
   await deployRules();
-  cloud([
-    "firestore",
-    "fields",
-    "ttls",
-    "update",
-    "purgeAt",
-    "--collection-group=curiosity_cache",
-    "--database=(default)",
-    "--enable-ttl",
-    "--async",
-  ]);
-  // Large public metadata strings should not generate unnecessary index entries.
-  cloud([
-    "firestore",
-    "indexes",
-    "fields",
-    "update",
-    "payload",
-    "--collection-group=curiosity_cache",
-    "--database=(default)",
-    "--disable-indexes",
-    "--async",
-  ]);
+  configureCacheFields();
   const environment = loadLocalEnvironment();
   const secrets = {
     YOUTUBE_API_KEY: "curiosity-youtube-api-key",
@@ -292,8 +300,13 @@ export async function deploy() {
     CHAT_DAILY_LIMIT: environment.CHAT_DAILY_LIMIT ?? "25",
     VIDEO_CHAT_DAILY_LIMIT: environment.VIDEO_CHAT_DAILY_LIMIT ?? "8",
     CHAT_VIDEO_CONTEXT: environment.CHAT_VIDEO_CONTEXT ?? "true",
+    VIDEO_CLASSIFICATION: environment.VIDEO_CLASSIFICATION ?? "true",
+    CLASSIFICATION_DAILY_LIMIT: environment.CLASSIFICATION_DAILY_LIMIT ?? "40",
+    GEMINI_REQUEST_INTERVAL_MS:
+      environment.GEMINI_REQUEST_INTERVAL_MS ?? "15000",
   };
   if (!settings.GEMINI_MODEL) throw new Error("GEMINI_MODEL is missing.");
+  configureCacheFields();
   const directory = stageSource();
   try {
     const args = [

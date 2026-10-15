@@ -11,6 +11,17 @@
       "fieldPath": "purgeAt",
       "ttl": true,
       "indexes": []
+    },
+    {
+      "collectionGroup": "curiosity_classification_cache",
+      "fieldPath": "payload",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "curiosity_classification_cache",
+      "fieldPath": "purgeAt",
+      "ttl": true,
+      "indexes": []
     }
   ]
 }

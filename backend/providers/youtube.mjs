@@ -99,6 +99,14 @@ export function createYouTubeClient({ apiKey, fetchRequest = fetch }) {
               id,
               title: item.snippet.title,
               channel: item.snippet.channelTitle ?? "",
+              description:
+                typeof item.snippet.description === "string"
+                  ? item.snippet.description
+                  : "",
+              tags: Array.isArray(item.snippet.tags)
+                ? item.snippet.tags.filter((tag) => typeof tag === "string")
+                : [],
+              categoryId: item.snippet.categoryId ?? "",
               watchUrl: `https://www.youtube.com/watch?v=${id}`,
               reviewed: false,
             },
@@ -135,6 +143,14 @@ export function createYouTubeClient({ apiKey, fetchRequest = fetch }) {
           id: item.id,
           title: item.snippet.title,
           channel: item.snippet.channelTitle ?? "",
+          description:
+            typeof item.snippet.description === "string"
+              ? item.snippet.description
+              : "",
+          tags: Array.isArray(item.snippet.tags)
+            ? item.snippet.tags.filter((tag) => typeof tag === "string")
+            : [],
+          categoryId: item.snippet.categoryId ?? "",
           watchUrl: `https://www.youtube.com/watch?v=${item.id}`,
           reviewed: false,
           details: {

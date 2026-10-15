@@ -93,3 +93,73 @@
 .desktop-app .video-result.expanded-result > .video-card {
   display: none;
 }
+
+.classification-status,
+.classification-provisional {
+  display: block;
+  color: #68716c;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.video-select-thumbnail,
+.video-select-title {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.video-select-thumbnail:hover,
+.video-select-title:hover {
+  background: transparent;
+}
+.video-select-title:focus-visible,
+.video-select-thumbnail:focus-visible {
+  outline: 2px solid #21845b;
+}
+.universe-related-details {
+  display: inline-block;
+  position: relative;
+  font-size: 12px;
+}
+.universe-related-details summary {
+  cursor: pointer;
+  color: #18764d;
+}
+.universe-related-details > span {
+  display: block;
+  font-size: 12px;
+  color: #465b4c;
+}
+.classification-retry {
+  padding: 0 3px;
+  font-size: 11px;
+  background: transparent;
+  color: #18764d;
+}
+.video-card,
+.short-card {
+  cursor: pointer;
+}
+.universe-classification-candidates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 18px 0;
+}
+.classification-candidate {
+  min-height: 80px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f6f7f6;
+  font-size: 12px;
+}
+.classification-label-container {
+  min-width: 0;
+}

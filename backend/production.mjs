@@ -21,6 +21,10 @@ const server = startServer(process.env, {
   allowCloudRunOrigin: Boolean(process.env.K_SERVICE),
   limits: createFirestoreUsage({ database }),
   cache: createFirestoreCache({ database }),
+  classificationCache: createFirestoreCache({
+    database,
+    namespace: "curiosity_classification",
+  }),
   beforeRequest: createRequestThrottle(),
 });
 function stop() {

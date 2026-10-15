@@ -2,14 +2,15 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { ServiceError } from "./providers/request-json.mjs";
 
-// Public YouTube metadata only. Never cache account records, credentials, or media.
+// Public provider data and derived labels only; never credentials, accounts or media.
 export function createProviderCache({
   directory = ".local-data",
   now = Date.now,
   maxEntries = 500,
+  filename = "youtube-cache.json",
 } = {}) {
   mkdirSync(directory, { recursive: true });
-  const path = `${directory}/youtube-cache.json`;
+  const path = `${directory}/${filename}`;
   const entries = new Map();
   const pending = new Map();
   function prune() {
@@ -51,7 +52,7 @@ export function createProviderCache({
     if (error.code !== "ENOENT")
       throw new ServiceError(
         "INVALID_CONFIG",
-        "The YouTube cache cannot be read. Review .local-data/youtube-cache.json.",
+        "The provider cache cannot be read. Review the local cache files.",
       );
   }
   return {

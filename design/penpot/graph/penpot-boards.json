@@ -1,0 +1,154 @@
+[
+  {
+    "key": "A",
+    "name": "Landscape — Map first",
+    "pageId": "c5f19b81-2139-8092-8008-cae218001134",
+    "boards": [
+      {
+        "id": "c5f19b81-2139-8092-8008-cae2180fb484",
+        "name": "A1 · Desktop / Explore",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae219f0f720",
+        "name": "A2 · Mobile / Explore",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae21bac162b",
+        "name": "A3 · First exploration unlocked",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae21c272a60",
+        "name": "A4 · Weekly event detail",
+        "width": 760,
+        "height": 650
+      }
+    ],
+    "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e"
+  },
+  {
+    "key": "B",
+    "name": "Landscape — Map + Feed",
+    "pageId": "c5f19b81-2139-8092-8008-cae21cf54e30",
+    "boards": [
+      {
+        "id": "c5f19b81-2139-8092-8008-cae21d284dff",
+        "name": "B1 · Desktop / Explore",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae21ec3e8f6",
+        "name": "B2 · Mobile / Explore",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae220595b39",
+        "name": "B3 · First exploration unlocked",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae220d39d04",
+        "name": "B4 · Weekly event detail",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae2218752d0",
+        "name": "B5 · Desktop / Feed",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae2fde762c8",
+        "name": "B6 · Mobile / Feed",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e"
+  },
+  {
+    "key": "C",
+    "name": "Constellation — Map first",
+    "pageId": "c5f19b81-2139-8092-8008-cae224afe0ab",
+    "boards": [
+      {
+        "id": "c5f19b81-2139-8092-8008-cae225031716",
+        "name": "C1 · Desktop / Explore",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae22756c59a",
+        "name": "C2 · Mobile / Explore",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae22a0f1638",
+        "name": "C3 · First exploration unlocked",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae22a8c5c52",
+        "name": "C4 · Weekly event detail",
+        "width": 760,
+        "height": 650
+      }
+    ],
+    "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e"
+  },
+  {
+    "key": "D",
+    "name": "Constellation — Map + Feed",
+    "pageId": "c5f19b81-2139-8092-8008-cae22b502202",
+    "boards": [
+      {
+        "id": "c5f19b81-2139-8092-8008-cae22b8de557",
+        "name": "D1 · Desktop / Explore",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae22ddc6e25",
+        "name": "D2 · Mobile / Explore",
+        "width": 390,
+        "height": 844
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae2309e0d2d",
+        "name": "D3 · First exploration unlocked",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae2311887b8",
+        "name": "D4 · Weekly event detail",
+        "width": 760,
+        "height": 650
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae231db0ebb",
+        "name": "D5 · Desktop / Feed",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "id": "c5f19b81-2139-8092-8008-cae30c2424c7",
+        "name": "D6 · Mobile / Feed",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e"
+  }
+]

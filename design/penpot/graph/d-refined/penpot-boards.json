@@ -1,0 +1,49 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+  "name": "Graph D2 · Future discovery",
+  "boards": [
+    {
+      "id": "c5f19b81-2139-8092-8008-cae798d43290",
+      "name": "D2.1 · Desktop — Constellation map",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae79dd60a03",
+      "name": "D2.2 · Mobile — Constellation map",
+      "width": 430,
+      "height": 932
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae7a1ed42f9",
+      "name": "D2.3 · Desktop — Discovery feed",
+      "width": 1440,
+      "height": 1024
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae7a6c971f1",
+      "name": "D2.4 · Mobile — Discovery feed",
+      "width": 430,
+      "height": 1080
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae7a92c1f4b",
+      "name": "D2.5 · Achievement — First contact",
+      "width": 760,
+      "height": 760
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae7ad0f6c90",
+      "name": "D2.6 · Weekly spotlight — The story",
+      "width": 1000,
+      "height": 860
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae8491110eb",
+      "name": "D2.7 · Node connection preview",
+      "width": 1440,
+      "height": 1024
+    }
+  ]
+}

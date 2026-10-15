@@ -1,5 +1,13 @@
 # Penpot design transfer
 
+## New review: playful learning graph
+
+Latest desktop review: **Explore map** below Home in the existing sidebar, with the white header/sidebar retained around the dark graph. Three additional native boards on **Graph D2 · Future discovery** show Home → Map → Feed. Open [the integration review](graph/desktop-integration/review.html) and [handoff](graph/desktop-integration/README.md).
+
+The founder selected Graph D and requested a visual refinement. The separate **Graph D2 · Future discovery** page now contains seven futuristic concept screens, with orbital concept nodes, a question-led feed, mobile layouts, connection previews, achievements and a weekly spotlight. Open [the refined review](graph/d-refined/review.html) or [handoff](graph/d-refined/README.md). Application implementation awaits design approval.
+
+Four graph concepts are ready on separate **Graph A–D** pages in the connected file: Landscape/Constellation crossed with Map first/Map + Feed. There are 20 review screens with desktop/mobile layouts, exploration achievements and weekly event examples. Separate local review files are linked in [the graph handoff](graph/README.md); the scope and implementation checklist are in [the graph plan](graph/PLAN.md). The founder has approved first-exploration achievements without quizzes; visual style and Universe entry remain for selection. These designs have not been implemented in the app.
+
 Status: transferred and checked in Penpot on 2026-10-14.
 
 Open **New File 1 → Curiosity — Desktop** in the connected Penpot workspace. It contains Home, GPU topic, Shorts, and a Reusable components board. The Home screen retains Trending followed by the user's searched subjects.

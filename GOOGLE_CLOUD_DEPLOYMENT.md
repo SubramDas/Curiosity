@@ -90,3 +90,10 @@ Real-device playback, account emails, saved progress across devices, a complete 
 - [Budget alerts](https://docs.cloud.google.com/billing/docs/how-to/budgets)
 - [Supabase return URLs](https://supabase.com/docs/guides/auth/redirect-urls)
 - [Supabase email configuration](https://supabase.com/docs/guides/auth/auth-smtp)
+
+## Prepared classification update — not deployed
+
+The Gemini/Wikidata video classification update adds a separate `classification` daily counter and `curiosity_classification` Firestore cache namespace. The deploy helper now passes `VIDEO_CLASSIFICATION` and `CLASSIFICATION_DAILY_LIMIT` and configures cache TTL/payload index exemptions for the new collection as well as the existing metadata collection. No new secret or Supabase migration is required. Existing Gemini model settings are reused. These changes are prepared locally; the recorded live revision above has not changed.
+
+
+The prepared sequential-request update also passes `GEMINI_REQUEST_INTERVAL_MS` (default 15000) on a future deployment. Its shared scheduler is process-local and relies on the existing one-instance setting. Classification HTTP requests now return job status promptly and poll without resubmitting model operations. No new deployment was made.

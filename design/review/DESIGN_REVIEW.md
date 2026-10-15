@@ -1,5 +1,13 @@
 # Desktop design review
 
+## Graph concept review — 2026-10-15
+
+**Desktop navigation clarification:** the founder requested a screen showing the graph inside the existing website. Three further native boards propose a labeled **Explore map** item immediately below Home, while keeping the white header/sidebar and embedding Graph D in the content area. Home remains general discovery; Map/Feed stays within the selected Universe. Open [the integration review](../penpot/graph/desktop-integration/review.html). Application navigation has not changed.
+
+**Selection update:** the founder chose Graph D (constellation with Map/Feed) and requested a more futuristic, visually appealing treatment. Seven refined native Penpot boards are now on **Graph D2 · Future discovery**. See [the refined review](../penpot/graph/d-refined/review.html) and [handoff](../penpot/graph/d-refined/README.md). The refinement is awaiting visual approval and has not changed application code.
+
+The founder requested an explorable game-like learning map and approved achievements for exploring a previously unexplored topic, with no quiz requirement for now. Four native Penpot concepts compare landscape versus constellation styling and map-first versus Map/Feed navigation. Twenty screens cover desktop/mobile maps, discovery achievements, weekly event details and, for the dual-view options, desktop/mobile feeds. Separate local review files and Penpot page names are recorded in [the graph handoff](../penpot/graph/README.md). Selection remains pending; these concepts do not change the approved running app.
+
 Status: approved by the founder on 2026-10-14, with Trending first in the top bar, followed by subjects the user has searched. Implemented in the local app.
 
 Archived Figma file: https://www.figma.com/design/miSY1sBxnsGIfjjUgx6Djp?node-id=5-2

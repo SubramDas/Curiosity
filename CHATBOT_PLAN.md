@@ -41,3 +41,10 @@ These are prototype guardrails, not proof of the project's free billing tier or 
 - [Gemini public YouTube input and video understanding](https://ai.google.dev/gemini-api/docs/generate-content/video-understanding): documented public URL input; model/preview availability and provider limits can change.
 - [YouTube embedded-player API](https://developers.google.com/youtube/iframe_api_reference): official seek/cue functions. The app does not download video/audio or scrape transcripts.
 - [YouTube caption permissions](https://developers.google.com/youtube/v3/docs/captions/download): official caption download requires permission to edit the video; this implementation does not use it for arbitrary videos.
+
+
+## Shared Gemini scheduling — 2026-10-15
+
+The running app's teacher and classification requests now share one backend queue. Teacher questions receive the next available slot, with an in-flight request allowed to finish. Default request-start spacing is 15 seconds, configurable through `GEMINI_REQUEST_INTERVAL_MS`; exact account rate/token allowances are still unknown. The text/video deadlines begin at dispatch, and teacher queue waits are bounded so congestion returns a useful error.
+
+Recognized Gemini rate and daily-quota errors identify the provider and pause new model work; failed operations do not automatically retry. The existing unsupported-video HTTP 400 fallback remains bounded and uses the same queue. No Gemini model, provider credentials or daily counters were changed. See `backend/gemini/README.md` for process limits and cooldown behaviour.

@@ -106,7 +106,7 @@ const subjects: { universe: UniverseId; name: string; matches: RegExp }[] = [
     matches: /\b(science|scientific|engineering)\b/i,
   },
 ];
-export function classifyVideo(
+function classifyLegacyQuery(
   video: Pick<Video, "title">,
 ): VideoClassification | null {
   const matches = subjects.filter((subject) =>
@@ -133,7 +133,7 @@ const legacyUniverse: Partial<Record<CategoryId, UniverseId>> = {
 };
 export function topicUniverse(topic: Topic): UniverseId | null {
   return (
-    classifyVideo({ title: topic.query })?.universe ??
+    classifyLegacyQuery({ title: topic.query })?.universe ??
     legacyUniverse[topic.category] ??
     null
   );
@@ -143,4 +143,18 @@ export function groupUniverseTopics(
   universe: UniverseId,
 ): Topic[] {
   return topics.filter((topic) => topicUniverse(topic) === universe);
+}
+
+// Video placement uses server classification; title heuristics are legacy-search-only.
+export function classifyVideo(
+  video: Pick<Video, "title" | "classification">,
+): VideoClassification | null {
+  const result = video.classification;
+  return result?.primaryUniverse
+    ? {
+        universe: result.primaryUniverse,
+        subtopic: result.topic.label,
+        relatedUniverses: result.relatedUniverses,
+      }
+    : null;
 }

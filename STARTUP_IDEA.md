@@ -520,3 +520,13 @@ For desktop long-video cards/player, show the Universe – subtopic label betwee
 ### Desktop Universe implementation status
 
 The founder approved starting desktop implementation. The Universe feeds and the desktop label/resume refinement are implemented locally, using provisional English-title classification and preserved legacy topic keys. Mobile Universe implementation and the knowledge graph remain later work. No redeployment was made as part of this change.
+
+### Gemini and Wikidata video classification — 2026-10-15
+
+- Founder agreed on flat topic labels, provisional topics when no Wikidata match exists, and one primary Universe per video with expandable +1/+2 labels for substantial direct connections. The video's explanatory focus determines placement: cooking chemistry belongs to Science & Technology, while cooking technique can belong to Arts & Humanities.
+- Implemented locally: Gemini metadata topic extraction → bounded Wikidata candidate/relationship retrieval → Gemini concept resolution and primary/related Universe assignment. Uses only the existing environment-configured model. The UI classifies in the background, and Universe feeds use primary-only placement. Legacy saved-search grouping and stored identifiers are preserved.
+- Build, 57 service/rule checks and 36 simulated browser journeys pass. A live GPU example returned a provisional Science & Technology classification while Wikidata reported replication lag. Wider accuracy and a successful live graph match remain to review. No public redeployment was made. See `backend/classification/README.md` and `PHASE_2_RESULTS.md`.
+
+### Sequential Gemini scheduling approved — 2026-10-15
+
+After a provider limit error, the founder approved sequential Gemini requests with pacing, teacher priority, visible-video classification, reuse of the extracted topic on retry, and pausing on provider limits. These changes are implemented locally with one shared backend queue, asynchronous classification jobs and waiting/finding labels. Default request-start spacing is 15 seconds; exact account allowances remain unknown and the interval is configurable. No model switch, quota reset, live model call or public redeployment was made for this update. Build, 68 service/rule checks and 38 distinct browser journeys are covered by passing checks. See `backend/gemini/README.md` and `PHASE_2_RESULTS.md`.

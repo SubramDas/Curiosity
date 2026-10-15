@@ -1,3 +1,10 @@
+import { createGeminiRequestQueue } from "./gemini/request-queue.mjs";
+import { createGeminiRequester } from "./gemini/request.mjs";
+import { createClassificationJobs } from "./classification/classification-jobs.mjs";
+import { createGeminiClassifier } from "./classification/gemini-classifier.mjs";
+import { createVideoClassifier } from "./classification/classify-video.mjs";
+import { createClassificationStore } from "./classification/classification-store.mjs";
+import { createWikidataClient } from "./providers/wikidata.mjs";
 import { createProviderCache } from "./provider-cache.mjs";
 import { createCachedYouTubeClient } from "./cached-youtube.mjs";
 import { createHomeFeed } from "./home-feed.mjs";
@@ -52,7 +59,7 @@ function validateText(text, max = 480) {
 
 /**
  * @param {NodeJS.ProcessEnv} environment
- * @param {{port?: number, host?: string, usageDirectory?: string, youtube?: ReturnType<typeof createYouTubeClient>, allowedOrigins?: string[], limits?: import('./storage/contracts').UsageStore, cache?: import('./storage/contracts').VideoCache, staticDirectory?: string, allowCloudRunOrigin?: boolean, beforeRequest?: Function}} options
+ * @param {{port?: number, host?: string, usageDirectory?: string, youtube?: ReturnType<typeof createYouTubeClient>, allowedOrigins?: string[], limits?: import('./storage/contracts').UsageStore, cache?: import('./storage/contracts').VideoCache, staticDirectory?: string, allowCloudRunOrigin?: boolean, classificationCache?: import('./storage/contracts').VideoCache, classifier?: {classify(video: any): Promise<any>}, beforeRequest?: Function}} options
  */
 export function startServer(
   environment = process.env,
@@ -67,6 +74,8 @@ export function startServer(
     staticDirectory,
     allowCloudRunOrigin = false,
     beforeRequest,
+    classificationCache: providedClassificationCache,
+    classifier: providedClassifier,
   } = {},
 ) {
   const origins = new Set([...localOrigins, ...allowedOrigins]);
@@ -77,6 +86,54 @@ export function startServer(
   const serveStatic = staticDirectory
     ? createStaticHandler(staticDirectory)
     : null;
+  const geminiQueue = createGeminiRequestQueue({
+    intervalMs: Number(environment.GEMINI_REQUEST_INTERVAL_MS ?? 15_000),
+  });
+  const geminiRequest = createGeminiRequester({ queue: geminiQueue });
+  let classifier = providedClassifier;
+  const classificationEnabled =
+    environment.VIDEO_CLASSIFICATION !== "false" &&
+    (Boolean(providedClassifier) ||
+      Boolean(
+        environment.GEMINI_API_KEY &&
+        environment.GEMINI_MODEL &&
+        environment.ALLOW_GEMINI_FREE_TEST === "true",
+      ));
+  let classificationCache;
+  function videoClassifier() {
+    if (!classificationEnabled)
+      throw new ServiceError(
+        "NOT_CONFIGURED",
+        "Video classification is unavailable. Videos are still watchable.",
+      );
+    if (!classifier) {
+      classificationCache =
+        providedClassificationCache ??
+        createProviderCache({
+          directory: usageDirectory,
+          filename: "classification-cache.json",
+        });
+      classifier = createVideoClassifier({
+        gemini: createGeminiClassifier({
+          request: geminiRequest,
+          apiKey: environment.GEMINI_API_KEY,
+          model: environment.GEMINI_MODEL,
+          allowFreeTest: environment.ALLOW_GEMINI_FREE_TEST === "true",
+          reserve: () =>
+            limits.reserve(
+              "classification",
+              Number(environment.CLASSIFICATION_DAILY_LIMIT ?? 40),
+            ),
+        }),
+        wikidata: createWikidataClient({ cache: classificationCache }),
+        store: createClassificationStore({
+          cache: classificationCache,
+          model: environment.GEMINI_MODEL,
+        }),
+      });
+    }
+    return classifier;
+  }
   let cachedYouTube;
   function youtubeClient() {
     cachedYouTube ??= createCachedYouTubeClient({
@@ -94,6 +151,24 @@ export function startServer(
     });
     return cachedYouTube;
   }
+  async function classifyPublicVideo(id, onStatus) {
+    const classifier = videoClassifier();
+    const [video] = await youtubeClient().getPlayableVideos([id]);
+    if (
+      !video ||
+      video.id !== id ||
+      video.details?.privacyStatus !== "public" ||
+      !video.details?.embeddable
+    )
+      throw new ServiceError(
+        "NOT_FOUND",
+        "This video is unavailable for classification.",
+      );
+    return classifier.classify(video, { onStatus });
+  }
+  const classificationJobs = createClassificationJobs({
+    classify: classifyPublicVideo,
+  });
   let homeFeed;
   function loadHomeFeed(queries, includeTrending = true) {
     if (!homeFeed)
@@ -120,6 +195,7 @@ export function startServer(
         response.end(
           JSON.stringify({
             supabaseConfigured: Boolean(supabase),
+            videoClassificationEnabled: classificationEnabled,
             ...(supabase
               ? {
                   supabaseUrl: environment.SUPABASE_URL,
@@ -152,7 +228,26 @@ export function startServer(
       );
       const token = request.headers.authorization?.replace(/^Bearer /, "");
       let result;
-      if (path === "/api/feed/home") {
+      if (path === "/api/videos/classify") {
+        if (typeof body.id !== "string" || !/^[A-Za-z0-9_-]{11}$/.test(body.id))
+          throw new ServiceError(
+            "INVALID_INPUT",
+            "Use one valid video identifier.",
+          );
+        videoClassifier(); // Check configuration before accepting background work.
+        if (body.background === true) {
+          result = classificationJobs.getOrStart(body.id, {
+            retry: body.retry === true,
+          });
+          if (["waiting", "finding"].includes(result.status))
+            response.statusCode = 202;
+        } else {
+          result = {
+            videoId: body.id,
+            classification: await classifyPublicVideo(body.id),
+          };
+        }
+      } else if (path === "/api/feed/home") {
         result = await loadHomeFeed(body.queries ?? []);
       } else if (path === "/api/feed/universe") {
         result = await loadHomeFeed(body.queries ?? [], false);
@@ -193,6 +288,7 @@ export function startServer(
         const input = validateChatInput(body);
         const teacher = createTeacher({
           gemini: createGeminiTeacher({
+            request: geminiRequest,
             apiKey: environment.GEMINI_API_KEY,
             model: environment.GEMINI_MODEL,
             allowFreeTest: environment.ALLOW_GEMINI_FREE_TEST === "true",
@@ -268,7 +364,13 @@ export function startServer(
     } catch (error) {
       const known = error instanceof ServiceError;
       response.statusCode =
-        known && error.code === "TOO_MANY_REQUESTS"
+        known &&
+        [
+          "TOO_MANY_REQUESTS",
+          "GEMINI_BUSY",
+          "GEMINI_RATE_LIMIT",
+          "GEMINI_DAILY_LIMIT",
+        ].includes(error.code)
           ? 429
           : known && ["AUTH_REQUIRED", "ACCESS_DENIED"].includes(error.code)
             ? 403
@@ -276,6 +378,12 @@ export function startServer(
       response.end(
         JSON.stringify({
           code: known ? error.code : "LOCAL_ERROR",
+          ...(known && error.provider
+            ? { provider: error.provider, limitKind: error.limitKind }
+            : {}),
+          ...(known && Number.isFinite(error.retryAfterSeconds)
+            ? { retryAfterSeconds: error.retryAfterSeconds }
+            : {}),
           message: known
             ? error.message
             : "The local server could not complete the request.",
@@ -285,6 +393,9 @@ export function startServer(
   });
   const cacheCleanup = setInterval(() => {
     try {
+      Promise.resolve(classificationCache?.sweep()).catch(() =>
+        console.error("Classification cache cleanup failed."),
+      );
       Promise.resolve(videoCache.sweep()).catch(() =>
         console.error("Video cache cleanup failed."),
       );
@@ -295,7 +406,11 @@ export function startServer(
     }
   }, 15 * 60_000);
   cacheCleanup.unref();
-  server.once("close", () => clearInterval(cacheCleanup));
+  server.once("close", () => {
+    clearInterval(cacheCleanup);
+    classificationJobs.close();
+    geminiQueue.close();
+  });
   server.listen(port, host, () =>
     console.log(`API listening at http://${host}:${port}`),
   );

@@ -65,4 +65,17 @@ Cloud Run serves the built website and API together. Supabase remains responsibl
 
 ## Desktop Universe presentation
 
-`desktop-ui/features/universes` owns the desktop Universe navigation, feed loading/filter controls and metadata rendering. Shared Universe rules classify video titles and map legacy topic records without changing storage identifiers. Shared video components accept optional presentation settings, keeping their mobile defaults. The backend Universe-feed route reuses the cached suggestion loader and skips Trending. No graph storage or migration is added.
+`desktop-ui/features/universes` owns the desktop Universe navigation, feed loading/filter controls and metadata rendering. Shared Universe rules map legacy topic records without changing storage identifiers. Video labels and primary placement use backend Gemini/Wikidata classifications. Shared video components accept optional presentation settings, keeping their mobile defaults. The backend Universe-feed route reuses the cached suggestion loader and skips Trending. No graph storage or migration is added.
+
+## Video classification
+
+`backend/classification` coordinates Gemini topic extraction, Wikidata candidate lookup, Universe policy, validation and classification reuse. `backend/providers/wikidata.mjs` owns graph API access. The same configured Gemini model is used for both classification stages, with its own persisted daily allowance. Production injects a separate Firestore cache namespace; local operation uses an ignored cache file.
+
+`shared/features/classification` owns a background request registry and reusable labels. It sends video IDs only, deduplicates requests across components, and preserves browsing while classification runs. Desktop Universe feeds use server decisions for primary-only placement. Shared labels also appear in mobile's existing layout. Legacy keyword rules are retained solely for saved-search display mapping, not per-video labels. See `backend/classification/README.md`.
+
+
+## Shared Gemini queue
+
+`backend/gemini` owns model transport, one-request-at-a-time scheduling, teacher priority, configurable start spacing and safe rate/quota error handling. `startServer` injects the same requester into teacher and classification adapters. The current one-instance hosted runtime supports this process-local scheduler; adding replicas requires distributed scheduling. Provider counters and caches remain persistent.
+
+`backend/classification/classification-jobs.mjs` coalesces background jobs by video ID and exposes short polling responses, keeping queued model work outside long-lived HTTP classification requests. Shared UI observers admit visible cards and remove queued offscreen work; Universe discovery uses small explicit candidate batches. First-stage extractions are cached independently so failed resolution does not repeat extraction.

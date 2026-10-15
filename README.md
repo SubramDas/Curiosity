@@ -148,3 +148,18 @@ Desktop navigation now uses **Science & Technology**, **Commerce & Business**, a
 Older searches and progress are preserved. Classification is a provisional rule system; unclear videos remain watchable without a label. Phone navigation remains at its previous design. See [the desktop implementation guide](desktop-ui/features/universes/README.md).
 
 Restart `npm run dev` for the new backend feed route. No new keys or database migration are needed. This update has not been redeployed to the public demo.
+
+## Gemini and Wikidata video labels
+
+Video labels now use background Gemini classification with Wikidata concept matching, replacing video-title keyword rules. One flat topic and one primary Universe determine placement; expandable +1/+2 labels show substantial connections to other Universes. Unmatched concepts remain provisional. Browsing and playback do not wait for classification.
+
+Uses only the existing `GEMINI_MODEL` and credentials. Restart `npm run dev`; no SQL migration is needed. Optional `VIDEO_CLASSIFICATION` and `CLASSIFICATION_DAILY_LIMIT` settings are in `.env.example`. The default separate classification allowance is 40 model requests per UTC day, normally two requests per uncached video. The provider's own allowance still applies.
+
+See [the classification guide](backend/classification/README.md) for prompts, inputs, caching, failure behaviour and live-check evidence. Legacy saved-search grouping is preserved; mobile Universe navigation remains separate work. This update has not been redeployed.
+
+
+## Sequential Gemini requests
+
+Teacher and video classification now share one backend queue: one Gemini request at a time, teacher priority, and a default 15-second interval between request starts (`GEMINI_REQUEST_INTERVAL_MS`). Videos request labels when they enter view; queued offscreen work is removed. Waiting/finding labels and asynchronous status polling keep browsing responsive. Accepted topic extraction is reused if the second stage needs a manual retry.
+
+Gemini rate limits pause new work, and recognized daily quota errors block it until the provider's next daily reset. This cannot restore an already exhausted provider allowance. Exact account limits have not been supplied; the starting interval is configurable rather than a guarantee against all rate/token limits. Restart `npm run dev` and refresh. No live model requests, model changes, quota resets or deployment were made for this update. See [the scheduler guide](backend/gemini/README.md).

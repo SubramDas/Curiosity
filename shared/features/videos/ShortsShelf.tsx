@@ -1,3 +1,4 @@
+import { VideoClassificationLabel } from "../classification/VideoClassificationLabel";
 import type { VideoPresentation } from "./video-presentation";
 import type { Video } from "../../types";
 import { readableTitle } from "../../lib/api";
@@ -25,20 +26,34 @@ export function ShortsShelf({
       </h2>
       <div className="shorts-grid">
         {videos.map((video) => (
-          <button
+          <div
             className="short-card"
             key={video.id}
             onClick={() => onSelect(video)}
           >
-            {presentation?.renderMetadata?.(video, true)}
-            <VideoThumbnail
-              video={video}
-              short
-              saved={progress.find((row) => row.video_id === video.id)}
-            />
-            <strong>{readableTitle(video.title)}</strong>
+            {presentation?.renderMetadata ? (
+              presentation.renderMetadata(video, true)
+            ) : (
+              <VideoClassificationLabel video={video} short />
+            )}
+            <div className="video-select-thumbnail">
+              <VideoThumbnail
+                video={video}
+                short
+                saved={progress.find((row) => row.video_id === video.id)}
+              />
+            </div>
+            <button
+              className="video-select-title"
+              onClick={(event) => {
+                event.stopPropagation();
+                onSelect(video);
+              }}
+            >
+              <strong>{readableTitle(video.title)}</strong>
+            </button>
             <small>{video.channel} · YouTube</small>
-          </button>
+          </div>
         ))}
       </div>
       <p className="fine-print">

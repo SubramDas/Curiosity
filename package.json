@@ -17,7 +17,8 @@
     "phase2:chat": "node --env-file=.env experiments/phase-2/run.mjs chat",
     "phase2:review-chat": "node --env-file=.env experiments/phase-2/review-chat.mjs",
     "phase2:check-config": "node --env-file=.env experiments/phase-2/run.mjs check",
-    "phase2:teacher-check": "node experiments/phase-2/check-teacher.mjs"
+    "phase2:teacher-check": "node experiments/phase-2/check-teacher.mjs",
+    "phase2:classify": "node experiments/phase-2/check-classification.mjs"
   },
   "dependencies": {
     "@google-cloud/firestore": "9.3.1",

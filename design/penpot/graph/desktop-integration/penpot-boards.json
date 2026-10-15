@@ -1,0 +1,24 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+  "boards": [
+    {
+      "id": "c5f19b81-2139-8092-8008-cb1b3c79f5bf",
+      "name": "D2.10 · Website integration — Home entry",
+      "width": 1600,
+      "height": 1080
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cb1b2cc038ed",
+      "name": "D2.8 · Website integration — Explore map",
+      "width": 1600,
+      "height": 1080
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cb1b32d4daf0",
+      "name": "D2.9 · Website integration — Universe feed",
+      "width": 1600,
+      "height": 1080
+    }
+  ]
+}

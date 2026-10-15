@@ -1,3 +1,4 @@
+import { VideoClassificationLabel } from "../classification/VideoClassificationLabel";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { loadYouTubePlayer, type Player } from "./youtube-player";
 import { readableTitle } from "../../lib/api";
@@ -190,7 +191,12 @@ export function VideoPlayer({
   }, [isReady, seekRequest?.requestId, video.id]);
   return (
     <section className={`player-section ${short ? "short-player" : ""}`}>
-      {short && renderMetadata?.(video, true)}
+      {short &&
+        (renderMetadata ? (
+          renderMetadata(video, true)
+        ) : (
+          <VideoClassificationLabel video={video} short />
+        ))}
       <div
         className="player-frame"
         ref={container}
@@ -210,7 +216,12 @@ export function VideoPlayer({
         </button>
       )}
       <h3>{readableTitle(video.title)}</h3>
-      {!short && renderMetadata?.(video)}
+      {!short &&
+        (renderMetadata ? (
+          renderMetadata(video)
+        ) : (
+          <VideoClassificationLabel video={video} />
+        ))}
       <p className="muted">{video.channel} · YouTube · Unreviewed result</p>
       <a href={video.watchUrl} target="_blank" rel="noreferrer">
         Open on YouTube ↗

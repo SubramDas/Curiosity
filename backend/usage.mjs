@@ -27,7 +27,11 @@ export function createUsageLimiter(directory = ".local-data") {
           "Daily prototype limits must be integers from 1 to 100.",
         );
       }
-      if (kind === "videoChat" && usage[kind] === undefined) usage[kind] = 0;
+      if (
+        ["videoChat", "classification"].includes(kind) &&
+        usage[kind] === undefined
+      )
+        usage[kind] = 0;
       if (!Number.isInteger(usage[kind]) || usage[kind] < 0) {
         throw new ServiceError(
           "INVALID_CONFIG",

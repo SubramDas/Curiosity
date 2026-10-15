@@ -1,4 +1,5 @@
-export type PageView = "home" | "topic" | "shorts" | "history" | "topics" | "universe";
+export type PageView =
+  "home" | "topic" | "shorts" | "history" | "topics" | "universe";
 
 export type CategoryId =
   | "computing"
@@ -16,7 +17,23 @@ export interface Topic {
   category: CategoryId;
   relatedCategories: CategoryId[];
 }
+export interface VideoClassification {
+  topic: {
+    label: string;
+    wikidataId: string | null;
+    status: "matched" | "provisional";
+  };
+  primaryUniverse: "science" | "commerce" | "arts" | null;
+  relatedUniverses: ("science" | "commerce" | "arts")[];
+  reason: string;
+  policyVersion: string;
+  wikidataStatus?: "available" | "unavailable" | "not-needed";
+}
 export interface Video {
+  classification?: VideoClassification;
+  description?: string;
+  tags?: string[];
+  categoryId?: string;
   id: string;
   title: string;
   channel: string;

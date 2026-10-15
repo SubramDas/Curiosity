@@ -1,3 +1,5 @@
+import { VideoClassificationLabel } from "../../../shared/features/classification/VideoClassificationLabel";
+import { useClassifiedVideos } from "../../../shared/features/classification/ClassificationProvider";
 import { useMemo, useState } from "react";
 import type { Topic, Video } from "../../../shared/types";
 import type { VideoProgress } from "../../../shared/features/progress/useVideoProgress";
@@ -27,14 +29,19 @@ export function UniverseFeed({
   onTopic: (topic: Topic) => void;
 }) {
   const feed = useUniverseFeed(universe, topics);
+  const classifiedVideos = useClassifiedVideos(feed.videos);
   const [subject, setSubject] = useState("All");
+  const [candidateLimit, setCandidateLimit] = useState(3);
+  const pendingCandidates = classifiedVideos
+    .slice(0, candidateLimit)
+    .filter((video) => !video.classification);
   const videos = useMemo(
     () =>
-      feed.videos.filter((video) => {
+      classifiedVideos.filter((video) => {
         const classification = classifyVideo(video);
-        return !classification || classification.universe === universe;
+        return classification?.universe === universe;
       }),
-    [feed.videos, universe],
+    [classifiedVideos, universe],
   );
   const subjects = [
     ...new Set(videos.flatMap((v) => classifyVideo(v)?.subtopic ?? [])),
@@ -67,6 +74,13 @@ export function UniverseFeed({
           <button onClick={feed.retry}>Try again</button>
         </p>
       )}
+      {!feed.busy &&
+        classifiedVideos.some((video) => !classifyVideo(video)) && (
+          <p className="fine-print">
+            Some results are awaiting a Universe label or could not be
+            classified. They remain available through search and Trending.
+          </p>
+        )}
       {!feed.busy && (
         <>
           <VideoResults
@@ -81,7 +95,28 @@ export function UniverseFeed({
             onSelect={(video) => onSelect(video, shown)}
             presentation={desktopVideoPresentation}
           />
-          {!shown.length && (
+          {pendingCandidates.length > 0 && (
+            <section
+              className="universe-classification-candidates"
+              aria-label="Finding Universe videos"
+            >
+              {pendingCandidates.map((video) => (
+                <div key={video.id} className="classification-candidate">
+                  <span>Checking a video's subject</span>
+                  <VideoClassificationLabel video={video} />
+                </div>
+              ))}
+            </section>
+          )}
+          {candidateLimit < classifiedVideos.length && (
+            <button
+              className="secondary"
+              onClick={() => setCandidateLimit((count) => count + 3)}
+            >
+              Explore more videos
+            </button>
+          )}
+          {!shown.length && !pendingCandidates.length && (
             <p className="empty-state">
               No videos are available in this view. Try another filter or search
               any topic above.

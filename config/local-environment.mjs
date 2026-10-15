@@ -12,6 +12,9 @@ const projectSettings = [
   "CHAT_DAILY_LIMIT",
   "CHAT_VIDEO_CONTEXT",
   "VIDEO_CHAT_DAILY_LIMIT",
+  "VIDEO_CLASSIFICATION",
+  "CLASSIFICATION_DAILY_LIMIT",
+  "GEMINI_REQUEST_INTERVAL_MS",
 ];
 
 // Project settings deliberately override ambient keys, including with empty values.

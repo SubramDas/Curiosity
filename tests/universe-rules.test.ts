@@ -8,18 +8,27 @@ import {
 import { createHomeFeed } from "../backend/home-feed.mjs";
 import type { Topic } from "../shared/types";
 
-test("One primary Universe with overlap tags, and unknown titles stay unclassified", () => {
-  assert.deepEqual(classifyVideo({ title: "NVIDIA stock valuation" }), {
-    universe: "commerce",
-    subtopic: "Business & markets",
-    relatedUniverses: ["science"],
+test("Video labels use server classifications without a title-keyword fallback", () => {
+  const video = {
+    title: "Chemistry in the kitchen",
+    classification: {
+      topic: {
+        label: "Food chemistry",
+        wikidataId: null,
+        status: "provisional" as const,
+      },
+      primaryUniverse: "science" as const,
+      relatedUniverses: ["arts" as const],
+      reason: "Explains chemical reactions and practical techniques.",
+      policyVersion: "1",
+    },
+  };
+  assert.deepEqual(classifyVideo(video), {
+    universe: "science",
+    subtopic: "Food chemistry",
+    relatedUniverses: ["arts"],
   });
-  assert.equal(classifyVideo({ title: "How GPUs work" })?.universe, "science");
-  assert.equal(
-    classifyVideo({ title: "English literature and history" })?.universe,
-    "arts",
-  );
-  assert.equal(classifyVideo({ title: "A surprising discovery" }), null);
+  assert.equal(classifyVideo({ title: "How GPUs work" }), null);
 });
 test("Legacy saved searches map to Universes without rewriting keys or records", () => {
   const topics: Topic[] = [
