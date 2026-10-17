@@ -2,12 +2,14 @@ import { Icon } from "../shared/components/Icon";
 import type { PageView } from "../shared/types";
 
 export function MobileMenu({
+  graphEnabled = false,
   open,
   onNavigate,
   onClose,
   demo,
   onDemo,
 }: {
+  graphEnabled?: boolean;
   open: boolean;
   onNavigate: (view: PageView) => void;
   onClose: () => void;
@@ -31,6 +33,7 @@ export function MobileMenu({
         {(
           [
             ["home", "home", "Home"],
+            ...(graphEnabled ? [["graph", "map", "Explore map"] as const] : []),
             ["topics", "bookmark", "Your topics"],
             ["history", "history", "Continue watching"],
           ] as const

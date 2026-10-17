@@ -1,3 +1,4 @@
+import "../shared/features/graph/graph.css";
 import { ClassificationProvider } from "../shared/features/classification/ClassificationProvider";
 import { createRoot } from "react-dom/client";
 import App from "./App";

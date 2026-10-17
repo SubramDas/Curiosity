@@ -38,6 +38,22 @@ export function createSupabaseClient(environment) {
       },
     });
   return {
+    async graphRpc(name, args, token) {
+      if (!/^graph_[a-z_]+$/.test(name))
+        throw new ServiceError("INVALID_INPUT", "Invalid graph operation.");
+      try {
+        return await call(
+          `/rest/v1/rpc/${name}`,
+          { method: "POST", body: JSON.stringify(args) },
+          token,
+        );
+      } catch {
+        throw new ServiceError(
+          "GRAPH_UNAVAILABLE",
+          "The map could not complete this action. Check graph database setup, sign-in, or whether another tab is tracking playback. Retry manually.",
+        );
+      }
+    },
     async videoProgress(token) {
       if (!token)
         throw new ServiceError(

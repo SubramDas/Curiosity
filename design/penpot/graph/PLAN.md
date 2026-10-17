@@ -2,6 +2,8 @@
 
 Date: 2026-10-15. Status: concepts for founder review; no application implementation approved.
 
+Technical implementation reference: [GRAPH_IMPLEMENTATION_PLAN.md](../../../GRAPH_IMPLEMENTATION_PLAN.md). The founder has since confirmed shared geography with personal discovery and a 30-second active-viewing achievement threshold; the technical reference records current decisions and separates proposed implementation defaults.
+
 ## Founder selection and refinement
 
 The founder also requested a desktop entry/integration review. The proposed permanent **Explore map** sidebar button opens the graph within the existing header/sidebar shell. Home remains general discovery; the graph's Feed belongs to its selected Universe. Three additional boards show the clickable Home → Map → Feed journey. See [the desktop integration handoff](desktop-integration/README.md). This is a design proposal, not implemented application navigation.
@@ -44,7 +46,7 @@ Separate Penpot pages and separate local SVG previews keep the options easy to r
 
 - Pan / zoom / recenter; keyboard and list alternatives; reduce motion preference.
 - Select a node to preview. Start an activity to explore. Merely panning or previewing does not earn an achievement.
-- Proposed trigger: first successful launch of a topic's learning activity. Final playback threshold remains an implementation decision.
+- Confirmed trigger: 30 seconds of active video viewing on an eligible topic. Opening a node or launching playback alone does not unlock an achievement. See the technical plan for timing and synchronization rules.
 - One first-exploration unlock per learner and canonical topic, shared across map and feed. Reopening or another video on that topic does not repeat it.
 - Existing saved activity must be considered before calling a topic new. Guest/account merge behavior needs an explicit implementation decision.
 - Newly discovered nodes are available by choice, with optional suggestions rather than mandatory prerequisites.
@@ -55,8 +57,9 @@ Separate Penpot pages and separate local SVG previews keep the options easy to r
 
 ## Implementation work after design selection
 
-- [ ] Founder chooses visual style and Map-first versus Map/Feed entry.
-- [ ] Finalize exploration trigger and migration of existing topic activity.
+- [x] Founder chooses visual style and Map-first versus Map/Feed entry: refined Graph D, constellation with Map/Feed.
+- [x] Confirm the exploration threshold: 30 seconds of active video viewing.
+- [ ] Implement the exact timing protocol and deliberate handling of existing topic activity.
 - [ ] Define stable topic, named edge, event, discovery and unique achievement records.
 - [ ] Build a small reviewed graph neighborhood per Universe, with sources and stable node positions.
 - [ ] Reuse Gemini/Wikidata classification; do not treat Wikidata relationships as automatic prerequisites.

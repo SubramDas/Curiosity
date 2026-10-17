@@ -163,3 +163,9 @@ See [the classification guide](backend/classification/README.md) for prompts, in
 Teacher and video classification now share one backend queue: one Gemini request at a time, teacher priority, and a default 15-second interval between request starts (`GEMINI_REQUEST_INTERVAL_MS`). Videos request labels when they enter view; queued offscreen work is removed. Waiting/finding labels and asynchronous status polling keep browsing responsive. Accepted topic extraction is reused if the second stage needs a manual retry.
 
 Gemini rate limits pause new work, and recognized daily quota errors block it until the provider's next daily reset. This cannot restore an already exhausted provider allowance. Exact account limits have not been supplied; the starting interval is configurable rather than a guarantee against all rate/token limits. Restart `npm run dev` and refresh. No live model requests, model changes, quota resets or deployment were made for this update. See [the scheduler guide](backend/gemini/README.md).
+
+## Learning graph implementation
+
+A local implementation of Explore map is prepared: shared constellation map, Map/Feed views, desktop/mobile integration, personal discovery and 30-second exploration achievements. It defaults off. Apply the new Supabase migration, review/publish catalog content, and enable `LEARNING_GRAPH_ENABLED=true` before using it. The starter has 30 concepts/26 connections and deliberately no unreviewed videos or current-news stories.
+
+See [setup, publication, evidence and limitations](backend/graph/README.md) and [the implementation reference](GRAPH_IMPLEMENTATION_PLAN.md). No migration, live provider check or deployment was performed for this feature.

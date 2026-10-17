@@ -1,5 +1,11 @@
 # Project structure
 
+## Learning graph — implementation prepared locally
+
+[GRAPH_IMPLEMENTATION_PLAN.md](GRAPH_IMPLEMENTATION_PLAN.md) is the feature reference. `backend/graph` now provides catalog, route, validation and publication modules, with a focused Supabase storage adapter. Shared graph modules own loading, SVG map/list, topic/event panels, local state and playback coordination; desktop/mobile folders own placement. The existing player emits separate activity samples while retaining resume-position saving.
+
+Supabase migration 003 prepares published catalog tables, private learner records and restricted activity RPCs. A 30-topic/26-connection manifest remains unreviewed, with no videos/events. The feature defaults off until schema setup and content publication. Database access behavior and live playback have not been verified. See [activation and implementation evidence](backend/graph/README.md).
+
 One repository contains the backend and two website layouts. Shared frontend features provide the same learning behaviour to both layouts. The app selects the mobile layout by available screen size, including phone landscape.
 
 ```text

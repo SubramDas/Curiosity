@@ -1,3 +1,5 @@
+import { createGraphRoutes } from "./graph/routes.mjs";
+import { createSupabaseGraphStore } from "./storage/supabase-graph.mjs";
 import { createGeminiRequestQueue } from "./gemini/request-queue.mjs";
 import { createGeminiRequester } from "./gemini/request.mjs";
 import { createClassificationJobs } from "./classification/classification-jobs.mjs";
@@ -166,6 +168,12 @@ export function startServer(
       );
     return classifier.classify(video, { onStatus });
   }
+  const graphEnabled = environment.LEARNING_GRAPH_ENABLED === "true";
+  const graphRoutes = createGraphRoutes({
+    enabled: graphEnabled,
+    store: supabase ? createSupabaseGraphStore(supabase.graphRpc) : null,
+    youtube: youtubeClient,
+  });
   const classificationJobs = createClassificationJobs({
     classify: classifyPublicVideo,
   });
@@ -196,6 +204,7 @@ export function startServer(
           JSON.stringify({
             supabaseConfigured: Boolean(supabase),
             videoClassificationEnabled: classificationEnabled,
+            learningGraphEnabled: graphEnabled,
             ...(supabase
               ? {
                   supabaseUrl: environment.SUPABASE_URL,
@@ -228,7 +237,9 @@ export function startServer(
       );
       const token = request.headers.authorization?.replace(/^Bearer /, "");
       let result;
-      if (path === "/api/videos/classify") {
+      if (path.startsWith("/api/graph/")) {
+        result = await graphRoutes(path, body, token);
+      } else if (path === "/api/videos/classify") {
         if (typeof body.id !== "string" || !/^[A-Za-z0-9_-]{11}$/.test(body.id))
           throw new ServiceError(
             "INVALID_INPUT",

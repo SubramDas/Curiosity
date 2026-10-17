@@ -1,0 +1,20 @@
+.graph-desktop .graph-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 32%);
+  gap: 24px;
+}
+.graph-desktop {
+  margin: 8px 0 24px;
+}
+.graph-desktop .graph-topic-panel {
+  position: sticky;
+  top: 90px;
+}
+@media (max-width: 1150px) {
+  .graph-desktop .graph-body {
+    grid-template-columns: 1fr;
+  }
+  .graph-desktop .graph-topic-panel {
+    position: static;
+  }
+}

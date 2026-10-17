@@ -1,5 +1,13 @@
 # Topic relationships and broad topic tiles
 
+## Graph implementation prepared — 2026-10-15
+
+The local graph feature, migration, catalog publication tooling and 30-second activity paths are now prepared. The 30-topic/26-edge starter remains a review draft without published videos or news. Activation requires applying the schema, reviewing/publishing content and enabling the feature; no deployment or live database/playback verification was performed. See [the implementation handoff](backend/graph/README.md).
+
+## Confirmed graph foundation — 2026-10-15
+
+The founder confirmed a shared published map with personal discovery/progress and a first-exploration achievement after 30 seconds of active video viewing. Playback position alone is not active time. The technical implementation reference is [GRAPH_IMPLEMENTATION_PLAN.md](GRAPH_IMPLEMENTATION_PLAN.md), including module boundaries, schema, API contracts, identity/access handling, publishing, implementation phases and future verification. Accumulation across clips and the other explicitly labeled defaults remain implementation proposals; no graph code or migration is introduced by the plan.
+
 ## Exploration graph direction — 2026-10-15
 
 The founder now requests a game-like map across the three Universes, with gradual discovery, concept connections and weekly educational event additions. Achievements should celebrate first-time exploration of a topic; learner quizzes and mastery requirements are not part of this version. Flat topics, primary placement and related-Universe bridges remain. Four visual/navigation concepts are prepared in Penpot for selection. See [the graph plan](design/penpot/graph/PLAN.md) and [design handoff](design/penpot/graph/README.md). The exploration trigger and news publishing workflow are proposals pending implementation decisions.

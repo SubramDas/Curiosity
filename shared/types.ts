@@ -1,5 +1,5 @@
 export type PageView =
-  "home" | "topic" | "shorts" | "history" | "topics" | "universe";
+  "home" | "topic" | "shorts" | "history" | "topics" | "universe" | "graph";
 
 export type CategoryId =
   | "computing"

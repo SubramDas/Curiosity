@@ -5,6 +5,7 @@ import type { Topic } from "../../shared/types";
 import type { PageView } from "../../shared/types";
 
 export function Sidebar({
+  graphEnabled = false,
   topics,
   view,
   open,
@@ -16,6 +17,7 @@ export function Sidebar({
   demo,
   onDemo,
 }: {
+  graphEnabled?: boolean;
   topics: Topic[];
   view: PageView;
   open: boolean;
@@ -37,6 +39,7 @@ export function Sidebar({
         {(
           [
             ["home", "home", "Home"],
+            ...(graphEnabled ? [["graph", "map", "Explore map"] as const] : []),
             ["shorts", "shorts", "Short videos"],
             ["history", "history", "Continue watching"],
           ] as const

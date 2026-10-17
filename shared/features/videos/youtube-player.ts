@@ -1,6 +1,7 @@
 export interface Player {
   getCurrentTime(): number;
   getDuration(): number;
+  getPlaybackRate?(): number;
   cueVideoById(options: { videoId: string; startSeconds: number }): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
   playVideo(): void;

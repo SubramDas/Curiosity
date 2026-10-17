@@ -1,3 +1,5 @@
+import { useGraphProgress } from "../graph/GraphProvider";
+import { useId } from "react";
 import { VideoClassificationLabel } from "../classification/VideoClassificationLabel";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { loadYouTubePlayer, type Player } from "./youtube-player";
@@ -27,6 +29,10 @@ export function VideoPlayer({
   autoPlay?: boolean;
   onProgress?: (position: number, duration: number, completed: boolean) => void;
 }) {
+  const graph = useGraphProgress();
+  const graphCallback = useRef(graph.onPlayback);
+  graphCallback.current = graph.onPlayback;
+  const activityOwner = useId();
   const container = useRef<HTMLDivElement>(null);
   const [error, setError] = useState("");
   const [isReady, setIsReady] = useState(false);
@@ -59,11 +65,23 @@ export function VideoPlayer({
           completed,
         );
     };
+    const activitySample = (kind: "tick" | "state" = "tick") =>
+      graphCallback.current({
+        owner: activityOwner,
+        videoId: video.id,
+        now: performance.now(),
+        position: ready && player ? player.getCurrentTime() : 0,
+        rate: player?.getPlaybackRate?.() ?? 1,
+        active: playing && visible && ready && !document.hidden,
+        kind,
+      });
+    const activityInterval = window.setInterval(() => activitySample(), 1000);
     const interval = window.setInterval(() => {
       if (playing) report();
     }, 5000);
     const onHidden = () => {
       if (document.hidden) {
+        activitySample("state");
         report();
         player?.pauseVideo();
       }
@@ -83,7 +101,8 @@ export function VideoPlayer({
           report();
           player?.pauseVideo();
         }
-        onActive(playing && visible);
+        onActive(playing && visible && !document.hidden);
+        activitySample("state");
       },
       { threshold: [0, 0.5, 1] },
     );
@@ -139,9 +158,12 @@ export function VideoPlayer({
                 if (playing && (!visible || document.hidden))
                   player?.pauseVideo();
                 if (event.data === 2 || event.data === 0) report();
-                onActive(playing && visible);
+                onActive(playing && visible && !document.hidden);
+                activitySample("state");
               },
               onError: () => {
+                playing = false;
+                activitySample("state");
                 onActive(false);
                 setError(
                   "YouTube cannot play this video here. Choose another result or open it on YouTube.",
@@ -158,6 +180,9 @@ export function VideoPlayer({
         });
     return () => {
       report();
+      playing = false;
+      activitySample("state");
+      window.clearInterval(activityInterval);
       window.clearInterval(interval);
       document.removeEventListener("visibilitychange", onHidden);
       window.removeEventListener("pagehide", report);
@@ -191,6 +216,14 @@ export function VideoPlayer({
   }, [isReady, seekRequest?.requestId, video.id]);
   return (
     <section className={`player-section ${short ? "short-player" : ""}`}>
+      {graph.matches[video.id] && (
+        <button
+          className="graph-video-map-link"
+          onClick={() => graph.openTopic(graph.matches[video.id])}
+        >
+          View {graph.matches[video.id].label} on the map ↗
+        </button>
+      )}
       {short &&
         (renderMetadata ? (
           renderMetadata(video, true)
