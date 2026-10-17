@@ -26,7 +26,7 @@ export function Header({
     <header className="site-header">
       <div className="header-brand">
         <button
-          className="icon-button"
+          className="icon-button desktop-menu-toggle"
           aria-label="Toggle navigation"
           aria-controls="sidebar"
           aria-expanded={menuOpen}

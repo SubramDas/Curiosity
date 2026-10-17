@@ -10,6 +10,8 @@ export async function mockPlayer(page: import("@playwright/test").Page) {
         position: number;
         destroyed: boolean;
         playing: boolean;
+        muted: boolean;
+        blockAutoplay: () => void;
         seeks: number[];
         pause: () => void;
         finish: () => void;
@@ -22,12 +24,14 @@ export async function mockPlayer(page: import("@playwright/test").Page) {
         position = 0;
         destroyed = false;
         playing = false;
+        muted = true;
         seeks: number[] = [];
         constructor(
           host: HTMLElement,
           private options: {
             videoId: string;
             events: {
+              onAutoplayBlocked?: () => void;
               onReady: (e: unknown) => void;
               onStateChange: (e: { data: number }) => void;
             };
@@ -52,7 +56,13 @@ export async function mockPlayer(page: import("@playwright/test").Page) {
           this.position = startSeconds;
           this.seeks.push(startSeconds);
         }
-        mute() {}
+        unMute() {
+          this.muted = false;
+        }
+        blockAutoplay() {
+          this.pauseVideo();
+          this.options.events.onAutoplayBlocked?.();
+        }
         playVideo() {
           this.playing = true;
           this.options.events.onStateChange({ data: 1 });

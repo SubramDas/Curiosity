@@ -328,7 +328,7 @@
   max-width: 850px;
   margin: 0 auto;
 }
-.workspace-grid.chat-only > div:first-child {
+.workspace-grid.chat-only:not(.custom-layout) > div:first-child {
   display: none;
 }
 .workspace-grid.chat-only .chat-panel {

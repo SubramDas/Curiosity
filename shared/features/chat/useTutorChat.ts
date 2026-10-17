@@ -3,6 +3,7 @@ import { callApi } from "../../lib/api";
 import type { TeacherAnswer, Video } from "../../types";
 
 export interface ChatTurn {
+  id: string;
   question: string;
   answer: TeacherAnswer;
   video: Video | null;
@@ -61,7 +62,10 @@ export function useTutorChat(accountId?: string) {
           "Chat needs the updated server. Restart npm run dev and refresh.",
         );
       setTurns((previous) =>
-        [...previous, { question, answer, video }].slice(-12),
+        [
+          ...previous,
+          { id: crypto.randomUUID(), question, answer, video },
+        ].slice(-12),
       );
       return true;
     } catch (failure) {

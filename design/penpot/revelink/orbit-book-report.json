@@ -1,0 +1,51 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pageId": "3f187a38-aa9d-807c-8008-ce27d3c94068",
+  "pageName": "Revelink — Brand explorations",
+  "shareUrl": null,
+  "savedVersion": "Revelink — Orbit Book logo refinement",
+  "status": "Founder requested Open Book inside Discovery Orbit; refined design ready for review",
+  "tagline": "Watch. Discover. Connect the dots.",
+  "allThreeFinalPreviewsInspected": true,
+  "validationErrors": [],
+  "containmentViolations": [],
+  "boards": [
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce29a014be06",
+      "name": "Revelink · Orbit Book · 01 · Logo and tagline",
+      "x": 0,
+      "y": 2520,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 7,
+      "imageLayers": 0
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce29c3954837",
+      "name": "Revelink · Orbit Book · 02 · Desktop header",
+      "x": 1560,
+      "y": 2520,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 31,
+      "imageLayers": 3
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce29c80b905d",
+      "name": "Revelink · Orbit Book · 03 · Small icons and dark backgrounds",
+      "x": 3120,
+      "y": 2520,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 17,
+      "imageLayers": 0
+    }
+  ],
+  "component": {
+    "id": "3f187a38-aa9d-807c-8008-ce2a40709b2c",
+    "name": "Orbit Book",
+    "path": "Revelink / Symbol",
+    "mainInstanceId": "3f187a38-aa9d-807c-8008-ce2a406f6963"
+  }
+}

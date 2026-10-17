@@ -66,13 +66,11 @@ test("Videos appear before classification; semantic labels expand without playin
     "Science & Technology – Food chemistry",
   );
   await page
-    .getByRole("group")
-    .filter({ has: page.getByText("+1", { exact: true }) })
-    .locator("summary")
+    .getByRole("button", { name: "1 related Universe", exact: true })
     .click();
-  await expect(page.locator(".universe-related-details > span")).toHaveText(
-    "Arts & Humanities",
-  );
+  await expect(
+    page.getByRole("dialog", { name: "Also related to" }).getByRole("listitem"),
+  ).toHaveText("Arts & Humanities");
   await expect(page.locator(".player-section")).toHaveCount(0);
   const nav = page.getByRole("navigation", { name: "Universes" });
   await nav

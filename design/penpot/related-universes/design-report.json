@@ -1,0 +1,46 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+  "pageName": "curiosity-desktop-universe",
+  "shareUrl": null,
+  "savedVersion": "Curiosity — Related Universe popovers",
+  "validationErrors": [],
+  "containmentViolations": [],
+  "allThreePreviewsInspected": true,
+  "boards": [
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce238896ee7e",
+      "name": "Related Universes · 01 · Collapsed count",
+      "x": 0,
+      "y": 8340,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 45,
+      "imageLayers": 6,
+      "interactions": 6
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce2392ffd5e1",
+      "name": "Related Universes · 02 · +1 open / related Universe",
+      "x": 1560,
+      "y": 8340,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 48,
+      "imageLayers": 6,
+      "interactions": 9
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce23a034be87",
+      "name": "Related Universes · 03 · +2 open / right edge",
+      "x": 3120,
+      "y": 8340,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 49,
+      "imageLayers": 6,
+      "interactions": 9
+    }
+  ]
+}

@@ -610,3 +610,15 @@
     display: none;
   }
 }
+
+/* The transcript wrapper keeps its own scroll area above the mobile composer. */
+.mobile-chat-screen .chat-conversation-shell {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.mobile-chat-screen .chat-conversation {
+  position: relative;
+  overflow-anchor: none;
+}

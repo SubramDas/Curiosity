@@ -112,7 +112,7 @@ test("Chat failure is visible, and an offered demo break persists without invent
   await page
     .getByLabel("What would you like explained?")
     .fill("How does CUDA work?");
-  await page.getByRole("button", { name: "Ask →" }).click();
+  await page.getByRole("button", { name: "Send question" }).click();
   await expect(page.getByRole("alert")).toContainText(
     "The service limit was reached.",
   );
@@ -132,7 +132,7 @@ test("Chat failure is visible, and an offered demo break persists without invent
   await expect(page.locator(".break-panel .video-card")).toHaveCount(1);
   await page.getByRole("button", { name: "Return to learning" }).click();
   await expect(
-    page.getByRole("heading", { name: "Ask a doubt" }),
+    page.getByRole("heading", { name: "Ask your teacher" }),
   ).toBeVisible();
 });
 
@@ -561,11 +561,11 @@ test("A Trending video plays without creating a searched-topic tab; empty histor
   await page.reload();
   await page
     .getByRole("complementary", { name: "Main navigation" })
-    .getByRole("button", { name: "Continue watching", exact: true })
+    .getByRole("button", { name: "Watch history", exact: true })
     .click();
   await expect(
     page.getByText(
-      "Your unfinished videos will appear here after you start watching.",
+      "Your watched videos and Shorts will appear here after you start watching.",
     ),
   ).toBeVisible();
   await page.route("**/api/feed/home", (route) =>
@@ -625,11 +625,12 @@ test("Continue watching reopens a saved player without searching again", async (
   await page.evaluate(() => (window as any).mockPlayers[0].pause());
   await page.getByRole("button", { name: "Home", exact: true }).click();
   await page
-    .getByRole("button", { name: "Continue watching", exact: true })
+    .getByRole("button", { name: "Watch history", exact: true })
     .click();
   await page
-    .getByRole("region", { name: "Continue watching" })
-    .getByRole("button", { name: /^How GPUs work Continue at/ })
+    .getByRole("region", { name: "Watch history" })
+    .getByRole("button", { name: /^Resume.*How GPUs work/ })
+    .last()
     .click();
   await expect(
     page.getByRole("button", { name: "Resume video", exact: true }),
@@ -720,14 +721,17 @@ test("Teacher labels unrelated questions, remembers follow-ups, and jumps to a r
   await page
     .getByLabel("What would you like explained?")
     .fill("What is compound interest?");
-  await page.getByRole("button", { name: "Ask →" }).click();
+  await page.getByRole("button", { name: "Send question" }).click();
   await expect(
     page.getByText("This question is not related to that video.", {
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Compound interest explained →" }),
+    page.getByRole("button", {
+      name: "Compound interest explained",
+      exact: true,
+    }),
   ).toBeVisible();
   expect(
     await page.evaluate(() =>
@@ -739,7 +743,7 @@ test("Teacher labels unrelated questions, remembers follow-ups, and jumps to a r
   await page
     .getByLabel("What would you like explained?")
     .fill("Now, what does the GPU do?");
-  await page.getByRole("button", { name: "Ask →" }).click();
+  await page.getByRole("button", { name: "Send question" }).click();
   await page.getByRole("button", { name: "Watch at 1:33" }).click();
   await expect
     .poll(() =>
@@ -749,7 +753,7 @@ test("Teacher labels unrelated questions, remembers follow-ups, and jumps to a r
     )
     .toContain(93);
   await page
-    .getByRole("button", { name: "Compound interest explained →" })
+    .getByRole("button", { name: "Compound interest explained", exact: true })
     .click();
   await expect
     .poll(() =>
@@ -839,7 +843,7 @@ test("Teacher conversation clears on sign-out and cannot restore a late private 
   await page
     .getByLabel("What would you like explained?")
     .fill("A private question");
-  await page.getByRole("button", { name: "Ask →" }).click();
+  await page.getByRole("button", { name: "Send question" }).click();
   await expect.poll(() => Boolean(release)).toBe(true);
   await page.getByRole("button", { name: "Sign out", exact: true }).click();
   release!();
@@ -893,7 +897,7 @@ test("Teacher is available before searching or selecting a video", async ({
   await page
     .getByLabel("What would you like explained?")
     .fill("Explain compound interest");
-  await page.getByRole("button", { name: "Ask →" }).click();
+  await page.getByRole("button", { name: "Send question" }).click();
   await expect(
     page.getByText("Interest earns more interest.", { exact: true }),
   ).toBeVisible();

@@ -1,5 +1,5 @@
 import type { VideoPresentation } from "./video-presentation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { Video, VideoSeekRequest } from "../../types";
 import type { VideoProgress } from "../progress/useVideoProgress";
 import { ShortsShelf } from "./ShortsShelf";
@@ -10,6 +10,7 @@ import { isShortVideo } from "./video-format";
 
 export function VideoFeed({
   presentation,
+  resumeContent,
   videos,
   selected,
   onSelect,
@@ -23,6 +24,7 @@ export function VideoFeed({
   isHidden = false,
 }: {
   presentation?: VideoPresentation;
+  resumeContent?: ReactNode;
   isHidden?: boolean;
   showReelControls?: boolean;
   initialMode?: "all" | "short";
@@ -74,9 +76,15 @@ export function VideoFeed({
     const chosen = Array.from(cards ?? []).find(
       (card) => card.dataset.videoId === (shortId ?? selected?.id),
     );
-    chosen?.scrollIntoView({ block: "nearest" });
+    if (chosen && reelContainer.current) {
+      if (presentation?.scrollOnOpen === false) {
+        const reel = reelContainer.current;
+        reel.scrollTop +=
+          chosen.getBoundingClientRect().top - reel.getBoundingClientRect().top;
+      } else chosen.scrollIntoView({ block: "nearest" });
+    }
     return () => observer.disconnect();
-  }, [mode, videos, selected?.id, isHidden]);
+  }, [mode, videos, selected?.id, isHidden, presentation?.scrollOnOpen]);
   const activeId = shortId ?? shortVideos[0]?.id;
   const activeIndex = shortVideos.findIndex((video) => video.id === activeId);
   function moveToShort(index: number) {
@@ -107,6 +115,7 @@ export function VideoFeed({
         short={short}
         autoPlay={short}
         playOnOpen={!short && presentation?.playOnOpen}
+        scrollOnReady={presentation?.scrollOnOpen}
         showPlayButton={presentation?.showPlayButton}
         renderMetadata={presentation?.renderMetadata}
         onProgress={(position, duration, completed) =>
@@ -117,6 +126,7 @@ export function VideoFeed({
   }
   return (
     <div className="video-feed">
+      {mode !== "short" && resumeContent}
       <div
         className={`feed-tabs ${initialMode === "short" ? "sr-only" : ""}`}
         aria-label="Video format"
@@ -144,7 +154,7 @@ export function VideoFeed({
       {mode === "short" ? (
         <>
           <p className="muted">
-            Scroll or swipe to the next video · Up to 3 minutes · Starts muted
+            Scroll or swipe to the next video · Up to 3 minutes
           </p>
           {!shortVideos.length && (
             <p>

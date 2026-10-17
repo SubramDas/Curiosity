@@ -1,5 +1,29 @@
 # Desktop design review
 
+## Revelink Orbit Book refinement — 2026-10-18
+
+The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](../penpot/revelink/ORBIT_BOOK.md). Application branding awaits approval of this refinement.
+
+
+## Revelink brand explorations — 2026-10-18
+
+A new **Revelink — Brand explorations** page in **New File 1** contains four editable logo/wordmark directions: Connected Play, Open Book, Linked R and Discovery Orbit. Three review boards show the approved tagline, desktop header replacements, small app/browser icons and versions on dark backgrounds. Connected Play is the recommended direction; founder selection remains pending. All three final previews were inspected, validation passed, four reusable symbol components were created and **Revelink — Logo and wordmark explorations** was saved. See [the brand handoff](../penpot/revelink/README.md).
+
+
+## Desktop related Universe popovers — 2026-10-18
+
+Three native **Related Universes ·** boards were added only to **New File 1 → curiosity-desktop-universe**: collapsed +N, +1 open and +2 open at the right edge. They propose readable related-Universe names in an anchored popover, with Close/outside dismissal and stable title/creator positions. All exported previews were inspected, validation passed and **Curiosity — Related Universe popovers** was saved. The founder approved desktop implementation, now prepared locally with keyboard/outside dismissal, viewport positioning and stable metadata. Mobile retains its current control. See [the design handoff](../penpot/related-universes/README.md).
+
+
+## Desktop Watch history review — 2026-10-18
+
+Three native **Watch history ·** boards were added under **New File 1 → curiosity-desktop-universe**. The history screen shows Resume actions with saved times/progress for unfinished videos and Shorts, plus Watch again for completed videos. Linked long-video/Short boards illustrate resuming at the saved position. All previews were inspected, validation passed and **Curiosity — Watch history and Resume actions** was saved. The founder approved desktop implementation, now prepared locally with saved-time Resume, completed-video replay, day grouping and paginated history. Mobile remains unchanged. See [the handoff](../penpot/watch-history/README.md).
+
+
+## Desktop teacher readability — 2026-10-17
+
+The founder requested desktop chat redesign in **curiosity-desktop-universe**. Five new native **Chat ·** boards propose larger readable text, stable transcript scrolling, a fixed composer, thumbnail suggestion cards and expanded chat with preserved video context. Existing screens remain. All five previews were inspected; Penpot file validation passed and a named version was saved. The founder approved desktop implementation, now prepared locally. Build, 93 service/rule/renderer/experiment checks and 54 simulated browser journeys pass; no deployment was performed. See [the review handoff](../penpot/chat/README.md).
+
 ## Search guardrails review — 2026-10-17
 
 The founder approved planning educational-search guardrails and requested Penpot design first. New Desktop/Mobile Search pages in **New File 1** contain 26 native review boards matching the existing white/green/Roboto layout. Broad queries offer learning choices; entertainment requests redirect to educational angles; users can clarify a learning goal. Existing topic-related breaks remain separate. The founder subsequently approved desktop implementation, now prepared locally. Mobile implementation remains pending. See [the design handoff](../penpot/search/README.md) and [runtime guide](../../backend/search/README.md).

@@ -1,0 +1,303 @@
+.workspace-grid.custom-layout {
+  display: block;
+}
+.desktop-learning-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 456px);
+  gap: 24px;
+  align-items: start;
+}
+.desktop-learning-feed {
+  min-width: 0;
+}
+.desktop-learning-layout .desktop-teacher {
+  --teacher-ink: #17221d;
+  --teacher-green: #176b4c;
+  --teacher-muted: #627169;
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+  height: var(
+    --teacher-panel-height,
+    calc(100dvh - var(--header-height) - 40px)
+  );
+  max-height: 960px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  color: var(--teacher-ink);
+  border-color: #e3e9e5;
+  border-radius: 16px;
+}
+.teacher-header {
+  padding: 20px 24px 14px;
+  border-bottom: 1px solid #e3e9e5;
+  flex-shrink: 0;
+}
+.teacher-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.desktop-learning-layout .teacher-title-row h2 {
+  margin: 0;
+  font-size: 22px;
+}
+.desktop-learning-layout .desktop-teacher .secondary {
+  color: var(--teacher-green);
+  background: #eaf4ee;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.teacher-title-row button {
+  white-space: nowrap;
+}
+.teacher-video-context {
+  color: var(--teacher-muted);
+  margin: 8px 0 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.teacher-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+.teacher-header-actions:empty {
+  display: none;
+}
+.desktop-learning-layout .desktop-teacher .chat-explain-part,
+.desktop-learning-layout .desktop-teacher .text-button {
+  padding: 4px 0;
+  background: transparent;
+  color: var(--teacher-green);
+  font-size: 12px;
+}
+.desktop-learning-layout .desktop-teacher .chat-conversation-shell {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+.desktop-learning-layout .desktop-teacher .chat-conversation {
+  position: relative;
+  height: 100%;
+  max-height: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  margin: 0;
+  padding: 0 24px 24px;
+  scrollbar-gutter: stable;
+}
+.teacher-empty {
+  position: absolute;
+  inset: 18px 24px auto;
+  color: var(--teacher-muted);
+  font-size: 16px;
+  line-height: 1.6;
+  pointer-events: none;
+}
+.chat-conversation-shell {
+  position: relative;
+  min-height: 0;
+}
+.chat-new-answer {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 8px #17221d1a;
+  white-space: nowrap;
+  z-index: 1;
+}
+.desktop-learning-layout .desktop-teacher .chat-turn {
+  padding: 24px 0;
+}
+.desktop-learning-layout .desktop-teacher .chat-question {
+  padding: 16px;
+  background: #f4f6f4;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+.desktop-learning-layout .desktop-teacher .chat-question strong {
+  display: block;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--teacher-muted);
+  margin-bottom: 6px;
+}
+.desktop-learning-layout .desktop-teacher .chat-answer {
+  border: 0;
+  margin-top: 16px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.desktop-learning-layout .desktop-teacher .chat-timestamp {
+  background: #eaf4ee;
+  padding: 12px;
+}
+.desktop-learning-layout .desktop-teacher .chat-timestamp button {
+  background: transparent;
+  color: var(--teacher-green);
+  padding: 0;
+  font-weight: 500;
+}
+.desktop-learning-layout .desktop-teacher .fine-print {
+  color: var(--teacher-muted);
+  font-size: 12px;
+}
+.teacher-composer {
+  padding: 14px 24px 16px;
+  border-top: 1px solid #e3e9e5;
+  flex-shrink: 0;
+}
+.desktop-learning-layout .desktop-teacher .chat-follow-ups {
+  margin: 0 0 12px;
+  gap: 8px;
+}
+.desktop-learning-layout .desktop-teacher form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40px;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f6f4;
+}
+.desktop-learning-layout .desktop-teacher textarea {
+  min-height: 64px;
+  height: 64px;
+  padding: 0;
+  resize: none;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.desktop-learning-layout .desktop-teacher form > button {
+  width: 40px;
+  height: 40px;
+  align-self: end;
+  margin: 0;
+  padding: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--teacher-green);
+}
+.teacher-composer > .fine-print {
+  margin: 10px 0 0;
+}
+.teacher-composer .chat-status,
+.teacher-composer .notice {
+  margin: 8px 0 0;
+  font-size: 13px;
+  max-height: 72px;
+  overflow-y: auto;
+}
+.desktop-learning-layout.chat-expanded {
+  grid-template-columns: minmax(216px, 240px) minmax(0, 1fr);
+}
+.desktop-learning-layout.chat-expanded .desktop-teacher .chat-answer {
+  font-size: 17px;
+  line-height: 1.65;
+}
+.chat-expanded .desktop-learning-feed {
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+}
+.chat-expanded .desktop-learning-feed .feed-tabs,
+.chat-expanded .desktop-learning-feed .continue-watching,
+.chat-expanded .desktop-learning-feed .shorts-shelf,
+.chat-expanded .desktop-learning-feed .video-result:not(.expanded-result),
+.chat-expanded .desktop-learning-feed > div > .fine-print,
+.chat-expanded .expanded-result > .video-card {
+  display: none;
+}
+.chat-expanded .desktop-learning-feed .video-list {
+  display: block;
+}
+.desktop-learning-layout.chat-expanded .player-frame {
+  width: 100%;
+  aspect-ratio: auto;
+  height: 200px;
+  min-height: 200px;
+}
+.chat-expanded .player-section h3 {
+  font-size: 17px;
+}
+.desktop-learning-layout.without-video {
+  grid-template-columns: minmax(0, 1fr);
+}
+.desktop-learning-layout.without-video .desktop-teacher {
+  width: min(100%, 896px);
+  justify-self: center;
+}
+.desktop-learning-layout.without-video .desktop-learning-feed {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .desktop-learning-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 42%);
+    gap: 16px;
+  }
+  .desktop-learning-layout .desktop-teacher .teacher-header,
+  .desktop-learning-layout .desktop-teacher .teacher-composer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .desktop-learning-layout .desktop-teacher .chat-conversation {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .related-video.chat-video-card {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 10px;
+  }
+}
+@media (max-width: 1000px) {
+  .desktop-learning-layout,
+  .desktop-learning-layout.chat-expanded {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .desktop-learning-layout .desktop-teacher {
+    position: static;
+    height: var(
+      --teacher-panel-height,
+      calc(100dvh - var(--header-height) - 32px)
+    );
+  }
+  .chat-expanded .desktop-learning-feed {
+    position: static;
+    max-width: 320px;
+  }
+}
+@media (max-height: 650px) {
+  .desktop-learning-layout .desktop-teacher .teacher-header {
+    padding-top: 12px;
+    padding-bottom: 8px;
+  }
+  .desktop-learning-layout .desktop-teacher .teacher-composer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .desktop-learning-layout .desktop-teacher .teacher-header-actions {
+    margin-top: 4px;
+  }
+  .desktop-learning-layout .desktop-teacher .chat-follow-ups {
+    margin-bottom: 8px;
+  }
+  .desktop-learning-layout .desktop-teacher textarea {
+    min-height: 40px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,140 @@
+.desktop-app .universe-video-label.universe-video-label-with-popover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 4px 10px;
+}
+.universe-video-label-with-popover > span:first-child {
+  grid-column: 1;
+}
+.universe-video-label-with-popover > .classification-provisional {
+  grid-column: 1;
+}
+.desktop-app .universe-video-label .related-universe-trigger {
+  grid-column: 2;
+  grid-row: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 54px;
+  height: 28px;
+  padding: 5px 10px;
+  margin: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #eaf4ee;
+  color: #176b4c;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.desktop-app
+  .universe-video-label
+  .related-universe-trigger[aria-expanded="true"] {
+  background: #176b4c;
+  color: white;
+}
+.related-universe-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+/* Native top-layer positioning prevents clipping by cards, reels and chat logs. */
+.desktop-related-popover {
+  position: fixed;
+  inset: auto;
+  left: 16px;
+  top: 16px;
+  width: min(320px, calc(100vw - 32px));
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #e3e9e5;
+  border-radius: 14px;
+  background: #fff;
+  color: #17221d;
+  box-shadow: 0 8px 24px #17221d24;
+  font-family: Roboto, Arial, sans-serif;
+  font-weight: 400;
+  text-align: left;
+  cursor: default;
+}
+.desktop-related-popover:popover-open {
+  display: flex;
+  flex-direction: column;
+}
+.desktop-related-popover::backdrop {
+  background: transparent;
+  pointer-events: none;
+}
+.desktop-related-popover .related-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 0 20px;
+  flex-shrink: 0;
+}
+.desktop-related-popover .related-popover-header h3 {
+  margin: 0;
+  color: #17221d;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 26px;
+}
+.desktop-app .desktop-related-popover .related-popover-header button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  background: #f4f6f4;
+  color: #627169;
+  flex-shrink: 0;
+}
+.desktop-related-popover > p {
+  margin: 6px 20px 16px;
+  font-size: 13px;
+  line-height: 20px;
+  color: #627169;
+  flex-shrink: 0;
+}
+.desktop-related-popover > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0 16px 26px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+}
+.desktop-related-popover li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  background: #f4f6f4;
+  border-radius: 9px;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+.desktop-related-popover li svg {
+  color: #176b4c;
+  flex-shrink: 0;
+}
+.desktop-related-popover li span {
+  color: #17221d;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+.related-universe-trigger:focus-visible,
+.desktop-related-popover button:focus-visible {
+  outline: 2px solid #176b4c;
+  outline-offset: 3px;
+}

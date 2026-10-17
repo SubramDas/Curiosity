@@ -1,0 +1,66 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pageId": "3f187a38-aa9d-807c-8008-ce27d3c94068",
+  "pageName": "Revelink — Brand explorations",
+  "shareUrl": null,
+  "savedVersion": "Revelink — Logo and wordmark explorations",
+  "status": "Four native logo concepts ready for founder selection; no application rebrand",
+  "tagline": "Watch. Discover. Connect the dots.",
+  "recommendedConcept": "Connected Play",
+  "validationErrors": [],
+  "containmentViolations": [],
+  "allThreeFinalPreviewsInspected": true,
+  "boards": [
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce27df2a6ddf",
+      "name": "Revelink · 02 · In the desktop header",
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 20,
+      "imageLayers": 0
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce27e1d2c2fd",
+      "name": "Revelink · 03 · Small icons and dark backgrounds",
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 20,
+      "imageLayers": 0
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce27d51cd2be",
+      "name": "Revelink · 01 · Four logo directions",
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 21,
+      "imageLayers": 0
+    }
+  ],
+  "components": [
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce2864be8c8d",
+      "name": "Open Book",
+      "path": "Revelink / Symbol",
+      "mainInstanceId": "3f187a38-aa9d-807c-8008-ce2864bdba22"
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce2864d210fc",
+      "name": "Linked R",
+      "path": "Revelink / Symbol",
+      "mainInstanceId": "3f187a38-aa9d-807c-8008-ce2864d16380"
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce2864e5fc2b",
+      "name": "Discovery Orbit",
+      "path": "Revelink / Symbol",
+      "mainInstanceId": "3f187a38-aa9d-807c-8008-ce2864e52e84"
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce2864a8e18a",
+      "name": "Connected Play",
+      "path": "Revelink / Symbol",
+      "mainInstanceId": "3f187a38-aa9d-807c-8008-ce2864a74219"
+    }
+  ]
+}

@@ -1,5 +1,29 @@
 # Penpot design transfer
 
+## Revelink Orbit Book refinement — 2026-10-18
+
+The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](revelink/ORBIT_BOOK.md). Application branding awaits approval of this refinement.
+
+
+## Revelink brand explorations — 2026-10-18
+
+A new **Revelink — Brand explorations** page in **New File 1** contains four editable logo/wordmark directions: Connected Play, Open Book, Linked R and Discovery Orbit. Three review boards show the approved tagline, desktop header replacements, small app/browser icons and versions on dark backgrounds. Connected Play is the recommended direction; founder selection remains pending. All three final previews were inspected, validation passed, four reusable symbol components were created and **Revelink — Logo and wordmark explorations** was saved. See [the brand handoff](revelink/README.md).
+
+
+## Desktop related Universe popovers — 2026-10-18
+
+Three native **Related Universes ·** boards were added only to **New File 1 → curiosity-desktop-universe**: collapsed +N, +1 open and +2 open at the right edge. They propose readable related-Universe names in an anchored popover, with Close/outside dismissal and stable title/creator positions. All exported previews were inspected, validation passed and **Curiosity — Related Universe popovers** was saved. The founder approved desktop implementation, now prepared locally with keyboard/outside dismissal, viewport positioning and stable metadata. Mobile retains its current control. See [the design handoff](related-universes/README.md).
+
+
+## Desktop Watch history review — 2026-10-18
+
+Three native **Watch history ·** boards were added under **New File 1 → curiosity-desktop-universe**. The history screen shows Resume actions with saved times/progress for unfinished videos and Shorts, plus Watch again for completed videos. Linked long-video/Short boards illustrate resuming at the saved position. All previews were inspected, validation passed and **Curiosity — Watch history and Resume actions** was saved. The founder approved desktop implementation, now prepared locally with saved-time Resume, completed-video replay, day grouping and paginated history. Mobile remains unchanged. See [the handoff](watch-history/README.md).
+
+
+## Desktop teacher readability — 2026-10-17
+
+Five native **Chat ·** review boards were added under **New File 1 → curiosity-desktop-universe**: readable answer, long answer, video thumbnails, expanded reading and earlier-message/new-answer behavior. All previews were inspected, file validation passed and **Curiosity — Desktop teacher readability and video cards** was saved. The founder approved the desktop design, now implemented locally with readable answers, stable scrolling, thumbnail cards and expanded chat that preserves playback. See [the chat handoff](chat/README.md).
+
 ## Search guardrails review — 2026-10-17
 
 New native review pages in **New File 1**: **Curiosity — Search · Desktop** and **Curiosity — Search · Mobile**. Twenty-six boards show search choices, entertainment redirects, goal clarification, learning results and failure states within the existing layout. Saved version: **Curiosity — Search guardrails review**. The founder approved desktop implementation, which is now prepared locally; mobile implementation remains pending. See [the Search handoff](search/README.md) for the policy, prototype, board IDs and verification limits.

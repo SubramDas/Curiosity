@@ -7,6 +7,7 @@ export interface VideoProgress {
   position_seconds: number;
   duration_seconds: number;
   completed: boolean;
+  updated_at?: string;
 }
 const STORE = "curiosity-video-progress-v1";
 export function isValidProgress(value: unknown): value is VideoProgress {
@@ -88,7 +89,7 @@ export function useVideoProgress(token?: string) {
       )
         return;
       const next = [
-        row,
+        { ...row, updated_at: new Date().toISOString() },
         ...rowsRef.current.filter((item) => item.video_id !== row.video_id),
       ].slice(0, 200);
       rowsRef.current = next;

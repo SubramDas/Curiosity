@@ -1,5 +1,19 @@
 # Step-by-step task list for building the learning app
 
+## Desktop related Universe popovers — 2026-10-18
+
+Implemented the approved +N treatment across desktop video metadata. Full Universe names open in an anchored popover with Close/Escape/outside dismissal, edge alignment, upward placement when needed and no title/creator reflow or accidental playback. Mobile retains its existing control. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No provider changes or deployment. See [runtime guide](desktop-ui/features/classification/README.md).
+
+
+## Desktop Watch history — 2026-10-18
+
+Implemented the founder-approved Penpot design: desktop Watch history includes completed videos and unfinished videos/Shorts, date grouping, saved-time Resume actions and Watch again from zero. Missing metadata can retry; unavailable videos retain their saved records. History loads 20 entries per page within the existing 200-video progress cap. Mobile retains its current behavior. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No schema migration or deployment. See [runtime guide](desktop-ui/features/history/README.md).
+
+
+## Desktop teacher readability — 2026-10-17
+
+Implemented the approved Penpot desktop chat design: readable answer formatting, a fixed composer, stable reading position, suggested video thumbnails and expanded chat preserving playback and drafts. Verified with the production build, 93 service/rule/renderer/experiment checks and 54 simulated browser journeys. No provider changes or deployment. See [handoff and verification](design/penpot/chat/README.md).
+
 ## Search results in Universes — 2026-10-17
 
 Approved search results now enter a bounded public video catalog, joined with the existing server Topic/Universe classifications. Desktop Universes load these references independently from fresh discovery, reuse Topic filters and show each video only in its primary Universe. References last up to 24 hours and survive backend restart. Valid older cached references are recovered on the first catalog read, and missing labels reuse the separate classification cache without provider calls. Verified with the production build, 83 service/rule/experiment checks and 48 simulated browser journeys. No schema migration, provider change or deployment. See [behavior and limitations](backend/search/README.md#search-videos-in-universes).

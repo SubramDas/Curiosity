@@ -41,7 +41,7 @@ export function Sidebar({
             ["home", "home", "Home"],
             ...(graphEnabled ? [["graph", "map", "Explore map"] as const] : []),
             ["shorts", "shorts", "Short videos"],
-            ["history", "history", "Continue watching"],
+            ["history", "history", "Watch history"],
           ] as const
         ).map(([id, icon, label]) => (
           <button

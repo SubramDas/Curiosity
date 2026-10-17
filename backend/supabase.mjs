@@ -62,7 +62,7 @@ export function createSupabaseClient(environment) {
         );
       await call("/auth/v1/user", {}, token);
       return call(
-        "/rest/v1/video_progress?select=video_id,topic_key,position_seconds,duration_seconds,completed&order=updated_at.desc&limit=200",
+        "/rest/v1/video_progress?select=video_id,topic_key,position_seconds,duration_seconds,completed,updated_at&order=updated_at.desc&limit=200",
         {},
         token,
       );

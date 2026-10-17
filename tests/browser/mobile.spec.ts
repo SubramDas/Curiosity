@@ -219,7 +219,36 @@ test("Mobile Shorts navigation keeps one player and a question uses the active S
   await page.goto("/");
   const nav = page.getByRole("navigation", { name: "Mobile navigation" });
   await nav.getByRole("button", { name: "Shorts", exact: true }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const player = (window as any).mockPlayers.find(
+          (p: any) => !p.destroyed,
+        );
+        return player && { playing: player.playing, muted: player.muted };
+      }),
+    )
+    .toEqual({ playing: true, muted: false });
+  await page.evaluate(() => {
+    (window as any).mockPlayers.find((p: any) => !p.destroyed).blockAutoplay();
+  });
+  await page
+    .getByRole("button", { name: "Play with sound", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Play with sound", exact: true }),
+  ).toHaveCount(0);
   await page.getByRole("button", { name: "Next Short", exact: true }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const player = (window as any).mockPlayers.find(
+          (p: any) => !p.destroyed,
+        );
+        return player && { playing: player.playing, muted: player.muted };
+      }),
+    )
+    .toEqual({ playing: true, muted: false });
   await expect(page.locator(".short-player h3")).toHaveText(shorts[1].title);
   await nav.getByRole("button", { name: "Ask", exact: true }).click();
   await page.getByLabel("What would you like explained?").fill("Explain this");
@@ -413,3 +442,88 @@ test("Mobile break stays optional, caps candidates at three and search errors of
     .click();
   await expect(page.getByLabel("Search any topic")).toBeVisible();
 });
+
+for (const width of [390, 1440]) {
+  test(`Shorts at ${width}px hide the resume row and still resume from Continue watching`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await setup(page);
+    await page.addInitScript(() =>
+      localStorage.setItem(
+        "curiosity-video-progress-v1",
+        JSON.stringify([
+          {
+            video_id: "abcdefghijk",
+            topic_key: "computing:gpu",
+            position_seconds: 20,
+            duration_seconds: 45,
+            completed: false,
+          },
+        ]),
+      ),
+    );
+    await page.goto("/");
+    if (width < 768)
+      await page
+        .getByRole("button", { name: "Toggle navigation", exact: true })
+        .click();
+    await page
+      .getByRole("button", {
+        name: width < 768 ? "Continue watching" : "Watch history",
+        exact: true,
+      })
+      .click();
+    await expect(
+      page.getByRole("heading", {
+        name: width < 768 ? "Continue watching" : "Watch history",
+        exact: true,
+        level: 1,
+      }),
+    ).toBeVisible();
+    await page
+      .getByRole("region", {
+        name: width < 768 ? "Continue watching" : "Watch history",
+      })
+      .getByRole("button", {
+        name:
+          width < 768
+            ? /A quick GPU explanation/
+            : /^Resume.*A quick GPU explanation/,
+      })
+      .last()
+      .click();
+    await expect(page.locator(".short-player h3")).toHaveText(shorts[0].title);
+    await expect(
+      page.getByRole("region", { name: "Continue watching" }),
+    ).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            (window as any).mockPlayers.find((p: any) => !p.destroyed)?.seeks,
+        ),
+      )
+      .toContain(20);
+    await page
+      .getByLabel("Video format")
+      .getByRole("button", { name: "All videos", exact: true })
+      .click();
+    if (width < 768) {
+      await expect(
+        page.getByRole("region", { name: "Continue watching" }),
+      ).toBeVisible();
+    } else {
+      await expect(
+        page.getByRole("region", { name: "Continue watching" }),
+      ).toHaveCount(0);
+    }
+    await page
+      .getByLabel("Video format")
+      .getByRole("button", { name: "Short videos", exact: true })
+      .click();
+    await expect(
+      page.getByRole("region", { name: "Continue watching" }),
+    ).toHaveCount(0);
+  });
+}

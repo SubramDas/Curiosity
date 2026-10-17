@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { RelatedUniversesRendererContext } from "./RelatedUniversesRendererContext";
 import type { Video } from "../../types";
 import { universes } from "../universes/universe-rules";
 import {
@@ -13,6 +15,7 @@ function ClassificationLabelContent({
   video: Video;
   short?: boolean;
 }) {
+  const renderRelated = useContext(RelatedUniversesRendererContext);
   const [classified] = useClassifiedVideos([video]);
   const { entry, retry } = useClassificationEntry(video.id);
   const classification = classified.classification;
@@ -53,7 +56,7 @@ function ClassificationLabelContent({
   const related = classification.relatedUniverses;
   return (
     <div
-      className={`universe-video-label ${short ? "short-universe-label" : ""}`}
+      className={`universe-video-label ${short ? "short-universe-label" : ""} ${renderRelated && related.length ? "universe-video-label-with-popover" : ""}`}
       title={classification.reason}
     >
       <span>
@@ -65,19 +68,22 @@ function ClassificationLabelContent({
       {classification.topic.status === "provisional" && (
         <span className="classification-provisional">Provisional topic</span>
       )}
-      {related.length > 0 && (
-        <details
-          className="universe-related-details"
-          onClick={(event) => event.stopPropagation()}
-        >
-          <summary
-            aria-label={`Also related to ${related.map((id) => universes[id].name).join(", ")}`}
+      {related.length > 0 &&
+        (renderRelated ? (
+          renderRelated(related)
+        ) : (
+          <details
+            className="universe-related-details"
+            onClick={(event) => event.stopPropagation()}
           >
-            +{related.length}
-          </summary>
-          <span>{related.map((id) => universes[id].name).join(" · ")}</span>
-        </details>
-      )}
+            <summary
+              aria-label={`Also related to ${related.map((id) => universes[id].name).join(", ")}`}
+            >
+              +{related.length}
+            </summary>
+            <span>{related.map((id) => universes[id].name).join(" · ")}</span>
+          </details>
+        ))}
     </div>
   );
 }

@@ -1,0 +1,78 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+  "pageName": "curiosity-desktop-universe",
+  "shareUrl": null,
+  "status": "Native design ready for founder review; no app changes",
+  "savedVersion": "Curiosity — Desktop teacher readability and video cards",
+  "validationErrors": [],
+  "allFivePreviewsInspected": true,
+  "boards": [
+    {
+      "key": "answer",
+      "id": "3f187a38-aa9d-807c-8008-ce009e177fdf",
+      "name": "Chat · 01 · Readable answer",
+      "x": 0,
+      "y": 4560,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 39,
+      "imageLayers": 2
+    },
+    {
+      "key": "long",
+      "id": "3f187a38-aa9d-807c-8008-ce00a458706c",
+      "name": "Chat · 02 · Long answer / start visible",
+      "x": 1560,
+      "y": 4560,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 40,
+      "imageLayers": 2
+    },
+    {
+      "key": "videos",
+      "id": "3f187a38-aa9d-807c-8008-ce00b64572da",
+      "name": "Chat · 03 · Suggestions with thumbnails",
+      "x": 3120,
+      "y": 4560,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 45,
+      "imageLayers": 4
+    },
+    {
+      "key": "expanded",
+      "id": "3f187a38-aa9d-807c-8008-ce00bd1c1cd3",
+      "name": "Chat · 04 · Expanded chat / video companion",
+      "x": 0,
+      "y": 5780,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 36,
+      "imageLayers": 1
+    },
+    {
+      "key": "history",
+      "id": "3f187a38-aa9d-807c-8008-ce00c60030b1",
+      "name": "Chat · 05 · Reading history / new answer",
+      "x": 1560,
+      "y": 5780,
+      "width": 1440,
+      "height": 1100,
+      "textLayers": 38,
+      "imageLayers": 2
+    }
+  ],
+  "components": [
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce0164b2dbb9",
+      "name": "Follow-up input"
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce0164da8766",
+      "name": "Suggested video card"
+    }
+  ]
+}

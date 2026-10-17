@@ -1,4 +1,6 @@
-import { VideoClassificationLabel } from "../classification/VideoClassificationLabel";
+import "./chat-content.css";
+import { AnswerText } from "./AnswerText";
+import { SuggestedVideo } from "./SuggestedVideo";
 import type { ChatTurn } from "./useTutorChat";
 import type { Video } from "../../types";
 import { formatPosition } from "../videos/video-format";
@@ -25,20 +27,21 @@ export function ChatAnswer({
           ? "I’m not sure this question relates to that video."
           : "Let's explore this question.";
   return (
-    <article className="chat-turn">
+    <article className="chat-turn" aria-label={`Answer to: ${turn.question}`}>
       <p className="chat-question">
         <strong>You:</strong> {turn.question}
       </p>
-      {answer.questionVideo && (
-        <p className="fine-print">
-          Video when asked: {readableTitle(answer.questionVideo.title)}
-        </p>
-      )}
-      <p className="chat-relevance">
-        <strong>{label}</strong> {answer.relationReason}
-      </p>
+      <details className="chat-relevance chat-context">
+        <summary>
+          <strong>{label}</strong>
+        </summary>
+        <p>{answer.relationReason}</p>
+        {answer.questionVideo && (
+          <p>Video when asked: {readableTitle(answer.questionVideo.title)}</p>
+        )}
+      </details>
       <div className="chat-answer">
-        <p>{answer.answer}</p>
+        <AnswerText text={answer.answer} />
         {answer.sources.map((source) => (
           <a key={source.id} href={source.url} target="_blank" rel="noreferrer">
             {source.title} ↗
@@ -71,17 +74,17 @@ export function ChatAnswer({
           AI can make mistakes.
         </p>
       </div>
-      {answer.recommendations.map((video) => (
-        <div className="related-video" key={video.id}>
-          <button onClick={() => onSelect(video)}>
-            {readableTitle(video.title)} →
-          </button>
-          <VideoClassificationLabel video={video} />
-          <small>
-            YouTube search match for your question · Content not reviewed.
-          </small>
-        </div>
-      ))}
+      {answer.recommendations.length > 0 && (
+        <section className="chat-suggestions" aria-label="Suggested videos">
+          <h3>Videos to explore</h3>
+          {answer.recommendations.map((video) => (
+            <SuggestedVideo key={video.id} video={video} onSelect={onSelect} />
+          ))}
+          <p className="fine-print">
+            YouTube search matches · Content not reviewed.
+          </p>
+        </section>
+      )}
       {answer.notices.map((notice, index) => (
         <p className="fine-print" key={index}>
           {notice}

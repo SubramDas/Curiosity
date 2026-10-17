@@ -8,6 +8,7 @@ import type { Video, VideoSeekRequest } from "../../types";
 
 export function VideoPlayer({
   playOnOpen = false,
+  scrollOnReady = true,
   showPlayButton = true,
   renderMetadata,
   video,
@@ -19,6 +20,7 @@ export function VideoPlayer({
   seekRequest,
 }: {
   playOnOpen?: boolean;
+  scrollOnReady?: boolean;
   showPlayButton?: boolean;
   renderMetadata?: (video: Video, short?: boolean) => ReactNode;
   video: Video;
@@ -36,6 +38,7 @@ export function VideoPlayer({
   const container = useRef<HTMLDivElement>(null);
   const [error, setError] = useState("");
   const [isReady, setIsReady] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [retry, setRetry] = useState(0);
   const playerRef = useRef<Player | undefined>(undefined);
   const callbacks = useRef({ onProgress, startSeconds });
@@ -94,7 +97,7 @@ export function VideoPlayer({
         visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
         startSelectedVideo();
         if (visible && !wasVisible && ready && autoPlay && !document.hidden) {
-          player?.mute();
+          player?.unMute();
           player?.playVideo();
         }
         if (!visible && playing) {
@@ -108,6 +111,7 @@ export function VideoPlayer({
     );
     setError("");
     setIsReady(false);
+    setAutoplayBlocked(false);
     onActive(false);
     const host = document.createElement("div");
     container.current?.append(host);
@@ -142,11 +146,11 @@ export function VideoPlayer({
                     videoId: video.id,
                     startSeconds: callbacks.current.startSeconds,
                   });
-                if (!short)
+                if (!short && scrollOnReady)
                   container.current?.scrollIntoView({ block: "center" });
                 startSelectedVideo();
                 if (autoPlay && visible && !document.hidden) {
-                  event.target.mute();
+                  event.target.unMute();
                   event.target.playVideo();
                 }
               },
@@ -155,11 +159,15 @@ export function VideoPlayer({
                 playing = event.data === 1;
                 if (event.data === 0) completed = true;
                 else if (event.data === 1) completed = false;
+                if (playing) setAutoplayBlocked(false);
                 if (playing && (!visible || document.hidden))
                   player?.pauseVideo();
                 if (event.data === 2 || event.data === 0) report();
                 onActive(playing && visible && !document.hidden);
                 activitySample("state");
+              },
+              onAutoplayBlocked: () => {
+                if (!disposed) setAutoplayBlocked(true);
               },
               onError: () => {
                 playing = false;
@@ -200,6 +208,7 @@ export function VideoPlayer({
     short,
     autoPlay,
     playOnOpen,
+    scrollOnReady,
     retry,
   ]);
   useEffect(() => {
@@ -242,6 +251,16 @@ export function VideoPlayer({
             Retry player
           </button>
         </p>
+      )}
+      {autoPlay && autoplayBlocked && isReady && !error && (
+        <button
+          onClick={() => {
+            playerRef.current?.unMute();
+            playerRef.current?.playVideo();
+          }}
+        >
+          Play with sound
+        </button>
       )}
       {showPlayButton && isReady && !error && !short && (
         <button onClick={() => playerRef.current?.playVideo()}>

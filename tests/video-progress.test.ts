@@ -74,6 +74,11 @@ test("Account writes use the verified user identity and require a token", async 
       (requests[1].options.headers as Record<string, string>).Authorization,
       "Bearer user-token",
     );
+    await client.videoProgress("user-token");
+    assert.match(
+      requests.at(-1)!.url,
+      /completed,updated_at&order=updated_at.desc/,
+    );
   } finally {
     globalThis.fetch = original;
   }

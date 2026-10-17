@@ -1,3 +1,8 @@
+import { RelatedUniversesRendererContext } from "../shared/features/classification/RelatedUniversesRendererContext";
+import { renderDesktopRelatedUniverses } from "../desktop-ui/features/classification/RelatedUniversesPopover";
+import { WatchHistory } from "../desktop-ui/features/history/WatchHistory";
+import type { VideoProgress } from "../shared/features/progress/useVideoProgress";
+import { DesktopLearningLayout } from "../desktop-ui/features/chat/DesktopLearningLayout";
 import { DesktopSearchLayout } from "../desktop-ui/features/search/DesktopSearchLayout";
 import { SearchWorkspace } from "../shared/features/search/SearchWorkspace";
 import { VideoResults } from "../shared/features/videos/VideoResults";
@@ -121,6 +126,9 @@ export default function App() {
   }, [isMobile, view]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [initialVideo, setInitialVideo] = useState<Video>();
+  const [historyPlayback, setHistoryPlayback] = useState<VideoProgress | null>(
+    null,
+  );
   const [initialSeek, setInitialSeek] = useState<VideoSeekRequest>();
   const [discovery, setDiscovery] = useState<{
     topic: Topic;
@@ -175,6 +183,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function navigate(next: PageView) {
+    setHistoryPlayback(null);
     if (search.busy) search.reset();
     setGraphEntry(undefined);
     setActiveUniverse(undefined);
@@ -255,6 +264,7 @@ export default function App() {
     savedKey?: string,
     relatedVideos?: Video[],
   ) {
+    setHistoryPlayback(null);
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
     setInitialSeek(undefined);
@@ -407,328 +417,273 @@ export default function App() {
         setMobileSearchOpen(false);
       }}
     >
-      <Layout
-        {...{
-          searchOpen: mobileSearchOpen,
-          chatOpen: mobileChatOpen,
-          navigation: (
-            <MobileNavigation
-              view={view}
-              chatOpen={mobileChatOpen}
-              onNavigate={navigate}
-              onAsk={askQuestion}
-            />
-          ),
-        }}
-        menuOpen={menuOpen}
-        onCloseMenu={() => setMenuOpen(false)}
-        header={
-          <PageHeader
-            {...{
-              searchOpen: mobileSearchOpen,
-              onSearchOpen: isMobile ? setMobileSearchOpen : () => openSearch(),
-              chatOpen: mobileChatOpen,
-              onCloseChat: () => setMobileChatOpen(false),
-            }}
-            query={query}
-            onQuery={setQuery}
-            onSearch={submit}
-            busy={search.busy}
-            menuOpen={menuOpen}
-            onMenu={() => setMenuOpen((value) => !value)}
-            onHome={() => navigate("home")}
-            account={
-              <AccountPanel
-                isOpen={accountOpen}
-                onOpenChange={setAccountOpen}
-                presentation={isMobile ? "screen" : "popover"}
-                enabled={account.enabled}
-                ready={account.ready}
-                accountEmail={account.email}
-                accountError={account.error}
-                signedIn={Boolean(token)}
-                onAuthenticate={account.authenticate}
-                onResendConfirmation={account.resendConfirmation}
-                onSignOut={account.signOut}
-              />
-            }
-          />
-        }
-        sidebar={
-          isMobile ? (
-            <MobileMenu
-              graphEnabled={graphEnabled}
-              open={menuOpen}
-              onNavigate={navigate}
-              onClose={() => setMenuOpen(false)}
-              demo={demo}
-              onDemo={setDemo}
-            />
-          ) : (
-            <Sidebar
-              graphEnabled={graphEnabled}
-              topics={topics}
-              view={view}
-              open={menuOpen}
-              onNavigate={navigate}
-              onUniverse={openUniverse}
-              onTopic={(topic) => void openTopic(topic)}
-              activeUniverse={activeUniverse}
-              onAsk={askQuestion}
-              demo={demo}
-              onDemo={setDemo}
-            />
-          )
-        }
+      <RelatedUniversesRendererContext
+        value={isMobile ? null : renderDesktopRelatedUniverses}
       >
-        {isMobile && mobileSearchOpen && (
-          <MobileSearchSuggestions
-            topics={topics}
-            onOpen={(topic) => void openTopic(topic)}
-            onAsk={askQuestion}
-          />
-        )}
-        {view !== "graph" &&
-          (!isMobile ||
-            (!mobileChatOpen &&
-              view !== "topics" &&
-              view !== "history" &&
-              view !== "shorts")) &&
-          (isMobile ? (
-            <TopicFilters
+        <Layout
+          {...{
+            searchOpen: mobileSearchOpen,
+            chatOpen: mobileChatOpen,
+            navigation: (
+              <MobileNavigation
+                view={view}
+                chatOpen={mobileChatOpen}
+                onNavigate={navigate}
+                onAsk={askQuestion}
+              />
+            ),
+          }}
+          menuOpen={menuOpen}
+          onCloseMenu={() => setMenuOpen(false)}
+          header={
+            <PageHeader
+              {...{
+                searchOpen: mobileSearchOpen,
+                onSearchOpen: isMobile
+                  ? setMobileSearchOpen
+                  : () => openSearch(),
+                chatOpen: mobileChatOpen,
+                onCloseChat: () => setMobileChatOpen(false),
+              }}
+              query={query}
+              onQuery={setQuery}
+              onSearch={submit}
+              busy={search.busy}
+              menuOpen={menuOpen}
+              onMenu={() => setMenuOpen((value) => !value)}
+              onHome={() => navigate("home")}
+              account={
+                <AccountPanel
+                  isOpen={accountOpen}
+                  onOpenChange={setAccountOpen}
+                  presentation={isMobile ? "screen" : "popover"}
+                  enabled={account.enabled}
+                  ready={account.ready}
+                  accountEmail={account.email}
+                  accountError={account.error}
+                  signedIn={Boolean(token)}
+                  onAuthenticate={account.authenticate}
+                  onResendConfirmation={account.resendConfirmation}
+                  onSignOut={account.signOut}
+                />
+              }
+            />
+          }
+          sidebar={
+            isMobile ? (
+              <MobileMenu
+                graphEnabled={graphEnabled}
+                open={menuOpen}
+                onNavigate={navigate}
+                onClose={() => setMenuOpen(false)}
+                demo={demo}
+                onDemo={setDemo}
+              />
+            ) : (
+              <Sidebar
+                graphEnabled={graphEnabled}
+                topics={topics}
+                view={view}
+                open={menuOpen}
+                onNavigate={navigate}
+                onUniverse={openUniverse}
+                onTopic={(topic) => void openTopic(topic)}
+                activeUniverse={activeUniverse}
+                onAsk={askQuestion}
+                demo={demo}
+                onDemo={setDemo}
+              />
+            )
+          }
+        >
+          {isMobile && mobileSearchOpen && (
+            <MobileSearchSuggestions
               topics={topics}
-              active={
-                (view === "topic" || view === "shorts") &&
-                topics.some(
-                  (topic) => topic.category === currentTopic?.category,
-                )
-                  ? currentTopic?.category
-                  : undefined
-              }
-              onTrending={() => navigate("home")}
-              onTopic={(topic) => void openTopic(topic)}
+              onOpen={(topic) => void openTopic(topic)}
+              onAsk={askQuestion}
             />
-          ) : (
-            <UniverseFilters
-              isTrending={view === "home"}
-              active={view === "universe" ? activeUniverse : undefined}
-              onSelect={openUniverse}
-              onTrending={() => navigate("home")}
-            />
-          ))}
-        {ambiguous && (
-          <aside className="notice">
-            <p>What do you mean by CA?</p>
-            {["Chartered accountant", "California"].map((choice) => (
-              <button
-                key={choice}
-                onClick={() => {
-                  setAmbiguous(false);
-                  void openTopic(classifyTopic(choice)!);
-                }}
-              >
-                {choice}
-              </button>
+          )}
+          {view !== "graph" &&
+            (!isMobile ||
+              (!mobileChatOpen &&
+                view !== "topics" &&
+                view !== "history" &&
+                view !== "shorts")) &&
+            (isMobile ? (
+              <TopicFilters
+                topics={topics}
+                active={
+                  (view === "topic" || view === "shorts") &&
+                  topics.some(
+                    (topic) => topic.category === currentTopic?.category,
+                  )
+                    ? currentTopic?.category
+                    : undefined
+                }
+                onTrending={() => navigate("home")}
+                onTopic={(topic) => void openTopic(topic)}
+              />
+            ) : (
+              <UniverseFilters
+                isTrending={view === "home"}
+                active={view === "universe" ? activeUniverse : undefined}
+                onSelect={openUniverse}
+                onTrending={() => navigate("home")}
+              />
             ))}
-          </aside>
-        )}
-        {message && (
-          <p className="status-message" role="status">
-            {message}
-          </p>
-        )}
-        {!isMobile && view === "search" && (
-          <DesktopSearchLayout>
-            <SearchWorkspace
-              search={search}
-              onChoose={searchQuery}
-              onChange={changeSearch}
-              onClarify={(goal) => {
-                if (search.topic) void openTopic(search.topic, undefined, goal);
-              }}
-              onRetry={() => {
-                if (search.topic)
-                  void openTopic(search.topic, undefined, search.goal);
-              }}
-            >
-              <ContinueWatching
-                presentation={presentation}
-                rows={progress.rows}
-                topicKey={search.topic?.key}
-                videos={search.videos}
-                onSelect={(video, key) =>
-                  openVideo(
-                    video,
-                    search.topic ?? undefined,
-                    key,
-                    search.videos,
-                  )
-                }
-              />
-              <VideoResults
-                presentation={presentation}
-                videos={search.videos}
-                progress={progress.rows}
-                onSelect={(video) =>
-                  openVideo(
-                    video,
-                    search.topic ?? undefined,
-                    undefined,
-                    search.videos,
-                  )
-                }
-              />
-            </SearchWorkspace>
-          </DesktopSearchLayout>
-        )}
-        {isMobile && view === "topics" && (
-          <MobileTopics
-            topics={topics}
-            onOpen={(topic) => void openTopic(topic)}
-            onSearch={() => setMobileSearchOpen(true)}
-            onHistory={() => navigate("history")}
-          />
-        )}
-        {isMobile && view === "home" && topics.length === 0 && (
-          <section className="mobile-welcome">
-            <h1>Follow your curiosity.</h1>
-            <p>
-              Videos to explore. A teacher to ask.
-              <br />
-              Your topics, kept together.
-            </p>
-            <button onClick={() => setMobileSearchOpen(true)}>
-              Search anything
-            </button>
-          </section>
-        )}
-        {!isMobile && view === "universe" && activeUniverse && (
-          <UniverseFeed
-            key={activeUniverse}
-            universe={activeUniverse}
-            topics={topics}
-            progress={progress.rows}
-            onSelect={(video, videos) =>
-              openVideo(video, undefined, undefined, videos)
-            }
-            onTopic={(topic) => void openTopic(topic)}
-          />
-        )}
-        {view === "graph" && graphEnabled && (
-          <Suspense fallback={<p role="status">Opening Explore map…</p>}>
-            <LearningGraphPage
-              key={
-                graphEntry
-                  ? `${graphEntry.id}:${graphEntry.requestId}`
-                  : "restore"
-              }
-              entry={
-                graphEntry
-                  ? { id: graphEntry.id, universe: graphEntry.primaryUniverse }
-                  : undefined
-              }
-              token={token}
-              progress={progress.rows}
-              onSave={progress.save}
-              onAsk={askGraphQuestion}
-              onSearch={(label) => {
-                const topic = classifyTopic(label);
-                if (topic) void openTopic(topic);
-              }}
-            />
-          </Suspense>
-        )}
-        {view === "home" && (
-          <>
-            {graphEnabled && (
-              <section className="graph-entry-card">
-                <div>
-                  <h2>See where an idea can take you.</h2>
-                  <p>
-                    Open your learning map and follow connections between
-                    topics.
-                  </p>
-                </div>
-                <button onClick={() => navigate("graph")}>Explore map →</button>
-              </section>
-            )}
-            {progress.message && (
-              <p className="notice" role="status">
-                {progress.message}
-              </p>
-            )}
-            <ContinueWatching
-              presentation={presentation}
-              limit={3}
-              onViewAll={() => navigate("history")}
-              rows={progress.rows}
-              videos={homeVideos}
-              onSelect={(video, key) =>
-                openVideo(
-                  video,
-                  topics.find((topic) => topic.key === key),
-                  key,
-                )
-              }
-            />
-            <div className="suggestions">
-              <span>Try a topic</span>
-              {[
-                ["GPUs", "I want to know about GPUs"],
-                ["Income tax", "Income tax"],
-                ["Cooking", "Cooking"],
-              ].map(([label, text]) => (
+          {ambiguous && (
+            <aside className="notice">
+              <p>What do you mean by CA?</p>
+              {["Chartered accountant", "California"].map((choice) => (
                 <button
-                  key={label}
-                  disabled={search.busy}
-                  onClick={() => void openTopic(classifyTopic(text)!)}
+                  key={choice}
+                  onClick={() => {
+                    setAmbiguous(false);
+                    void openTopic(classifyTopic(choice)!);
+                  }}
                 >
-                  {label}
+                  {choice}
                 </button>
               ))}
-            </div>
-            {home.busy && (
-              <div className="feed-loading" role="status">
-                <div className="skeleton-grid">
-                  {[1, 2, 3].map((id) => (
-                    <div className="skeleton-card" key={id} />
-                  ))}
-                </div>
-                <p>Finding videos for your feed…</p>
-              </div>
-            )}
-            {home.error && (
-              <p className="notice" role="alert">
-                {home.error} <button onClick={home.retry}>Try again</button>
+            </aside>
+          )}
+          {message && (
+            <p className="status-message" role="status">
+              {message}
+            </p>
+          )}
+          {!isMobile && view === "search" && (
+            <DesktopSearchLayout>
+              <SearchWorkspace
+                search={search}
+                onChoose={searchQuery}
+                onChange={changeSearch}
+                onClarify={(goal) => {
+                  if (search.topic)
+                    void openTopic(search.topic, undefined, goal);
+                }}
+                onRetry={() => {
+                  if (search.topic)
+                    void openTopic(search.topic, undefined, search.goal);
+                }}
+              >
+                <ContinueWatching
+                  presentation={presentation}
+                  rows={progress.rows}
+                  topicKey={search.topic?.key}
+                  videos={search.videos}
+                  onSelect={(video, key) =>
+                    openVideo(
+                      video,
+                      search.topic ?? undefined,
+                      key,
+                      search.videos,
+                    )
+                  }
+                />
+                <VideoResults
+                  presentation={presentation}
+                  videos={search.videos}
+                  progress={progress.rows}
+                  onSelect={(video) =>
+                    openVideo(
+                      video,
+                      search.topic ?? undefined,
+                      undefined,
+                      search.videos,
+                    )
+                  }
+                />
+              </SearchWorkspace>
+            </DesktopSearchLayout>
+          )}
+          {isMobile && view === "topics" && (
+            <MobileTopics
+              topics={topics}
+              onOpen={(topic) => void openTopic(topic)}
+              onSearch={() => setMobileSearchOpen(true)}
+              onHistory={() => navigate("history")}
+            />
+          )}
+          {isMobile && view === "home" && topics.length === 0 && (
+            <section className="mobile-welcome">
+              <h1>Follow your curiosity.</h1>
+              <p>
+                Videos to explore. A teacher to ask.
+                <br />
+                Your topics, kept together.
               </p>
-            )}
-            {home.messages.map((text) => (
-              <p className="notice" key={text} role="status">
-                {text} <button onClick={home.retry}>Try again</button>
-              </p>
-            ))}
-            {!home.busy && (
-              <HomeFeed
-                presentation={presentation}
-                data={home}
-                topics={topics}
+              <button onClick={() => setMobileSearchOpen(true)}>
+                Search anything
+              </button>
+            </section>
+          )}
+          {!isMobile && view === "universe" && activeUniverse && (
+            <UniverseFeed
+              key={activeUniverse}
+              universe={activeUniverse}
+              topics={topics}
+              progress={progress.rows}
+              onSelect={(video, videos) =>
+                openVideo(video, undefined, undefined, videos)
+              }
+              onTopic={(topic) => void openTopic(topic)}
+            />
+          )}
+          {view === "graph" && graphEnabled && (
+            <Suspense fallback={<p role="status">Opening Explore map…</p>}>
+              <LearningGraphPage
+                key={
+                  graphEntry
+                    ? `${graphEntry.id}:${graphEntry.requestId}`
+                    : "restore"
+                }
+                entry={
+                  graphEntry
+                    ? {
+                        id: graphEntry.id,
+                        universe: graphEntry.primaryUniverse,
+                      }
+                    : undefined
+                }
+                token={token}
                 progress={progress.rows}
-                onSelect={openVideo}
+                onSave={progress.save}
+                onAsk={askGraphQuestion}
+                onSearch={(label) => {
+                  const topic = classifyTopic(label);
+                  if (topic) void openTopic(topic);
+                }}
               />
-            )}
-          </>
-        )}
-        {view === "history" && (
-          <section className="feed-section">
-            <h1>Continue watching</h1>
-            <p className="muted">Pick up a video where you left off.</p>
-            {progress.loading ? (
-              <p role="status">Loading your video progress…</p>
-            ) : (
+            </Suspense>
+          )}
+          {view === "home" && (
+            <>
+              {graphEnabled && (
+                <section className="graph-entry-card">
+                  <div>
+                    <h2>See where an idea can take you.</h2>
+                    <p>
+                      Open your learning map and follow connections between
+                      topics.
+                    </p>
+                  </div>
+                  <button onClick={() => navigate("graph")}>
+                    Explore map →
+                  </button>
+                </section>
+              )}
+              {progress.message && (
+                <p className="notice" role="status">
+                  {progress.message}
+                </p>
+              )}
               <ContinueWatching
                 presentation={presentation}
+                limit={3}
+                onViewAll={() => navigate("history")}
                 rows={progress.rows}
-                videos={[...homeVideos, ...search.videos]}
+                videos={homeVideos}
                 onSelect={(video, key) =>
                   openVideo(
                     video,
@@ -737,95 +692,203 @@ export default function App() {
                   )
                 }
               />
-            )}
-            {progress.message && (
-              <p className="notice" role="status">
-                {progress.message}
-              </p>
-            )}
-            {!progress.loading &&
-              !progress.rows.some(
-                (row) => !row.completed && row.position_seconds > 0,
-              ) && (
-                <p className="empty-state">
-                  Your unfinished videos will appear here after you start
-                  watching.
+              <div className="suggestions">
+                <span>Try a topic</span>
+                {[
+                  ["GPUs", "I want to know about GPUs"],
+                  ["Income tax", "Income tax"],
+                  ["Cooking", "Cooking"],
+                ].map(([label, text]) => (
+                  <button
+                    key={label}
+                    disabled={search.busy}
+                    onClick={() => void openTopic(classifyTopic(text)!)}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              {home.busy && (
+                <div className="feed-loading" role="status">
+                  <div className="skeleton-grid">
+                    {[1, 2, 3].map((id) => (
+                      <div className="skeleton-card" key={id} />
+                    ))}
+                  </div>
+                  <p>Finding videos for your feed…</p>
+                </div>
+              )}
+              {home.error && (
+                <p className="notice" role="alert">
+                  {home.error} <button onClick={home.retry}>Try again</button>
                 </p>
               )}
-          </section>
-        )}
-        {(view === "topic" || view === "shorts") && (
-          <>
-            {search.error && (
-              <p className="notice" role="alert">
-                {search.error}
-                {isMobile && (
-                  <>
-                    <button onClick={() => setMobileSearchOpen(true)}>
-                      Change search
-                    </button>
-                    <button onClick={() => navigate("history")}>
-                      Continue watching
-                    </button>
-                  </>
-                )}
-              </p>
-            )}
-            {search.busy && <p role="status">Finding videos…</p>}
-            <LearningWorkspace
-              presentation={presentation}
-              headingLabel={
-                !isMobile
-                  ? topicUniverse(workspaceTopic)
-                    ? universes[topicUniverse(workspaceTopic)!].name
-                    : ""
-                  : undefined
-              }
-              key={`${workspaceTopic.key}:${demo}:${token ? "account" : "guest"}:${initialVideo?.id ?? ""}:${view}`}
-              showReelControls={isMobile}
-              feedHidden={isMobile && mobileChatOpen}
-              onReturnToVideo={
-                isMobile ? () => setMobileChatOpen(false) : undefined
-              }
-              renderContent={
-                isMobile
-                  ? (content) => (
-                      <MobileLearningLayout
-                        {...content}
-                        chatOpen={mobileChatOpen}
-                        onAsk={askQuestion}
-                        onCloseChat={() => setMobileChatOpen(false)}
-                      />
-                    )
-                  : undefined
-              }
-              topic={workspaceTopic}
-              videos={workspaceVideos}
-              demo={demo}
-              progress={progress}
-              chat={chat}
-              onRelatedVideo={openChatVideo}
-              initialSeek={initialSeek}
-              initialVideo={initialVideo}
-              initialMode={view === "shorts" ? "short" : "all"}
+              {home.messages.map((text) => (
+                <p className="notice" key={text} role="status">
+                  {text} <button onClick={home.retry}>Try again</button>
+                </p>
+              ))}
+              {!home.busy && (
+                <HomeFeed
+                  presentation={presentation}
+                  data={home}
+                  topics={topics}
+                  progress={progress.rows}
+                  onSelect={openVideo}
+                />
+              )}
+            </>
+          )}
+          {view === "history" && !isMobile && (
+            <WatchHistory
+              key={token ?? "guest"}
+              rows={progress.rows}
+              videos={[...homeVideos, ...search.videos]}
+              loading={progress.loading}
+              message={progress.message}
+              onSelect={(video, row) => {
+                openVideo(
+                  video,
+                  topics.find((topic) => topic.key === row.topic_key),
+                  row.topic_key,
+                );
+                setHistoryPlayback(row);
+                window.scrollTo({ top: 0, behavior: "instant" });
+              }}
             />
-            {!discovery && search.nextPage && (
-              <button
-                className="load-more"
-                disabled={search.busy}
-                onClick={() => void search.load(search.topic!, true)}
-              >
-                {search.busy ? "Loading…" : "Load more videos"}
-              </button>
-            )}
-            {!search.busy && !workspaceVideos.length && !discovery && (
-              <p className="empty-state">
-                No videos returned. Try a clearer search.
-              </p>
-            )}
-          </>
-        )}
-      </Layout>
+          )}
+          {view === "history" && isMobile && (
+            <section className="feed-section">
+              <h1>Continue watching</h1>
+              <p className="muted">Pick up a video where you left off.</p>
+              {progress.loading ? (
+                <p role="status">Loading your video progress…</p>
+              ) : (
+                <ContinueWatching
+                  presentation={presentation}
+                  rows={progress.rows}
+                  videos={[...homeVideos, ...search.videos]}
+                  onSelect={(video, key) =>
+                    openVideo(
+                      video,
+                      topics.find((topic) => topic.key === key),
+                      key,
+                    )
+                  }
+                />
+              )}
+              {progress.message && (
+                <p className="notice" role="status">
+                  {progress.message}
+                </p>
+              )}
+              {!progress.loading &&
+                !progress.rows.some(
+                  (row) => !row.completed && row.position_seconds > 0,
+                ) && (
+                  <p className="empty-state">
+                    Your unfinished videos will appear here after you start
+                    watching.
+                  </p>
+                )}
+            </section>
+          )}
+          {(view === "topic" || view === "shorts") && (
+            <>
+              {!isMobile &&
+                historyPlayback &&
+                initialVideo?.id === historyPlayback.video_id && (
+                  <div className="watch-history-return">
+                    <button
+                      className="secondary"
+                      onClick={() => navigate("history")}
+                    >
+                      ← Watch history
+                    </button>
+                    <span>
+                      {historyPlayback.completed
+                        ? "Watching again from the beginning"
+                        : "Picking up where you left off"}
+                    </span>
+                  </div>
+                )}
+              {search.error && (
+                <p className="notice" role="alert">
+                  {search.error}
+                  {isMobile && (
+                    <>
+                      <button onClick={() => setMobileSearchOpen(true)}>
+                        Change search
+                      </button>
+                      <button onClick={() => navigate("history")}>
+                        Continue watching
+                      </button>
+                    </>
+                  )}
+                </p>
+              )}
+              {search.busy && <p role="status">Finding videos…</p>}
+              <LearningWorkspace
+                allowChatExpansion={!isMobile}
+                showResumeRow={isMobile || !historyPlayback}
+                presentation={
+                  isMobile || !historyPlayback
+                    ? presentation
+                    : { ...presentation, scrollOnOpen: false }
+                }
+                headingLabel={
+                  !isMobile
+                    ? topicUniverse(workspaceTopic)
+                      ? universes[topicUniverse(workspaceTopic)!].name
+                      : ""
+                    : undefined
+                }
+                key={`${workspaceTopic.key}:${demo}:${token ? "account" : "guest"}:${initialVideo?.id ?? ""}:${view}`}
+                showReelControls={isMobile}
+                feedHidden={isMobile && mobileChatOpen}
+                onReturnToVideo={
+                  isMobile ? () => setMobileChatOpen(false) : undefined
+                }
+                renderContent={
+                  isMobile
+                    ? (content) => (
+                        <MobileLearningLayout
+                          {...content}
+                          chatOpen={mobileChatOpen}
+                          onAsk={askQuestion}
+                          onCloseChat={() => setMobileChatOpen(false)}
+                        />
+                      )
+                    : (content) => <DesktopLearningLayout {...content} />
+                }
+                topic={workspaceTopic}
+                videos={workspaceVideos}
+                demo={demo}
+                progress={progress}
+                chat={chat}
+                onRelatedVideo={openChatVideo}
+                initialSeek={initialSeek}
+                initialVideo={initialVideo}
+                initialMode={view === "shorts" ? "short" : "all"}
+              />
+              {!discovery && search.nextPage && (
+                <button
+                  className="load-more"
+                  disabled={search.busy}
+                  onClick={() => void search.load(search.topic!, true)}
+                >
+                  {search.busy ? "Loading…" : "Load more videos"}
+                </button>
+              )}
+              {!search.busy && !workspaceVideos.length && !discovery && (
+                <p className="empty-state">
+                  No videos returned. Try a clearer search.
+                </p>
+              )}
+            </>
+          )}
+        </Layout>
+      </RelatedUniversesRendererContext>
     </GraphProvider>
   );
 }

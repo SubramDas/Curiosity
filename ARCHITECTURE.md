@@ -1,5 +1,18 @@
 # Project structure
 
+## Desktop related Universe popovers
+
+Shared classification labels consume `RelatedUniversesRendererContext`, with the renderer chosen in `src/App.tsx`. Desktop presentation and viewport positioning live in `desktop-ui/features/classification`; the native browser popover layer handles dismissal and prevents ancestor clipping. Mobile keeps the shared details fallback. The same desktop rendering applies to every shared video classification label, including history and chat. No classification/provider contract changes are required. See [behavior and verification](desktop-ui/features/classification/README.md).
+
+
+## Desktop Watch history
+
+`desktop-ui/features/history` owns the approved desktop history list and Resume/Watch again actions. Shared progress modules own date/order rules and restoration of missing video details. `useVideoProgress` stores optional progress timestamps, and the backend includes the existing account `updated_at` field in reads. No schema change is needed. `src/App.tsx` retains the mobile history flow and coordinates desktop history with the existing player. See [behavior and verification](desktop-ui/features/history/README.md).
+
+## Desktop teacher readability
+
+`shared/features/chat` owns safe answer formatting, suggestion cards and conversation scroll behavior. `desktop-ui/features/chat` owns the viewport-sized teacher panel and expanded layout; it resizes the existing mounted player to preserve playback. `LearningWorkspace` retains chat expansion state and supplies content through the layout callback selected in `src/App.tsx`. Provider behavior is unchanged. See [design and verification](design/penpot/chat/README.md).
+
 ## Educational search — desktop implementation
 
 `backend/search` owns intent decisions, batched video-purpose filtering, asynchronous jobs and restricted related-break requests. It reuses the configured Gemini queue, YouTube client and persistent caches. `shared/features/search` owns reusable choice/redirect/clarification states; `desktop-ui/features/search` owns presentation. The existing video-search hook retains pagination/cancellation, and `src/App.tsx` coordinates the separate desktop Search destination. Mobile guardrail screens remain later work. See [search behavior and contracts](backend/search/README.md).
@@ -45,6 +58,18 @@ StartupIdea/
 - **App entry:** `src/main.tsx` starts React. `src/App.tsx` coordinates existing account, topic, search, chat and navigation state, then supplies the layout with its content.
 
 Frontend and backend can share the repository while keeping their responsibilities separate. Folders do not imply separate deployments or microservices. The hosted backend runs as one Cloud Run service and serves both layouts at the same URL. Local development still runs Vite and a separate Node API process.
+
+## Shorts feed and saved playback
+
+The resume row is hidden while `VideoFeed` shows Shorts, including when switching formats within a topic. Short playback progress is still saved and available in the dedicated Continue watching destination. Opening an unfinished Short there resumes its saved position. Desktop and mobile share this behavior.
+
+## Shorts sound
+
+Visible Shorts request playback with sound on desktop and mobile. If YouTube reports blocked autoplay, the player offers **Play with sound** for an explicit user gesture. Browsers retain control of autoplay permissions; this does not bypass their restrictions. Leaving the viewport or hiding the tab still pauses playback. A simulated mobile browser journey checks sound on the first/next Short and recovery from blocked autoplay.
+
+## Navigation menu visibility
+
+The desktop header hides its menu toggle when the sidebar is permanently visible (above 900px). At 900px and below it opens the collapsed sidebar. The mobile header retains its own navigation button.
 
 ## Preserved behaviour
 

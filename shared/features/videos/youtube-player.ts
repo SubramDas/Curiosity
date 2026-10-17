@@ -5,7 +5,7 @@ export interface Player {
   cueVideoById(options: { videoId: string; startSeconds: number }): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
   playVideo(): void;
-  mute(): void;
+  unMute(): void;
   destroy(): void;
   pauseVideo(): void;
 }
@@ -15,6 +15,7 @@ interface PlayerOptions {
   height: string;
   playerVars: { origin: string; playsinline: number; start?: number };
   events: {
+    onAutoplayBlocked?: () => void;
     onReady?: (event: { target: Player }) => void;
     onStateChange: (event: { data: number }) => void;
     onError: (event: { data: number }) => void;

@@ -24,10 +24,13 @@ export interface LearningContent {
   feed: ReactNode;
   chat: ReactNode;
   currentVideo: Video | null;
+  chatExpanded: boolean;
+  hasVideos: boolean;
 }
 
 export function LearningWorkspace({
   presentation,
+  allowChatExpansion = false,
   headingLabel,
   topic,
   videos,
@@ -35,6 +38,7 @@ export function LearningWorkspace({
   progress,
   initialVideo,
   initialMode,
+  showResumeRow = true,
   chat,
   onRelatedVideo,
   initialSeek,
@@ -44,6 +48,7 @@ export function LearningWorkspace({
   feedHidden = false,
 }: {
   presentation?: VideoPresentation;
+  allowChatExpansion?: boolean;
   headingLabel?: string;
   feedHidden?: boolean;
   onReturnToVideo?: () => void;
@@ -58,7 +63,9 @@ export function LearningWorkspace({
   progress: ReturnType<typeof useVideoProgress>;
   initialVideo?: Video;
   initialMode?: "all" | "short";
+  showResumeRow?: boolean;
 }) {
+  const [chatExpanded, setChatExpanded] = useState(false);
   const [selected, setSelected] = useState<Video | null>(initialVideo ?? null);
   const selectVideo = useCallback(
     (video: Video) => setSelected({ ...video }),
@@ -150,13 +157,6 @@ export function LearningWorkspace({
           {progress.message}
         </p>
       )}
-      <ContinueWatching
-        presentation={presentation}
-        rows={progress.rows}
-        topicKey={topic.key}
-        videos={videos}
-        onSelect={selectVideo}
-      />
       {progress.loading ? (
         <p role="status">Loading your video progress…</p>
       ) : (
@@ -166,6 +166,17 @@ export function LearningWorkspace({
           isHidden={feedHidden}
           videos={videos}
           initialMode={initialMode}
+          resumeContent={
+            showResumeRow && (
+              <ContinueWatching
+                presentation={presentation}
+                rows={progress.rows}
+                topicKey={topic.key}
+                videos={videos}
+                onSelect={selectVideo}
+              />
+            )
+          }
           selected={selected}
           seekRequest={seekRequest}
           onCurrentVideo={setChatVideo}
@@ -187,6 +198,12 @@ export function LearningWorkspace({
   );
   const chatContent = (
     <ChatPanel
+      expanded={chatExpanded}
+      onToggleExpanded={
+        allowChatExpansion
+          ? () => setChatExpanded((value) => !value)
+          : undefined
+      }
       topic={topic.query}
       currentVideo={chatVideo}
       positionSeconds={
@@ -251,13 +268,15 @@ export function LearningWorkspace({
         </section>
       ) : (
         <div
-          className={`workspace-grid ${!videos.length && !selected ? "chat-only" : ""}`}
+          className={`workspace-grid ${!videos.length && !selected ? "chat-only" : ""} ${renderContent ? "custom-layout" : ""}`}
         >
           {renderContent ? (
             renderContent({
               feed: feedContent,
               chat: chatContent,
               currentVideo: chatVideo,
+              chatExpanded: allowChatExpansion && chatExpanded,
+              hasVideos: videos.length > 0 || Boolean(selected),
             })
           ) : (
             <>
