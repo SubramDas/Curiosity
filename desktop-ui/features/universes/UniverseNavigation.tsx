@@ -1,7 +1,6 @@
 import type { Topic } from "../../../shared/types";
 import {
   groupUniverseTopics,
-  topicUniverse,
   universes,
   type UniverseId,
 } from "../../../shared/features/universes/universe-rules";
@@ -39,12 +38,10 @@ export function UniverseSidebar({
   topics,
   active,
   onSelect,
-  onTopic,
 }: {
   topics: Topic[];
   active?: UniverseId;
   onSelect: (id: UniverseId) => void;
-  onTopic: (topic: Topic) => void;
 }) {
   return (
     <section
@@ -73,22 +70,6 @@ export function UniverseSidebar({
           </small>
         </button>
       ))}
-      {topics.some((topic) => !topicUniverse(topic)) && (
-        <details className="universe-other-searches">
-          <summary>Other saved searches</summary>
-          {topics
-            .filter((topic) => !topicUniverse(topic))
-            .map((topic) => (
-              <button
-                className="topic-link"
-                key={topic.key}
-                onClick={() => onTopic(topic)}
-              >
-                {topic.query}
-              </button>
-            ))}
-        </details>
-      )}
       <p className="fine-print">
         {topics.length} searches explored. Search freely; your discoveries stay
         organised.

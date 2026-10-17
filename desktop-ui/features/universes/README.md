@@ -8,7 +8,7 @@ Implements the approved **curiosity-desktop-universe** Penpot page and the deskt
 - A Universe loads videos and classifies them in the background. Only videos assigned primarily to that Universe appear in its feed. Subject filters work on the classified results without a new provider request. Search still shows mixed results from every Universe.
 - Long-video cards/player show the video title, then **Universe – subtopic**, then creator information. Shorts retain labels above their thumbnails/player.
 - A normal desktop video click attempts playback at the saved position, without an extra app Play/Resume button. Completed videos start at zero. The official player controls remain available if the browser blocks playback. Moving away still records progress and pauses hidden playback.
-- Previously saved categories are mapped for display without rewriting topic keys, Supabase records or playback storage. Saved searches can be reopened from the Universe feed. Unassigned legacy searches remain under Other saved searches.
+- Previously saved categories are mapped for display without rewriting topic keys, Supabase records or playback storage. Saved searches assigned to a Universe can be reopened from its feed. The sidebar shows only the three Universes; unassigned legacy searches are preserved in storage.
 
 ## Modules
 

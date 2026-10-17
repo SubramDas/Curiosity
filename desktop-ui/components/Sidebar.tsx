@@ -11,7 +11,6 @@ export function Sidebar({
   open,
   onNavigate,
   onUniverse,
-  onTopic,
   activeUniverse,
   onAsk,
   demo,
@@ -23,7 +22,6 @@ export function Sidebar({
   open: boolean;
   onNavigate: (view: PageView) => void;
   onUniverse: (id: UniverseId) => void;
-  onTopic: (topic: Topic) => void;
   activeUniverse?: UniverseId;
   onAsk: () => void;
   demo: boolean;
@@ -59,7 +57,6 @@ export function Sidebar({
         topics={topics}
         active={activeUniverse}
         onSelect={onUniverse}
-        onTopic={onTopic}
       />
       <button className="nav-item" onClick={onAsk}>
         <Icon name="chat" />
@@ -81,7 +78,7 @@ export function Sidebar({
         <br />
         YouTube videos belong to their creators.
         <br />
-        Hackathon demo · 18+
+        Hackathon demo
         <br />
         <a href="/demo-info.html">Demo and data information</a>
       </p>

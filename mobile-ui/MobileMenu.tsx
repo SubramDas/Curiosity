@@ -55,7 +55,7 @@ export function MobileMenu({
           </label>
         </details>
         <p className="fine-print">
-          Hackathon demo · 18+
+          Hackathon demo
           <br />
           YouTube videos belong to their creators.
           <br />

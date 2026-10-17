@@ -487,7 +487,6 @@ export default function App() {
                 open={menuOpen}
                 onNavigate={navigate}
                 onUniverse={openUniverse}
-                onTopic={(topic) => void openTopic(topic)}
                 activeUniverse={activeUniverse}
                 onAsk={askQuestion}
                 demo={demo}
