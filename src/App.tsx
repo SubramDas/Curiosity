@@ -1,3 +1,6 @@
+import { DesktopSearchLayout } from "../desktop-ui/features/search/DesktopSearchLayout";
+import { SearchWorkspace } from "../shared/features/search/SearchWorkspace";
+import { VideoResults } from "../shared/features/videos/VideoResults";
 import type { GraphNode } from "../shared/features/graph/graph-types";
 import { lazy, Suspense } from "react";
 import { GraphProvider } from "../shared/features/graph/GraphProvider";
@@ -78,6 +81,7 @@ export default function App() {
   const isMobile = useMediaQuery(
     "(max-width: 600px), (max-width: 900px) and (max-height: 500px)",
   );
+  const [accountOpen, setAccountOpen] = useState(false);
   const [mobileChatOpen, setMobileChatOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -110,7 +114,7 @@ export default function App() {
   const [activeUniverse, setActiveUniverse] = useState<UniverseId>();
   const presentation = isMobile ? undefined : desktopVideoPresentation;
   useEffect(() => {
-    if (isMobile && view === "universe") {
+    if (isMobile && (view === "universe" || view === "search")) {
       setView("home");
       setActiveUniverse(undefined);
     }
@@ -121,8 +125,9 @@ export default function App() {
   const [discovery, setDiscovery] = useState<{
     topic: Topic;
     videos: Video[];
+    searchId?: number;
   }>();
-  const search = useVideoSearch();
+  const search = useVideoSearch({ background: !isMobile });
   const progress = useVideoProgress(token);
   const home = useHomeFeed(
     topics,
@@ -137,7 +142,18 @@ export default function App() {
     ).values(),
   ];
   const currentTopic = discovery?.topic ?? search.topic;
-  const currentVideos = discovery?.videos ?? search.videos;
+  // A search selection keeps receiving checked results without replacing the player.
+  const currentVideos =
+    discovery?.searchId === search.searchId
+      ? [
+          ...new Map(
+            [...discovery.videos, ...search.videos].map((video) => [
+              video.id,
+              video,
+            ]),
+          ).values(),
+        ]
+      : (discovery?.videos ?? search.videos);
   useEffect(() => {
     if (token || !account.ready || topicsBelongToAccount) return;
     try {
@@ -159,6 +175,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function navigate(next: PageView) {
+    if (search.busy) search.reset();
     setGraphEntry(undefined);
     setActiveUniverse(undefined);
     setMobileChatOpen(false);
@@ -175,7 +192,33 @@ export default function App() {
     if (next === "home") setDiscovery(undefined);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
-  async function openTopic(topic: Topic, video?: Video) {
+  function openSearch() {
+    if (isMobile || view === "search") return;
+    search.reset();
+    setDiscovery(undefined);
+    setInitialVideo(undefined);
+    setInitialSeek(undefined);
+    setActiveUniverse(undefined);
+    setMessage("");
+    setAmbiguous(false);
+    setView("search");
+    setMenuOpen(false);
+  }
+  function changeSearch() {
+    search.reset();
+    setMessage("");
+    document.getElementById("search")?.focus();
+  }
+  function searchQuery(value: string) {
+    const topic = classifyTopic(value) ?? {
+      key: `general:${value.trim().toLowerCase()}`,
+      query: value.trim(),
+      category: "general" as const,
+      relatedCategories: [],
+    };
+    void openTopic(topic);
+  }
+  async function openTopic(topic: Topic, video?: Video, goal = "") {
     if (search.busy) return;
     setMobileChatOpen(false);
     setMobileSearchOpen(false);
@@ -183,15 +226,18 @@ export default function App() {
     setActiveUniverse(undefined);
     setDiscovery(undefined);
     setInitialVideo(video);
-    setView("topic");
+    setView(isMobile ? "topic" : "search");
     setMenuOpen(false);
+    setMessage("");
     setQuery(chosen.query);
-    if (!(await search.load(chosen))) return;
+    if (!(await search.load(chosen, false, goal))) return;
+    const savedTopic = goal ? (classifyTopic(goal) ?? chosen) : chosen;
+    setQuery(savedTopic.query);
     if (token) {
       try {
-        await callApi("topics/save", chosen, token);
+        await callApi("topics/save", savedTopic, token);
         if (currentToken.current !== token) return;
-        setTopics((current) => saveUniqueTopic(current, chosen));
+        setTopics((current) => saveUniqueTopic(current, savedTopic));
         setMessage("Saved to your account.");
       } catch (error) {
         setMessage(
@@ -199,7 +245,7 @@ export default function App() {
         );
       }
     } else {
-      setTopics((current) => saveUniqueTopic(current, chosen));
+      setTopics((current) => saveUniqueTopic(current, savedTopic));
       setMessage("Saved in this browser as a guest topic.");
     }
   }
@@ -238,6 +284,7 @@ export default function App() {
     setActiveUniverse(undefined);
     setDiscovery({
       topic: chosen,
+      ...(related === search.videos ? { searchId: search.searchId } : {}),
       videos: [video, ...related.filter((item) => item.id !== video.id)],
     });
     setInitialVideo(video);
@@ -251,12 +298,12 @@ export default function App() {
   function submit(event: React.SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const topic = classifyTopic(query);
-    if (!topic) {
+    if (!topic && isMobile) {
       setAmbiguous(true);
       return;
     }
     setAmbiguous(false);
-    void openTopic(topic);
+    searchQuery(query);
   }
   const previousAccount = useRef<string | undefined>(undefined);
   useEffect(() => {
@@ -315,6 +362,7 @@ export default function App() {
     };
   }, [token, account.ready]);
   function askQuestion() {
+    if (search.busy) search.reset();
     setMobileChatOpen(true);
     setMobileSearchOpen(false);
     if (!currentTopic) {
@@ -378,7 +426,7 @@ export default function App() {
           <PageHeader
             {...{
               searchOpen: mobileSearchOpen,
-              onSearchOpen: setMobileSearchOpen,
+              onSearchOpen: isMobile ? setMobileSearchOpen : () => openSearch(),
               chatOpen: mobileChatOpen,
               onCloseChat: () => setMobileChatOpen(false),
             }}
@@ -391,6 +439,8 @@ export default function App() {
             onHome={() => navigate("home")}
             account={
               <AccountPanel
+                isOpen={accountOpen}
+                onOpenChange={setAccountOpen}
                 presentation={isMobile ? "screen" : "popover"}
                 enabled={account.enabled}
                 ready={account.ready}
@@ -486,6 +536,50 @@ export default function App() {
           <p className="status-message" role="status">
             {message}
           </p>
+        )}
+        {!isMobile && view === "search" && (
+          <DesktopSearchLayout>
+            <SearchWorkspace
+              search={search}
+              onChoose={searchQuery}
+              onChange={changeSearch}
+              onClarify={(goal) => {
+                if (search.topic) void openTopic(search.topic, undefined, goal);
+              }}
+              onRetry={() => {
+                if (search.topic)
+                  void openTopic(search.topic, undefined, search.goal);
+              }}
+            >
+              <ContinueWatching
+                presentation={presentation}
+                rows={progress.rows}
+                topicKey={search.topic?.key}
+                videos={search.videos}
+                onSelect={(video, key) =>
+                  openVideo(
+                    video,
+                    search.topic ?? undefined,
+                    key,
+                    search.videos,
+                  )
+                }
+              />
+              <VideoResults
+                presentation={presentation}
+                videos={search.videos}
+                progress={progress.rows}
+                onSelect={(video) =>
+                  openVideo(
+                    video,
+                    search.topic ?? undefined,
+                    undefined,
+                    search.videos,
+                  )
+                }
+              />
+            </SearchWorkspace>
+          </DesktopSearchLayout>
         )}
         {isMobile && view === "topics" && (
           <MobileTopics

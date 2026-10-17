@@ -5,6 +5,7 @@ export function Header({
   query,
   onQuery,
   onSearch,
+  onSearchOpen,
   busy,
   menuOpen,
   onMenu,
@@ -14,6 +15,7 @@ export function Header({
   query: string;
   onQuery: (value: string) => void;
   onSearch: (event: React.SubmitEvent<HTMLFormElement>) => void;
+  onSearchOpen?: (open: boolean) => void;
   busy: boolean;
   menuOpen: boolean;
   onMenu: () => void;
@@ -45,6 +47,7 @@ export function Header({
         </label>
         <input
           id="search"
+          onFocus={() => onSearchOpen?.(true)}
           maxLength={480}
           required
           placeholder="Search anything you’re curious about"

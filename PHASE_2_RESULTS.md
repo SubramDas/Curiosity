@@ -1,5 +1,14 @@
 # Phase 2 check results
 
+## Desktop educational search guardrails — 2026-10-17
+
+- Implemented the reviewed separate desktop Search destination, opened from header focus. It supports learning-angle choices, entertainment redirects, goal clarification, filtered results, empty/error states and cancellation. Accepted learning goals are saved; rejected queries are not. Selecting a result reuses existing playback, teacher and resume behavior.
+- Added backend intent checks and metadata-purpose batches using only the configured Gemini model. Query decisions last six hours; per-video purpose decisions last 24 hours with metadata/model/policy keys. `SEARCH_GUARD_DAILY_LIMIT` defaults to 40 attempts/UTC day. Teacher → search → background classification priority shares the existing sequential queue. No provider counter was reset or model switched.
+- Guarded ordinary search/pagination and user-supplied feed/teacher recommendation queries. Added short-lived, idempotent search jobs with polling. Existing breaks use a timed server permit, server-owned topic and one cached batch of at most three related clips; ordinary search flags cannot enable entertainment mode. The server's elapsed-time gate supplements the existing browser active-learning timer rather than proving active attention.
+- Preserved guest/account topic keys and playback records. Kept account disclosure state in app coordination so the graph provider's identity remount no longer closes sign-in/account controls unexpectedly. Existing mobile screens remain; the separate mobile guardrail designs are not implemented.
+- Verification: `npm test` passes ten legacy experiment checks and 67 current service/rule checks (77 total). The final browser regression passes all 44 simulated journeys, including six new desktop guardrail cases. Initial regression failures exposed changed navigation assumptions and account disclosure remounts; those were corrected before the passing run. Browser fixtures now reject unmocked app API requests. Representative desktop choice/redirect/result screenshots were inspected. Build/type checks pass with the existing main-bundle size advisory; source whitespace checks pass.
+- These checks use simulated model/YouTube/account/player responses. They do not establish live search-policy accuracy, account-specific AI latency/allowances, or completion of a real twelve-minute break session. No new deployment or migration was performed. See [the implementation guide](backend/search/README.md).
+
 ## Approved mobile UI implemented
 
 - Added the phone shell, compact search/account header, bottom navigation, broad-topic screen, recent searches, full-screen teacher, viewport/keyboard handling and landscape player layout in `mobile-ui`. Existing desktop layout modules are retained.

@@ -1,5 +1,9 @@
 # Penpot design transfer
 
+## Search guardrails review — 2026-10-17
+
+New native review pages in **New File 1**: **Curiosity — Search · Desktop** and **Curiosity — Search · Mobile**. Twenty-six boards show search choices, entertainment redirects, goal clarification, learning results and failure states within the existing layout. Saved version: **Curiosity — Search guardrails review**. The founder approved desktop implementation, which is now prepared locally; mobile implementation remains pending. See [the Search handoff](search/README.md) for the policy, prototype, board IDs and verification limits.
+
 ## New review: playful learning graph
 
 Latest desktop review: **Explore map** below Home in the existing sidebar, with the white header/sidebar retained around the dark graph. Three additional native boards on **Graph D2 · Future discovery** show Home → Map → Feed. Open [the integration review](graph/desktop-integration/review.html) and [handoff](graph/desktop-integration/README.md).

@@ -2,9 +2,11 @@ export async function callApi<T>(
   path: string,
   data?: unknown,
   token?: string,
+  options: { signal?: AbortSignal } = {},
 ): Promise<T> {
   const response = await fetch(`/api/${path}`, {
     keepalive: path === "progress/save",
+    signal: options.signal,
     method: data === undefined ? "GET" : "POST",
     headers: {
       ...(data === undefined ? {} : { "Content-Type": "application/json" }),

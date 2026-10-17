@@ -65,7 +65,11 @@ export function createGeminiRequestQueue({
       return;
     }
     const teacher = pending.findIndex((entry) => entry.priority === "teacher");
-    const [entry] = pending.splice(teacher < 0 ? 0 : teacher, 1);
+    const search = pending.findIndex((entry) => entry.priority === "search");
+    const [entry] = pending.splice(
+      teacher >= 0 ? teacher : search >= 0 ? search : 0,
+      1,
+    );
     clearTimeout(entry.deadline);
     active = true;
     Promise.resolve()
@@ -99,7 +103,7 @@ export function createGeminiRequestQueue({
       {
         priority = "classification",
         onStatus,
-        maxWaitMs = priority === "teacher" ? 30_000 : 120_000,
+        maxWaitMs = ["teacher", "search"].includes(priority) ? 30_000 : 120_000,
       } = {},
     ) {
       if (closed)

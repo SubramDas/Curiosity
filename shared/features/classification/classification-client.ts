@@ -2,7 +2,14 @@ import type { Video, VideoClassification } from "../../types";
 import { callApi } from "../../lib/api";
 
 export interface ClassificationEntry {
-  status: "waiting" | "finding" | "idle" | "ready" | "failed" | "disabled";
+  status:
+    | "waiting"
+    | "finding"
+    | "idle"
+    | "ready"
+    | "failed"
+    | "limited"
+    | "disabled";
   classification?: VideoClassification;
   message?: string;
 }
@@ -43,7 +50,6 @@ export function createClassificationClient({ pollIntervalMs = 5000 } = {}) {
   let active = false;
   let enabled: boolean | undefined;
   let disposed = false;
-  let allowanceMessage = "";
   let controller: AbortController | undefined;
   function publish(id: string, entry: ClassificationEntry) {
     if (disposed) return;
@@ -81,13 +87,13 @@ export function createClassificationClient({ pollIntervalMs = 5000 } = {}) {
       first = false;
       const data = await response.json();
       if (!response.ok || data.status === "failed") {
-        if (
-          ["LOCAL_LIMIT", "SERVICE_LIMIT", "GEMINI_DAILY_LIMIT"].includes(
-            data.code,
-          )
-        )
-          allowanceMessage =
-            data.message ?? "Classification allowance reached.";
+        if (["LOCAL_LIMIT", "GEMINI_DAILY_LIMIT"].includes(data.code)) {
+          publish(id, {
+            status: "limited",
+            message: data.message ?? "Daily label limit reached.",
+          });
+          return;
+        }
         throw new Error(data.message ?? "Topic classification is unavailable.");
       }
       if (data.videoId !== id)
@@ -111,10 +117,10 @@ export function createClassificationClient({ pollIntervalMs = 5000 } = {}) {
     if (enabled === undefined || disposed || active) return;
     const next = queue.shift();
     if (!next) return;
-    if (!enabled || allowanceMessage) {
+    if (!enabled) {
       publish(next.id, {
-        status: enabled ? "failed" : "disabled",
-        message: allowanceMessage || "Topic classification is unavailable.",
+        status: "disabled",
+        message: "Topic classification is unavailable.",
       });
       pump();
       return;
@@ -196,7 +202,6 @@ export function createClassificationClient({ pollIntervalMs = 5000 } = {}) {
     },
     retry(id: string) {
       if (snapshot.get(id)?.status !== "failed") return;
-      allowanceMessage = "";
       publish(id, { status: "waiting" });
       queue.unshift({ id, retry: true });
       pump();

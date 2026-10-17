@@ -8,10 +8,29 @@ class DatabaseFixture {
   records = new Map<string, any>();
   queue = Promise.resolve();
   doc(path: string) {
-    return { path, id: path.split("/").at(-1)! };
+    return {
+      path,
+      id: path.split("/").at(-1)!,
+      get: async () => ({
+        data: () => structuredClone(this.records.get(path)),
+      }),
+    };
   }
   collection(path: string) {
-    return { doc: (id: string) => this.doc(path + "/" + id) };
+    return {
+      doc: (id: string) => this.doc(path + "/" + id),
+      limit: (count: number) => ({
+        get: async () => ({
+          docs: [...this.records]
+            .filter(([key]) => key.startsWith(path + "/"))
+            .slice(0, count)
+            .map(([key, value]) => ({
+              id: key.split("/").at(-1)!,
+              data: () => structuredClone(value),
+            })),
+        }),
+      }),
+    };
   }
   runTransaction<T>(operation: (transaction: any) => Promise<T>): Promise<T> {
     const result = this.queue.then(async () => {
@@ -96,9 +115,12 @@ test("Shared metadata survives adapter replacement, coalesces requests, expires,
     [{ value: "cached" }, { value: "cached" }],
   );
   assert.equal(calls, 1);
+  assert.deepEqual(await b.get(["one"]), { value: "cached" });
+  assert.equal(await b.get(["missing"]), undefined);
   await createFirestoreCache(options).getOrLoad(["one"], 100, load);
   assert.equal(calls, 1);
   time = 1101;
+  assert.equal(await b.get(["one"]), undefined);
   await b.getOrLoad(["one"], 100, load);
   assert.equal(calls, 2);
   await a.getOrLoad(["two"], 100, load);
@@ -147,4 +169,30 @@ test("Asynchronous cache misses finish at different times without losing video d
     ids,
   );
   assert.equal(calls, 3);
+});
+
+test("Mutable cache updates preserve concurrent catalog additions across hosted adapters and expire", async () => {
+  const database = new DatabaseFixture();
+  let time = 1000;
+  const options = { database, now: () => time };
+  const a = createFirestoreCache(options),
+    b = createFirestoreCache(options);
+  await Promise.all(
+    Array.from({ length: 8 }, (_, i) =>
+      (i % 2 ? a : b).update(["catalog"], 1000, (rows: number[] = []) => [
+        ...rows,
+        i,
+      ]),
+    ),
+  );
+  assert.deepEqual(await a.get(["catalog"]), [0, 1, 2, 3, 4, 5, 6, 7]);
+  assert.deepEqual(
+    (await a.entries()).map((row: { value: unknown }) => row.value),
+    [[0, 1, 2, 3, 4, 5, 6, 7]],
+  );
+  time += 1001;
+  assert.equal(await b.get(["catalog"]), undefined);
+  assert.deepEqual(await b.entries(), []);
+  await b.update(["catalog"], 1000, (rows: number[] = []) => [...rows, 9]);
+  assert.deepEqual(await a.get(["catalog"]), [9]);
 });

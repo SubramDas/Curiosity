@@ -1,3 +1,5 @@
+import { educationalSearchAssessor } from "./search-fixture";
+import { ServiceError } from "../backend/providers/request-json.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, rmSync } from "node:fs";
@@ -8,7 +10,10 @@ import {
   validateExtractedTopic,
   validateResolution,
 } from "../backend/classification/gemini-classifier.mjs";
-import { createVideoClassifier } from "../backend/classification/classify-video.mjs";
+import {
+  createVideoClassifier,
+  classificationMetadata,
+} from "../backend/classification/classify-video.mjs";
 import { createClassificationStore } from "../backend/classification/classification-store.mjs";
 import { createProviderCache } from "../backend/provider-cache.mjs";
 import { createWikidataClient } from "../backend/providers/wikidata.mjs";
@@ -514,6 +519,87 @@ test("Background classification returns promptly, shares one job and exposes pro
     assert.equal(calls, 1);
   } finally {
     finish?.();
+    server.closeAllConnections();
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("Cached labels accompany Universe feeds without starting classification or reserving classification allowance", async () => {
+  const directory = mkdtempSync(join(tmpdir(), "curiosity-cached-labels-"));
+  const cache = createProviderCache({
+    directory,
+    filename: "classification-cache.json",
+  });
+  const store = createClassificationStore({ cache, model: "test" });
+  const classification = {
+    topic: { label: "Food chemistry", wikidataId: "Q123", status: "matched" },
+    primaryUniverse: "science",
+    relatedUniverses: ["arts"],
+    reason: "Chemistry",
+    policyVersion: "1",
+  };
+  await store.getOrClassify(
+    classificationMetadata(video),
+    async () => classification,
+  );
+  assert.equal(
+    await store.getCached(
+      classificationMetadata({ ...video, title: "Changed" }),
+    ),
+    undefined,
+  );
+  let attempts = 0,
+    classificationReservations = 0;
+  const server = startServer(
+    { GEMINI_MODEL: "test" },
+    {
+      port: 0,
+      usageDirectory: directory,
+      classificationCache: cache,
+      classifier: {
+        classify: async () => {
+          attempts++;
+          throw new ServiceError(
+            "LOCAL_LIMIT",
+            "Daily classification allowance is used.",
+          );
+        },
+      },
+      searchAssessor: educationalSearchAssessor,
+      limits: {
+        reserve: (kind: string) => {
+          if (kind === "classification") classificationReservations++;
+        },
+      },
+      youtube: {
+        searchPage: async () => ({ videos: [video], nextPageToken: null }),
+        getPlayableVideos: async () => [video],
+      } as any,
+    },
+  );
+  await new Promise<void>((resolve) => server.once("listening", resolve));
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:${(server.address() as any).port}/api/feed/universe`,
+      {
+        method: "POST",
+        headers: {
+          Origin: "http://127.0.0.1:5173",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ queries: ["Food chemistry"] }),
+      },
+    );
+    assert.equal(response.status, 200);
+    const body = await response.json();
+    assert.deepEqual(
+      body.recommendations[0].videos[0].classification,
+      classification,
+    );
+    assert.equal(attempts, 0);
+    assert.equal(classificationReservations, 0);
+  } finally {
     server.closeAllConnections();
     await new Promise<void>((resolve) => server.close(() => resolve()));
     rmSync(directory, { recursive: true, force: true });

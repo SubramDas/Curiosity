@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./test";
 import { accountSession, mockAccountProvider } from "./account-fixture";
 
 test.beforeEach(async ({ page }) => {
@@ -174,7 +174,17 @@ test("Sign-out closes the account's active topic view and removes its saved subj
     }),
   );
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos: [], nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos: [],
+        nextPageToken: null,
+      },
+    }),
   );
   await enterCredentials(page);
   await page.getByRole("button", { name: "Sign in", exact: true }).click();

@@ -1,8 +1,8 @@
 # Shared Gemini scheduling
 
-All Gemini requests made by the running app server use one `createGeminiRequestQueue` instance injected into the teacher and classification adapters. No model or API key is changed.
+All Gemini requests made by the running app server use one `createGeminiRequestQueue` instance injected into the teacher, educational-search and classification adapters. No model or API key is changed.
 
-- One model request runs at a time. Teacher requests take the next available slot ahead of waiting classification work. An already running request is allowed to finish.
+- One model request runs at a time. Teacher requests take the next available slot, then educational-search checks, then waiting classification work. An already running request is allowed to finish. Search queue waits share the teacher's 30-second bound; the desktop polls a bounded search job while this work runs.
 - `GEMINI_REQUEST_INTERVAL_MS` sets the minimum time between request starts. Default: 15,000 ms (at most four starts/minute). This is a conservative starting setting, not a measurement or guarantee of the account's RPM/TPM/RPD allowance. Zero disables spacing for controlled checks, while requests remain sequential.
 - Provider deadlines begin at dispatch: 20 seconds for text/classification and 60 seconds for teacher video analysis. Waiting does not consume the provider timeout. Teacher queue waits are bounded at 30 seconds; classification waits at 120 seconds. Overflow/expiry returns a clear busy response rather than starting an abandoned queued operation.
 - Gemini HTTP 429 responses are parsed only for safe quota metadata. Retry-After and RetryInfo delays pause new work; absent a delay, the pause is 60 seconds. Failed operations are never automatically retried. Subsequent queued operations may proceed after cooldown.

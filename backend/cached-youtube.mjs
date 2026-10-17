@@ -1,13 +1,25 @@
+import { readYouTubeSearchPageSize } from "./providers/youtube-settings.mjs";
 const SEARCH_TTL = 6 * 3600_000;
 const DETAILS_TTL = 6 * 3600_000;
 const TRENDING_TTL = 3600_000;
 
-export function createCachedYouTubeClient({ youtube, cache, reserve }) {
+export function createCachedYouTubeClient({
+  youtube,
+  cache,
+  reserve,
+  searchPageSize = 10,
+}) {
+  const pageSize = readYouTubeSearchPageSize(searchPageSize);
   // Include settings/version so a change in search policy cannot reuse old results.
   const settings = "v2:IN:en:moderate:embeddable:relevance:10:metadata";
+  // Page size changes invalidate search pages, while metadata/Trending stay reusable.
+  const searchSettings = settings.replace(
+    ":10:metadata",
+    `:${pageSize}:metadata`,
+  );
   const searchPage = (query, pageToken) =>
     cache.getOrLoad(
-      ["search", settings, query.trim(), pageToken ?? ""],
+      ["search", searchSettings, query.trim(), pageToken ?? ""],
       SEARCH_TTL,
       async () => {
         await reserve(1);

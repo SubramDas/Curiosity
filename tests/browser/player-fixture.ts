@@ -1,4 +1,7 @@
 export async function mockPlayer(page: import("@playwright/test").Page) {
+  await page.route("**/api/search/session", (route) =>
+    route.fulfill({ json: { permit: "aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa" } }),
+  );
   await page.addInitScript(() => {
     const state = window as unknown as {
       YT: unknown;

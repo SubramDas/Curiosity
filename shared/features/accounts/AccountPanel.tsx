@@ -13,8 +13,12 @@ export function AccountPanel({
   onResendConfirmation,
   onSignOut,
   presentation = "popover",
+  isOpen,
+  onOpenChange,
 }: {
   presentation?: "popover" | "screen";
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
   enabled: boolean;
   signedIn: boolean;
   ready: boolean;
@@ -65,6 +69,8 @@ export function AccountPanel({
   return (
     <details
       ref={panel}
+      open={isOpen}
+      onToggle={(event) => onOpenChange?.(event.currentTarget.open)}
       className={`account-panel ${presentation === "screen" ? "account-screen" : ""}`}
       onKeyDown={(event) => {
         if (event.key === "Escape") closePanel();

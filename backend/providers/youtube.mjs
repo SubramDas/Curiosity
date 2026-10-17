@@ -1,9 +1,15 @@
+import { readYouTubeSearchPageSize } from "./youtube-settings.mjs";
 import { requestJson, ServiceError } from "./request-json.mjs";
 
 const API_ROOT = "https://www.googleapis.com/youtube/v3/";
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
 
-export function createYouTubeClient({ apiKey, fetchRequest = fetch }) {
+export function createYouTubeClient({
+  apiKey,
+  fetchRequest = fetch,
+  searchPageSize = 10,
+}) {
+  const pageSize = readYouTubeSearchPageSize(searchPageSize);
   if (!apiKey?.trim())
     throw new ServiceError("MISSING_CONFIG", "Set YOUTUBE_API_KEY in .env.");
 
@@ -71,7 +77,7 @@ export function createYouTubeClient({ apiKey, fetchRequest = fetch }) {
         part: "snippet",
         type: "video",
         q: query.trim(),
-        maxResults: "10",
+        maxResults: String(pageSize),
         videoEmbeddable: "true",
         regionCode: "IN",
         relevanceLanguage: "en",

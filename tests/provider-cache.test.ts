@@ -1,3 +1,4 @@
+import { educationalSearchAssessor } from "./search-fixture";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
@@ -31,12 +32,17 @@ test("Persistent cache reuses results after restart, isolates pages, expires and
       cache.getOrLoad(["search", "GPU", ""], 1000, load),
     ]);
     assert.equal(calls, 1);
+    assert.deepEqual(await cache.get(["search", "GPU", ""]), {
+      videos: [video("abcdefghijk")],
+    });
+    assert.equal(await cache.get(["missing"]), undefined);
     cache = createProviderCache(options);
     await cache.getOrLoad(["search", "GPU", ""], 1000, load);
     assert.equal(calls, 1);
     await cache.getOrLoad(["search", "GPU", "page2"], 1000, load);
     assert.equal(calls, 2);
     time = 2001;
+    assert.equal(await cache.get(["search", "GPU", ""]), undefined);
     cache = createProviderCache(options);
     assert.deepEqual(
       JSON.parse(readFileSync(join(directory, "youtube-cache.json"), "utf8"))
@@ -147,7 +153,12 @@ test("Actual API routes reuse cached search/details after exhaustion and a serve
   const open = async () => {
     const server = startServer(
       { SEARCH_DAILY_LIMIT: "2" },
-      { port: 0, usageDirectory: directory, youtube },
+      {
+        port: 0,
+        usageDirectory: directory,
+        youtube,
+        searchAssessor: educationalSearchAssessor,
+      },
     );
     await new Promise<void>((resolve) => server.once("listening", resolve));
     return server;

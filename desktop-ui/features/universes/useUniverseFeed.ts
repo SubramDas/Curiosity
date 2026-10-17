@@ -13,6 +13,9 @@ export function useUniverseFeed(universe: UniverseId, topics: Topic[]) {
     videos: [],
     messages: [],
   });
+  const [catalog, setCatalog] = useState<Video[]>([]);
+  const [catalogBusy, setCatalogBusy] = useState(true);
+  const [catalogError, setCatalogError] = useState("");
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState("");
   const [attempt, setAttempt] = useState(0);
@@ -24,6 +27,27 @@ export function useUniverseFeed(universe: UniverseId, topics: Topic[]) {
       ),
     ),
   ]);
+  useEffect(() => {
+    let active = true;
+    setCatalog([]);
+    setCatalogBusy(true);
+    setCatalogError("");
+    callApi<{ videos: Video[] }>("feed/universe/catalog", { universe })
+      .then((result) => {
+        if (!Array.isArray(result.videos))
+          throw new Error("Invalid saved video response.");
+        if (active) setCatalog(result.videos);
+      })
+      .catch(() => {
+        if (active) setCatalogError("Previously found videos could not load.");
+      })
+      .finally(() => {
+        if (active) setCatalogBusy(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [universe, attempt]);
   useEffect(() => {
     let active = true;
     setData({ videos: [], messages: [] });
@@ -57,5 +81,22 @@ export function useUniverseFeed(universe: UniverseId, topics: Topic[]) {
       active = false;
     };
   }, [universe, queries, attempt]);
-  return { ...data, busy, error, retry: () => setAttempt((n) => n + 1) };
+  return {
+    ...data,
+    // Prefer the catalog's existing classification; keep cards stable as discovery loads.
+    videos: [
+      ...catalog.map((video) => ({
+        ...video,
+        classification:
+          video.classification ??
+          data.videos.find((fresh) => fresh.id === video.id)?.classification,
+      })),
+      ...data.videos.filter(
+        (video) => !catalog.some((saved) => saved.id === video.id),
+      ),
+    ],
+    busy: busy || catalogBusy,
+    error: error || catalogError,
+    retry: () => setAttempt((n) => n + 1),
+  };
 }

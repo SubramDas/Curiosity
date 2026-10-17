@@ -28,7 +28,7 @@ export function createUsageLimiter(directory = ".local-data") {
         );
       }
       if (
-        ["videoChat", "classification"].includes(kind) &&
+        ["videoChat", "classification", "searchGuard"].includes(kind) &&
         usage[kind] === undefined
       )
         usage[kind] = 0;

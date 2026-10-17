@@ -1,5 +1,11 @@
 # Curiosity
 
+## Desktop educational search
+
+Focus the desktop header search to open the new Search screen. Clear learning requests show filtered videos; broad topics offer learning choices; entertainment requests offer educational alternatives and a learning-goal clarification. Existing playback and saved searches remain available. Restart `npm run dev` for the backend update.
+
+Search intent and video-purpose checks use the existing Gemini model and paced queue, with a separate `SEARCH_GUARD_DAILY_LIMIT` (default 40 model attempts per UTC day). Missing checks or exhausted allowances show an error rather than unchecked search results. The existing break interface uses a separate timed, topic-bound backend path. See [implementation details and limitations](backend/search/README.md). Mobile retains its existing presentation; its reviewed guardrail screens are not yet implemented. No redeployment is included.
+
 A learning app experiment: search any topic, choose YouTube videos, ask a doubt, and return to grouped subjects. A public adult hackathon demo is deployed on Google Cloud; wider release checks remain.
 
 **Live demo: https://curiosity-u2ubbw6fra-el.a.run.app**

@@ -61,6 +61,41 @@ export function createProviderCache({
       prune();
       if (entries.size !== size) persist();
     },
+    async entries() {
+      return [...entries]
+        .filter(([, row]) => row.expiresAt > now())
+        .map(([key, row]) => ({
+          key,
+          expiresAt: row.expiresAt,
+          value: structuredClone(row.value),
+        }));
+    },
+    async get(keyParts) {
+      const key = createHash("sha256")
+        .update(JSON.stringify(keyParts))
+        .digest("hex");
+      const entry = entries.get(key);
+      return entry?.expiresAt > now()
+        ? structuredClone(entry.value)
+        : undefined;
+    },
+    async update(keyParts, ttl, change) {
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
+        throw new Error("Invalid cache lifetime.");
+      const key = createHash("sha256")
+        .update(JSON.stringify(keyParts))
+        .digest("hex");
+      const entry = entries.get(key);
+      const value = change(
+        entry?.expiresAt > now() ? structuredClone(entry.value) : undefined,
+      );
+      entries.set(key, {
+        value: structuredClone(value),
+        expiresAt: now() + ttl,
+      });
+      persist();
+      return structuredClone(value);
+    },
     async getOrLoad(keyParts, ttl, load) {
       if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
         throw new Error("Cache lifetime must be between zero and one day.");

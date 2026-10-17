@@ -56,8 +56,17 @@
         refresh, a new conversation or an account change.
       </li>
       <li>
-        Searches request results from YouTube. Videos play through the official
-        YouTube player. Public video metadata is temporarily cached in
+        Search text and optional learning goals may be sent to Gemini to check
+        learning intent. Public video titles, descriptions and tags may also be
+        checked to filter educational results and related breaks. Avoid
+        sensitive or confidential information in searches. Decisions and
+        generated search alternatives are cached for up to six hours;
+        public-video purpose checks are cached for up to 24 hours. Alternatives
+        may reflect submitted wording.
+      </li>
+      <li>
+        Accepted searches request results from YouTube. Videos play through the
+        official YouTube player. Public video metadata is temporarily cached in
         Firestore; cache lookup keys are hashed. Daily service-use counters are
         retained to enforce budgets.
       </li>

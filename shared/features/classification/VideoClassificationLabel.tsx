@@ -21,6 +21,12 @@ function ClassificationLabelContent({
       return <span className="classification-status">Waiting for topic</span>;
     if (entry?.status === "finding")
       return <span className="classification-status">Finding topic…</span>;
+    if (entry?.status === "limited")
+      return (
+        <span className="classification-status" title={entry.message}>
+          Daily label limit reached
+        </span>
+      );
     if (entry?.status === "failed")
       return (
         <span className="classification-status" title={entry.message}>

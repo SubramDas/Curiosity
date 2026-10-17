@@ -1,5 +1,9 @@
 # Project structure
 
+## Educational search — desktop implementation
+
+`backend/search` owns intent decisions, batched video-purpose filtering, asynchronous jobs and restricted related-break requests. It reuses the configured Gemini queue, YouTube client and persistent caches. `shared/features/search` owns reusable choice/redirect/clarification states; `desktop-ui/features/search` owns presentation. The existing video-search hook retains pagination/cancellation, and `src/App.tsx` coordinates the separate desktop Search destination. Mobile guardrail screens remain later work. See [search behavior and contracts](backend/search/README.md).
+
 ## Learning graph — implementation prepared locally
 
 [GRAPH_IMPLEMENTATION_PLAN.md](GRAPH_IMPLEMENTATION_PLAN.md) is the feature reference. `backend/graph` now provides catalog, route, validation and publication modules, with a focused Supabase storage adapter. Shared graph modules own loading, SVG map/list, topic/event panels, local state and playback coordination; desktop/mobile folders own placement. The existing player emits separate activity samples while retaining resume-position saving.
@@ -71,7 +75,7 @@ Cloud Run serves the built website and API together. Supabase remains responsibl
 
 ## Desktop Universe presentation
 
-`desktop-ui/features/universes` owns the desktop Universe navigation, feed loading/filter controls and metadata rendering. Shared Universe rules map legacy topic records without changing storage identifiers. Video labels and primary placement use backend Gemini/Wikidata classifications. Shared video components accept optional presentation settings, keeping their mobile defaults. The backend Universe-feed route reuses the cached suggestion loader and skips Trending. No graph storage or migration is added.
+`desktop-ui/features/universes` owns the desktop Universe navigation, feed loading/filter controls and metadata rendering. Shared Universe rules map legacy topic records without changing storage identifiers. Video labels and primary placement use backend Gemini/Wikidata classifications. Shared video components accept optional presentation settings, keeping their mobile defaults. The backend Universe-feed route reuses the cached suggestion loader and skips Trending. `backend/universes/search-catalog.mjs` joins server-approved search references with existing classifications in the bounded backend cache. A separate catalog read lets saved videos appear while discovery is still loading or unavailable. Desktop feeds merge by video ID and use the existing Topic filters and primary-only placement. No graph storage or migration is added.
 
 ## Video classification
 

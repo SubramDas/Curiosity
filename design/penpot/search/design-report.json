@@ -1,0 +1,340 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "pages": [
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "name": "Curiosity — Search · Desktop"
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "name": "Curiosity — Search · Mobile"
+    }
+  ],
+  "boards": [
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fb9608591",
+      "name": "Search · 01 · Start a search",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 0,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 41,
+      "linkedControls": 11,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fbb982dc0",
+      "name": "Search · 02 · Checking your search",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 1,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 32,
+      "linkedControls": 4,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fbe4c6d5f",
+      "name": "Search · 03 · Choose a learning angle",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 2,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 40,
+      "linkedControls": 13,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fc25360a7",
+      "name": "Search · 04 · Entertainment redirect",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 3,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 39,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fc797378e",
+      "name": "Search · 05 · Clarify your learning goal",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 4,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 35,
+      "linkedControls": 6,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fcdb25790",
+      "name": "Search · 06 · Learning results",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 5,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 4,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fda449003",
+      "name": "Search · 07 · No suitable results",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 6,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 38,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fe428ea2f",
+      "name": "Search · 08 · Search check unavailable",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 7,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 36,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900d253698",
+      "name": "Search · 9 · Learn the rules of football",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 8,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 3,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900d4df742",
+      "name": "Search · 10 · The psychology of humor",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 9,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 3,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900d731990",
+      "name": "Search · 11 · Learn how comedy timing works",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 10,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 3,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd9246e37cf8",
+      "name": "Search · 12 · Understand football tactics",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 11,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 3,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd9247580f8f",
+      "name": "Search · 13 · Explore football history",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "mobile": false,
+      "state": 12,
+      "width": 1440,
+      "height": 1000,
+      "editableTextLayers": 45,
+      "linkedControls": 3,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8ff6880836",
+      "name": "Search · 01 · Start a search",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 0,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 28,
+      "linkedControls": 11,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8ff7e542c3",
+      "name": "Search · 02 · Checking your search",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 1,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 19,
+      "linkedControls": 4,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8ff9c51408",
+      "name": "Search · 03 · Choose a learning angle",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 2,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 27,
+      "linkedControls": 13,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8ffbc45c3a",
+      "name": "Search · 04 · Entertainment redirect",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 3,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8ffe72303c",
+      "name": "Search · 05 · Clarify your learning goal",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 4,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 22,
+      "linkedControls": 6,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900106f48c",
+      "name": "Search · 06 · Learning results",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 5,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 2,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd9004674a36",
+      "name": "Search · 07 · No suitable results",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 6,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 25,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd9007e9786c",
+      "name": "Search · 08 · Search check unavailable",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 7,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 23,
+      "linkedControls": 10,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900e04d8a3",
+      "name": "Search · 9 · Learn the rules of football",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 8,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 1,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900e1e1a3b",
+      "name": "Search · 10 · The psychology of humor",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 9,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 1,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd900e37bc86",
+      "name": "Search · 11 · Learn how comedy timing works",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 10,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 1,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd924a0a182f",
+      "name": "Search · 12 · Understand football tactics",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 11,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 1,
+      "outside": []
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd924a290ea5",
+      "name": "Search · 13 · Explore football history",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "mobile": true,
+      "state": 12,
+      "width": 390,
+      "height": 960,
+      "editableTextLayers": 26,
+      "linkedControls": 1,
+      "outside": []
+    }
+  ],
+  "components": [
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd924963a8ee",
+      "name": "Primary action"
+    }
+  ],
+  "validationErrors": [],
+  "version": {
+    "label": "Curiosity — Search guardrails review"
+  },
+  "shareUrl": null,
+  "visualReview": "Representative desktop/mobile choice, redirect, goal and result PNG previews inspected. Other states checked structurally."
+}

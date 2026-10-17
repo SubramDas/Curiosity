@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./test";
 import { mockPlayer } from "./player-fixture";
 const video = {
   id: "Kgcfj_KV-mo",
@@ -58,7 +58,17 @@ async function setup(page: Page) {
     r.fulfill({ json: { trending: mixed, recommendations: [], messages: [] } }),
   );
   await page.route("**/api/search", (r) =>
-    r.fulfill({ json: { videos: mixed, nextPageToken: null } }),
+    r.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos: mixed,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.route("**/api/videos/details", (r) => r.fulfill({ json: mixed }));
 }

@@ -1,5 +1,8 @@
 import { VideoClassificationLabel } from "../../../shared/features/classification/VideoClassificationLabel";
-import { useClassifiedVideos } from "../../../shared/features/classification/ClassificationProvider";
+import {
+  useClassifiedVideos,
+  useClassificationEntry,
+} from "../../../shared/features/classification/ClassificationProvider";
 import { useMemo, useState } from "react";
 import type { Topic, Video } from "../../../shared/types";
 import type { VideoProgress } from "../../../shared/features/progress/useVideoProgress";
@@ -14,6 +17,18 @@ import { ShortsShelf } from "../../../shared/features/videos/ShortsShelf";
 import { isShortVideo } from "../../../shared/features/videos/video-format";
 import { desktopVideoPresentation } from "./VideoUniverseLabel";
 import { useUniverseFeed } from "./useUniverseFeed";
+
+function ClassificationCandidate({ video }: { video: Video }) {
+  const { entry } = useClassificationEntry(video.id);
+  const checking =
+    !entry || ["waiting", "finding", "idle"].includes(entry.status);
+  return (
+    <div className="classification-candidate">
+      {checking && <span>Checking a video's subject</span>}
+      <VideoClassificationLabel video={video} />
+    </div>
+  );
+}
 
 export function UniverseFeed({
   universe,
@@ -81,49 +96,44 @@ export function UniverseFeed({
             classified. They remain available through search and Trending.
           </p>
         )}
-      {!feed.busy && (
-        <>
-          <VideoResults
-            videos={shown.filter((v) => !isShortVideo(v))}
-            progress={progress}
-            onSelect={(video) => onSelect(video, shown)}
-            presentation={desktopVideoPresentation}
-          />
-          <ShortsShelf
-            videos={shown.filter(isShortVideo)}
-            progress={progress}
-            onSelect={(video) => onSelect(video, shown)}
-            presentation={desktopVideoPresentation}
-          />
-          {pendingCandidates.length > 0 && (
-            <section
-              className="universe-classification-candidates"
-              aria-label="Finding Universe videos"
-            >
-              {pendingCandidates.map((video) => (
-                <div key={video.id} className="classification-candidate">
-                  <span>Checking a video's subject</span>
-                  <VideoClassificationLabel video={video} />
-                </div>
-              ))}
-            </section>
-          )}
-          {candidateLimit < classifiedVideos.length && (
-            <button
-              className="secondary"
-              onClick={() => setCandidateLimit((count) => count + 3)}
-            >
-              Explore more videos
-            </button>
-          )}
-          {!shown.length && !pendingCandidates.length && (
-            <p className="empty-state">
-              No videos are available in this view. Try another filter or search
-              any topic above.
-            </p>
-          )}
-        </>
-      )}
+      <>
+        <VideoResults
+          videos={shown.filter((v) => !isShortVideo(v))}
+          progress={progress}
+          onSelect={(video) => onSelect(video, shown)}
+          presentation={desktopVideoPresentation}
+        />
+        <ShortsShelf
+          videos={shown.filter(isShortVideo)}
+          progress={progress}
+          onSelect={(video) => onSelect(video, shown)}
+          presentation={desktopVideoPresentation}
+        />
+        {pendingCandidates.length > 0 && (
+          <section
+            className="universe-classification-candidates"
+            aria-label="Finding Universe videos"
+          >
+            {pendingCandidates.map((video) => (
+              <ClassificationCandidate key={video.id} video={video} />
+            ))}
+          </section>
+        )}
+        {candidateLimit < classifiedVideos.length && (
+          <button
+            className="secondary"
+            onClick={() => setCandidateLimit((count) => count + 3)}
+          >
+            Explore more videos
+          </button>
+        )}
+        {!feed.busy && !shown.length && !pendingCandidates.length && (
+          <p className="empty-state">
+            No videos are available in this view. Try another filter or search
+            any topic above.
+          </p>
+        )}
+      </>
       {saved.length > 0 && (
         <details className="universe-saved-searches">
           <summary>Your saved searches ({saved.length})</summary>

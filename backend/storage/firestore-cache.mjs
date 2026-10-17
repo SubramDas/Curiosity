@@ -18,23 +18,31 @@ export function createFirestoreCache({
     writeQueue = result.catch(() => {});
     return result;
   }
-  async function store(record, owner, value, ttl) {
-    const payload = JSON.stringify(value);
-    if (typeof payload !== "string" || Buffer.byteLength(payload) > 750_000)
-      throw new ServiceError(
-        "SERVICE_ERROR",
-        "Video metadata is too large to cache.",
-      );
-    await serialWrite(() =>
+  async function store(record, owner, value, ttl, change) {
+    return serialWrite(() =>
       database.runTransaction(async (transaction) => {
         const [snapshot, catalog] = await Promise.all([
           transaction.get(record),
           transaction.get(index),
         ]);
-        if (snapshot.data()?.owner !== owner)
+        if (!change && snapshot.data()?.owner !== owner)
           throw new ServiceError(
             "SERVICE_ERROR",
             "The cache request timed out. Try again.",
+          );
+        const stored = snapshot.data();
+        const nextValue = change
+          ? change(
+              stored?.expiresAt > now() && typeof stored.payload === "string"
+                ? JSON.parse(stored.payload)
+                : undefined,
+            )
+          : value;
+        const payload = JSON.stringify(nextValue);
+        if (typeof payload !== "string" || Buffer.byteLength(payload) > 750_000)
+          throw new ServiceError(
+            "SERVICE_ERROR",
+            "Video metadata is too large to cache.",
           );
         const existing = catalog.data()?.entries ?? {};
         const valid = Object.fromEntries(
@@ -68,6 +76,7 @@ export function createFirestoreCache({
         transaction.set(index, {
           entries: Object.fromEntries([...retained, [record.id, expiresAt]]),
         });
+        return nextValue;
       }),
     );
   }
@@ -136,6 +145,42 @@ export function createFirestoreCache({
           for (const [key] of expired) delete stored[key];
           transaction.set(index, { entries: stored });
         }),
+      );
+    },
+    async entries() {
+      const snapshot = await entries.limit(maxEntries).get();
+      return snapshot.docs.flatMap((doc) => {
+        const row = doc.data();
+        return row.expiresAt > now() && typeof row.payload === "string"
+          ? [
+              {
+                key: doc.id,
+                expiresAt: row.expiresAt,
+                value: JSON.parse(row.payload),
+              },
+            ]
+          : [];
+      });
+    },
+    async get(parts) {
+      const key = createHash("sha256")
+        .update(JSON.stringify(parts))
+        .digest("hex");
+      const snapshot = await entries.doc(key).get();
+      const stored = snapshot.data();
+      return stored?.expiresAt > now() && typeof stored.payload === "string"
+        ? JSON.parse(stored.payload)
+        : undefined;
+    },
+    // Use update-only keys for mutable catalogs, separate from leased getOrLoad keys.
+    async update(parts, ttl, change) {
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
+        throw new Error("Invalid cache lifetime.");
+      const key = createHash("sha256")
+        .update(JSON.stringify(parts))
+        .digest("hex");
+      return structuredClone(
+        await store(entries.doc(key), null, undefined, ttl, change),
       );
     },
     async getOrLoad(parts, ttl, load) {

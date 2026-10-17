@@ -1,6 +1,6 @@
 import { mockPlayer } from "./player-fixture";
 import { mockAccountProvider } from "./account-fixture";
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./test";
 const videos = [
   {
     id: "Kgcfj_KV-mo",
@@ -13,6 +13,23 @@ const videos = [
 ];
 
 test.beforeEach(async ({ page }) => {
+  await page.route("**/api/videos/details", (r) => r.fulfill({ json: videos }));
+  await page.route("**/api/search/session", (r) =>
+    r.fulfill({ json: { permit: "aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa" } }),
+  );
+  await page.route("**/api/search/break", (r) =>
+    r.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
+  );
   await page.route("**/api/feed/home", (route) =>
     route.fulfill({
       json: { trending: [], recommendations: [], messages: [] },
@@ -27,7 +44,17 @@ test("Search pagination preserves grouped guest topics across reload", async ({
     r.fulfill({ json: { supabaseConfigured: false } }),
   );
   await page.route("**/api/search", (r) =>
-    r.fulfill({ json: { videos, nextPageToken: "next" } }),
+    r.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: "next",
+      },
+    }),
   );
   await page.goto("/");
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
@@ -54,11 +81,22 @@ test("Search pagination preserves grouped guest topics across reload", async ({
 test("Chat failure is visible, and an offered demo break persists without inventing clips", async ({
   page,
 }) => {
+  await mockPlayer(page);
   await page.route("**/api/config", (route) =>
     route.fulfill({ json: { supabaseConfigured: false } }),
   );
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.route("**/api/chat", (route) =>
     route.fulfill({
@@ -68,6 +106,9 @@ test("Chat failure is visible, and an offered demo break persists without invent
   );
   await page.goto("/");
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByRole("button", { name: "How GPUs work", exact: true })
+    .click();
   await page
     .getByLabel("What would you like explained?")
     .fill("How does CUDA work?");
@@ -104,6 +145,11 @@ test("Unavailable embedded video offers a clear alternative", async ({
   await page.route("**/api/search", (route) =>
     route.fulfill({
       json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
         videos: [
           {
             ...videos[0],
@@ -131,7 +177,17 @@ test("Long video stays above its result; guest progress survives reload and resu
     route.fulfill({ json: { supabaseConfigured: false } }),
   );
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.goto("/");
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
@@ -168,6 +224,11 @@ test("Scrolling short videos replaces and stops the previous player", async ({
   await page.route("**/api/search", (route) =>
     route.fulfill({
       json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
         videos: [
           { ...videos[0], details: { ...videos[0].details, duration: "PT1M" } },
           {
@@ -183,6 +244,9 @@ test("Scrolling short videos replaces and stops the previous player", async ({
   );
   await page.goto("/");
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
+  await page
+    .getByRole("button", { name: "How GPUs work", exact: true })
+    .click();
   await page.setViewportSize({ width: 390, height: 844 });
   await page
     .getByLabel("Video format")
@@ -191,8 +255,15 @@ test("Scrolling short videos replaces and stops the previous player", async ({
   await page.locator(".reel-feed").scrollIntoViewIfNeeded();
   await expect(page.locator(".short-player")).toHaveCount(1);
   await expect
-    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.playing))
+    .poll(() =>
+      page.evaluate(() =>
+        (window as any).mockPlayers.some((p: any) => !p.destroyed && p.playing),
+      ),
+    )
     .toBe(true);
+  const initialPlayerIndex = await page.evaluate(() =>
+    (window as any).mockPlayers.findIndex((p: any) => !p.destroyed),
+  );
   await page.locator(".reel-feed").evaluate((element) => {
     element.scrollTop = element.clientHeight;
   });
@@ -204,7 +275,12 @@ test("Scrolling short videos replaces and stops the previous player", async ({
   ).toBe(true);
   await page.screenshot({ path: "/tmp/curiosity-short-feed-mobile.png" });
   await expect
-    .poll(() => page.evaluate(() => (window as any).mockPlayers[0]?.destroyed))
+    .poll(() =>
+      page.evaluate(
+        (index: number) => (window as any).mockPlayers[index]?.destroyed,
+        initialPlayerIndex,
+      ),
+    )
     .toBe(true);
   await expect
     .poll(() =>
@@ -223,7 +299,17 @@ test("Account progress loads independently of guest storage and saves the paused
   const saved: unknown[] = [];
   await mockAccountProvider(page);
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.route("**/api/topics/list", (route) =>
     route.fulfill({ json: [] }),
@@ -292,6 +378,11 @@ test("Continue watching restores a saved video missing from fresh search results
   await page.route("**/api/search", (route) =>
     route.fulfill({
       json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
         videos: [
           { ...videos[0], id: "abcdefghijk", title: "New search result" },
         ],
@@ -351,7 +442,17 @@ test("Home starts with the three Universes; saved searches survive reload and Ho
     route.fulfill({ json: { supabaseConfigured: false } }),
   );
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.route("**/api/feed/home", (route) =>
     route.fulfill({
@@ -493,7 +594,17 @@ test("Continue watching reopens a saved player without searching again", async (
   let searches = 0;
   await page.route("**/api/search", (route) => {
     searches++;
-    return route.fulfill({ json: { videos, nextPageToken: null } });
+    return route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    });
   });
   await page.route("**/api/videos/details", (route) =>
     route.fulfill({ json: videos }),
@@ -541,7 +652,17 @@ test("Teacher labels unrelated questions, remembers follow-ups, and jumps to a r
     route.fulfill({ json: { supabaseConfigured: false } }),
   );
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   const requests: any[] = [];
   await page.route("**/api/chat", (route) => {
@@ -666,7 +787,17 @@ test("Teacher conversation clears on sign-out and cannot restore a late private 
 }) => {
   await mockAccountProvider(page);
   await page.route("**/api/search", (route) =>
-    route.fulfill({ json: { videos, nextPageToken: null } }),
+    route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos,
+        nextPageToken: null,
+      },
+    }),
   );
   await page.route("**/api/topics/save", (route) =>
     route.fulfill({ json: [] }),
@@ -703,6 +834,9 @@ test("Teacher conversation clears on sign-out and cannot restore a late private 
   ).toBeVisible();
   await page.getByRole("button", { name: "GPUs", exact: true }).click();
   await page
+    .getByRole("button", { name: "How GPUs work", exact: true })
+    .click();
+  await page
     .getByLabel("What would you like explained?")
     .fill("A private question");
   await page.getByRole("button", { name: "Ask →" }).click();
@@ -724,7 +858,16 @@ test("Teacher is available before searching or selecting a video", async ({
   let searches = 0;
   await page.route("**/api/search", (route) => {
     searches++;
-    return route.fulfill({ json: { videos: [] } });
+    return route.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos: [],
+      },
+    });
   });
   await page.route("**/api/chat", (route) => {
     expect(route.request().postDataJSON().currentVideo).toBeNull();

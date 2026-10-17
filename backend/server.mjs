@@ -1,10 +1,20 @@
+import { readYouTubeSearchPageSize } from "./providers/youtube-settings.mjs";
+import { createCachedSearchRecovery } from "./universes/recover-cached-search.mjs";
+import { createSearchCatalog } from "./universes/search-catalog.mjs";
+import { createSearchAssessor } from "./search/gemini-search.mjs";
+import { createQueryGuard } from "./search/query-guard.mjs";
+import { createVideoFilter } from "./search/video-filter.mjs";
+import { createSearchRoutes } from "./search/routes.mjs";
 import { createGraphRoutes } from "./graph/routes.mjs";
 import { createSupabaseGraphStore } from "./storage/supabase-graph.mjs";
 import { createGeminiRequestQueue } from "./gemini/request-queue.mjs";
 import { createGeminiRequester } from "./gemini/request.mjs";
 import { createClassificationJobs } from "./classification/classification-jobs.mjs";
 import { createGeminiClassifier } from "./classification/gemini-classifier.mjs";
-import { createVideoClassifier } from "./classification/classify-video.mjs";
+import {
+  createVideoClassifier,
+  classificationMetadata,
+} from "./classification/classify-video.mjs";
 import { createClassificationStore } from "./classification/classification-store.mjs";
 import { createWikidataClient } from "./providers/wikidata.mjs";
 import { createProviderCache } from "./provider-cache.mjs";
@@ -61,7 +71,7 @@ function validateText(text, max = 480) {
 
 /**
  * @param {NodeJS.ProcessEnv} environment
- * @param {{port?: number, host?: string, usageDirectory?: string, youtube?: ReturnType<typeof createYouTubeClient>, allowedOrigins?: string[], limits?: import('./storage/contracts').UsageStore, cache?: import('./storage/contracts').VideoCache, staticDirectory?: string, allowCloudRunOrigin?: boolean, classificationCache?: import('./storage/contracts').VideoCache, classifier?: {classify(video: any): Promise<any>}, beforeRequest?: Function}} options
+ * @param {{port?: number, host?: string, usageDirectory?: string, youtube?: ReturnType<typeof createYouTubeClient>, allowedOrigins?: string[], limits?: import('./storage/contracts').UsageStore, cache?: import('./storage/contracts').VideoCache, staticDirectory?: string, allowCloudRunOrigin?: boolean, classificationCache?: import('./storage/contracts').VideoCache, classifier?: {classify(video: any): Promise<any>}, beforeRequest?: Function, searchAssessor?: {query: Function, videos: Function}}} options
  */
 export function startServer(
   environment = process.env,
@@ -78,8 +88,12 @@ export function startServer(
     beforeRequest,
     classificationCache: providedClassificationCache,
     classifier: providedClassifier,
+    searchAssessor: providedSearchAssessor,
   } = {},
 ) {
+  const searchPageSize = readYouTubeSearchPageSize(
+    environment.YOUTUBE_SEARCH_PAGE_SIZE,
+  );
   const origins = new Set([...localOrigins, ...allowedOrigins]);
   const limits = providedLimits ?? createUsageLimiter(usageDirectory);
   const supabase = createSupabaseClient(environment);
@@ -102,6 +116,31 @@ export function startServer(
         environment.ALLOW_GEMINI_FREE_TEST === "true",
       ));
   let classificationCache;
+  let classificationStore;
+  function labelStore() {
+    classificationCache ??=
+      providedClassificationCache ??
+      createProviderCache({
+        directory: usageDirectory,
+        filename: "classification-cache.json",
+      });
+    classificationStore ??= createClassificationStore({
+      cache: classificationCache,
+      model: environment.GEMINI_MODEL,
+    });
+    return classificationStore;
+  }
+  async function attachCachedLabels(videos) {
+    if (!classificationEnabled) return videos;
+    return Promise.all(
+      videos.map(async (video) => {
+        const classification = await labelStore().getCached(
+          classificationMetadata(video),
+        );
+        return classification ? { ...video, classification } : video;
+      }),
+    );
+  }
   function videoClassifier() {
     if (!classificationEnabled)
       throw new ServiceError(
@@ -109,12 +148,7 @@ export function startServer(
         "Video classification is unavailable. Videos are still watchable.",
       );
     if (!classifier) {
-      classificationCache =
-        providedClassificationCache ??
-        createProviderCache({
-          directory: usageDirectory,
-          filename: "classification-cache.json",
-        });
+      labelStore();
       classifier = createVideoClassifier({
         gemini: createGeminiClassifier({
           request: geminiRequest,
@@ -128,10 +162,7 @@ export function startServer(
             ),
         }),
         wikidata: createWikidataClient({ cache: classificationCache }),
-        store: createClassificationStore({
-          cache: classificationCache,
-          model: environment.GEMINI_MODEL,
-        }),
+        store: labelStore(),
       });
     }
     return classifier;
@@ -139,9 +170,13 @@ export function startServer(
   let cachedYouTube;
   function youtubeClient() {
     cachedYouTube ??= createCachedYouTubeClient({
+      searchPageSize,
       youtube:
         providedYouTube ??
-        createYouTubeClient({ apiKey: environment.YOUTUBE_API_KEY }),
+        createYouTubeClient({
+          apiKey: environment.YOUTUBE_API_KEY,
+          searchPageSize,
+        }),
       cache: videoCache,
       reserve: async (count) => {
         for (let index = 0; index < count; index++)
@@ -153,6 +188,47 @@ export function startServer(
     });
     return cachedYouTube;
   }
+  const searchAssessor =
+    providedSearchAssessor ??
+    createSearchAssessor({
+      apiKey: environment.GEMINI_API_KEY,
+      model: environment.GEMINI_MODEL,
+      allowFreeTest: environment.ALLOW_GEMINI_FREE_TEST === "true",
+      request: geminiRequest,
+      reserve: () =>
+        limits.reserve(
+          "searchGuard",
+          Number(environment.SEARCH_GUARD_DAILY_LIMIT ?? 40),
+        ),
+    });
+  const searchCatalog = createSearchCatalog({
+    resolveClassification: (id, fingerprint) =>
+      labelStore().getCachedByFingerprint(id, fingerprint),
+    cache: videoCache,
+    model: environment.GEMINI_MODEL,
+  });
+  const recoverCachedSearch = createCachedSearchRecovery({
+    cache: videoCache,
+    catalog: searchCatalog,
+    model: environment.GEMINI_MODEL,
+  });
+  const searchRoutes = createSearchRoutes({
+    onApproved: searchCatalog.approve,
+    guard: createQueryGuard({
+      assessor: searchAssessor,
+      cache: videoCache,
+      model: environment.GEMINI_MODEL,
+    }),
+    filter: createVideoFilter({
+      searchPageSize,
+      assessor: searchAssessor,
+      cache: videoCache,
+      model: environment.GEMINI_MODEL,
+    }),
+    youtube: youtubeClient,
+    cache: videoCache,
+    allowDemo: !staticDirectory && host === "127.0.0.1",
+  });
   async function classifyPublicVideo(id, onStatus) {
     const classifier = videoClassifier();
     const [video] = await youtubeClient().getPlayableVideos([id]);
@@ -166,7 +242,9 @@ export function startServer(
         "NOT_FOUND",
         "This video is unavailable for classification.",
       );
-    return classifier.classify(video, { onStatus });
+    const classification = await classifier.classify(video, { onStatus });
+    await searchCatalog.classify(video, classification);
+    return classification;
   }
   const graphEnabled = environment.LEARNING_GRAPH_ENABLED === "true";
   const graphRoutes = createGraphRoutes({
@@ -178,14 +256,29 @@ export function startServer(
     classify: classifyPublicVideo,
   });
   let homeFeed;
-  function loadHomeFeed(queries, includeTrending = true) {
+  async function loadHomeFeed(queries, includeTrending = true) {
     if (!homeFeed)
       homeFeed = createHomeFeed({
-        youtube: youtubeClient(),
+        youtube: {
+          getPopularLearningVideos: () =>
+            youtubeClient().getPopularLearningVideos(),
+          getVideoDetails: (ids) => youtubeClient().getVideoDetails(ids),
+          searchPage: (query) => searchRoutes("/api/search", { query }),
+        },
         // The provider wrapper reserves allowance only on cache misses.
         reserve: () => {},
       });
-    return homeFeed(queries, { includeTrending });
+    const result = await homeFeed(queries, { includeTrending });
+    return {
+      ...result,
+      trending: await attachCachedLabels(result.trending),
+      recommendations: await Promise.all(
+        result.recommendations.map(async (group) => ({
+          ...group,
+          videos: await attachCachedLabels(group.videos),
+        })),
+      ),
+    };
   }
   const server = createServer(async (request, response) => {
     response.setHeader("Content-Type", "application/json");
@@ -260,28 +353,15 @@ export function startServer(
         }
       } else if (path === "/api/feed/home") {
         result = await loadHomeFeed(body.queries ?? []);
+      } else if (path === "/api/feed/universe/catalog") {
+        await recoverCachedSearch();
+        result = { videos: await searchCatalog.list(body.universe) };
       } else if (path === "/api/feed/universe") {
         result = await loadHomeFeed(body.queries ?? [], false);
-      } else if (path === "/api/search") {
-        const query = validateText(body.query);
-        if (
-          body.pageToken !== undefined &&
-          (typeof body.pageToken !== "string" || body.pageToken.length > 500)
-        ) {
-          throw new ServiceError("INVALID_INPUT", "The page token is invalid.");
-        }
-        const youtube = youtubeClient();
-        const page = await youtube.searchPage(query, body.pageToken);
-        const details = await youtube.getVideoDetails(
-          page.videos.map((video) => video.id),
-        );
-        result = {
-          ...page,
-          videos: page.videos.map((video) => ({
-            ...video,
-            details: details.find((detail) => detail.id === video.id) ?? null,
-          })),
-        };
+      } else if (path === "/api/search" || path.startsWith("/api/search/")) {
+        result = await searchRoutes(path, body);
+        if (["checking", "filtering"].includes(result.status))
+          response.statusCode = 202;
       } else if (path === "/api/videos/details") {
         if (
           !Array.isArray(body.ids) ||
@@ -306,7 +386,7 @@ export function startServer(
           }),
           youtube: {
             getPlayableVideos: (ids) => youtubeClient().getPlayableVideos(ids),
-            searchPage: (query) => youtubeClient().searchPage(query),
+            searchPage: (query) => searchRoutes("/api/search", { query }),
           },
           reserveChat: () =>
             limits.reserve("chat", Number(environment.CHAT_DAILY_LIMIT ?? 25)),

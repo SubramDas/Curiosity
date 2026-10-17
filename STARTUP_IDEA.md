@@ -1,5 +1,13 @@
 # Startup idea: curiosity-driven learning platform
 
+## Search guardrails direction — 2026-10-17
+
+The founder subsequently approved desktop implementation. The local app now has header-triggered Search states, server intent checks, batched metadata filtering, learning choices/goal clarification and a separate related-break path. Mobile layouts remain at the existing version. See [implementation and limitations](backend/search/README.md); no deployment or live accuracy review is implied.
+
+Founder agreed: ordinary search should support education, including funny educational explanations. Pure entertainment such as memes/comedy is limited to existing scheduled, topic-related breaks; those clips need not themselves teach something. Ambiguous searches should offer learning-angle choices. Search checks and result filtering are proposed to use the configured AI with reusable decisions; users can clarify a legitimate learning goal after a redirect. Desktop implementation is now available locally; mobile guardrail screens remain pending.
+
+The founder requested Penpot design first and then selected new pages in **New File 1**. Desktop/Mobile Search review pages now contain native designs for choices, redirects, clarification, results and failures. See [the review handoff](design/penpot/search/README.md). This updates the intended purpose of “search any topic” while keeping broad educational subject coverage. Existing breaks are reused rather than rebuilt.
+
 Created: 2026-10-11  
 Status: founder concept; customer demand, commercial rights, and economics unvalidated.  
 Working name: undecided.

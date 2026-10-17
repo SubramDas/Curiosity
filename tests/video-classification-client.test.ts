@@ -17,7 +17,7 @@ const videos = ["abcdefghijk", "lmnopqrstuv", "mnopqrstuvw"].map(
   (id) => ({ id }) as Video,
 );
 
-test("Browser classification deduplicates IDs, caps concurrency, stops after quota errors and ignores responses after disposal", async () => {
+test("Browser classification deduplicates IDs, caps concurrency, preserves cache lookups after daily limits and ignores responses after disposal", async () => {
   const previousFetch = globalThis.fetch;
   const requests: { id: string; resolve: (response: Response) => void }[] = [];
   globalThis.fetch = (async (url: any, options: any) => {
@@ -46,17 +46,22 @@ test("Browser classification deduplicates IDs, caps concurrency, stops after quo
       ),
     );
     await tick();
-    assert.equal(requests.length, 2);
-    assert.equal(client.getSnapshot().get(videos[0].id)?.status, "ready");
-    assert.equal(client.getSnapshot().get(videos[2].id)?.status, "failed");
-    client.request(videos);
-    assert.equal(requests.length, 2);
-    client.retry(videos[2].id);
     assert.equal(requests.length, 3);
-    const snapshot = client.getSnapshot();
-    client.dispose();
+    assert.equal(client.getSnapshot().get(videos[0].id)?.status, "ready");
+    assert.equal(client.getSnapshot().get(videos[1].id)?.status, "limited");
+    client.request(videos);
+    client.retry(videos[1].id); // A daily limit is not a manually retriable network error.
+    assert.equal(requests.length, 3);
     requests[2].resolve(
       Response.json({ videoId: videos[2].id, classification }),
+    );
+    await tick();
+    assert.equal(client.getSnapshot().get(videos[2].id)?.status, "ready");
+    client.request([{ id: "nopqrstuvwx" } as Video]);
+    const snapshot = client.getSnapshot();
+    client.dispose();
+    requests[3].resolve(
+      Response.json({ videoId: "nopqrstuvwx", classification }),
     );
     await tick();
     assert.equal(client.getSnapshot(), snapshot);

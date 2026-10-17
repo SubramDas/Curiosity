@@ -1,5 +1,13 @@
 # Step-by-step task list for building the learning app
 
+## Search results in Universes — 2026-10-17
+
+Approved search results now enter a bounded public video catalog, joined with the existing server Topic/Universe classifications. Desktop Universes load these references independently from fresh discovery, reuse Topic filters and show each video only in its primary Universe. References last up to 24 hours and survive backend restart. Valid older cached references are recovered on the first catalog read, and missing labels reuse the separate classification cache without provider calls. Verified with the production build, 83 service/rule/experiment checks and 48 simulated browser journeys. No schema migration, provider change or deployment. See [behavior and limitations](backend/search/README.md#search-videos-in-universes).
+
+## Desktop search guardrails update — 2026-10-17
+
+The founder approved desktop implementation after Penpot review. Educational search now has backend intent checks, batched video-purpose filtering, learning-angle choices, goal clarification, asynchronous search states and restricted related-break requests. Current evidence: 77 service/rule/experiment checks and 44 simulated browser journeys pass. Mobile guardrail screens and live policy-accuracy evaluation remain pending. See [behavior and limitations](backend/search/README.md) and [verification](PHASE_2_RESULTS.md). This does not complete the broader content/release phases below.
+
 Created: 2026-10-12  
 Updated: 2026-10-12 — founder decisions and free-first development plan  
 Based on: [STARTUP_IDEA.md](STARTUP_IDEA.md)  

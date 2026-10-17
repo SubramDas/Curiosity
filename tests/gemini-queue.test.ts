@@ -6,6 +6,43 @@ import { createClassificationJobs } from "../backend/classification/classificati
 import { ServiceError } from "../backend/providers/request-json.mjs";
 const tick = () => new Promise((resolve) => setTimeout(resolve, 0));
 
+test("Search checks wait behind teachers and ahead of background classification", async () => {
+  const queue = createGeminiRequestQueue({ intervalMs: 0 });
+  const order: string[] = [];
+  let finish!: () => void;
+  const held = new Promise<void>((resolve) => {
+    finish = resolve;
+  });
+  try {
+    const first = queue.run(async () => {
+      order.push("active");
+      await held;
+    });
+    const classification = queue.run(async () => {
+      order.push("classification");
+    });
+    const search = queue.run(
+      async () => {
+        order.push("search");
+      },
+      { priority: "search" },
+    );
+    const teacher = queue.run(
+      async () => {
+        order.push("teacher");
+      },
+      { priority: "teacher" },
+    );
+    await tick();
+    finish();
+    await Promise.all([first, classification, search, teacher]);
+    assert.deepEqual(order, ["active", "teacher", "search", "classification"]);
+  } finally {
+    finish?.();
+    queue.close();
+  }
+});
+
 test("One queue serializes requests, spaces starts and gives teacher questions the next slot", async () => {
   const queue = createGeminiRequestQueue({ intervalMs: 25 });
   const order: string[] = [],

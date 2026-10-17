@@ -1,5 +1,9 @@
 # Desktop design review
 
+## Search guardrails review — 2026-10-17
+
+The founder approved planning educational-search guardrails and requested Penpot design first. New Desktop/Mobile Search pages in **New File 1** contain 26 native review boards matching the existing white/green/Roboto layout. Broad queries offer learning choices; entertainment requests redirect to educational angles; users can clarify a learning goal. Existing topic-related breaks remain separate. The founder subsequently approved desktop implementation, now prepared locally. Mobile implementation remains pending. See [the design handoff](../penpot/search/README.md) and [runtime guide](../../backend/search/README.md).
+
 ## Graph concept review — 2026-10-15
 
 **Desktop navigation clarification:** the founder requested a screen showing the graph inside the existing website. Three further native boards propose a labeled **Explore map** item immediately below Home, while keeping the white header/sidebar and embedding Graph D in the content area. Home remains general discovery; Map/Feed stays within the selected Universe. Open [the integration review](../penpot/graph/desktop-integration/review.html). Application navigation has not changed.

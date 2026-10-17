@@ -21,18 +21,20 @@ test("Project API settings override inherited keys without changing unrelated en
     const path = join(directory, ".env");
     writeFileSync(
       path,
-      'GEMINI_API_KEY="local-example"\nYOUTUBE_API_KEY=\nHOME=ignored\n',
+      'GEMINI_API_KEY="local-example"\nYOUTUBE_API_KEY=\nYOUTUBE_SEARCH_PAGE_SIZE=3\nHOME=ignored\n',
     );
     const environment = loadLocalEnvironment(
       {
         GEMINI_API_KEY: "inherited-example",
         YOUTUBE_API_KEY: "inherited-youtube",
+        YOUTUBE_SEARCH_PAGE_SIZE: "7",
         HOME: "/original",
       },
       path,
     );
     assert.equal(environment.GEMINI_API_KEY, "local-example");
     assert.equal(environment.YOUTUBE_API_KEY, "");
+    assert.equal(environment.YOUTUBE_SEARCH_PAGE_SIZE, "3");
     assert.equal(environment.HOME, "/original");
   } finally {
     rmSync(directory, { recursive: true });

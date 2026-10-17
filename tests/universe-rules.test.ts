@@ -1,3 +1,4 @@
+import { educationalSearchAssessor } from "./search-fixture";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -114,6 +115,7 @@ test("Universe HTTP route shares cached results with search and rejects oversize
     {},
     {
       port: 0,
+      searchAssessor: educationalSearchAssessor,
       cache: createProviderCache({ directory }),
       limits: {
         reserve: () => {

@@ -14,7 +14,13 @@ export function createFirestoreUsage({
         !Number.isInteger(count) ||
         count < 1 ||
         count > 100 ||
-        !["search", "chat", "videoChat", "classification"].includes(kind)
+        ![
+          "search",
+          "chat",
+          "videoChat",
+          "classification",
+          "searchGuard",
+        ].includes(kind)
       )
         throw new ServiceError(
           "INVALID_CONFIG",

@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./test";
 import { mockPlayer } from "./player-fixture";
 const video = {
   id: "abcdefghijk",
@@ -209,4 +209,137 @@ test("Queued classification changes to finding and completes through status poll
     "Food chemistry",
   );
   expect(requests).toBe(3);
+});
+
+test("Approved search videos appear in their Universe and Topic after reload even when fresh discovery fails", async ({
+  page,
+}) => {
+  await setup(page);
+  let approved = false;
+  let labeled = false;
+  let classifications = 0;
+  let releaseDiscovery!: () => void;
+  const discovery = new Promise<void>((resolve) => {
+    releaseDiscovery = resolve;
+  });
+  await page.route("**/api/search", (route) => {
+    approved = true;
+    return route.fulfill({
+      json: {
+        decision: { action: "allow", reason: "Learning request", choices: [] },
+        videos: [video],
+        nextPageToken: null,
+      },
+    });
+  });
+  await page.route("**/api/videos/classify", (route) => {
+    classifications++;
+    labeled = true;
+    return route.fulfill({ json: { videoId: video.id, classification } });
+  });
+  await page.route("**/api/feed/universe/catalog", (route) => {
+    const { universe } = route.request().postDataJSON();
+    return route.fulfill({
+      json: {
+        videos:
+          approved && labeled && universe === "science"
+            ? [{ ...video, classification }]
+            : [],
+      },
+    });
+  });
+  await page.route("**/api/feed/universe", async (route) => {
+    await discovery;
+    return route.fulfill({
+      status: 503,
+      json: { message: "Fresh discovery is unavailable." },
+    });
+  });
+  await page.goto("/");
+  await page.getByLabel("Search any topic").fill("Bread chemistry");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await expect(page.locator(".universe-video-label")).toContainText(
+    "Food chemistry",
+  );
+  const nav = page.getByRole("navigation", { name: "Universes" });
+  await nav
+    .getByRole("button", { name: "Science & Technology", exact: true })
+    .click();
+  await expect(page.locator(".universe-feed .video-card")).toHaveCount(1);
+  releaseDiscovery();
+  await page
+    .getByRole("button", { name: "Food chemistry", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: video.title, exact: true }),
+  ).toBeVisible();
+  await nav
+    .getByRole("button", { name: "Arts & Humanities", exact: true })
+    .click();
+  await expect(page.locator(".universe-feed .video-card")).toHaveCount(0);
+  await page.reload();
+  await page
+    .getByRole("navigation", { name: "Universes" })
+    .getByRole("button", { name: "Science & Technology", exact: true })
+    .click();
+  await expect(page.locator(".universe-feed .video-card")).toHaveCount(1);
+  expect(classifications).toBeLessThanOrEqual(2); // Home is independently classified after reload.
+  await page.getByRole("button", { name: video.title, exact: true }).click();
+  await expect(page.getByText(`Mock player ${video.id}`)).toBeVisible();
+});
+
+test("Daily label limits show a paused state while another video's cached label remains available", async ({
+  page,
+}) => {
+  await setup(page);
+  const cached = {
+    ...video,
+    id: "bcdefghijkl",
+    title: "Food chemistry explained",
+  };
+  await page.route("**/api/feed/home", (route) =>
+    route.fulfill({
+      json: { trending: [video, cached], recommendations: [], messages: [] },
+    }),
+  );
+  await page.route("**/api/feed/universe/catalog", (route) =>
+    route.fulfill({ json: { videos: [video, { ...cached, classification }] } }),
+  );
+  let cachedLookups = 0;
+  await page.route("**/api/videos/classify", (route) => {
+    const { id } = route.request().postDataJSON();
+    if (id === video.id)
+      return route.fulfill({
+        status: 400,
+        json: {
+          code: "LOCAL_LIMIT",
+          message:
+            "The local daily classification allowance is used. Try again tomorrow.",
+        },
+      });
+    cachedLookups++;
+    return route.fulfill({ json: { videoId: id, classification } });
+  });
+  await page.goto("/");
+  await expect(
+    page.getByText("Daily label limit reached", { exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".universe-video-label")).toContainText(
+    "Food chemistry",
+  );
+  expect(cachedLookups).toBe(1);
+  await expect(page.getByRole("button", { name: "Retry label" })).toHaveCount(
+    0,
+  );
+  await page
+    .getByRole("navigation", { name: "Universes" })
+    .getByRole("button", { name: "Science & Technology", exact: true })
+    .click();
+  await expect(page.locator(".universe-feed .video-card")).toHaveCount(1);
+  await expect(
+    page.getByText("Checking a video's subject", { exact: true }),
+  ).toHaveCount(0);
+  await expect(
+    page.getByText("Daily label limit reached", { exact: true }),
+  ).toBeVisible();
 });

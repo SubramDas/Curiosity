@@ -1,3 +1,4 @@
+import { useRelatedBreak } from "./useRelatedBreak";
 import type { VideoPresentation } from "../videos/video-presentation";
 import {
   useCallback,
@@ -94,6 +95,11 @@ export function LearningWorkspace({
     playing || performance.now() - lastChatActivity < 30_000,
     demo,
   );
+  const relatedBreak = useRelatedBreak(
+    chatVideo?.id ?? videos[0]?.id,
+    playing || performance.now() - lastChatActivity < 30_000,
+    demo,
+  );
   const onPlaying = useCallback((active: boolean) => setPlaying(active), []);
   const ignoreBreakPlayback = useCallback(() => {}, []);
   useEffect(() => {
@@ -107,9 +113,8 @@ export function LearningWorkspace({
     setBreakBusy(true);
     setBreakMessage("");
     try {
-      const page = await callApi<VideoPage>("search", {
-        query: `${topic.query} funny educational demonstration`,
-      });
+      const permit = await relatedBreak.prepare();
+      const page = await callApi<VideoPage>("search/break", { permit });
       const candidates = page.videos
         .filter((video) => video.details?.embeddable)
         .slice(0, 3);
@@ -129,6 +134,7 @@ export function LearningWorkspace({
     }
   }
   function resume() {
+    relatedBreak.reset();
     setBreakSelected(null);
     setBreakVideos([]);
     setBreakMessage("");

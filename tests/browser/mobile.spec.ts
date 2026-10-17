@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Page } from "./test";
 import { mockPlayer } from "./player-fixture";
 import { mockAccountProvider } from "./account-fixture";
 
@@ -18,6 +18,19 @@ const shorts = [0, 1].map((i) => ({
 }));
 async function setup(page: Page) {
   await mockPlayer(page);
+  await page.route("**/api/search/break", (r) =>
+    r.fulfill({
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos: [longVideo, ...shorts],
+        nextPageToken: null,
+      },
+    }),
+  );
   await page.route("**/api/config", (r) =>
     r.fulfill({ json: { supabaseConfigured: false } }),
   );
@@ -32,7 +45,15 @@ async function setup(page: Page) {
   );
   await page.route("**/api/search", (r) =>
     r.fulfill({
-      json: { videos: [longVideo, ...shorts], nextPageToken: null },
+      json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
+        videos: [longVideo, ...shorts],
+        nextPageToken: null,
+      },
     }),
   );
   await page.route("**/api/videos/details", (r) =>
@@ -345,6 +366,11 @@ test("Mobile break stays optional, caps candidates at three and search errors of
   await page.route("**/api/search", (r) =>
     r.fulfill({
       json: {
+        decision: {
+          action: "allow",
+          reason: "Simulated learning request.",
+          choices: [],
+        },
         videos: [
           longVideo,
           ...shorts,

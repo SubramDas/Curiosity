@@ -2,6 +2,8 @@
 
 These instructions apply to this project and its subfolders unless a more specific `AGENTS.md` provides additional instructions. Read and follow them when working here. Keep this file named `AGENTS.md` so coding agents can discover it.
 
+- Whenever asked a question or we are having a discussion, give simple, precise, to the point answer in pointers. Dont give unnecessary explanations
+
 ## 1. Follow SOLID principles
 
 Use these principles to keep code easy to understand and change:
