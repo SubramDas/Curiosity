@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Revelink Manrope";
+  src: url("./manrope-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+.revelink-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #17221d;
+  line-height: 1;
+  white-space: nowrap;
+}
+.revelink-brand .revelink-symbol {
+  width: var(--brand-symbol-size, 32px);
+  height: var(--brand-symbol-size, 32px);
+  flex-shrink: 0;
+}
+.revelink-wordmark {
+  font-family: "Revelink Manrope", Arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: normal;
+}
+.revelink-tagline {
+  color: #627169;
+  font:
+    400 16px/1.5 Arial,
+    sans-serif;
+}

@@ -29,7 +29,7 @@ export function MobileMenu({
         className="mobile-menu"
         aria-label="Main navigation"
       >
-        <h2>Explore Curiosity</h2>
+        <h2>Explore Revelink</h2>
         {(
           [
             ["home", "home", "Home"],

@@ -2,7 +2,7 @@
 
 ## Revelink Orbit Book refinement — 2026-10-18
 
-The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](revelink/ORBIT_BOOK.md). Application branding awaits approval of this refinement.
+The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](revelink/ORBIT_BOOK.md). The founder approved the refinement and requested the app rebrand, now implemented locally for desktop/mobile headers, browser icons and app metadata. No deployment was performed.
 
 
 ## Revelink brand explorations — 2026-10-18

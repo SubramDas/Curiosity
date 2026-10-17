@@ -259,7 +259,7 @@ test("Wikidata provider retrieves bounded candidates and typed relations, ignore
       cache: createProviderCache({ directory }),
       fetchRequest: async (url: any, options: any) => {
         calls++;
-        assert.ok(options.headers["User-Agent"].includes("Curiosity"));
+        assert.ok(options.headers["User-Agent"].includes("Revelink"));
         const params = new URL(url).searchParams;
         if (params.get("action") === "wbsearchentities")
           return Response.json({ search: [{ id: "Q123" }, { id: "bad" }] });

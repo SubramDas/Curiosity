@@ -94,10 +94,6 @@
   .brand {
     font-size: 22px;
   }
-  .brand-mark {
-    width: 29px;
-    height: 23px;
-  }
   .search-form {
     grid-column: 1/-1;
     grid-row: 2;

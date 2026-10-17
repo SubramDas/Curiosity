@@ -1,5 +1,10 @@
 # Project structure
 
+## Revelink branding
+
+`shared/components/Brand.tsx` supplies the approved Orbit Book symbol and Manrope wordmark to both headers. Runtime vectors, browser icons, font/license and the shared public stylesheet live in `public/brand`; index and demo-information HTML use the same assets. `scripts/render-brand-icons.mjs` renders the approved vector into app/browser sizes as a developer task. Saved-data identifiers and deployment addresses are preserved. See [assets and verification](public/brand/README.md).
+
+
 ## Desktop related Universe popovers
 
 Shared classification labels consume `RelatedUniversesRendererContext`, with the renderer chosen in `src/App.tsx`. Desktop presentation and viewport positioning live in `desktop-ui/features/classification`; the native browser popover layer handles dismissal and prevents ancestor clipping. Mobile keeps the shared details fallback. The same desktop rendering applies to every shared video classification label, including history and chat. No classification/provider contract changes are required. See [behavior and verification](desktop-ui/features/classification/README.md).

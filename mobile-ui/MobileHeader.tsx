@@ -1,3 +1,4 @@
+import { Brand } from "../shared/components/Brand";
 import { useEffect, useRef, type ReactNode } from "react";
 import { Icon } from "../shared/components/Icon";
 
@@ -57,8 +58,12 @@ export function MobileHeader({
             >
               <Icon name="menu" />
             </button>
-            <button className="mobile-brand" onClick={onHome}>
-              <span aria-hidden="true">●</span> Curiosity
+            <button
+              className="mobile-brand"
+              onClick={onHome}
+              aria-label="Revelink home"
+            >
+              <Brand />
             </button>
           </>
         )}

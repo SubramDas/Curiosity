@@ -121,32 +121,11 @@ small {
   gap: 7px;
   white-space: nowrap;
   font-size: 25px;
-  letter-spacing: -1px;
+  letter-spacing: normal;
   font-weight: 700;
   background: transparent;
   color: inherit;
   padding: 0;
-}
-.brand sup {
-  font-size: 10px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0;
-  align-self: flex-start;
-  margin-top: 1px;
-}
-.brand-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 25px;
-  border-radius: 7px;
-  background: var(--green);
-}
-.brand-mark .icon {
-  filter: brightness(0) invert(1);
-  width: 19px;
 }
 .search-form {
   display: flex;

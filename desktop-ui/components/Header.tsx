@@ -1,3 +1,4 @@
+import { Brand } from "../../shared/components/Brand";
 import type { ReactNode } from "react";
 import { Icon } from "../../shared/components/Icon";
 
@@ -34,11 +35,8 @@ export function Header({
         >
           <Icon name="menu" />
         </button>
-        <button className="brand" onClick={onHome}>
-          <span className="brand-mark">
-            <Icon name="play" />
-          </span>
-          curiosity<sup>IN</sup>
+        <button className="brand" onClick={onHome} aria-label="Revelink home">
+          <Brand />
         </button>
       </div>
       <form className="search-form" onSubmit={onSearch}>

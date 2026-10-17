@@ -1,6 +1,6 @@
 # Revelink brand explorations — 2026-10-18
 
-Status: the founder selected Open Book + Discovery Orbit. The combined **Orbit Book** refinement and three new snapshots are ready in Penpot. See [the current refinement](ORBIT_BOOK.md). The four original concepts below are retained for comparison.
+Status: the founder selected Open Book + Discovery Orbit. The combined **Orbit Book** refinement and three snapshots are in Penpot; the founder subsequently approved the runtime rebrand, now implemented locally. See [the current refinement](ORBIT_BOOK.md). The four original concepts below are retained for comparison.
 
 Open **New File 1 → Revelink — Brand explorations**. The overview board is selected. Saved version: **Revelink — Logo and wordmark explorations**.
 
@@ -31,4 +31,4 @@ The font lookup was made exact to avoid accidentally selecting Roboto Mono. Nati
 
 Generation source: [create-review.js](create-review.js). SVG symbol sources, with transparent backgrounds, are [Connected Play](symbol-play.svg), [Open Book](symbol-book.svg), [Linked R](symbol-r.svg) and [Discovery Orbit](symbol-orbit.svg). The source script creates missing review boards; subsequent native component creation is recorded in the report and should be inspected before any regeneration.
 
-The founder selected the Open Book/Orbit combination; review the refined treatment before the application rebrand. An application rebrand would use that mark, replace the current icon/name in the relevant headers and update app assets/metadata. No runtime code, provider configuration or previous design pages were changed by this task; application tests were not needed for the design-only work.
+The founder selected the Open Book/Orbit combination; the refined treatment has been approved and implemented locally. Both headers and app/browser assets now use that mark and the Revelink name. The original design-only work did not change runtime code or require application tests. The subsequent rebrand passed the production build, 95 service/rule/renderer/experiment checks and 24 simulated browser journeys; see [the runtime branding guide](../../../public/brand/README.md).

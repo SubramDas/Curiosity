@@ -25,7 +25,7 @@ export function createWikidataClient({ cache, fetchRequest = fetch }) {
       {
         headers: {
           "User-Agent":
-            "Curiosity/1.0 (https://curiosity-u2ubbw6fra-el.a.run.app/demo-info.html; educational topic matching)",
+            "Revelink/1.0 (https://curiosity-u2ubbw6fra-el.a.run.app/demo-info.html; educational topic matching)",
           Accept: "application/json",
         },
       },

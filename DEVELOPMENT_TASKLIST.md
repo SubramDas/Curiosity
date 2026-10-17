@@ -1,5 +1,10 @@
 # Step-by-step task list for building the learning app
 
+## Revelink Orbit Book rebrand — 2026-10-18
+
+Replaced the desktop/mobile Curiosity brand elements with the approved Revelink Orbit Book symbol and self-hosted Manrope wordmark. Updated browser/tab/touch icons, page metadata, demo-information branding, menu name, footer tagline and provider app-name references. Existing saved data and deployment identifiers remain valid. Verified with the production build, 95 service/rule/renderer/experiment checks, 24 simulated browser journeys and manual responsive brand/asset checks. Prepared locally; no deployment. See [branding guide](public/brand/README.md).
+
+
 ## Desktop related Universe popovers — 2026-10-18
 
 Implemented the approved +N treatment across desktop video metadata. Full Universe names open in an anchored popover with Close/Escape/outside dismissal, edge alignment, upward placement when needed and no title/creator reflow or accidental playback. Mobile retains its existing control. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No provider changes or deployment. See [runtime guide](desktop-ui/features/classification/README.md).

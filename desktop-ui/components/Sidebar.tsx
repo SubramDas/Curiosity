@@ -77,7 +77,7 @@ export function Sidebar({
         </label>
       </details>
       <p className="sidebar-footer">
-        Follow your curiosity.
+        Watch. Discover. Connect the dots.
         <br />
         YouTube videos belong to their creators.
         <br />

@@ -51,9 +51,9 @@
   color: inherit;
   white-space: nowrap;
 }
-.mobile-brand span {
-  color: var(--green);
-  font-size: 17px;
+.mobile-brand .revelink-brand {
+  --brand-symbol-size: 28px;
+  gap: 8px;
 }
 .mobile-search-toggle {
   margin-left: auto;

@@ -1,4 +1,6 @@
-# Curiosity
+# Revelink
+
+**Watch. Discover. Connect the dots.**
 
 ## Desktop educational search
 

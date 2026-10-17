@@ -10,7 +10,7 @@ import { request as httpRequest } from "node:http";
 test("Production serves built assets and health, denies hidden paths and rejects unrelated origins", async () => {
   const directory = mkdtempSync(join(tmpdir(), "curiosity-production-"));
   mkdirSync(join(directory, "assets"));
-  writeFileSync(join(directory, "index.html"), "<h1>Curiosity</h1>");
+  writeFileSync(join(directory, "index.html"), "<h1>Revelink</h1>");
   writeFileSync(join(directory, "assets", "app.js"), 'console.log("app");');
   writeFileSync(join(directory, ".env"), "private");
   const server = startServer(
@@ -34,7 +34,7 @@ test("Production serves built assets and health, denies hidden paths and rejects
   const address = server.address() as { port: number };
   const base = `http://127.0.0.1:${address.port}`;
   try {
-    assert.match(await (await fetch(base + "/")).text(), /Curiosity/);
+    assert.match(await (await fetch(base + "/")).text(), /Revelink/);
     assert.match(
       (await fetch(base + "/assets/app.js")).headers.get("cache-control")!,
       /immutable/,
