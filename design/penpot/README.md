@@ -1,5 +1,9 @@
 # Penpot design transfer
 
+## Revelink applied across screens — 2026-10-18
+
+Replaced 83 Curiosity wordmarks across desktop, mobile, Universe, Search and Graph pages in **New File 1** with the approved Orbit Book symbol and Manrope wordmark. Six branded text labels were also updated. Native editable text and reusable symbol instances remain. Representative light/mobile/dark previews were inspected, wordmark bounds checks passed and Penpot validation returned no errors. Saved version: **Revelink — branding across all screens**. See [the handoff and recorded changes](revelink/ALL_SCREENS.md).
+
 ## Revelink Orbit Book refinement — 2026-10-18
 
 The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](revelink/ORBIT_BOOK.md). The founder approved the refinement and requested the app rebrand, now implemented locally for desktop/mobile headers, browser icons and app metadata. No deployment was performed.

@@ -1,5 +1,9 @@
 # Project structure
 
+## Developer benchmarks
+
+`experiments/benchmarks` evaluates the running app through its existing API. Case datasets, latency measurement/polling, reviewed-label scoring and report generation are separate modules. Live runs retain the server's queues/caches/limits; plans and report regeneration make no API calls. Results stay under ignored `.local-data/benchmarks`. Production modules do not import this tooling. See [commands and measurement definitions](experiments/benchmarks/README.md).
+
 ## Revelink branding
 
 `shared/components/Brand.tsx` supplies the approved Orbit Book symbol and Manrope wordmark to both headers. Runtime vectors, browser icons, font/license and the shared public stylesheet live in `public/brand`; index and demo-information HTML use the same assets. `scripts/render-brand-icons.mjs` renders the approved vector into app/browser sizes as a developer task. Saved-data identifiers and deployment addresses are preserved. See [assets and verification](public/brand/README.md).

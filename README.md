@@ -61,6 +61,8 @@ Guest topics and account topics are separate; guest-to-account transfer is not i
 
 ## Checks
 
+Prototype API benchmarks are available with `npm run benchmark -- search` (plan only) or `npm run benchmark -- search --live` against the running app. Search, teacher and classification suites produce JSON, CSV and Markdown reports in ignored `.local-data/benchmarks`. Live runs use the server's existing allowance; accuracy scoring requires human-reviewed cases. See [benchmark instructions and limitations](experiments/benchmarks/README.md).
+
 ```bash
 npm test                 # API handling, topic rules, timer rules, local limits
 npm run build            # Type checks and production browser build

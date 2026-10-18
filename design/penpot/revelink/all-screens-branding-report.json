@@ -1,0 +1,1547 @@
+{
+  "fileId": "129977ce-683b-806a-8008-c8f2a3fe903e",
+  "fileName": "New File 1",
+  "shareUrl": null,
+  "savedVersion": "Revelink — branding across all screens",
+  "wordmarksReplaced": 83,
+  "brandCopyUpdated": 6,
+  "validationErrors": [],
+  "pages": [
+    {
+      "id": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "name": "Curiosity — Desktop",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 5
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "name": "Curiosity — Mobile",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 5
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "name": "curiosity-desktop-universe",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 18
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "name": "curiosity-mobile-universe",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 9
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae218001134",
+      "name": "Graph A · Landscape — Map first",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 2
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae21cf54e30",
+      "name": "Graph B · Landscape — Map + Feed",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 4
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae224afe0ab",
+      "name": "Graph C · Constellation — Map first",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 2
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae22b502202",
+      "name": "Graph D · Constellation — Map + Feed",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 4
+    },
+    {
+      "id": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "name": "Graph D2 · Future discovery",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 8
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8f1befdd16",
+      "name": "Page 1",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 0
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "name": "Curiosity — Search · Desktop",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 13
+    },
+    {
+      "id": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "name": "Curiosity — Search · Mobile",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 13
+    },
+    {
+      "id": "3f187a38-aa9d-807c-8008-ce27d3c94068",
+      "name": "Revelink — Brand explorations",
+      "remainingOldBrandLabels": 0,
+      "symbolCount": 0
+    }
+  ],
+  "changes": [
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c8fd784ae864",
+      "symbolId": "126a472e-997e-8055-8008-cec15f0d5fc5",
+      "pageId": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c8fd784ae864",
+        "text": "curiosity",
+        "x": 114,
+        "y": 19,
+        "width": 89,
+        "height": 29
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c8fd78410df5",
+        "c5f19b81-2139-8092-8008-c8fd7845bde9",
+        "c5f19b81-2139-8092-8008-c8fd78570615"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c8fd8aec5020",
+      "symbolId": "126a472e-997e-8055-8008-cec15f65db41",
+      "pageId": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c8fd8aec5020",
+        "text": "curiosity",
+        "x": 1714,
+        "y": 19,
+        "width": 89,
+        "height": 29
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c8fd8ad5c06c",
+        "c5f19b81-2139-8092-8008-c8fd8ae6c135",
+        "c5f19b81-2139-8092-8008-c8fd8af207a9"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c8fd9acc2dfa",
+      "symbolId": "126a472e-997e-8055-8008-cec15f9c7186",
+      "pageId": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c8fd9acc2dfa",
+        "text": "curiosity",
+        "x": 3314,
+        "y": 19,
+        "width": 89,
+        "height": 29
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c8fd9ac0ae34",
+        "c5f19b81-2139-8092-8008-c8fd9ac653d2",
+        "c5f19b81-2139-8092-8008-c8fd9ad21a4e"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c8fdfa645f22",
+      "symbolId": "126a472e-997e-8055-8008-cec15fdb7dbf",
+      "pageId": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c8fdfa645f22",
+        "text": "curiosity",
+        "x": 114,
+        "y": 1669,
+        "width": 89,
+        "height": 29
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c8fdfa645f20",
+        "c5f19b81-2139-8092-8008-c8fdfa645f21",
+        "c5f19b81-2139-8092-8008-c8fdfa645f23"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c8fdfa791a5f",
+      "symbolId": "126a472e-997e-8055-8008-cec161c3f0fc",
+      "pageId": "129977ce-683b-806a-8008-c8f2a3fe903f",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c8fdfa791a5f",
+        "text": "curiosity",
+        "x": 114,
+        "y": 1769,
+        "width": 89,
+        "height": 29
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c8fdfa791a5d",
+        "c5f19b81-2139-8092-8008-c8fdfa791a5e",
+        "c5f19b81-2139-8092-8008-c8fdfa791a60"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c9b1787d67f9",
+      "symbolId": "126a472e-997e-8055-8008-cec17107b89f",
+      "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c9b1787d67f9",
+        "text": "Curiosity",
+        "x": 46,
+        "y": 20,
+        "width": 248,
+        "height": 24
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c9b178723414"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c9b179525af5",
+      "symbolId": "126a472e-997e-8055-8008-cec171713cec",
+      "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c9b179525af5",
+        "text": "Curiosity",
+        "x": 566,
+        "y": 20,
+        "width": 248,
+        "height": 24
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c9b1794aa408"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c9b1b81e61bd",
+      "symbolId": "126a472e-997e-8055-8008-cec171b3918a",
+      "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c9b1b81e61bd",
+        "text": "Curiosity",
+        "x": 2646,
+        "y": 3620,
+        "width": 178,
+        "height": 24
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c9b1b7dd8054"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c9b1beac6212",
+      "symbolId": "126a472e-997e-8055-8008-cec171f4e802",
+      "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c9b1beac6212",
+        "text": "Curiosity",
+        "x": 46,
+        "y": 4820,
+        "width": 218,
+        "height": 24
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c9b1be6b9196"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-c9b1c6245e01",
+      "symbolId": "126a472e-997e-8055-8008-cec1723679fc",
+      "pageId": "c5f19b81-2139-8092-8008-c9b178193a9b",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-c9b1c6245e01",
+        "text": "Curiosity",
+        "x": 566,
+        "y": 4820,
+        "width": 288,
+        "height": 24
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-c9b1c5e0bb44"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1d26ef7a24",
+      "symbolId": "126a472e-997e-8055-8008-cec1776b2cd0",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1d26ef7a24",
+        "text": "curiosity",
+        "x": 100,
+        "y": 23,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1d26d89001",
+        "c5f19b81-2139-8092-8008-ca1d26ec693a"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1d2b5a857b",
+      "symbolId": "126a472e-997e-8055-8008-cec177cc6dcf",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1d2b5a857b",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 23,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1d2b358471",
+        "c5f19b81-2139-8092-8008-ca1d2b52b236"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1d350ee80f",
+      "symbolId": "126a472e-997e-8055-8008-cec1781686d9",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1d350ee80f",
+        "text": "curiosity",
+        "x": 3220,
+        "y": 23,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1d34cae675",
+        "c5f19b81-2139-8092-8008-ca1d3501669d"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1d457b11e6",
+      "symbolId": "126a472e-997e-8055-8008-cec17861d24d",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1d457b11e6",
+        "text": "curiosity",
+        "x": 100,
+        "y": 1663,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1d4515b0f0",
+        "c5f19b81-2139-8092-8008-ca1d4568ad36"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dc4108636",
+      "symbolId": "126a472e-997e-8055-8008-cec178aca199",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dc4108636",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 1663,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dc400c8cb",
+        "c5f19b81-2139-8092-8008-ca1dc40e7241"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dc7eeabd4",
+      "symbolId": "126a472e-997e-8055-8008-cec1790940ef",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dc7eeabd4",
+        "text": "curiosity",
+        "x": 3220,
+        "y": 1663,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dc7d38410",
+        "c5f19b81-2139-8092-8008-ca1dc7eb6c81"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dcbf9977a",
+      "symbolId": "126a472e-997e-8055-8008-cec1796d9585",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dcbf9977a",
+        "text": "curiosity",
+        "x": 100,
+        "y": 3303,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dcbd84306",
+        "c5f19b81-2139-8092-8008-ca1dcbf60d47"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce009eb9bb9e",
+      "symbolId": "126a472e-997e-8055-8008-cec179ae0032",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce009eb9bb9e",
+        "text": "curiosity",
+        "x": 100,
+        "y": 4583,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce009ea7e994",
+        "3f187a38-aa9d-807c-8008-ce009eb05635"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce00a49fc500",
+      "symbolId": "126a472e-997e-8055-8008-cec179f38875",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce00a49fc500",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 4583,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce00a48b791e",
+        "3f187a38-aa9d-807c-8008-ce00a494ccf3"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce00b68cecf5",
+      "symbolId": "126a472e-997e-8055-8008-cec17a4cab87",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce00b68cecf5",
+        "text": "curiosity",
+        "x": 3220,
+        "y": 4583,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce00b67c9d2b",
+        "3f187a38-aa9d-807c-8008-ce00b683ffda"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce00bd720384",
+      "symbolId": "126a472e-997e-8055-8008-cec17aa20a3c",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce00bd720384",
+        "text": "curiosity",
+        "x": 100,
+        "y": 5803,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce00bd5909c5",
+        "3f187a38-aa9d-807c-8008-ce00bd650da6"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce00c66e518c",
+      "symbolId": "126a472e-997e-8055-8008-cec17ae86efc",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce00c66e518c",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 5803,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce00c64de7d8",
+        "3f187a38-aa9d-807c-8008-ce00c65eb40c"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce1a17efeed6",
+      "symbolId": "126a472e-997e-8055-8008-cec17b3bf9a6",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce1a17efeed6",
+        "text": "curiosity",
+        "x": 100,
+        "y": 7083,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce1a17ce38f0",
+        "3f187a38-aa9d-807c-8008-ce1a17de03c5"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce1a1ed7bdc0",
+      "symbolId": "126a472e-997e-8055-8008-cec17b81361e",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce1a1ed7bdc0",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 7083,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce1a1ec39fc7",
+        "3f187a38-aa9d-807c-8008-ce1a1ecd9621"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce1a23bb84a2",
+      "symbolId": "126a472e-997e-8055-8008-cec17bf77820",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce1a23bb84a2",
+        "text": "curiosity",
+        "x": 3220,
+        "y": 7083,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce1a2387d8d1",
+        "3f187a38-aa9d-807c-8008-ce1a23a635ad"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce23892d88d7",
+      "symbolId": "126a472e-997e-8055-8008-cec17c859554",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce23892d88d7",
+        "text": "curiosity",
+        "x": 60,
+        "y": 8363,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce2388f9099a",
+        "3f187a38-aa9d-807c-8008-ce23891488e9"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce239389305e",
+      "symbolId": "126a472e-997e-8055-8008-cec17d0be779",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce239389305e",
+        "text": "curiosity",
+        "x": 1620,
+        "y": 8363,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce23934f3503",
+        "3f187a38-aa9d-807c-8008-ce23936998e4"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "3f187a38-aa9d-807c-8008-ce23a0b3b2e2",
+      "symbolId": "126a472e-997e-8055-8008-cec17d8236d8",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd36092b6",
+      "oldLabel": {
+        "id": "3f187a38-aa9d-807c-8008-ce23a0b3b2e2",
+        "text": "curiosity",
+        "x": 3180,
+        "y": 8363,
+        "width": 120,
+        "height": 30
+      },
+      "removedIds": [
+        "3f187a38-aa9d-807c-8008-ce23a0873494",
+        "3f187a38-aa9d-807c-8008-ce23a0978181"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dd3e19f94",
+      "symbolId": "126a472e-997e-8055-8008-cec184269b0d",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dd3e19f94",
+        "text": "curiosity",
+        "x": 80,
+        "y": 23,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dd3d9902a",
+        "c5f19b81-2139-8092-8008-ca1dd3e0a0e9"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dd54cfbf5",
+      "symbolId": "126a472e-997e-8055-8008-cec1845243a8",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dd54cfbf5",
+        "text": "curiosity",
+        "x": 600,
+        "y": 23,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dd53af434",
+        "c5f19b81-2139-8092-8008-ca1dd54ae2e4"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dd7aa2b7a",
+      "symbolId": "126a472e-997e-8055-8008-cec18489b92d",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dd7aa2b7a",
+        "text": "curiosity",
+        "x": 1120,
+        "y": 23,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dd7944a84",
+        "c5f19b81-2139-8092-8008-ca1dd7a70167"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1ddafb744e",
+      "symbolId": "126a472e-997e-8055-8008-cec184b62e02",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1ddafb744e",
+        "text": "curiosity",
+        "x": 1640,
+        "y": 23,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1ddade0f83",
+        "c5f19b81-2139-8092-8008-ca1ddaf76c7d"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1ddf570b42",
+      "symbolId": "126a472e-997e-8055-8008-cec184e1b008",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1ddf570b42",
+        "text": "curiosity",
+        "x": 2160,
+        "y": 23,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1ddf332574",
+        "c5f19b81-2139-8092-8008-ca1ddf52bfbf"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1dff8e2f40",
+      "symbolId": "126a472e-997e-8055-8008-cec1850de1b5",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1dff8e2f40",
+        "text": "curiosity",
+        "x": 80,
+        "y": 1273,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1dff7a7f04",
+        "c5f19b81-2139-8092-8008-ca1dff8b50c3"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1e00f3c4da",
+      "symbolId": "126a472e-997e-8055-8008-cec18534639c",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1e00f3c4da",
+        "text": "curiosity",
+        "x": 600,
+        "y": 1273,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1e00e19f45",
+        "c5f19b81-2139-8092-8008-ca1e00f19db4"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1e021a104b",
+      "symbolId": "126a472e-997e-8055-8008-cec1855e4366",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1e021a104b",
+        "text": "curiosity",
+        "x": 1120,
+        "y": 1273,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1e02062c7c",
+        "c5f19b81-2139-8092-8008-ca1e02178a33"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-ca1e04503bb5",
+      "symbolId": "126a472e-997e-8055-8008-cec18588a17f",
+      "pageId": "c5f19b81-2139-8092-8008-ca1cd3623c4e",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-ca1e04503bb5",
+        "text": "curiosity",
+        "x": 1640,
+        "y": 1273,
+        "width": 120,
+        "height": 25
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-ca1e043685d5",
+        "c5f19b81-2139-8092-8008-ca1e044cd024"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae21815e40b",
+      "symbolId": "126a472e-997e-8055-8008-cec1a0b6afcf",
+      "pageId": "c5f19b81-2139-8092-8008-cae218001134",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae21815e40b",
+        "text": "curiosity",
+        "x": 24,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae219f85568",
+      "symbolId": "126a472e-997e-8055-8008-cec1a0fe1d8c",
+      "pageId": "c5f19b81-2139-8092-8008-cae218001134",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae219f85568",
+        "text": "curiosity",
+        "x": 1534,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae21d2bb574",
+      "symbolId": "126a472e-997e-8055-8008-cec1a548bad9",
+      "pageId": "c5f19b81-2139-8092-8008-cae21cf54e30",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae21d2bb574",
+        "text": "curiosity",
+        "x": 24,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae21ecbc493",
+      "symbolId": "126a472e-997e-8055-8008-cec1a58c35b3",
+      "pageId": "c5f19b81-2139-8092-8008-cae21cf54e30",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae21ecbc493",
+        "text": "curiosity",
+        "x": 1534,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae221924658",
+      "symbolId": "126a472e-997e-8055-8008-cec1a5d41c92",
+      "pageId": "c5f19b81-2139-8092-8008-cae21cf54e30",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae221924658",
+        "text": "curiosity",
+        "x": 2004,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae2fdefc315",
+      "symbolId": "126a472e-997e-8055-8008-cec1a60e7de7",
+      "pageId": "c5f19b81-2139-8092-8008-cae21cf54e30",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae2fdefc315",
+        "text": "curiosity",
+        "x": 3514,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae2250698f3",
+      "symbolId": "126a472e-997e-8055-8008-cec1a9ed0e2f",
+      "pageId": "c5f19b81-2139-8092-8008-cae224afe0ab",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae2250698f3",
+        "text": "curiosity",
+        "x": 24,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae2275e6129",
+      "symbolId": "126a472e-997e-8055-8008-cec1aa17268c",
+      "pageId": "c5f19b81-2139-8092-8008-cae224afe0ab",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae2275e6129",
+        "text": "curiosity",
+        "x": 1534,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae22b911a97",
+      "symbolId": "126a472e-997e-8055-8008-cec1b5ac9ff3",
+      "pageId": "c5f19b81-2139-8092-8008-cae22b502202",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae22b911a97",
+        "text": "curiosity",
+        "x": 24,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae22de44f0a",
+      "symbolId": "126a472e-997e-8055-8008-cec1b602f42d",
+      "pageId": "c5f19b81-2139-8092-8008-cae22b502202",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae22de44f0a",
+        "text": "curiosity",
+        "x": 1534,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae231e7911f",
+      "symbolId": "126a472e-997e-8055-8008-cec1b63b8477",
+      "pageId": "c5f19b81-2139-8092-8008-cae22b502202",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae231e7911f",
+        "text": "curiosity",
+        "x": 2004,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae30c2bfbb2",
+      "symbolId": "126a472e-997e-8055-8008-cec1b65e2cdc",
+      "pageId": "c5f19b81-2139-8092-8008-cae22b502202",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae30c2bfbb2",
+        "text": "curiosity",
+        "x": 3514,
+        "y": 23,
+        "width": 94,
+        "height": 29
+      },
+      "removedIds": [],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae798e86381",
+      "symbolId": "126a472e-997e-8055-8008-cec1bb8ed5e6",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae798e86381",
+        "text": "curiosity",
+        "x": 58,
+        "y": 25,
+        "width": 90,
+        "height": 28
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cae798de0008"
+      ],
+      "dark": true
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae79de8df8c",
+      "symbolId": "126a472e-997e-8055-8008-cec1bbd7be26",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae79de8df8c",
+        "text": "curiosity",
+        "x": 1578,
+        "y": 25,
+        "width": 90,
+        "height": 28
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cae79ddf014e"
+      ],
+      "dark": true
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae7a205f70e",
+      "symbolId": "126a472e-997e-8055-8008-cec1bc371956",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae7a205f70e",
+        "text": "curiosity",
+        "x": 2098,
+        "y": 25,
+        "width": 90,
+        "height": 28
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cae7a1f8d11d"
+      ],
+      "dark": true
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae7a6e89f2f",
+      "symbolId": "126a472e-997e-8055-8008-cec1bc9b3ef7",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae7a6e89f2f",
+        "text": "curiosity",
+        "x": 3618,
+        "y": 25,
+        "width": 90,
+        "height": 28
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cae7a6d8c31f"
+      ],
+      "dark": true
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cae8491110ee",
+      "symbolId": "126a472e-997e-8055-8008-cec1bd071cbe",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cae8491110ee",
+        "text": "curiosity",
+        "x": 2098,
+        "y": 1225,
+        "width": 90,
+        "height": 28
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cae8491110ed"
+      ],
+      "dark": true
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cb1b2f8060a4",
+      "symbolId": "126a472e-997e-8055-8008-cec1bd8362dc",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cb1b2f8060a4",
+        "text": "curiosity",
+        "x": 1791,
+        "y": 2342,
+        "width": 98,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cb1b2f54f7fc",
+        "c5f19b81-2139-8092-8008-cb1b2f619e70",
+        "c5f19b81-2139-8092-8008-cb1b2f94639a"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cb1b3898ccf4",
+      "symbolId": "126a472e-997e-8055-8008-cec1be143125",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cb1b3898ccf4",
+        "text": "curiosity",
+        "x": 3471,
+        "y": 2342,
+        "width": 98,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cb1b38605ca3",
+        "c5f19b81-2139-8092-8008-cb1b3873d71f",
+        "c5f19b81-2139-8092-8008-cb1b38b2a3e3"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "c5f19b81-2139-8092-8008-cb1b3d3851bb",
+      "symbolId": "126a472e-997e-8055-8008-cec1be947fa7",
+      "pageId": "c5f19b81-2139-8092-8008-cae7988375c9",
+      "oldLabel": {
+        "id": "c5f19b81-2139-8092-8008-cb1b3d3851bb",
+        "text": "curiosity",
+        "x": 111,
+        "y": 2342,
+        "width": 98,
+        "height": 30
+      },
+      "removedIds": [
+        "c5f19b81-2139-8092-8008-cb1b3cf873f3",
+        "c5f19b81-2139-8092-8008-cb1b3d0ddcb7",
+        "c5f19b81-2139-8092-8008-cb1b3d626904"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fb98fc9ca",
+      "symbolId": "126a472e-997e-8055-8008-cec1c3e2197f",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fb98fc9ca",
+        "text": "curiosity",
+        "x": 100,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fb9808c26",
+        "9db41a4c-5f21-8076-8008-cd8fb985e089"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fbbcf745a",
+      "symbolId": "126a472e-997e-8055-8008-cec1c41b974b",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fbbcf745a",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fbbb8fe7a",
+        "9db41a4c-5f21-8076-8008-cd8fbbc42a2f"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fbe938017",
+      "symbolId": "126a472e-997e-8055-8008-cec1c45631a9",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fbe938017",
+        "text": "curiosity",
+        "x": 100,
+        "y": 1142,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fbe770aae",
+        "9db41a4c-5f21-8076-8008-cd8fbe8235dc"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fc2b2cba8",
+      "symbolId": "126a472e-997e-8055-8008-cec1c4932492",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fc2b2cba8",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 1142,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fc290f858",
+        "9db41a4c-5f21-8076-8008-cd8fc29cf660"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fc814e81d",
+      "symbolId": "126a472e-997e-8055-8008-cec1c4bf796b",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fc814e81d",
+        "text": "curiosity",
+        "x": 100,
+        "y": 2262,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fc7e4048e",
+        "9db41a4c-5f21-8076-8008-cd8fc7f65b3e"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fce534806",
+      "symbolId": "126a472e-997e-8055-8008-cec1c4efdc93",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fce534806",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 2262,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fce180462",
+        "9db41a4c-5f21-8076-8008-cd8fce3067d1"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fdb39a81a",
+      "symbolId": "126a472e-997e-8055-8008-cec1c5397ad8",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fdb39a81a",
+        "text": "curiosity",
+        "x": 100,
+        "y": 3382,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fdac97015",
+        "9db41a4c-5f21-8076-8008-cd8fdaf1b91b"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8fe5086c7a",
+      "symbolId": "126a472e-997e-8055-8008-cec1c5869a7d",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8fe5086c7a",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 3382,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8fe4b0ff66",
+        "9db41a4c-5f21-8076-8008-cd8fe4d08def"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900d25369e",
+      "symbolId": "126a472e-997e-8055-8008-cec1c5d1ffba",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900d25369e",
+        "text": "curiosity",
+        "x": 100,
+        "y": 4502,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900d25369c",
+        "9db41a4c-5f21-8076-8008-cd900d25369d"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd9247585305",
+      "symbolId": "126a472e-997e-8055-8008-cec1c6039dcd",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd9247585305",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 5622,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd9247585303",
+        "9db41a4c-5f21-8076-8008-cd9247585304"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd9246e3adff",
+      "symbolId": "126a472e-997e-8055-8008-cec1c63545eb",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd9246e3adff",
+        "text": "curiosity",
+        "x": 100,
+        "y": 5622,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd9246e3adfd",
+        "9db41a4c-5f21-8076-8008-cd9246e3adfe"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900d4df748",
+      "symbolId": "126a472e-997e-8055-8008-cec1c6688e77",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900d4df748",
+        "text": "curiosity",
+        "x": 1660,
+        "y": 4502,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900d4df746",
+        "9db41a4c-5f21-8076-8008-cd900d4df747"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900d7359c0",
+      "symbolId": "126a472e-997e-8055-8008-cec1c69cc69f",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8f88431691",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900d7359c0",
+        "text": "curiosity",
+        "x": 3220,
+        "y": 4502,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900d7359be",
+        "9db41a4c-5f21-8076-8008-cd900d7359bf"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8ff6a70a4a",
+      "symbolId": "126a472e-997e-8055-8008-cec1ca7b3c49",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8ff6a70a4a",
+        "text": "curiosity",
+        "x": 82,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8ff69bb6b7",
+        "9db41a4c-5f21-8076-8008-cd8ff69fba5d"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8ff81b32b6",
+      "symbolId": "126a472e-997e-8055-8008-cec1caa801a9",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8ff81b32b6",
+        "text": "curiosity",
+        "x": 552,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8ff8009b8d",
+        "9db41a4c-5f21-8076-8008-cd8ff80abc0f"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8ff9fdfb4b",
+      "symbolId": "126a472e-997e-8055-8008-cec1cad6080b",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8ff9fdfb4b",
+        "text": "curiosity",
+        "x": 1022,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8ff9e85248",
+        "9db41a4c-5f21-8076-8008-cd8ff9f0e2c3"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8ffc259e0a",
+      "symbolId": "126a472e-997e-8055-8008-cec1cb02e54d",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8ffc259e0a",
+        "text": "curiosity",
+        "x": 1492,
+        "y": 22,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8ffbf8f9d6",
+        "9db41a4c-5f21-8076-8008-cd8ffc061897"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd8ffece9297",
+      "symbolId": "126a472e-997e-8055-8008-cec1cb2f63fa",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd8ffece9297",
+        "text": "curiosity",
+        "x": 82,
+        "y": 1102,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd8ffea995a4",
+        "9db41a4c-5f21-8076-8008-cd8ffeb74e6b"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900165f81f",
+      "symbolId": "126a472e-997e-8055-8008-cec1cb621d4c",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900165f81f",
+        "text": "curiosity",
+        "x": 552,
+        "y": 1102,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900140a838",
+        "9db41a4c-5f21-8076-8008-cd90014f273a"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd90050c7158",
+      "symbolId": "126a472e-997e-8055-8008-cec1cbabd65d",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd90050c7158",
+        "text": "curiosity",
+        "x": 1022,
+        "y": 1102,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd9004dcda44",
+        "9db41a4c-5f21-8076-8008-cd9004ed59e6"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900872651e",
+      "symbolId": "126a472e-997e-8055-8008-cec1cbe127fe",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900872651e",
+        "text": "curiosity",
+        "x": 1492,
+        "y": 1102,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd90083b9f19",
+        "9db41a4c-5f21-8076-8008-cd9008503dc1"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900e04d8a9",
+      "symbolId": "126a472e-997e-8055-8008-cec1cc0dd93b",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900e04d8a9",
+        "text": "curiosity",
+        "x": 82,
+        "y": 2182,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900e04d8a7",
+        "9db41a4c-5f21-8076-8008-cd900e04d8a8"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd924a290eab",
+      "symbolId": "126a472e-997e-8055-8008-cec1cc3a4279",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd924a290eab",
+        "text": "curiosity",
+        "x": 1962,
+        "y": 2182,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd924a290ea9",
+        "9db41a4c-5f21-8076-8008-cd924a290eaa"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd924a0a1835",
+      "symbolId": "126a472e-997e-8055-8008-cec1cc683d33",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd924a0a1835",
+        "text": "curiosity",
+        "x": 1492,
+        "y": 2182,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd924a0a1833",
+        "9db41a4c-5f21-8076-8008-cd924a0a1834"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900e1e1a41",
+      "symbolId": "126a472e-997e-8055-8008-cec1cca0a279",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900e1e1a41",
+        "text": "curiosity",
+        "x": 552,
+        "y": 2182,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900e1e1a3f",
+        "9db41a4c-5f21-8076-8008-cd900e1e1a40"
+      ],
+      "dark": false
+    },
+    {
+      "wordmarkId": "9db41a4c-5f21-8076-8008-cd900e37ea6a",
+      "symbolId": "126a472e-997e-8055-8008-cec1ccdbc3d0",
+      "pageId": "9db41a4c-5f21-8076-8008-cd8fee6db64b",
+      "oldLabel": {
+        "id": "9db41a4c-5f21-8076-8008-cd900e37ea6a",
+        "text": "curiosity",
+        "x": 1022,
+        "y": 2182,
+        "width": 130,
+        "height": 32
+      },
+      "removedIds": [
+        "9db41a4c-5f21-8076-8008-cd900e37ea68",
+        "9db41a4c-5f21-8076-8008-cd900e37ea69"
+      ],
+      "dark": false
+    }
+  ]
+}

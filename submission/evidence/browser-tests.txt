@@ -1,0 +1,96 @@
+
+> test:browser
+> playwright test
+
+
+Running 64 tests using 1 worker
+
+  ✓   1 tests/browser/accounts.spec.ts:19:1 › Sign-in survives refresh; sign-out clears it without overwriting guest topics (1.6s)
+  ✓   2 tests/browser/accounts.spec.ts:80:1 › Create account signs an existing user in without signup or email (651ms)
+  ✓   3 tests/browser/accounts.spec.ts:94:1 › A new account still requires email confirmation (604ms)
+  ✓   4 tests/browser/accounts.spec.ts:109:1 › Unconfirmed accounts do not trigger another signup email (662ms)
+  ✓   5 tests/browser/accounts.spec.ts:121:1 › Expired stored sessions renew on refresh without asking for a password (907ms)
+  ✓   6 tests/browser/accounts.spec.ts:145:1 › Incorrect sign-in details do not create an account or grant access (679ms)
+  ✓   7 tests/browser/accounts.spec.ts:160:1 › Sign-out closes the account's active topic view and removes its saved subjects (892ms)
+  ✓   8 tests/browser/accounts.spec.ts:224:1 › Unconfirmed accounts can request another email and see delivery errors (766ms)
+  ✓   9 tests/browser/chat-readability.spec.ts:81:1 › Desktop teacher formats long answers from the beginning and keeps the composer inside the viewport (843ms)
+  ✓  10 tests/browser/chat-readability.spec.ts:119:1 › Expanding and collapsing chat preserves the mounted player, playback position, draft and conversation (854ms)
+  ✓  11 tests/browser/chat-readability.spec.ts:172:1 › Suggestion cards show thumbnails and durations, support fallback images and open the existing player (886ms)
+  ✓  12 tests/browser/chat-readability.spec.ts:201:1 › Reading earlier messages does not jump when another answer arrives (971ms)
+  ✓  13 tests/browser/chat-readability.spec.ts:248:1 › Teacher composer remains usable on a shorter desktop viewport (680ms)
+  ✓  14 tests/browser/classification.spec.ts:41:1 › Videos appear before classification; semantic labels expand without playing and belong only to the primary Universe (713ms)
+  ✓  15 tests/browser/classification.spec.ts:94:1 › Phone classification failure preserves browsing and manual retry can show a provisional topic (708ms)
+  ✓  16 tests/browser/classification.spec.ts:148:1 › Offscreen videos wait until scrolling brings them into view (670ms)
+  ✓  17 tests/browser/classification.spec.ts:180:1 › Queued classification changes to finding and completes through status polls (2.6s)
+  ✓  18 tests/browser/classification.spec.ts:212:1 › Approved search videos appear in their Universe and Topic after reload even when fresh discovery fails (1.2s)
+  ✓  19 tests/browser/classification.spec.ts:289:1 › Daily label limits show a paused state while another video's cached label remains available (606ms)
+  ✓  20 tests/browser/mobile.spec.ts:72:3 › Mobile 320px: search, grouped topics, navigation and readable feed (856ms)
+  ✓  21 tests/browser/mobile.spec.ts:72:3 › Mobile 360px: search, grouped topics, navigation and readable feed (839ms)
+  ✓  22 tests/browser/mobile.spec.ts:72:3 › Mobile 390px: search, grouped topics, navigation and readable feed (901ms)
+  ✓  23 tests/browser/mobile.spec.ts:72:3 › Mobile 430px: search, grouped topics, navigation and readable feed (904ms)
+  ✓  24 tests/browser/mobile.spec.ts:109:1 › Mobile teacher preserves video context, pauses hidden playback and returns to timestamps above the keyboard (1.1s)
+  ✓  25 tests/browser/mobile.spec.ts:197:1 › Mobile Shorts navigation keeps one player and a question uses the active Short (1.4s)
+  ✓  26 tests/browser/mobile.spec.ts:271:1 › Mobile account screen supports sign-in, sign-out, guest isolation and close (697ms)
+  ✓  27 tests/browser/mobile.spec.ts:300:1 › Mobile standalone teacher, saved playback and landscape remain usable (938ms)
+  ✓  28 tests/browser/mobile.spec.ts:384:1 › Mobile break stays optional, caps candidates at three and search errors offer a path back (820ms)
+  ✓  29 tests/browser/mobile.spec.ts:447:3 › Shorts at 390px hide the resume row and still resume from Continue watching (836ms)
+  ✓  30 tests/browser/mobile.spec.ts:447:3 › Shorts at 1440px hide the resume row and still resume from Continue watching (846ms)
+  ✓  31 tests/browser/prototype.spec.ts:40:1 › Search pagination preserves grouped guest topics across reload (1.1s)
+  ✓  32 tests/browser/prototype.spec.ts:81:1 › Chat failure is visible, and an offered demo break persists without inventing clips (922ms)
+  ✓  33 tests/browser/prototype.spec.ts:139:1 › Unavailable embedded video offers a clear alternative (659ms)
+  ✓  34 tests/browser/prototype.spec.ts:172:1 › Long video stays above its result; guest progress survives reload and resumes (1.3s)
+  ✓  35 tests/browser/prototype.spec.ts:217:1 › Scrolling short videos replaces and stops the previous player (821ms)
+  ✓  36 tests/browser/prototype.spec.ts:295:1 › Account progress loads independently of guest storage and saves the paused position (1.1s)
+  ✓  37 tests/browser/prototype.spec.ts:371:1 › Continue watching restores a saved video missing from fresh search results (778ms)
+  ✓  38 tests/browser/prototype.spec.ts:432:1 › Home starts with the three Universes; saved searches survive reload and Home keeps an independent mix (1.3s)
+  ✓  39 tests/browser/prototype.spec.ts:532:1 › A Trending video plays without creating a searched-topic tab; empty history and home errors offer clear paths (1.1s)
+  ✓  40 tests/browser/prototype.spec.ts:587:1 › Continue watching reopens a saved player without searching again (1.0s)
+  ✓  41 tests/browser/prototype.spec.ts:648:1 › Teacher labels unrelated questions, remembers follow-ups, and jumps to a related timestamp (1.2s)
+  ✓  42 tests/browser/prototype.spec.ts:789:1 › Teacher conversation clears on sign-out and cannot restore a late private answer (1.0s)
+  ✓  43 tests/browser/prototype.spec.ts:856:1 › Teacher is available before searching or selecting a video (1.1s)
+  ✓  44 tests/browser/related-universes.spec.ts:62:1 › Desktop popovers keep metadata in place and support keyboard and outside dismissal without playing (926ms)
+  ✓  45 tests/browser/related-universes.spec.ts:113:1 › Only one popover opens, right-edge content stays inside the viewport and can flip above (1.1s)
+  ✓  46 tests/browser/related-universes.spec.ts:176:1 › History and selected player metadata share the popover without clipping or resetting playback (1.5s)
+  ✓  47 tests/browser/related-universes.spec.ts:246:1 › Switching to mobile removes the desktop popover and retains the existing details control (813ms)
+  ✓  48 tests/browser/search.spec.ts:83:1 › Desktop search opens from the header, offers choices without saving them and shows contextual learning results (992ms)
+  ✓  49 tests/browser/search.spec.ts:145:1 › Desktop redirects entertainment and rechecks a real learning goal while preserving the original query (973ms)
+  ✓  50 tests/browser/search.spec.ts:193:1 › Desktop search polls one job, preserves pagination and opens the existing player without another search (4.1s)
+  ✓  51 tests/browser/search.spec.ts:240:1 › Desktop failures and empty filtered batches offer recovery without saving a rejected search (899ms)
+  ✓  52 tests/browser/search.spec.ts:279:1 › Desktop navigation cancels pending search presentation and ignores a late result (872ms)
+  ✓  53 tests/browser/search.spec.ts:315:1 › Desktop refuses a legacy or malformed response without an educational decision (801ms)
+  ✓  54 tests/browser/search.spec.ts:328:1 › Desktop shows partial results, appends videos during playback and keeps the player mounted (2.6s)
+  ✓  55 tests/browser/search.spec.ts:390:1 › Desktop retains approved partial results when a later check fails (2.5s)
+  ✓  56 tests/browser/search.spec.ts:430:1 › Desktop pagination keeps existing cards visible and deduplicates incremental snapshots (2.5s)
+  ✓  57 tests/browser/universes.spec.ts:75:1 › Desktop Universe feeds open directly; subject filters reuse results and old searches remain intact (964ms)
+  ✓  58 tests/browser/universes.spec.ts:134:1 › Mixed searches show per-video labels between title and creator, keeping unclear videos watchable (979ms)
+  ✓  59 tests/browser/universes.spec.ts:179:1 › A normal desktop video click starts at saved progress without a separate Resume button (1.6s)
+  ✘  60 tests/browser/universes.spec.ts:228:1 › Feed failures can retry, and unassigned legacy searches remain accessible (45.0s)
+  ✓  61 tests/browser/watch-history.spec.ts:81:1 › Desktop history shows all playback states and resumes a long video without a search (1.0s)
+  ✓  62 tests/browser/watch-history.spec.ts:136:1 › Completed videos restart at zero and unfinished Shorts resume without a resume shelf (1.2s)
+  ✓  63 tests/browser/watch-history.spec.ts:188:1 › Missing history details can retry and unavailable videos retain their saved record (1.0s)
+  ✓  64 tests/browser/watch-history.spec.ts:228:1 › History restores twenty details at a time and supports the next page (1.2s)
+
+
+  1) tests/browser/universes.spec.ts:228:1 › Feed failures can retry, and unassigned legacy searches remain accessible 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByText('Other saved searches', { exact: true })
+
+
+      268 |   await page.getByRole("button", { name: "Try again", exact: true }).click();
+      269 |   await expect(page.locator(".universe-feed .video-card")).toHaveCount(1);
+    > 270 |   await page.getByText("Other saved searches", { exact: true }).click();
+          |                                                                 ^
+      271 |   await page.getByRole("button", { name: "Cooking", exact: true }).click();
+      272 |   await expect(
+      273 |     page.getByRole("heading", { name: "Cooking", exact: true }),
+        at /home/subramd/StartupIdea/tests/browser/universes.spec.ts:270:65
+
+    Error Context: test-results/universes-Feed-failures-ca-11e57--searches-remain-accessible/error-context.md
+
+  1 failed
+    tests/browser/universes.spec.ts:228:1 › Feed failures can retry, and unassigned legacy searches remain accessible 
+  63 passed (2.0m)

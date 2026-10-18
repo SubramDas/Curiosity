@@ -1,0 +1,17 @@
+[
+  {
+    "id": "gpu-learning",
+    "input": { "query": "How do GPUs work?" },
+    "review": { "status": "draft", "expected": { "action": "allow" } }
+  },
+  {
+    "id": "football-ambiguous",
+    "input": { "query": "football" },
+    "review": { "status": "draft", "expected": { "action": "choices" } }
+  },
+  {
+    "id": "entertainment",
+    "input": { "query": "funny meme compilations" },
+    "review": { "status": "draft", "expected": { "action": "redirect" } }
+  }
+]

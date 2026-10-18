@@ -6,6 +6,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "benchmark": "node experiments/benchmarks/run.mjs",
     "test": "node experiments/phase-2/tests/services.test.mjs && tsx --test tests/*.test.ts",
     "dev": "node --env-file=.env backend/dev.mjs",
     "dev:lan": "node --env-file=.env backend/dev.mjs --lan",

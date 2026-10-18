@@ -1,0 +1,86 @@
+curiosity
+IN
+Search any topic
+Sign in
+Home
+Short videos
+Continue watching
+Your topics
+
+1 topics explored
+
+Computing & Tech
+1
+topics · Explore →
+
+Explored topics show activity, not mastery.
+
+Ask a question
+Developer options
+
+Follow your curiosity.
+YouTube videos belong to their creators.
+Hackathon demo · 18+
+Demo and data information
+
+Trending
+Computing & Tech
+
+Saved in this browser as a guest topic.
+
+Computing & Tech
+I want to know about GPUs
+0m active · 12-minute break
+
+Live YouTube results · Not reviewed for accuracy or level
+
+All videos
+Short videos
+Long videos
+3:53
+B
+How does a graphics card work? GPUs and Graphics cards explained.
+Basics Explained, H3Vtux
+YouTube · 3m53s
+8:19
+T
+GPUs Explained: All you need to know
+TechteamGB
+YouTube · 8m19s
+Shorts
+0:24
+GPUs Explained for Beginners | What is a GPU?
+PC Guide · YouTube
+0:09
+the future of GPUs #shorts
+mryeester · YouTube
+0:09
+How To Check Which Graphics Card You Have | How To Check Graphics Card in Laptop | HDXT TECHZ
+HDXT TECHZ · YouTube
+0:16
+How to Check Graphics Card Details in Laptop | Graphics Card Details Short Cut#macnitesh#2023shorts
+Mac Nitesh · YouTube
+0:26
+Nvidia RTX 3080 Mini! The Future of GPUs! #shorts #pcgaming #gpu #aprilfools
+Matt's Computer Services · YouTube
+0:53
+How to Buy a USED GPU (and not get scammed)
+Zach's Tech Turf · YouTube
+1:00
+The Confusing Truth About Graphics Cards
+META PCs · YouTube
+0:36
+How to Upgrade Your Graphics Card
+Linus Tech Tips · YouTube
+
+Short videos up to 3 minutes. YouTube does not identify Shorts in search results.
+
+MAKE IT CLICK
+Ask a doubt
+
+Ask about any topic. I’ll explain and suggest relevant videos when available.
+
+What would you like explained?
+Ask →
+Load more videos
+{"chatStatus":200,"elapsedMs":2529,"answer":{"answer":"Think of a CPU (Central Processing Unit) like a brilliant professor who can solve complex problems one at a time, very quickly. A GPU (Graphics Processing Unit), on the other hand, is like a massive stadium of students who can all do simple math problems at the exact same time. While the professor is great for sequential thinking, the stadium can handle huge amounts of data simultaneously.\n\nArtificial intelligence and machine learning involve training models on enormous amounts of data using lots of simple math equations, like multiplication and addition. Because GPUs are designed with thousands of smaller cores built for parallel processing, they can perform these thousands of calculations at the same time. This makes training AI models drastically faster than using a CPU alone.","relation":"no-video","relationReason":"There is no video provided.","videoContext":"none","sources":[],"answerBasis":"general","timestamp":null,"recommendations":[{"id":"s3yjlRkXhbA","title":"How a GPU Actually Works (and Powers AI)","channel":"Bug Labs","watchUrl":"https://www.youtube.com/watch?v=s3yjlRkXhbA","reviewed":false,"details":{"duration":"PT3M31S","embeddable":true,"privacyStatus":"public"}},{"id":"-EL6i2AebdA","title":"Why AI Runs on GPUs, Not CPUs","channel":"BlackBoard AI","watchUrl":"https://www.youtube.com/watch?v=-EL6i2AebdA","reviewed":false,"details":{"duration":"PT3M18S","embeddable":true,"privacyStatus":"public"}}],"notices":[],"questionVideo":null}}

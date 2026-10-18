@@ -1,0 +1,22 @@
+[
+  {
+    "id": "gpu-ai-explanation",
+    "input": {
+      "question": "Why are GPUs useful for AI? Explain simply.",
+      "topic": "GPUs",
+      "history": [],
+      "currentVideo": null
+    },
+    "review": { "status": "draft", "expected": {} }
+  },
+  {
+    "id": "compound-interest",
+    "input": {
+      "question": "What is compound interest? Give a simple numerical example.",
+      "topic": "Personal finance",
+      "history": [],
+      "currentVideo": null
+    },
+    "review": { "status": "draft", "expected": {} }
+  }
+]

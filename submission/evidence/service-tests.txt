@@ -1,0 +1,512 @@
+
+> test
+> node experiments/phase-2/tests/services.test.mjs && tsx --test tests/*.test.ts
+
+TAP version 13
+# Subtest: YouTube requests video-only embeddable results and forwards pagination without placing secrets in the URL
+ok 1 - YouTube requests video-only embeddable results and forwards pagination without placing secrets in the URL
+  ---
+  duration_ms: 25.124264
+  ...
+# Subtest: Repeated videos across batches appear once in original result order
+ok 2 - Repeated videos across batches appear once in original result order
+  ---
+  duration_ms: 0.68849
+  ...
+# Subtest: Missing and unavailable video details are not fabricated
+ok 3 - Missing and unavailable video details are not fabricated
+  ---
+  duration_ms: 0.716993
+  ...
+# Subtest: Blank input is rejected before consuming a provider call
+ok 4 - Blank input is rejected before consuming a provider call
+  ---
+  duration_ms: 0.676231
+  ...
+# Subtest: Quota errors are not retried or printed with raw provider secrets
+ok 5 - Quota errors are not retried or printed with raw provider secrets
+  ---
+  duration_ms: 0.375832
+  ...
+# Subtest: Network failures are sanitized
+ok 6 - Network failures are sanitized
+  ---
+  duration_ms: 0.354287
+  ...
+# Subtest: Chat requires explicit developer data-use confirmation before any call
+ok 7 - Chat requires explicit developer data-use confirmation before any call
+  ---
+  duration_ms: 0.282099
+  ...
+# Subtest: Chat rejects invented source identifiers and unsupported uncited answers
+ok 8 - Chat rejects invented source identifiers and unsupported uncited answers
+  ---
+  duration_ms: 0.326972
+  ...
+# Subtest: Chat uses supplied source links and marks answers for human review
+ok 9 - Chat uses supplied source links and marks answers for human review
+  ---
+  duration_ms: 0.854986
+  ...
+# Subtest: Truncated model output is rejected rather than treated as complete
+ok 10 - Truncated model output is rejected rather than treated as complete
+  ---
+  duration_ms: 0.614609
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45.169306
+TAP version 13
+# Subtest: Teacher explanations render readable headings, lists, emphasis and code without interpreting HTML
+ok 1 - Teacher explanations render readable headings, lists, emphasis and code without interpreting HTML
+  ---
+  duration_ms: 8.471646
+  ...
+# Subtest: Teacher text accepts ordinary web links and keeps scripts and HTML as inert text
+ok 2 - Teacher text accepts ordinary web links and keeps scripts and HTML as inert text
+  ---
+  duration_ms: 0.846331
+  ...
+# API listening at http://127.0.0.1:0
+# API listening at http://127.0.0.1:0
+# Subtest: Phone testing accepts only explicit LAN origins and keeps the API bound to localhost
+ok 3 - Phone testing accepts only explicit LAN origins and keeps the API bound to localhost
+  ---
+  duration_ms: 118.594608
+  ...
+# Subtest: Project API settings override inherited keys without changing unrelated environment settings
+ok 4 - Project API settings override inherited keys without changing unrelated environment settings
+  ---
+  duration_ms: 6.323287
+  ...
+# Subtest: Saved topics keep their main tile when a later rule suggests another category
+ok 5 - Saved topics keep their main tile when a later rule suggests another category
+  ---
+  duration_ms: 4.757518
+  ...
+# Subtest: Supabase rejects privileged keys that could bypass owner access rules
+ok 6 - Supabase rejects privileged keys that could bypass owner access rules
+  ---
+  duration_ms: 1.336361
+  ...
+# Subtest: GPU aliases reuse one saved topic; AMD reuses the broad tile as a distinct topic
+ok 7 - GPU aliases reuse one saved topic; AMD reuses the broad tile as a distinct topic
+  ---
+  duration_ms: 0.585475
+  ...
+# Subtest: Full query intent controls Nvidia finance and GPU tax placement with related tags
+ok 8 - Full query intent controls Nvidia finance and GPU tax placement with related tags
+  ---
+  duration_ms: 0.599835
+  ...
+# Subtest: Ambiguous CA needs clarification; unknown subjects can still be searched
+ok 9 - Ambiguous CA needs clarification; unknown subjects can still be searched
+  ---
+  duration_ms: 0.744242
+  ...
+# Subtest: Idle time, suspended tabs, and already-offered breaks add no learning time
+ok 10 - Idle time, suspended tabs, and already-offered breaks add no learning time
+  ---
+  duration_ms: 0.341174
+  ...
+# Subtest: Real and demo thresholds trigger once; returning to learning resets time
+ok 11 - Real and demo thresholds trigger once; returning to learning resets time
+  ---
+  duration_ms: 0.269493
+  ...
+# Subtest: Local allowance persists across restart and cannot be spent twice near its limit
+ok 12 - Local allowance persists across restart and cannot be spent twice near its limit
+  ---
+  duration_ms: 2.491843
+  ...
+# Subtest: Search checks wait behind teachers and ahead of background classification
+ok 13 - Search checks wait behind teachers and ahead of background classification
+  ---
+  duration_ms: 31.121216
+  ...
+# Subtest: One queue serializes requests, spaces starts and gives teacher questions the next slot
+ok 14 - One queue serializes requests, spaces starts and gives teacher questions the next slot
+  ---
+  duration_ms: 52.720259
+  ...
+# Subtest: Rate limits pause subsequent work without retrying the failed operation
+ok 15 - Rate limits pause subsequent work without retrying the failed operation
+  ---
+  duration_ms: 42.866752
+  ...
+# Subtest: A provider daily limit blocks pending and new work until the Pacific calendar day changes
+ok 16 - A provider daily limit blocks pending and new work until the Pacific calendar day changes
+  ---
+  duration_ms: 4.704755
+  ...
+# Subtest: Expired or overflow work never reaches the provider; shutdown clears pending requests
+ok 17 - Expired or overflow work never reaches the provider; shutdown clears pending requests
+  ---
+  duration_ms: 14.998878
+  ...
+# Subtest: Gemini 429 errors expose safe provider, quota kind and retry delay without leaking the raw response
+ok 18 - Gemini 429 errors expose safe provider, quota kind and retry delay without leaking the raw response
+  ---
+  duration_ms: 43.56276
+  ...
+# Subtest: Classification polling coalesces jobs, runs one pipeline at a time and retries only on explicit request
+ok 19 - Classification polling coalesces jobs, runs one pipeline at a time and retries only on explicit request
+  ---
+  duration_ms: 11.195641
+  ...
+# Subtest: Real teacher and classifier adapters share the same scheduled requester
+ok 20 - Real teacher and classifier adapters share the same scheduled requester
+  ---
+  duration_ms: 33.924739
+  ...
+# Subtest: Home feed caps suggestions, reuses provider data briefly, and refreshes after expiry
+ok 21 - Home feed caps suggestions, reuses provider data briefly, and refreshes after expiry
+  ---
+  duration_ms: 3.813316
+  ...
+# Subtest: Home provider failures keep independent suggestions and never invent trending items
+ok 22 - Home provider failures keep independent suggestions and never invent trending items
+  ---
+  duration_ms: 0.701894
+  ...
+# Subtest: Trending requests recent popular education results and preserves provider rank while excluding unplayable videos
+ok 23 - Trending requests recent popular education results and preserves provider rank while excluding unplayable videos
+  ---
+  duration_ms: 36.35472
+  ...
+# Subtest: Exhausted home allowance blocks provider calls and explains the limit without fabricating results
+ok 24 - Exhausted home allowance blocks provider calls and explains the limit without fabricating results
+  ---
+  duration_ms: 0.473014
+  ...
+# Subtest: Hosted quotas reserve atomically across adapters and reject async failures before provider calls
+ok 25 - Hosted quotas reserve atomically across adapters and reject async failures before provider calls
+  ---
+  duration_ms: 11.230796
+  ...
+# Subtest: Shared metadata survives adapter replacement, coalesces requests, expires, caps entries and avoids cached failures
+ok 26 - Shared metadata survives adapter replacement, coalesces requests, expires, caps entries and avoids cached failures
+  ---
+  duration_ms: 20.953297
+  ...
+# Subtest: Asynchronous cache misses finish at different times without losing video details
+ok 27 - Asynchronous cache misses finish at different times without losing video details
+  ---
+  duration_ms: 141.315118
+  ...
+# Subtest: Mutable cache updates preserve concurrent catalog additions across hosted adapters and expire
+ok 28 - Mutable cache updates preserve concurrent catalog additions across hosted adapters and expire
+  ---
+  duration_ms: 62.699173
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Production serves built assets and health, denies hidden paths and rejects unrelated origins
+ok 29 - Production serves built assets and health, denies hidden paths and rejects unrelated origins
+  ---
+  duration_ms: 105.194461
+  ...
+# Subtest: Burst protection limits repeated chat requests and resets at the next minute
+ok 30 - Burst protection limits repeated chat requests and resets at the next minute
+  ---
+  duration_ms: 1.670565
+  ...
+# Subtest: Persistent cache reuses results after restart, isolates pages, expires and does not cache failures
+ok 31 - Persistent cache reuses results after restart, isolates pages, expires and does not cache failures
+  ---
+  duration_ms: 10.715932
+  ...
+# Subtest: Searches and overlapping video batches share cached metadata and work at an exhausted allowance
+ok 32 - Searches and overlapping video batches share cached metadata and work at an exhausted allowance
+  ---
+  duration_ms: 72.387005
+  ...
+# API listening at http://127.0.0.1:0
+# API listening at http://127.0.0.1:0
+# Subtest: Actual API routes reuse cached search/details after exhaustion and a server restart
+ok 33 - Actual API routes reuse cached search/details after exhaustion and a server restart
+  ---
+  duration_ms: 282.957655
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Catalog requires educational approval, reuses classification in either order, persists and keeps primary-only placement
+ok 34 - Catalog requires educational approval, reuses classification in either order, persists and keeps primary-only placement
+  ---
+  duration_ms: 12.107815
+  ...
+# Subtest: Catalog bounds retained videos and expires provisional outage labels without discarding approved references
+ok 35 - Catalog bounds retained videos and expires provisional outage labels without discarding approved references
+  ---
+  duration_ms: 5.323522
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: HTTP catalog joins only server-approved search videos with server classifications and survives restart without provider calls
+ok 36 - HTTP catalog joins only server-approved search videos with server classifications and survives restart without provider calls
+  ---
+  duration_ms: 147.293227
+  ...
+# Subtest: Legacy cached videos recover with existing educational decisions and labels, without extending approval or admitting entertainment
+ok 37 - Legacy cached videos recover with existing educational decisions and labels, without extending approval or admitting entertainment
+  ---
+  duration_ms: 19.130211
+  ...
+# Subtest: Existing catalog approvals join classification-cache labels by exact evidence and configured model
+ok 38 - Existing catalog approvals join classification-cache labels by exact evidence and configured model
+  ---
+  duration_ms: 3.584575
+  ...
+# Subtest: Search decisions reject unknown actions, duplicate choices and malformed alternatives
+ok 39 - Search decisions reject unknown actions, duplicate choices and malformed alternatives
+  ---
+  duration_ms: 2.415434
+  ...
+# Subtest: Query cache coalesces checks, separates learning goals/model and retries failures only on a new request
+ok 40 - Query cache coalesces checks, separates learning goals/model and retries failures only on a new request
+  ---
+  duration_ms: 10.72087
+  ...
+# Subtest: Video filtering batches new metadata, removes entertainment/unclear and reuses decisions across pages
+ok 41 - Video filtering batches new metadata, removes entertainment/unclear and reuses decisions across pages
+  ---
+  duration_ms: 6.242773
+  ...
+# Subtest: Configured Gemini receives bounded evidence as data, reserves each attempt and rejects invented/missing video IDs
+ok 42 - Configured Gemini receives bounded evidence as data, reserves each attempt and rejects invented/missing video IDs
+  ---
+  duration_ms: 2.26902
+  ...
+# Subtest: Redirects and choices, including paginated or disguised break requests, spend no YouTube calls
+ok 43 - Redirects and choices, including paginated or disguised break requests, spend no YouTube calls
+  ---
+  duration_ms: 1.636713
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Search jobs return promptly, coalesce polls and bind request IDs to their original input
+ok 44 - Search jobs return promptly, coalesce polls and bind request IDs to their original input
+  ---
+  duration_ms: 8.864888
+  ...
+# Subtest: Related breaks require a timed server permit, derive the topic server-side, filter relatedness and cap/reuse three results
+ok 45 - Related breaks require a timed server permit, derive the topic server-side, filter relatedness and cap/reuse three results
+  ---
+  duration_ms: 3.74582
+  ...
+# Subtest: HTTP search enforces guardrails with injected providers; missing AI configuration fails closed
+ok 46 - HTTP search enforces guardrails with injected providers; missing AI configuration fails closed
+  ---
+  duration_ms: 94.963323
+  ...
+# Subtest: Progressive jobs publish cached approvals first, append small checked batches and retain results on failure
+ok 47 - Progressive jobs publish cached approvals first, append small checked batches and retain results on failure
+  ---
+  duration_ms: 39.267351
+  ...
+# Subtest: Progressive filtering exposes cache hits before any new assessment completes and only appends approved videos
+ok 48 - Progressive filtering exposes cache hits before any new assessment completes and only appends approved videos
+  ---
+  duration_ms: 13.475552
+  ...
+# Subtest: Chat boundaries reject arbitrary video URLs, oversized history, and invalid positions
+ok 49 - Chat boundaries reject arbitrary video URLs, oversized history, and invalid positions
+  ---
+  duration_ms: 1.574374
+  ...
+# Subtest: Timestamps require related video analysis, valid ranges, and evidence; server supplies the ID
+ok 50 - Timestamps require related video analysis, valid ranges, and evidence; server supplies the ID
+  ---
+  duration_ms: 0.66025
+  ...
+# Subtest: Unrelated questions receive an answer and at most two provider videos, without replacing the current video
+ok 51 - Unrelated questions receive an answer and at most two provider videos, without replacing the current video
+  ---
+  duration_ms: 1.601929
+  ...
+# Subtest: Related timestamp answers avoid search; exhausted recommendations do not discard explanations
+ok 52 - Related timestamp answers avoid search; exhausted recommendations do not discard explanations
+  ---
+  duration_ms: 0.796724
+  ...
+# Subtest: Unsupported video input falls back once to text, consumes both attempts, and cannot supply a timestamp
+ok 53 - Unsupported video input falls back once to text, consumes both attempts, and cannot supply a timestamp
+  ---
+  duration_ms: 0.451889
+  ...
+# Subtest: Gemini video requests use only the selected public URL and pass follow-up history
+ok 54 - Gemini video requests use only the selected public URL and pass follow-up history
+  ---
+  duration_ms: 30.797815
+  ...
+# Subtest: Video labels use server classifications without a title-keyword fallback
+ok 55 - Video labels use server classifications without a title-keyword fallback
+  ---
+  duration_ms: 7.544556
+  ...
+# Subtest: Legacy saved searches map to Universes without rewriting keys or records
+ok 56 - Legacy saved searches map to Universes without rewriting keys or records
+  ---
+  duration_ms: 3.753131
+  ...
+# Subtest: Universe feeds omit Trending provider calls, reuse cache and preserve independent failures
+ok 57 - Universe feeds omit Trending provider calls, reuse cache and preserve independent failures
+  ---
+  duration_ms: 1.928742
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Universe HTTP route shares cached results with search and rejects oversized query lists
+ok 58 - Universe HTTP route shares cached results with search and rejects oversized query lists
+  ---
+  duration_ms: 210.184934
+  ...
+# Subtest: Browser classification deduplicates IDs, caps concurrency, preserves cache lookups after daily limits and ignores responses after disposal
+ok 59 - Browser classification deduplicates IDs, caps concurrency, preserves cache lookups after daily limits and ignores responses after disposal
+  ---
+  duration_ms: 32.451892
+  ...
+# Subtest: Browser rejects inconsistent matched IDs, self-related Universes and unknown categories
+ok 60 - Browser rejects inconsistent matched IDs, self-related Universes and unknown categories
+  ---
+  duration_ms: 0.314814
+  ...
+# Subtest: Classification polls job status without creating another video request in parallel
+ok 61 - Classification polls job status without creating another video request in parallel
+  ---
+  duration_ms: 6.855685
+  ...
+# Subtest: Videos leaving view are removed from the waiting list while the active video completes
+ok 62 - Videos leaving view are removed from the waiting list while the active video completes
+  ---
+  duration_ms: 4.57899
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Classifier validates topics, candidate IDs, one primary Universe and unique direct overlaps
+ok 63 - Classifier validates topics, candidate IDs, one primary Universe and unique direct overlaps
+  ---
+  duration_ms: 2.55453
+  ...
+# Subtest: Gemini requests use only the configured model and reserve every attempt
+ok 64 - Gemini requests use only the configured model and reserve every attempt
+  ---
+  duration_ms: 24.180224
+  ...
+# Subtest: Wikidata matching normalizes a canonical label and outage/no-match stays provisional
+ok 65 - Wikidata matching normalizes a canonical label and outage/no-match stays provisional
+  ---
+  duration_ms: 1.015919
+  ...
+# Subtest: Insufficient metadata avoids graph and second model calls
+ok 66 - Insufficient metadata avoids graph and second model calls
+  ---
+  duration_ms: 0.337052
+  ...
+# Subtest: Classifications coalesce and persist; metadata/model/policy keys isolate results and failures can retry
+ok 67 - Classifications coalesce and persist; metadata/model/policy keys isolate results and failures can retry
+  ---
+  duration_ms: 7.472147
+  ...
+# Subtest: Wikidata provider retrieves bounded candidates and typed relations, ignores deprecated claims, caches lookups
+ok 68 - Wikidata provider retrieves bounded candidates and typed relations, ignores deprecated claims, caches lookups
+  ---
+  duration_ms: 6.306722
+  ...
+# Subtest: YouTube details include classification evidence without requiring transcripts
+ok 69 - YouTube details include classification evidence without requiring transcripts
+  ---
+  duration_ms: 1.515052
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Classification HTTP route accepts only IDs and uses provider metadata, not client instructions
+ok 70 - Classification HTTP route accepts only IDs and uses provider metadata, not client instructions
+  ---
+  duration_ms: 64.99997
+  ...
+# Subtest: Temporary graph-outage classifications are reused briefly then can acquire a real match
+ok 71 - Temporary graph-outage classifications are reused briefly then can acquire a real match
+  ---
+  duration_ms: 2.031906
+  ...
+# Subtest: Incomplete model output fails once without automatic retries or alternative models
+ok 72 - Incomplete model output fails once without automatic retries or alternative models
+  ---
+  duration_ms: 1.041362
+  ...
+# Subtest: Retrying a failed second stage reuses the accepted first Gemini topic extraction
+ok 73 - Retrying a failed second stage reuses the accepted first Gemini topic extraction
+  ---
+  duration_ms: 1.85509
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Background classification returns promptly, shares one job and exposes progress without duplicate work
+ok 74 - Background classification returns promptly, shares one job and exposes progress without duplicate work
+  ---
+  duration_ms: 41.566747
+  ...
+# Subtest: Cached labels accompany Universe feeds without starting classification or reserving classification allowance
+ok 75 - Cached labels accompany Universe feeds without starting classification or reserving classification allowance
+  ---
+  duration_ms: 35.587869
+  ...
+# Subtest: Playback positions reject invalid numbers and identifiers and ignore supplied ownership
+ok 76 - Playback positions reject invalid numbers and identifiers and ignore supplied ownership
+  ---
+  duration_ms: 1.530709
+  ...
+# Subtest: Short video grouping uses duration and leaves unknown and longer videos in the regular feed
+ok 77 - Short video grouping uses duration and leaves unknown and longer videos in the regular feed
+  ---
+  duration_ms: 0.324458
+  ...
+# Subtest: Account writes use the verified user identity and require a token
+ok 78 - Account writes use the verified user identity and require a token
+  ---
+  duration_ms: 48.632334
+  ...
+# Subtest: History includes completed and unfinished videos, sorts known dates and preserves undated legacy order
+ok 79 - History includes completed and unfinished videos, sorts known dates and preserves undated legacy order
+  ---
+  duration_ms: 2.260948
+  ...
+# Subtest: History groups by local calendar days and leaves missing or invalid dates under Earlier
+ok 80 - History groups by local calendar days and leaves missing or invalid dates under Earlier
+  ---
+  duration_ms: 19.861237
+  ...
+# Subtest: Search page size defaults to ten and rejects invalid or unsupported values
+ok 81 - Search page size defaults to ten and rejects invalid or unsupported values
+  ---
+  duration_ms: 1.462441
+  ...
+# Subtest: YouTube receives the configured page size on initial and paginated searches
+ok 82 - YouTube receives the configured page size on initial and paginated searches
+  ---
+  duration_ms: 24.381974
+  ...
+# API listening at http://127.0.0.1:0
+# Subtest: Changing page size separates cached pages while retaining cached video details
+ok 83 - Changing page size separates cached pages while retaining cached video details
+  ---
+  duration_ms: 24.277066
+  ...
+# Subtest: Guardrail filtering respects configured candidate counts, including sizes above ten
+ok 84 - Guardrail filtering respects configured candidate counts, including sizes above ten
+  ---
+  duration_ms: 5.881248
+  ...
+# Subtest: Server wires the environment page size into search filtering
+ok 85 - Server wires the environment page size into search filtering
+  ---
+  duration_ms: 58.083326
+  ...
+1..85
+# tests 85
+# suites 0
+# pass 85
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1315.985363

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "gpu-video",
+    "input": { "id": "s3yjlRkXhbA" },
+    "review": {
+      "status": "draft",
+      "expected": {
+        "primaryUniverse": "science",
+        "topicLabels": ["Graphics processing unit", "Graphics card", "GPU"]
+      }
+    }
+  }
+]

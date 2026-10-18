@@ -1,5 +1,9 @@
 # Desktop design review
 
+## Revelink applied across Penpot screens — 2026-10-18
+
+The connected **New File 1** now uses the approved Revelink Orbit Book branding across 83 desktop, mobile, Universe, Search and Graph wordmarks. Six supporting brand labels were updated. Editable text/native component instances remain; representative previews and all wordmark bounds were checked, and file validation passed. Saved version: **Revelink — branding across all screens**. See [the Penpot handoff](../penpot/revelink/ALL_SCREENS.md).
+
 ## Revelink Orbit Book refinement — 2026-10-18
 
 The founder chose Open Book + Discovery Orbit. Three new **Revelink · Orbit Book ·** boards on **Revelink — Brand explorations** show the combined symbol with wordmark/tagline, a desktop header preview, and small/light/dark/app-icon versions. The play triangle is replaced by the open book. All three final previews were inspected, validation passed and **Revelink — Orbit Book logo refinement** was saved. Native reusable component and transparent SVG master are included in [the refinement handoff](../penpot/revelink/ORBIT_BOOK.md). The founder approved the refinement and requested the app rebrand, now implemented locally for desktop/mobile headers, browser icons and app metadata. No deployment was performed.
