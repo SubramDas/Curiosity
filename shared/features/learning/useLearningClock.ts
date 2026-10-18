@@ -10,7 +10,7 @@ export function useLearningClock(
   active: boolean,
   demo: boolean,
 ) {
-  const storageKey = `curiosity-clock:${topicKey}:${demo ? "demo" : "real"}`;
+  const storageKey = `curiosity-clock:${topicKey}:${demo ? "demo-v2" : "real"}`;
   const [clock, setClock] = useState<BreakState>(() => {
     try {
       const stored = JSON.parse(localStorage.getItem(storageKey) ?? "null");

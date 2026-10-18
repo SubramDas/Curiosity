@@ -41,7 +41,8 @@ export function createRelatedBreak({
       6 * 3600_000,
       async () => ({
         query,
-        availableAt: startedAt + (demo && allowDemo ? 30_000 : 720_000),
+        availableAt:
+          startedAt + (demo === true && allowDemo ? 30_000 : 720_000),
       }),
     );
     return { permit };

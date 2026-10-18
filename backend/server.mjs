@@ -231,7 +231,8 @@ export function startServer(
     }),
     youtube: youtubeClient,
     cache: videoCache,
-    allowDemo: !staticDirectory && host === "127.0.0.1",
+    // The public timer-demo toggle uses the same short wait on hosted builds.
+    allowDemo: true,
   });
   async function classifyPublicVideo(id, onStatus) {
     const classifier = videoClassifier();

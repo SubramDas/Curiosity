@@ -43,7 +43,7 @@ Desktop requests use short asynchronous responses and poll one existing job ever
 
 - `POST /api/search`: `{query, goal?, pageToken?, background?, requestId?}`. Background requests need a UUID; returns `jobId` and `checking`/`filtering`, then a terminal result via polling. Non-background callers receive the same terminal result directly.
 - `POST /api/search/status`: `{jobId}`. Polling never starts a new model operation. Filtering and failed responses may include cumulative approved `videos`, a validated `decision` and a null `nextPageToken`. Ready results contain a validated `decision`, filtered `videos`, `nextPageToken`, and `filteredCount`.
-- `POST /api/search/session`: educational query or public educational `videoId`, plus optional local `demo`. Returns an opaque break permit bound to the server-checked topic.
+- `POST /api/search/session`: educational query or public educational `videoId`, plus optional boolean `demo`. Returns an opaque break permit bound to the server-checked topic.
 - `POST /api/search/break`: `{permit}`. No arbitrary query or pagination override. The server permits one cached batch of up to three directly related clips per permit; they need not teach something themselves.
 
 Missing model configuration, provider limits, malformed model output and failed video checks stop new results rather than returning unchecked search videos. The desktop also rejects old-server responses without a decision. Existing loaded results and playback remain available where possible.
@@ -60,7 +60,7 @@ Desktop Universe feeds load this catalog independently from fresh discovery, ded
 
 ## Existing breaks
 
-The existing active-learning timer, skip/return action and three-clip limit remain. Playback or active chat prepares a break session; the browser can restore its permit for the same video during the session. The server independently requires twelve elapsed minutes from session initiation. The 30-second developer option is accepted only by the localhost development server, never by the hosted static server. A permit expires within six hours, and returning to learning resets the next browser session.
+The existing active-learning timer, skip/return action and three-clip limit remain. Playback or active chat prepares a break session; the browser can restore its permit for the same video during the session. The server independently requires twelve elapsed minutes from session initiation. The explicit 30-second demo option is supported by both local and hosted app servers, matching the visible timer-demo toggle. Normal sessions still require twelve elapsed minutes. Demo mode changes only the wait: educational-topic checks, relatedness filtering, provider budgets and the three-clip cap still apply. Demo browser storage uses a new version so older twelve-minute permits and timer progress are not restored after this fix. A permit expires within six hours, and returning to learning resets the next browser session.
 
 The server checks elapsed time, not independently verified active viewing. The browser still measures active learning, so this is a bounded entertainment path rather than proof of attention or a strong anti-cheat system. A lost/expired permit, changed context or an interrupted preparation can delay a restored browser timer's break; failures are explained and learning can continue. No unbounded entertainment-search escape is provided.
 

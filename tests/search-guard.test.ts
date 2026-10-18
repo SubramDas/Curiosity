@@ -467,3 +467,94 @@ test("Progressive filtering exposes cache hits before any new assessment complet
     );
     assert.deepEqual(snapshots.at(-1), [videos[2].id, videos[0].id]);
   }));
+
+test("Enabled demo breaks unlock at 30 seconds while normal sessions keep their twelve-minute wait", async () =>
+  cacheTest(async (cache) => {
+    let time = 1000,
+      calls = 0;
+    const route = createSearchRoutes({
+      guard: async () => allow,
+      filter: async (videos: any[]) => videos,
+      youtube: () => ({
+        searchPage: async () => {
+          calls++;
+          return { videos: [video()] };
+        },
+        getPlayableVideos: async () => [video()],
+      }),
+      cache,
+      allowDemo: true,
+      now: () => time,
+    });
+    const demo = await route("/api/search/session", {
+      query: "How GPUs work",
+      demo: true,
+    });
+    const normal = await route("/api/search/session", {
+      query: "How GPUs work",
+      demo: false,
+    });
+    const invalidDemo = await route("/api/search/session", {
+      query: "How GPUs work",
+      demo: "true",
+    });
+    time += 29_999;
+    await assert.rejects(route("/api/search/break", demo), {
+      code: "BREAK_NOT_READY",
+    });
+    assert.equal(calls, 0);
+    time++;
+    assert.equal((await route("/api/search/break", demo)).videos.length, 1);
+    await route("/api/search/break", demo);
+    assert.equal(calls, 1);
+    for (const session of [normal, invalidDemo])
+      await assert.rejects(route("/api/search/break", session), {
+        code: "BREAK_NOT_READY",
+      });
+    time = 1000 + 720_000;
+    assert.equal((await route("/api/search/break", normal)).videos.length, 1);
+  }));
+
+test("Hosted app wiring grants a 30-second demo permit and a twelve-minute normal permit", async () => {
+  const directory = mkdtempSync(join(tmpdir(), "revelink-hosted-break-"));
+  const cache = createProviderCache({ directory });
+  const server = startServer(
+    {},
+    {
+      port: 0,
+      usageDirectory: directory,
+      staticDirectory: directory,
+      cache,
+      searchAssessor: educationalSearchAssessor,
+    },
+  );
+  await new Promise<void>((resolve) => server.once("listening", resolve));
+  try {
+    for (const [demo, wait] of [
+      [true, 30_000],
+      [false, 720_000],
+    ] as const) {
+      const started = Date.now();
+      const response = await fetch(
+        `http://127.0.0.1:${(server.address() as any).port}/api/search/session`,
+        {
+          method: "POST",
+          headers: {
+            Origin: "http://127.0.0.1:5173",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: "How GPUs work", demo }),
+        },
+      );
+      assert.equal(response.status, 200);
+      const { permit } = await response.json();
+      const record = await cache.get(["related-break-session", permit]);
+      assert.ok(record.availableAt >= started + wait);
+      assert.ok(record.availableAt <= Date.now() + wait);
+    }
+  } finally {
+    server.closeAllConnections();
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+    rmSync(directory, { recursive: true, force: true });
+  }
+});

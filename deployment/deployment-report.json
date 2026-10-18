@@ -1,17 +1,8 @@
 {
   "project": "aibuildercup-511419",
   "region": "asia-south1",
-  "service": "curiosity",
-  "url": "https://curiosity-u2ubbw6fra-el.a.run.app",
+  "service": "revelink",
+  "url": "https://revelink-u2ubbw6fra-el.a.run.app",
   "availableThrough": "2026-12-31",
-  "deployedAt": "2026-10-14T15:16:29.329Z",
-  "readyRevision": "curiosity-00004-28h",
-  "verification": {
-    "health": "HTTP 200",
-    "search": "10 videos; cached search preserved counter after redeploy",
-    "teacher": "answer and two videos",
-    "layout": "desktop 1440px and mobile 390px; no horizontal overflow",
-    "firestoreTTL": "ACTIVE",
-    "accountReturnURL": "founder confirmed"
-  }
+  "deployedAt": "2026-10-18T11:29:37.858Z"
 }

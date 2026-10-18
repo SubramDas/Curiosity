@@ -13,7 +13,7 @@ import { loadLocalEnvironment } from "../config/local-environment.mjs";
 
 export const project = "aibuildercup-511419";
 export const region = "asia-south1";
-export const service = "curiosity";
+export const service = "revelink";
 export const runtime = `curiosity-runtime@${project}.iam.gserviceaccount.com`;
 export const builder = `curiosity-build@${project}.iam.gserviceaccount.com`;
 export function cloud(args, { optional = false } = {}) {

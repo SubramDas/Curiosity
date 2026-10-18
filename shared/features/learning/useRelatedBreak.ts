@@ -13,7 +13,7 @@ export function useRelatedBreak(
   const currentVideo = useRef(videoId);
   currentVideo.current = videoId;
   const storageKey = () =>
-    `curiosity-related-break:${currentVideo.current}:${demo ? "demo" : "real"}`;
+    `curiosity-related-break:${currentVideo.current}:${demo ? "demo-v2" : "real"}`;
   useEffect(
     () => () => {
       generation.current++;
