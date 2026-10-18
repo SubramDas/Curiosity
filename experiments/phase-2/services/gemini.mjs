@@ -24,7 +24,7 @@ export function createGeminiClient({ apiKey, model, allowFreeTest, fetchRequest 
     throw new ServiceError('MISSING_CONFIG', 'Set GEMINI_API_KEY and GEMINI_MODEL in .env.');
   }
   if (!allowFreeTest) {
-    throw new ServiceError('DATA_USE_NOT_CONFIRMED', 'Read PHASE_2_SETUP.md, then set ALLOW_GEMINI_FREE_TEST=true for non-personal adult developer tests.');
+    throw new ServiceError('DATA_USE_NOT_CONFIRMED', 'Read docs/setup/LOCAL_SETUP.md, then set ALLOW_GEMINI_FREE_TEST=true for non-personal adult developer tests.');
   }
 
   return {

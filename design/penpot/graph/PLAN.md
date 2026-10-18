@@ -2,7 +2,7 @@
 
 Date: 2026-10-15. Status: concepts for founder review; no application implementation approved.
 
-Technical implementation reference: [GRAPH_IMPLEMENTATION_PLAN.md](../../../GRAPH_IMPLEMENTATION_PLAN.md). The founder has since confirmed shared geography with personal discovery and a 30-second active-viewing achievement threshold; the technical reference records current decisions and separates proposed implementation defaults.
+Technical implementation reference: [GRAPH_IMPLEMENTATION_PLAN.md](../../../docs/planning/GRAPH_IMPLEMENTATION_PLAN.md). The founder has since confirmed shared geography with personal discovery and a 30-second active-viewing achievement threshold; the technical reference records current decisions and separates proposed implementation defaults.
 
 ## Founder selection and refinement
 

@@ -37,7 +37,7 @@ Search assesses intent, retrieves public YouTube metadata, and filters candidate
 1. Install Node **22+** and npm. Clone/download the submitted repository and enter its root.
 2. Run `npm ci` using the pinned lockfile.
 3. If `.env` is absent, copy `.env.example` to `.env`. Fill the settings below in a local editor. Never commit it.
-4. Read [prototype data-use notes](../../PHASE_2_SETUP.md); use non-sensitive adult demo inputs.
+4. Read [prototype data-use notes](../setup/LOCAL_SETUP.md); use non-sensitive adult demo inputs.
 5. Run `npm run dev`, open **http://127.0.0.1:5173**, and keep the terminal running. API: **http://127.0.0.1:8787**.
 6. Follow [the demo checklist](DEMO_CHECKLIST.md). Restart the server after changing environment settings.
 
@@ -91,7 +91,7 @@ Run `npm test` and `npm run build`. Browser checks use `npm run test:browser`; i
 
 Benchmark plans make no API calls. Append `--live` only with a running app and available allowance; [commands and reviewed-label format](../../experiments/benchmarks/README.md). Do not interpret unreviewed cases as accuracy evidence.
 
-For the existing owner's Cloud Run setup, `node deployment/google-cloud.mjs deploy` uses ignored secret-version metadata and updates the configured service. A fresh clone does not have that owner-specific file. Initial cloud provisioning is an owner task, not a prerequisite for judging or local guest use. See [deployment guide](../../GOOGLE_CLOUD_DEPLOYMENT.md).
+For the existing owner's Cloud Run setup, `node deployment/google-cloud.mjs deploy` uses ignored secret-version metadata and updates the configured service. A fresh clone does not have that owner-specific file. Initial cloud provisioning is an owner task, not a prerequisite for judging or local guest use. See [deployment guide](../deployment/GOOGLE_CLOUD_DEPLOYMENT.md).
 
 ## Troubleshooting
 

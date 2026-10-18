@@ -28,7 +28,7 @@ Shared classification labels consume `RelatedUniversesRendererContext`, with the
 
 ## Learning graph — implementation prepared locally
 
-[GRAPH_IMPLEMENTATION_PLAN.md](GRAPH_IMPLEMENTATION_PLAN.md) is the feature reference. `backend/graph` now provides catalog, route, validation and publication modules, with a focused Supabase storage adapter. Shared graph modules own loading, SVG map/list, topic/event panels, local state and playback coordination; desktop/mobile folders own placement. The existing player emits separate activity samples while retaining resume-position saving.
+[GRAPH_IMPLEMENTATION_PLAN.md](docs/planning/GRAPH_IMPLEMENTATION_PLAN.md) is the feature reference. `backend/graph` now provides catalog, route, validation and publication modules, with a focused Supabase storage adapter. Shared graph modules own loading, SVG map/list, topic/event panels, local state and playback coordination; desktop/mobile folders own placement. The existing player emits separate activity samples while retaining resume-position saving.
 
 Supabase migration 003 prepares published catalog tables, private learner records and restricted activity RPCs. A 30-topic/26-connection manifest remains unreviewed, with no videos/events. The feature defaults off until schema setup and content publication. Database access behavior and live playback have not been verified. See [activation and implementation evidence](backend/graph/README.md).
 
@@ -105,7 +105,7 @@ npm run test:browser
 
 `backend/production.mjs` starts the hosted server and supplies Firestore storage implementations. Application rules depend on small storage interfaces rather than Google-specific objects. `backend/storage` owns the cache and transactional counters; `backend/http` owns static files and burst limits. Provider calls happen outside database transactions.
 
-Cloud Run serves the built website and API together. Supabase remains responsible for accounts and user records; Firestore holds public-video metadata and global usage counts. Secrets come from Secret Manager. See [deployment details](GOOGLE_CLOUD_DEPLOYMENT.md).
+Cloud Run serves the built website and API together. Supabase remains responsible for accounts and user records; Firestore holds public-video metadata and global usage counts. Secrets come from Secret Manager. See [deployment details](docs/deployment/GOOGLE_CLOUD_DEPLOYMENT.md).
 
 ## Desktop Universe presentation
 

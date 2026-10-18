@@ -2,11 +2,11 @@
 
 ## Search guardrails direction — 2026-10-17
 
-The founder subsequently approved desktop implementation. The local app now has header-triggered Search states, server intent checks, batched metadata filtering, learning choices/goal clarification and a separate related-break path. Mobile layouts remain at the existing version. See [implementation and limitations](backend/search/README.md); no deployment or live accuracy review is implied.
+The founder subsequently approved desktop implementation. The local app now has header-triggered Search states, server intent checks, batched metadata filtering, learning choices/goal clarification and a separate related-break path. Mobile layouts remain at the existing version. See [implementation and limitations](../../backend/search/README.md); no deployment or live accuracy review is implied.
 
 Founder agreed: ordinary search should support education, including funny educational explanations. Pure entertainment such as memes/comedy is limited to existing scheduled, topic-related breaks; those clips need not themselves teach something. Ambiguous searches should offer learning-angle choices. Search checks and result filtering are proposed to use the configured AI with reusable decisions; users can clarify a legitimate learning goal after a redirect. Desktop implementation is now available locally; mobile guardrail screens remain pending.
 
-The founder requested Penpot design first and then selected new pages in **New File 1**. Desktop/Mobile Search review pages now contain native designs for choices, redirects, clarification, results and failures. See [the review handoff](design/penpot/search/README.md). This updates the intended purpose of “search any topic” while keeping broad educational subject coverage. Existing breaks are reused rather than rebuilt.
+The founder requested Penpot design first and then selected new pages in **New File 1**. Desktop/Mobile Search review pages now contain native designs for choices, redirects, clarification, results and failures. See [the review handoff](../../design/penpot/search/README.md). This updates the intended purpose of “search any topic” while keeping broad educational subject coverage. Existing breaks are reused rather than rebuilt.
 
 Created: 2026-10-11  
 Status: founder concept; customer demand, commercial rights, and economics unvalidated.  
@@ -25,8 +25,8 @@ This section overrides older suggestions below where they differ. Earlier notes 
 - DEC-07: tile editing/hiding is optional later. Automatic grouping and avoiding duplicate tiles are required now.
 - Other starting decision suggestions are accepted, with the explicit audience and wider search changes above.
 - Tasks 0.6–0.9 will be reviewed later. Surveys/interviews run alongside development and do not block it.
-- The assistant acts as developer and chooses free starting tools. See DEVELOPMENT_TASKLIST.md and PHASE_2_TECHNICAL_PLAN.md for current implementation details.
-- Phase 2 now includes a local React/TypeScript prototype with observed live search, chat, and video playback. Guest topic grouping and timer rules have checks. Supabase save/reopen, owner isolation, reviewed content, account limits, and hosting/release checks remain unfinished. See README.md and PHASE_2_RESULTS.md for the current build and evidence.
+- The assistant acts as developer and chooses free starting tools. See docs/planning/DEVELOPMENT_TASKLIST.md and docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md for current implementation details.
+- Phase 2 now includes a local React/TypeScript prototype with observed live search, chat, and video playback. Guest topic grouping and timer rules have checks. Supabase save/reopen, owner isolation, reviewed content, account limits, and hosting/release checks remain unfinished. See README.md and docs/archive/phase-2/PHASE_2_RESULTS.md for the current build and evidence.
 
 ## 1. Founder vision
 
@@ -420,7 +420,7 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 ### 2026-10-11 — Student survey draft
 
 - Founder deferred the second-round startup questions and requested a survey for SurveySwap.
-- Created STUDENT_SURVEY.md with copy-ready questions, response types, eligibility routing, neutral concept wording, and analysis notes.
+- Created docs/research/STUDENT_SURVEY.md with copy-ready questions, response types, eligibility routing, neutral concept wording, and analysis notes.
 - Survey targets adult college/university students in India with a recent YouTube learning experience; curiosity-driven responses can be analyzed separately.
 - No form has been published. Completion time must be checked on the finished form.
 
@@ -428,7 +428,7 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 ### 2026-10-12 — End-to-end developer task list
 
 - Founder requested a detailed, phased task list for developers covering the complete app.
-- Created DEVELOPMENT_TASKLIST.md with confirmed scope, proposed defaults, decisions, requirements traceability, numbered implementation tasks, dependencies, acceptance gates, data/API contracts, release operations, and future expansion.
+- Created docs/planning/DEVELOPMENT_TASKLIST.md with confirmed scope, proposed defaults, decisions, requirements traceability, numbered implementation tasks, dependencies, acceptance gates, data/API contracts, release operations, and future expansion.
 - The plan preserves the free YouTube MVP with grounded chat; paid lessons, external providers, wider audiences, and native apps are separately scoped later phases.
 - Audience, stack, computing-only scope, account behavior, tile controls, and entertainment settings remain decisions rather than silently confirmed requirements.
 - Revised planning envelope for the fuller private MVP and pilot: roughly 240–385 combined person-hours, subject to developer estimates and scope decisions. This is not a delivery commitment or vendor quote.
@@ -437,7 +437,7 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 ### 2026-10-12 — Task list rewritten in simple language
 
 - Founder requested language that a person without a technical background can understand.
-- Rewrote DEVELOPMENT_TASKLIST.md with everyday wording, explained necessary terms, full responsibility names, and clear instructions for when each phase is complete.
+- Rewrote docs/planning/DEVELOPMENT_TASKLIST.md with everyday wording, explained necessary terms, full responsibility names, and clear instructions for when each phase is complete.
 - Explained every DEC label, including the number and placement of entertaining videos in DEC-06.
 - Preserved all 19 phases, 219 numbered tasks, first-version decisions, checks, budget, and later-feature plans.
 
@@ -447,13 +447,13 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 - Recorded the founder's decisions on optional learner tests/tile editing, timed entertaining breaks, wider video search, saved broad topics, and the student/early-career audience.
 - Accepted other starting suggestions and deferred tasks 0.6–0.9; validation now runs in parallel.
 - Updated affected development tasks rather than just appending a conflicting new feature list.
-- Created PHASE_2_TECHNICAL_PLAN.md with developer answers, researched free starting options, API allowances, data-handling considerations, and the unfinished working-test checklist.
+- Created docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md with developer answers, researched free starting options, API allowances, data-handling considerations, and the unfinished working-test checklist.
 
 ### 2026-10-13 — Broad categories and topic relationships discussion
 
 - Founder proposes a finite set of broad topic graphs/tiles with smaller topics and videos inside; related later searches should reuse existing broad tiles.
 - Founder asks whether all topics can be grouped this way and whether a complete existing graph can be reused.
-- Recorded discussion in TOPIC_RELATIONSHIPS.md: finite app headings are possible, but subject boundaries overlap and an exhaustive universal graph is not established.
+- Recorded discussion in docs/product/TOPIC_RELATIONSHIPS.md: finite app headings are possible, but subject boundaries overlap and an exhaustive universal graph is not established.
 - Developer proposes a shared topic collection with named relationships, multiple category memberships, one primary placement per saved query, and separate subject views.
 - Wikidata, DBpedia, and Dewey were researched as different kinds of starting material. Category list and graph architecture remain proposals.
 - Current optional-test decision remains: show explored activity rather than claims about verified knowledge or a percentage of universal knowledge.
@@ -463,7 +463,7 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 
 - Founder decides each saved smaller topic should appear in only one main tile, with small tags beside its heading indicating other related subjects.
 - Founder asks to include existing knowledge sources in the system plan. Wikidata is the first source to evaluate/integrate, DBpedia supplements useful gaps, and Dewey informs broad headings subject to reuse permissions.
-- Updated DEVELOPMENT_TASKLIST.md, TOPIC_RELATIONSHIPS.md, and PHASE_2_TECHNICAL_PLAN.md with storage rules, navigation, source tasks, and tests.
+- Updated docs/planning/DEVELOPMENT_TASKLIST.md, docs/product/TOPIC_RELATIONSHIPS.md, and docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md with storage rules, navigation, source tasks, and tests.
 - Suggested at most two visible tags plus an overflow option, reasons for placement, and brief tag explanations. These interface details are proposals.
 - Topic editing and learner tests remain optional later. No external graph has been integrated yet.
 
@@ -511,7 +511,7 @@ Are users eventually paying for guidance and assessment, original lessons, or se
 - **Founder:** Proceed with the teacher flow. Explicitly explain when a question is unrelated to the video, then answer and offer 1–2 relevant videos; provide a timestamp when the question relates to a matching video section.
 - **Implementation:** General teaching and follow-ups, relevance labels, up to two real question-specific YouTube results, public-video analysis, and AI-matched timestamp buttons are implemented. Questions need not remain within the current topic or require a selected video. Uncertain/title-only relevance is labeled honestly, and no timestamp is shown without media analysis and a valid supported range.
 - **Extra controls:** Simpler/example/deeper follow-ups, Explain this part, and New conversation. History remains in memory across navigation and clears on refresh or account changes. Suggestions do not automatically switch playback or create topic tiles.
-- **Evidence and limits:** See CHATBOT_PLAN.md for automated checks, the live examples, analysis limits, and remaining accuracy review. General replies do not have live web fact-checking. A live AI timestamp is not proof of precise accuracy. Formal learner tests and durable chat saving remain later work.
+- **Evidence and limits:** See docs/planning/CHATBOT_PLAN.md for automated checks, the live examples, analysis limits, and remaining accuracy review. General replies do not have live web fact-checking. A live AI timestamp is not proof of precise accuracy. Formal learner tests and durable chat saving remain later work.
 
 ## Latest decision: Universe organisation — 2026-10-14
 
@@ -533,8 +533,8 @@ The founder approved starting desktop implementation. The Universe feeds and the
 
 - Founder agreed on flat topic labels, provisional topics when no Wikidata match exists, and one primary Universe per video with expandable +1/+2 labels for substantial direct connections. The video's explanatory focus determines placement: cooking chemistry belongs to Science & Technology, while cooking technique can belong to Arts & Humanities.
 - Implemented locally: Gemini metadata topic extraction → bounded Wikidata candidate/relationship retrieval → Gemini concept resolution and primary/related Universe assignment. Uses only the existing environment-configured model. The UI classifies in the background, and Universe feeds use primary-only placement. Legacy saved-search grouping and stored identifiers are preserved.
-- Build, 57 service/rule checks and 36 simulated browser journeys pass. A live GPU example returned a provisional Science & Technology classification while Wikidata reported replication lag. Wider accuracy and a successful live graph match remain to review. No public redeployment was made. See `backend/classification/README.md` and `PHASE_2_RESULTS.md`.
+- Build, 57 service/rule checks and 36 simulated browser journeys pass. A live GPU example returned a provisional Science & Technology classification while Wikidata reported replication lag. Wider accuracy and a successful live graph match remain to review. No public redeployment was made. See `backend/classification/README.md` and `docs/archive/phase-2/PHASE_2_RESULTS.md`.
 
 ### Sequential Gemini scheduling approved — 2026-10-15
 
-After a provider limit error, the founder approved sequential Gemini requests with pacing, teacher priority, visible-video classification, reuse of the extracted topic on retry, and pausing on provider limits. These changes are implemented locally with one shared backend queue, asynchronous classification jobs and waiting/finding labels. Default request-start spacing is 15 seconds; exact account allowances remain unknown and the interval is configurable. No model switch, quota reset, live model call or public redeployment was made for this update. Build, 68 service/rule checks and 38 distinct browser journeys are covered by passing checks. See `backend/gemini/README.md` and `PHASE_2_RESULTS.md`.
+After a provider limit error, the founder approved sequential Gemini requests with pacing, teacher priority, visible-video classification, reuse of the extracted topic on retry, and pausing on provider limits. These changes are implemented locally with one shared backend queue, asynchronous classification jobs and waiting/finding labels. Default request-start spacing is 15 seconds; exact account allowances remain unknown and the interval is configurable. No model switch, quota reset, live model call or public redeployment was made for this update. Build, 68 service/rule checks and 38 distinct browser journeys are covered by passing checks. See `backend/gemini/README.md` and `docs/archive/phase-2/PHASE_2_RESULTS.md`.

@@ -1,6 +1,6 @@
 # Phase 2: setup and working checks
 
-> This file includes historical feasibility setup. For the current Cloud Run architecture, guest setup, grounding and model configuration, start with [the evaluator guide](docs/evaluation/EVALUATOR_GUIDE.md).
+> This file includes historical feasibility setup. Active instructions now live in [Local setup and prototype data use](../../setup/LOCAL_SETUP.md). For the current Cloud Run architecture, guest setup, grounding and model configuration, start with [the evaluator guide](../../evaluation/EVALUATOR_GUIDE.md).
 
 Started: 2026-10-13.
 
@@ -92,7 +92,7 @@ The search box is not restricted to computing: the search command accepts other 
 
 ## Current limits
 
-- A React browser prototype now exists. Start it with `npm run dev` after installing dependencies; see [README.md](README.md). Live playback, search, and chat have been observed. Guest grouping, related tags, timer rules, and unavailable-video handling have repeatable checks.
+- A React browser prototype now exists. Start it with `npm run dev` after installing dependencies; see [README.md](../../../README.md). Live playback, search, and chat have been observed. Guest grouping, related tags, timer rules, and unavailable-video handling have repeatable checks.
 - Supabase account/saving code and database setup files exist, but the founder reports that real account save/reopen and the database ownership check work. Graph import and deployment are not implemented.
 - Browser API calls use a daily allowance stored for one local server process. Hosting still needs a shared atomic limiter. The example command-line checks have separate per-run bounds; the chat review uses the local daily record.
 - There are no automatic retries or paid fallbacks. Failures show sanitized messages.
@@ -108,7 +108,7 @@ Run `npm run phase2:check-config`, `npm run phase2:search`, and `npm run phase2:
 
 The 20-question review set is in `experiments/phase-2/content/CHAT_REVIEW.md`. A live review ran successfully using an inherited Gemini key before the project loader was fixed. Its results evaluate the configured model and narrow note fixture, not the founder project's limits or billing. A subsequent supported example succeeded with the actual project key. Details and limitations are recorded in PHASE_2_RESULTS.md.
 
-Local checks and progress are recorded in `PHASE_2_TECHNICAL_PLAN.md`. Local simulated responses verify our handling; they do not prove provider access, live model quality, or playable videos.
+Local checks and progress are recorded in `docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md`. Local simulated responses verify our handling; they do not prove provider access, live model quality, or playable videos.
 
 ## Missing confirmation emails
 

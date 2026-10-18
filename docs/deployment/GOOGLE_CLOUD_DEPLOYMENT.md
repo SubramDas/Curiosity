@@ -15,7 +15,7 @@ The deployment report records service `revelink` deployed on October 18, 2026. T
 
 This completes the initial hosting work from Phase 16, including production feasibility work from Phase 2. It does not complete every release or hackathon submission task.
 
-The evaluator entry point is [docs/evaluation/EVALUATOR_GUIDE.md](docs/evaluation/EVALUATOR_GUIDE.md). Deployment reports are release records, not proof that every current-source feature has passed a hosted journey. The checks below are dated evidence.
+The evaluator entry point is [docs/evaluation/EVALUATOR_GUIDE.md](../evaluation/EVALUATOR_GUIDE.md). Deployment reports are release records, not proof that every current-source feature has passed a hosted journey. The checks below are dated evidence.
 
 ## What runs where
 

@@ -28,7 +28,7 @@ The [official requirements](https://aibuildercup.com/themes.html) ask for a PDF 
 | Public demo | HTTP 200; Home and GPU results rendered | Current hosted site reachable during this session |
 | Live teacher | HTTP 200 in 2,529 ms; two YouTube recommendations | One general question, with no current-video context; not a latency benchmark |
 | Public GitHub | Unauthenticated GitHub API returned 200; `private: false` | Repository publicly accessible during this session |
-| Historical provider check | 18 YouTube results in 867 ms; one note-based answer in 955 ms | Recorded 13 October in `PHASE_2_RESULTS.md`; not contemporary load testing |
+| Historical provider check | 18 YouTube results in 867 ms; one note-based answer in 955 ms | Recorded 13 October in `docs/archive/phase-2/PHASE_2_RESULTS.md`; not contemporary load testing |
 
 Logs are under `evidence/`. Public live question: “Why are GPUs useful for AI? Explain simply.” This call used the existing allowance without changing quotas. No deployment, database mutation, Git publication or account creation was performed.
 

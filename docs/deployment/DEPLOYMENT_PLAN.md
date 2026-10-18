@@ -6,7 +6,7 @@ Status: planning only. No hosting resources were created and no website was publ
 
 ## Which phase?
 
-Deployment belongs to **Phase 16 — Put the app online, run the trial, and maintain it**, particularly tasks 16.1–16.5 in `DEVELOPMENT_TASKLIST.md`. Checking that the proposed hosting can run the app is still part of Phase 2. Account/data protections from Phase 14 and the relevant complete-app checks from Phase 15 are prerequisites for inviting users.
+Deployment belongs to **Phase 16 — Put the app online, run the trial, and maintain it**, particularly tasks 16.1–16.5 in `docs/planning/DEVELOPMENT_TASKLIST.md`. Checking that the proposed hosting can run the app is still part of Phase 2. Account/data protections from Phase 14 and the relevant complete-app checks from Phase 15 are prerequisites for inviting users.
 
 A private hosted preview can be prepared now. This does not mark all intervening phases complete or commit the project to a public launch. Optional quizzes, paid courses, full knowledge graphs and later mobile improvements are not deployment prerequisites.
 

@@ -93,7 +93,7 @@ try {
   } else {
     throw new ServiceError(
       "INVALID_INPUT",
-      "Use check, search, or chat. See PHASE_2_SETUP.md.",
+      "Use check, search, or chat. See docs/setup/LOCAL_SETUP.md.",
     );
   }
 } catch (error) {

@@ -109,4 +109,4 @@ Account POST routes: `/progress`, `/discover`, `/activity/start`, `/activity/rep
 - The initial Feed presents published topics with associated video choices in the topic panel. It is not an additional video-search feed, and there are no invented videos when associations are empty.
 - Mobile uses a reduced map viewport and a below-map topic panel. Drag-to-expand sheets, detailed hover animation and performance evaluation beyond the small initial neighborhood remain follow-up refinements.
 
-See [GRAPH_IMPLEMENTATION_PLAN.md](../../GRAPH_IMPLEMENTATION_PLAN.md) for acceptance criteria and remaining phases. Code presence is not evidence that account playback or publication has been exercised live.
+See [GRAPH_IMPLEMENTATION_PLAN.md](../../docs/planning/GRAPH_IMPLEMENTATION_PLAN.md) for acceptance criteria and remaining phases. Code presence is not evidence that account playback or publication has been exercised live.

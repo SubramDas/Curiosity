@@ -13,7 +13,9 @@ Revelink brings educational video discovery, short-form exploration, an AI teach
 - [Demo tasks and questions](docs/evaluation/DEMO_CHECKLIST.md): concrete inputs, expected behavior and manual review criteria.
 - [Evaluation evidence](docs/evaluation/RESULTS.md): measured timings, reproducibility, test evidence and unmeasured claims.
 
-The app and backend run on **Google Cloud Run**, shared caches/counters use **Firestore**, and optional accounts/user records use **Supabase**. The app is not hosted on Firebase Hosting. The availability target is December 31, 2026, dependent on active billing, credentials and quotas; see [deployment instructions](GOOGLE_CLOUD_DEPLOYMENT.md).
+The app and backend run on **Google Cloud Run**, shared caches/counters use **Firestore**, and optional accounts/user records use **Supabase**. The app is not hosted on Firebase Hosting. The availability target is December 31, 2026, dependent on active billing, credentials and quotas; see [deployment instructions](docs/deployment/GOOGLE_CLOUD_DEPLOYMENT.md).
+
+[All documentation](docs/README.md) · [Current local setup and data-use instructions](docs/setup/LOCAL_SETUP.md)
 
 ## Run locally
 
@@ -28,7 +30,7 @@ npm run dev
 
 Open **http://127.0.0.1:5173**. The API runs on port **8787**. Restart after changing backend code or `.env`. Keep one local server running to avoid port and usage-file conflicts.
 
-For live discovery and teaching, configure `YOUTUBE_API_KEY`, `GEMINI_API_KEY` and an available `GEMINI_MODEL`. Read [data-use notes](PHASE_2_SETUP.md) before enabling `ALLOW_GEMINI_FREE_TEST=true`; it permits API calls, not free usage or a paid-quota exemption. Credentials are not bundled with the repository. Guest use does not require Supabase. See the [configuration table](docs/evaluation/EVALUATOR_GUIDE.md#configuration).
+For live discovery and teaching, configure `YOUTUBE_API_KEY`, `GEMINI_API_KEY` and an available `GEMINI_MODEL`. Read [data-use notes](docs/setup/LOCAL_SETUP.md) before enabling `ALLOW_GEMINI_FREE_TEST=true`; it permits API calls, not free usage or a paid-quota exemption. Credentials are not bundled with the repository. Guest use does not require Supabase. See the [configuration table](docs/evaluation/EVALUATOR_GUIDE.md#configuration).
 
 Account saving additionally requires `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, migrations [001](supabase/migrations/001_saved_topics.sql) and [002](supabase/migrations/002_video_progress.sql), and configured authentication redirects. Apply schema changes only in a database you own and intend to configure. Never use a service-role key in the browser/app configuration.
 
@@ -101,6 +103,6 @@ The health endpoint `/api/health` checks that the server responds, not Gemini, Y
 | `design`                                                   | Penpot handoffs and approved design decisions; Figma is archival    |
 | `deployment`, `submission`                                 | Cloud Run release helper and hackathon presentation artifacts       |
 
-[Architecture](ARCHITECTURE.md) · [Product vision](STARTUP_IDEA.md) · [Design handoff](design/review/DESIGN_REVIEW.md) · [Deployment](GOOGLE_CLOUD_DEPLOYMENT.md)
+[Architecture](ARCHITECTURE.md) · [Product vision](docs/product/STARTUP_IDEA.md) · [Design handoff](design/review/DESIGN_REVIEW.md) · [Deployment](docs/deployment/GOOGLE_CLOUD_DEPLOYMENT.md)
 
 Phase plans, results and submission artifacts contain dated development evidence. Their older model, link, UI or deployment statements should be read as historical records. The evaluator documents describe current source behavior; a successful deployment record alone does not verify every feature on the live site.

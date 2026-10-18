@@ -7,7 +7,7 @@ Status: implementation reference; local feature code and migration are now prepa
 
 Prepared: graph catalog/routes and Supabase adapter; migration 003 with RLS/RPCs and transactional owner publication; desktop/mobile Map/Feed navigation and topic/list/event UI; active-viewing coordinator and guest/account state paths; classifier candidate matcher and content CLI tools; 30-topic/26-connection starter draft. Graph workspace/layouts use lazy chunks.
 
-Not yet established: applied schema, published/approved videos or news, live RLS/concurrency/playback behavior, visual runtime evaluation and deployment. The source draft is `reviewed: false`; actual `.env` is unchanged and the feature defaults off. See [the current activation guide](backend/graph/README.md) for concrete steps and known limitations. No tests or live provider requests were run during this implementation; TypeScript/build, Node syntax and offline catalog validation were checked.
+Not yet established: applied schema, published/approved videos or news, live RLS/concurrency/playback behavior, visual runtime evaluation and deployment. The source draft is `reviewed: false`; actual `.env` is unchanged and the feature defaults off. See [the current activation guide](../../backend/graph/README.md) for concrete steps and known limitations. No tests or live provider requests were run during this implementation; TypeScript/build, Node syntax and offline catalog validation were checked.
 
 Implementation refinements: the first Feed presents published topic cards with video choices in the topic panel; weekly publishing is owner-operated rather than a deployed news scheduler; account activity includes a stop endpoint and idempotent start request ID; guests also require browser focus and use storage-event synchronization. Mobile currently uses a below-map topic panel instead of a draggable sheet. These limitations must remain visible in handoffs.
 
@@ -19,13 +19,13 @@ This document is the technical reference for graph implementation. Latest founde
 
 References:
 
-- [Current architecture](ARCHITECTURE.md).
-- [Topic relationships and classification decisions](TOPIC_RELATIONSHIPS.md).
-- [Existing classification implementation](backend/classification/README.md).
-- [Shared Gemini scheduling](backend/gemini/README.md).
-- [Graph D refinement](design/penpot/graph/d-refined/README.md).
-- [Desktop integration handoff](design/penpot/graph/desktop-integration/README.md) and [clickable navigation review](design/penpot/graph/desktop-integration/review.html).
-- [Original graph design discussion](design/penpot/graph/PLAN.md).
+- [Current architecture](../../ARCHITECTURE.md).
+- [Topic relationships and classification decisions](../product/TOPIC_RELATIONSHIPS.md).
+- [Existing classification implementation](../../backend/classification/README.md).
+- [Shared Gemini scheduling](../../backend/gemini/README.md).
+- [Graph D refinement](../../design/penpot/graph/d-refined/README.md).
+- [Desktop integration handoff](../../design/penpot/graph/desktop-integration/README.md) and [clickable navigation review](../../design/penpot/graph/desktop-integration/review.html).
+- [Original graph design discussion](../../design/penpot/graph/PLAN.md).
 
 ## 2. Decisions and implementation defaults
 

@@ -51,8 +51,8 @@ Apply these ideas to functions and modules as well as classes. Use abstractions 
 
 ## 6. Understand the requirements before changing code
 
-- Read the relevant project documents and nearby code before implementing a change.
-- Use the latest agreed decisions in `STARTUP_IDEA.md`, `DEVELOPMENT_TASKLIST.md`, `PHASE_2_TECHNICAL_PLAN.md`, and `TOPIC_RELATIONSHIPS.md` when those documents are relevant.
+- Read the relevant project documents and nearby code before implementing a change. Use `docs/README.md` as the documentation index and `docs/setup/LOCAL_SETUP.md` for current setup/data-use instructions.
+- Use the latest agreed decisions in `docs/product/STARTUP_IDEA.md`, `docs/planning/DEVELOPMENT_TASKLIST.md`, `docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md`, and `docs/product/TOPIC_RELATIONSHIPS.md` when those documents are relevant.
 - Keep optional features out of the first release unless the user asks to include them.
 - Keep changes focused on the requested task. Preserve unrelated work and never undo another contributor's changes without a clear reason.
 - Ask for clarification when conflicting requirements would materially change the result; otherwise proceed with a reasonable, stated assumption.

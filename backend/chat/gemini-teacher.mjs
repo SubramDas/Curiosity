@@ -95,7 +95,7 @@ export function createGeminiTeacher({
   if (!allowFreeTest)
     throw new ServiceError(
       "DATA_USE_NOT_CONFIRMED",
-      "Read PHASE_2_SETUP.md and enable non-personal adult prototype chat tests.",
+      "Read docs/setup/LOCAL_SETUP.md and enable non-personal adult prototype chat tests.",
     );
   return {
     async answer(input, sources, analysisUsed = false) {

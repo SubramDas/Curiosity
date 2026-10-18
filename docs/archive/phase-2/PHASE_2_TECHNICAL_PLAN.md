@@ -1,13 +1,13 @@
 # Phase 2: developer answers and free starting tools
 
-**Latest hosting choice:** The founder selected Google Cloud instead of Cloudflare. The proposed hosted path is Cloud Run for the Node API and website, Secret Manager for provider secrets, and a shared storage adapter (Firestore candidate) for public metadata/usage counters. Supabase accounts and user storage remain. Earlier Cloudflare entries are historical proposals. See [GOOGLE_CLOUD_DEPLOYMENT.md](GOOGLE_CLOUD_DEPLOYMENT.md); hosting has not been implemented or deployed yet.
+**Latest hosting choice:** The founder selected Google Cloud instead of Cloudflare. The proposed hosted path is Cloud Run for the Node API and website, Secret Manager for provider secrets, and a shared storage adapter (Firestore candidate) for public metadata/usage counters. Supabase accounts and user storage remain. Earlier Cloudflare entries are historical proposals. See [GOOGLE_CLOUD_DEPLOYMENT.md](../../deployment/GOOGLE_CLOUD_DEPLOYMENT.md); hosting has not been implemented or deployed yet.
 
 ## Current folder structure
 
-The founder approved separating the existing project into `backend`, `desktop-ui`, and `mobile-ui`, with reusable frontend features in `shared` and the app entry in `src`. Both layouts now use the shared features; the approved mobile design is implemented with bottom navigation, full-screen teacher/account screens and responsive sizing. The desktop layout is retained. See [ARCHITECTURE.md](ARCHITECTURE.md) and [the mobile implementation guide](mobile-ui/README.md). Root commands and provider configuration remain the same.
+The founder approved separating the existing project into `backend`, `desktop-ui`, and `mobile-ui`, with reusable frontend features in `shared` and the app entry in `src`. Both layouts now use the shared features; the approved mobile design is implemented with bottom navigation, full-screen teacher/account screens and responsive sizing. The desktop layout is retained. See [ARCHITECTURE.md](../../../ARCHITECTURE.md) and [the mobile implementation guide](../../../mobile-ui/README.md). Root commands and provider configuration remain the same.
 
 Date: 2026-10-12  
-Based on the latest founder choices in [DEVELOPMENT_TASKLIST.md](DEVELOPMENT_TASKLIST.md).
+Based on the latest founder choices in [DEVELOPMENT_TASKLIST.md](../../planning/DEVELOPMENT_TASKLIST.md).
 
 ## What I will build first
 
@@ -152,7 +152,7 @@ Build and demonstrate:
 5. Saving a broad topic and reopening it after returning.
 6. A shortened developer-test timer that demonstrates break placement, plus the real 10–15 minute setting.
 
-**Current status, 2026-10-13:** The local browser prototype and API experiments are implemented. Real YouTube search/details, a real embedded video, and note-based chat work in observed checks. Nineteen local tests, three simulated browser journeys, type checks, and the browser build pass. Timer rules and break UI have checks; a complete real learning/break session is still pending. The founder reports that the ownership SQL check and account save/reopen work. Reviewed related videos, actual account free allowances, and hosting/release checks remain unfinished. See [README.md](README.md) and [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md). Simulated checks do not prove live integration.
+**Current status, 2026-10-13:** The local browser prototype and API experiments are implemented. Real YouTube search/details, a real embedded video, and note-based chat work in observed checks. Nineteen local tests, three simulated browser journeys, type checks, and the browser build pass. Timer rules and break UI have checks; a complete real learning/break session is still pending. The founder reports that the ownership SQL check and account save/reopen work. Reviewed related videos, actual account free allowances, and hosting/release checks remain unfinished. See [README.md](../../../README.md) and [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md). Simulated checks do not prove live integration.
 
 ## 2.9 — Prepared library or live search?
 
@@ -218,7 +218,7 @@ This is a build checklist, not a legal conclusion. A public free-plan deployment
 
 ## Topic relationships update — 2026-10-13
 
-Use Wikidata first for selected topic identities and connections; evaluate DBpedia for useful gaps. Use Dewey as a reference when designing broad categories, checking permissions before any protected material is reused. Keep our own app category rules and source records. A saved smaller topic lives in one tile, with secondary subjects represented by tags. Reuse one shared topic database, maintain stable saved placements, and keep YouTube search usable during external graph failures. See TOPIC_RELATIONSHIPS.md and tasks 4.15–4.18, 9.12–9.13, and 15.13.
+Use Wikidata first for selected topic identities and connections; evaluate DBpedia for useful gaps. Use Dewey as a reference when designing broad categories, checking permissions before any protected material is reused. Keep our own app category rules and source records. A saved smaller topic lives in one tile, with secondary subjects represented by tags. Reuse one shared topic database, maintain stable saved placements, and keep YouTube search usable during external graph failures. See docs/product/TOPIC_RELATIONSHIPS.md and tasks 4.15–4.18, 9.12–9.13, and 15.13.
 
 ## Phase 2 implementation started — 2026-10-13
 
@@ -233,17 +233,17 @@ Use Wikidata first for selected topic identities and connections; evaluate DBped
 
 The founder added the required settings. Configuration presence checks pass, but both live attempts returned sanitized network errors. Credential-free DNS checks for the two Google API hosts failed with `EBUSY`. No provider response was obtained, so credential validity, model access, answer quality, and live speeds remain unverified. See [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md) for evidence and the local-terminal next step. A 20-question chat review set is ready in `experiments/phase-2/content/CHAT_REVIEW.md`; it has not been run live.
 
-**Subsequent successful retry:** Network access is now enabled. YouTube returned 18 unique videos across two batches, with details, in 867 ms (first batch 358 ms). Gemini returned a complete, note-supported example answer with a valid source reference in 955 ms. Both configured keys worked for these requests. Browser playback, saving/reopening, wider chat quality, account limits/billing tier, and timer checks remain open. The earlier network-blocker status is historical; see PHASE_2_RESULTS.md for current evidence.
+**Subsequent successful retry:** Network access is now enabled. YouTube returned 18 unique videos across two batches, with details, in 867 ms (first batch 358 ms). Gemini returned a complete, note-supported example answer with a valid source reference in 955 ms. Both configured keys worked for these requests. Browser playback, saving/reopening, wider chat quality, account limits/billing tier, and timer checks remain open. The earlier network-blocker status is historical; see docs/archive/phase-2/PHASE_2_RESULTS.md for current evidence.
 
 ### Local browser prototype update
 
-The React/TypeScript browser and local API are implemented. Real search/chat were observed, and one actual embedded video played. Topic tiles, related tags, guest persistence, timer rules, and failure behavior have local/browser checks. Supabase is reachable and rejects anonymous reads after the migration; the founder reports that authenticated save/reopen and the ownership SQL test work. See README.md to run the app and PHASE_2_RESULTS.md for evidence.
+The React/TypeScript browser and local API are implemented. Real search/chat were observed, and one actual embedded video played. Topic tiles, related tags, guest persistence, timer rules, and failure behavior have local/browser checks. Supabase is reachable and rejects anonymous reads after the migration; the founder reports that authenticated save/reopen and the ownership SQL test work. See README.md to run the app and docs/archive/phase-2/PHASE_2_RESULTS.md for evidence.
 
 A 20-question review matched expected support/limitation behavior, but it used an inherited Gemini key. The loader now prefers `.env`, and a subsequent project-key answer succeeded. The review does not verify the founder project's limits or billing. Nineteen rule/service tests and three simulated browser journeys pass, as do type checks/build. Cloudflare hosting, shared limits, approved content, independent two-account checks, and release checks remain open.
 
 ## Founder-requested viewing improvements — 2026-10-13
 
-The local prototype now has a scrolling short-video view and long-video playback above each selected result. Playback positions save locally for guests and through owner-protected Supabase routes for accounts. This adds `002_video_progress.sql`; its application and live account-progress verification remain pending. Continue watching restores current video details using saved identifiers instead of storing YouTube titles/details permanently. This additional details request counts against the conservative local search allowance. See README.md for setup and PHASE_2_RESULTS.md for the simulated checks and their limits.
+The local prototype now has a scrolling short-video view and long-video playback above each selected result. Playback positions save locally for guests and through owner-protected Supabase routes for accounts. This adds `002_video_progress.sql`; its application and live account-progress verification remain pending. Continue watching restores current video details using saved identifiers instead of storing YouTube titles/details permanently. This additional details request counts against the conservative local search allowance. See README.md for setup and docs/archive/phase-2/PHASE_2_RESULTS.md for the simulated checks and their limits.
 
 ## Approved layout and home feed — 2026-10-14
 
@@ -276,8 +276,8 @@ Guest topics stay separate during restoration and sign-out, and stale account lo
 
 ### Persistent metadata cache — 2026-10-14
 
-Search pages and video details now use a six-hour disk cache; Trending uses a one-hour disk cache. Cached hits bypass local reservations, and identical concurrent misses share a request. Storage is limited to 500 entries with expiry/deletion and contains no account credentials or downloaded media. The local prototype implementation still needs shared storage before hosting. Google's current separate daily search quota is documented in [YOUTUBE_QUOTAS.md](YOUTUBE_QUOTAS.md); older quota assumptions should be read against that update.
+Search pages and video details now use a six-hour disk cache; Trending uses a one-hour disk cache. Cached hits bypass local reservations, and identical concurrent misses share a request. Storage is limited to 500 entries with expiry/deletion and contains no account credentials or downloaded media. The local prototype implementation still needs shared storage before hosting. Google's current separate daily search quota is documented in [YOUTUBE_QUOTAS.md](../../reference/YOUTUBE_QUOTAS.md); older quota assumptions should be read against that update.
 
 ### Teacher chat expanded — 2026-10-14
 
-The founder approved broader questions, explicit relevance labels, 1–2 real recommended videos, and matching timestamps where video content supports them. The new modular teacher route replaces the browser's CUDA-only restriction while retaining supplied notes and labeling general explanations. Supported public YouTube URLs can be analyzed by the configured Gemini model; the player can seek to AI-matched sections. Browser history stays in memory and is cleared across accounts. See [CHATBOT_PLAN.md](CHATBOT_PLAN.md) for current behaviour, input/source/timestamp checks, allowances, evidence, and remaining evaluation. This supersedes the earlier browser-chat coverage limitation, while the original note-only experiment remains available. Phase 2 remains open for independent content/accuracy review and the other recorded checks.
+The founder approved broader questions, explicit relevance labels, 1–2 real recommended videos, and matching timestamps where video content supports them. The new modular teacher route replaces the browser's CUDA-only restriction while retaining supplied notes and labeling general explanations. Supported public YouTube URLs can be analyzed by the configured Gemini model; the player can seek to AI-matched sections. Browser history stays in memory and is cleared across accounts. See [CHATBOT_PLAN.md](../../planning/CHATBOT_PLAN.md) for current behaviour, input/source/timestamp checks, allowances, evidence, and remaining evaluation. This supersedes the earlier browser-chat coverage limitation, while the original note-only experiment remains available. Phase 2 remains open for independent content/accuracy review and the other recorded checks.

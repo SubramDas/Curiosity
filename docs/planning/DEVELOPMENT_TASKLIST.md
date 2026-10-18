@@ -2,35 +2,35 @@
 
 ## Revelink Orbit Book rebrand — 2026-10-18
 
-Replaced the desktop/mobile Curiosity brand elements with the approved Revelink Orbit Book symbol and self-hosted Manrope wordmark. Updated browser/tab/touch icons, page metadata, demo-information branding, menu name, footer tagline and provider app-name references. Existing saved data and deployment identifiers remain valid. Verified with the production build, 95 service/rule/renderer/experiment checks, 24 simulated browser journeys and manual responsive brand/asset checks. Prepared locally; no deployment. See [branding guide](public/brand/README.md).
+Replaced the desktop/mobile Curiosity brand elements with the approved Revelink Orbit Book symbol and self-hosted Manrope wordmark. Updated browser/tab/touch icons, page metadata, demo-information branding, menu name, footer tagline and provider app-name references. Existing saved data and deployment identifiers remain valid. Verified with the production build, 95 service/rule/renderer/experiment checks, 24 simulated browser journeys and manual responsive brand/asset checks. Prepared locally; no deployment. See [branding guide](../../public/brand/README.md).
 
 
 ## Desktop related Universe popovers — 2026-10-18
 
-Implemented the approved +N treatment across desktop video metadata. Full Universe names open in an anchored popover with Close/Escape/outside dismissal, edge alignment, upward placement when needed and no title/creator reflow or accidental playback. Mobile retains its existing control. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No provider changes or deployment. See [runtime guide](desktop-ui/features/classification/README.md).
+Implemented the approved +N treatment across desktop video metadata. Full Universe names open in an anchored popover with Close/Escape/outside dismissal, edge alignment, upward placement when needed and no title/creator reflow or accidental playback. Mobile retains its existing control. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No provider changes or deployment. See [runtime guide](../../desktop-ui/features/classification/README.md).
 
 
 ## Desktop Watch history — 2026-10-18
 
-Implemented the founder-approved Penpot design: desktop Watch history includes completed videos and unfinished videos/Shorts, date grouping, saved-time Resume actions and Watch again from zero. Missing metadata can retry; unavailable videos retain their saved records. History loads 20 entries per page within the existing 200-video progress cap. Mobile retains its current behavior. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No schema migration or deployment. See [runtime guide](desktop-ui/features/history/README.md).
+Implemented the founder-approved Penpot design: desktop Watch history includes completed videos and unfinished videos/Shorts, date grouping, saved-time Resume actions and Watch again from zero. Missing metadata can retry; unavailable videos retain their saved records. History loads 20 entries per page within the existing 200-video progress cap. Mobile retains its current behavior. Build and 95 service/rule/renderer/experiment checks pass, with focused simulated browser verification. No schema migration or deployment. See [runtime guide](../../desktop-ui/features/history/README.md).
 
 
 ## Desktop teacher readability — 2026-10-17
 
-Implemented the approved Penpot desktop chat design: readable answer formatting, a fixed composer, stable reading position, suggested video thumbnails and expanded chat preserving playback and drafts. Verified with the production build, 93 service/rule/renderer/experiment checks and 54 simulated browser journeys. No provider changes or deployment. See [handoff and verification](design/penpot/chat/README.md).
+Implemented the approved Penpot desktop chat design: readable answer formatting, a fixed composer, stable reading position, suggested video thumbnails and expanded chat preserving playback and drafts. Verified with the production build, 93 service/rule/renderer/experiment checks and 54 simulated browser journeys. No provider changes or deployment. See [handoff and verification](../../design/penpot/chat/README.md).
 
 ## Search results in Universes — 2026-10-17
 
-Approved search results now enter a bounded public video catalog, joined with the existing server Topic/Universe classifications. Desktop Universes load these references independently from fresh discovery, reuse Topic filters and show each video only in its primary Universe. References last up to 24 hours and survive backend restart. Valid older cached references are recovered on the first catalog read, and missing labels reuse the separate classification cache without provider calls. Verified with the production build, 83 service/rule/experiment checks and 48 simulated browser journeys. No schema migration, provider change or deployment. See [behavior and limitations](backend/search/README.md#search-videos-in-universes).
+Approved search results now enter a bounded public video catalog, joined with the existing server Topic/Universe classifications. Desktop Universes load these references independently from fresh discovery, reuse Topic filters and show each video only in its primary Universe. References last up to 24 hours and survive backend restart. Valid older cached references are recovered on the first catalog read, and missing labels reuse the separate classification cache without provider calls. Verified with the production build, 83 service/rule/experiment checks and 48 simulated browser journeys. No schema migration, provider change or deployment. See [behavior and limitations](../../backend/search/README.md#search-videos-in-universes).
 
 ## Desktop search guardrails update — 2026-10-17
 
-The founder approved desktop implementation after Penpot review. Educational search now has backend intent checks, batched video-purpose filtering, learning-angle choices, goal clarification, asynchronous search states and restricted related-break requests. Current evidence: 77 service/rule/experiment checks and 44 simulated browser journeys pass. Mobile guardrail screens and live policy-accuracy evaluation remain pending. See [behavior and limitations](backend/search/README.md) and [verification](PHASE_2_RESULTS.md). This does not complete the broader content/release phases below.
+The founder approved desktop implementation after Penpot review. Educational search now has backend intent checks, batched video-purpose filtering, learning-angle choices, goal clarification, asynchronous search states and restricted related-break requests. Current evidence: 77 service/rule/experiment checks and 44 simulated browser journeys pass. Mobile guardrail screens and live policy-accuracy evaluation remain pending. See [behavior and limitations](../../backend/search/README.md) and [verification](../archive/phase-2/PHASE_2_RESULTS.md). This does not complete the broader content/release phases below.
 
 Created: 2026-10-12  
 Updated: 2026-10-12 — founder decisions and free-first development plan  
-Based on: [STARTUP_IDEA.md](STARTUP_IDEA.md)  
-Related files: [STUDENT_SURVEY.md](STUDENT_SURVEY.md) and [STUDENT_VALIDATION.md](STUDENT_VALIDATION.md)
+Based on: [STARTUP_IDEA.md](../product/STARTUP_IDEA.md)  
+Related files: [STUDENT_SURVEY.md](../research/STUDENT_SURVEY.md) and [STUDENT_VALIDATION.md](../research/STUDENT_VALIDATION.md)
 
 This is the plan for building and running the app. An unchecked box means the work still needs to be done.
 
@@ -46,7 +46,7 @@ This is the plan for building and running the app. An unchecked box means the wo
 - **API** means a way for two pieces of software to exchange information. For example, the app can use YouTube's API to request video details.
 - **Server** means the computer that handles requests, checks access, and talks to outside services. **Database** means the place where the app keeps its records.
 - **Test copy** means a separate version of the app used to check changes. **Live app** means the version real users access.
-- **AI service** means the company and software supplying chat answers. The starting choice is recorded in PHASE_2_TECHNICAL_PLAN.md; service access and quality still need a working test.
+- **AI service** means the company and software supplying chat answers. The starting choice is recorded in docs/archive/phase-2/PHASE_2_TECHNICAL_PLAN.md; service access and quality still need a working test.
 
 For each task, record who will do it, what must be ready first, how long it might take, and how you will check it. Mark a box complete only after the work has been checked.
 
@@ -160,7 +160,7 @@ These are implementation defaults, not extra founder commitments. They can be ad
 - [ ] **1.1** Check that the survey fits the chosen audience. Test it with 2–3 people, including questions shown only after certain answers. Measure completion time.
 - [ ] **1.2** Publish the survey using the founder's account. Record where and when it was shared.
 - [ ] **1.3** Find about 15 people to interview. Use more than one group where possible. Include people who learn successfully with current tools.
-- [ ] **1.4** Use STUDENT_VALIDATION.md to ask about their actual learning experiences before showing the app idea. Keep observed problems separate from compliments about the idea.
+- [ ] **1.4** Use docs/research/STUDENT_VALIDATION.md to ask about their actual learning experiences before showing the app idea. Keep observed problems separate from compliments about the idea.
 - [ ] **1.5** Look for repeated goals, reasons for switching tools, unanswered questions, and unwanted interruptions.
 - [ ] **1.6** Make a simple demonstration of search → scroll videos → watch → ask chat → return to a saved broad topic. User understanding tests are not needed now.
 - [ ] **1.7** Check whether people understand the tiles and topic map. Ask whether entertaining breaks help them or interrupt them.
@@ -172,15 +172,15 @@ These are implementation defaults, not extra founder commitments. They can be ad
 
 ## Phase 2 — Choose the tools and prove the main features can work
 
-**Teacher chat update — 2026-10-14:** The founder's broader teacher flow is implemented: unrelated questions are answered with up to two real videos, related questions can receive AI-matched timestamps, and uncertain relevance is labeled. Chat can start before search and supports follow-ups. See CHATBOT_PLAN.md for the 35 rule/service checks, browser evidence, live examples, limitations, and remaining accuracy review. Formal learner quizzes remain optional.
+**Teacher chat update — 2026-10-14:** The founder's broader teacher flow is implemented: unrelated questions are answered with up to two real videos, related questions can receive AI-matched timestamps, and uncertain relevance is labeled. Chat can start before search and supports follow-ups. See docs/planning/CHATBOT_PLAN.md for the 35 rule/service checks, browser evidence, live examples, limitations, and remaining accuracy review. Formal learner quizzes remain optional.
 
 **Layout update — 2026-10-14:** Founder approved the Figma design with Trending followed by saved broad subjects in the top bar. The desktop/mobile layout and a real YouTube home feed are implemented. Build/type checks, 26 rule/service checks, and nine simulated browser journeys pass. Search, chat limitations, topic grouping, related breaks, and playback progress are retained. Restart the local server for the new feed route. Reviewed content, account-progress migration/live verification if not yet done, hosting, and wider Phase 2 evaluation remain open; Phase 2 is not marked complete.
 
-**Progress — 2026-10-13:** Local API experiments and ten simulated-response tests are implemented. Follow [PHASE_2_SETUP.md](PHASE_2_SETUP.md) to configure YouTube and Gemini. Live checks, browser playback, saving, model comparison, and measured service limits remain open; implementation tasks are not marked complete based on simulated tests.
+**Progress — 2026-10-13:** Local API experiments and ten simulated-response tests are implemented. Follow [PHASE_2_SETUP.md](../archive/phase-2/PHASE_2_SETUP.md) to configure YouTube and Gemini. Live checks, browser playback, saving, model comparison, and measured service limits remain open; implementation tasks are not marked complete based on simulated tests.
 
-**Live attempt update:** Required settings are now present. This workspace could not resolve the Google API hosts, so neither live check obtained a provider response. See [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md). A 20-question chat review set is prepared; credentials and model quality are still unverified.
+**Live attempt update:** Required settings are now present. This workspace could not resolve the Google API hosts, so neither live check obtained a provider response. See [PHASE_2_RESULTS.md](../archive/phase-2/PHASE_2_RESULTS.md). A 20-question chat review set is prepared; credentials and model quality are still unverified.
 
-**Successful retry:** Network access is restored. Real YouTube search/details returned 18 unique videos across two batches; the Gemini example returned a note-supported answer with a valid reference. Remaining browser playback, save/reopen, broader model review, and account-limit checks prevent marking Phase 2 complete. See PHASE_2_RESULTS.md for timings and limits of these checks.
+**Successful retry:** Network access is restored. Real YouTube search/details returned 18 unique videos across two batches; the Gemini example returned a note-supported answer with a valid reference. Remaining browser playback, save/reopen, broader model review, and account-limit checks prevent marking Phase 2 complete. See docs/archive/phase-2/PHASE_2_RESULTS.md for timings and limits of these checks.
 
 **Browser progress:** React/TypeScript local prototype implemented; one real video played, live browser search/chat worked, and 19 rule/service tests plus three simulated browser journeys pass. A 20-question model review ran, and an inherited-key configuration issue was fixed; the actual project key passed a new example. Supabase migration is applied and anonymous reads are denied. The founder reports that authenticated saving/reopening and the ownership SQL check work. Reviewed content, Cloudflare feasibility, actual free account limits, and release review remain open. Phase 2 is still in progress.
 
@@ -188,7 +188,7 @@ These are implementation defaults, not extra founder commitments. They can be ad
 **When:** Before the small trial.  
 **Needs first:** The founder choices recorded above. Phase 1 runs alongside this work.
 
-- [ ] **2.1** Use the developer selections in [PHASE_2_TECHNICAL_PLAN.md](PHASE_2_TECHNICAL_PLAN.md): React with TypeScript and Vite, Cloudflare hosting/server requests, and Supabase accounts/database. Pin versions when implementation starts.
+- [ ] **2.1** Use the developer selections in [PHASE_2_TECHNICAL_PLAN.md](../archive/phase-2/PHASE_2_TECHNICAL_PLAN.md): React with TypeScript and Vite, Cloudflare hosting/server requests, and Supabase accounts/database. Pin versions when implementation starts.
 - [x] **2.2** Start with one main application and one database where practical. Add separate services when there is a clear reason.
 - [x] **2.3** Divide the work into clear parts: accounts, content library, topics, search, suggestions, learning sessions, chat, management screens, and reports. Learner questions are later work. The split is planned; management/report implementations come in their later phases.
 - [x] **2.4** Draw how information moves: user's browser → app server → database or outside service. Keep secret access keys on the server.
@@ -695,12 +695,12 @@ These are planning amounts. Founder/collaborator working time is not priced here
 
 ## Latest development direction — 2026-10-12
 
-See [PHASE_2_TECHNICAL_PLAN.md](PHASE_2_TECHNICAL_PLAN.md) for the developer's answers to all Phase 2 tasks, free options, sources, limitations, and which working tests remain unfinished. Research and planning are not the same as a completed API/playback/chat test.
+See [PHASE_2_TECHNICAL_PLAN.md](../archive/phase-2/PHASE_2_TECHNICAL_PLAN.md) for the developer's answers to all Phase 2 tasks, free options, sources, limitations, and which working tests remain unfinished. Research and planning are not the same as a completed API/playback/chat test.
 
 
 ## Topic placement update — 2026-10-13
 
-Founder agreed: one main tile per saved smaller topic, with small related-tile tags beside the heading. Wikidata and DBpedia are included as knowledge sources to test and integrate; Dewey is a category-design reference with reuse permissions checked where needed. See [TOPIC_RELATIONSHIPS.md](TOPIC_RELATIONSHIPS.md). Task numbers 4.15–4.18, 9.12–9.13, and 15.13 cover this work.
+Founder agreed: one main tile per saved smaller topic, with small related-tile tags beside the heading. Wikidata and DBpedia are included as knowledge sources to test and integrate; Dewey is a category-design reference with reuse permissions checked where needed. See [TOPIC_RELATIONSHIPS.md](../product/TOPIC_RELATIONSHIPS.md). Task numbers 4.15–4.18, 9.12–9.13, and 15.13 cover this work.
 
 ## Latest video-viewing change — 2026-10-13
 
