@@ -196,3 +196,70 @@ test("Mutable cache updates preserve concurrent catalog additions across hosted 
   await b.update(["catalog"], 1000, (rows: number[] = []) => [...rows, 9]);
   assert.deepEqual(await a.get(["catalog"]), [9]);
 });
+
+test("Hosted classification cache retains 30-day results with matching cleanup dates; metadata stays bounded to one day", async () => {
+  const database = new DatabaseFixture();
+  let time = 1000,
+    calls = 0;
+  const ttl = 30 * 86400_000;
+  const options = {
+    database,
+    namespace: "curiosity_classification",
+    now: () => time,
+    maxTtlMs: ttl,
+  };
+  const load = async () => {
+    calls++;
+    return { topic: "GPU architecture" };
+  };
+  const cache = createFirestoreCache(options);
+  await cache.getOrLoad(["topic"], ttl, load);
+  const stored = [...database.records.entries()].find(([key]) =>
+    key.startsWith("curiosity_classification_cache/"),
+  )![1];
+  assert.equal(stored.expiresAt, 1000 + ttl);
+  assert.equal(stored.purgeAt.getTime(), stored.expiresAt);
+  time += 2 * 86400_000;
+  await createFirestoreCache(options).getOrLoad(["topic"], ttl, load);
+  assert.equal(calls, 1);
+  time = 1000 + ttl;
+  assert.equal(await cache.get(["topic"]), undefined);
+  await cache.getOrLoad(["topic"], ttl, load);
+  assert.equal(calls, 2);
+  const metadata = createFirestoreCache({ database });
+  await assert.rejects(
+    metadata.getOrLoad(["video"], ttl, load),
+    /Invalid cache lifetime/,
+  );
+  await assert.rejects(
+    metadata.update(["video"], ttl, () => ({})),
+    /Invalid cache lifetime/,
+  );
+});
+
+test("Hosted classification allowance enforces 400 atomically across adapters and retains other feature bounds", async () => {
+  const database = new DatabaseFixture();
+  const now = () => Date.UTC(2026, 9, 18);
+  database.records.set("curiosity_usage/2026-10-18", { classification: 399 });
+  const a = createFirestoreUsage({ database, now });
+  const b = createFirestoreUsage({ database, now });
+  const outcomes = await Promise.allSettled([
+    a.reserve("classification", 400),
+    b.reserve("classification", 400),
+  ]);
+  assert.equal(outcomes.filter((x) => x.status === "fulfilled").length, 1);
+  assert.equal(
+    database.records.get("curiosity_usage/2026-10-18").classification,
+    400,
+  );
+  await assert.rejects(b.reserve("classification", 400), {
+    code: "LOCAL_LIMIT",
+  });
+  await b.reserve("classification", 500);
+  for (const limit of [0, 501, 400.5])
+    await assert.rejects(a.reserve("classification", limit), {
+      code: "INVALID_CONFIG",
+    });
+  for (const kind of ["chat", "videoChat", "search", "searchGuard"])
+    await assert.rejects(a.reserve(kind, 101), { code: "INVALID_CONFIG" });
+});

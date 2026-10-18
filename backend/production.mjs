@@ -1,4 +1,5 @@
 import { Firestore } from "@google-cloud/firestore";
+import { CLASSIFICATION_CACHE_TTL_MS } from "./classification/classification-store.mjs";
 import { startServer } from "./server.mjs";
 import { createFirestoreUsage } from "./storage/firestore-usage.mjs";
 import { createFirestoreCache } from "./storage/firestore-cache.mjs";
@@ -24,6 +25,7 @@ const server = startServer(process.env, {
   classificationCache: createFirestoreCache({
     database,
     namespace: "curiosity_classification",
+    maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
   }),
   beforeRequest: createRequestThrottle(),
 });

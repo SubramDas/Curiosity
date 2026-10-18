@@ -21,10 +21,11 @@ export function createUsageLimiter(directory = ".local-data") {
     reserve(kind, limit) {
       const day = new Date().toISOString().slice(0, 10);
       if (usage.day !== day) usage = { day, search: 0, chat: 0 };
-      if (!Number.isInteger(limit) || limit < 1 || limit > 100) {
+      const maximum = kind === "classification" ? 500 : 100;
+      if (!Number.isInteger(limit) || limit < 1 || limit > maximum) {
         throw new ServiceError(
           "INVALID_CONFIG",
-          "Daily prototype limits must be integers from 1 to 100.",
+          `Daily ${kind} limits must be integers from 1 to ${maximum}.`,
         );
       }
       if (

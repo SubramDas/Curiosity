@@ -1,5 +1,8 @@
 import { createCachedSearchRecovery } from "../backend/universes/recover-cached-search.mjs";
-import { createClassificationStore } from "../backend/classification/classification-store.mjs";
+import {
+  CLASSIFICATION_CACHE_TTL_MS,
+  createClassificationStore,
+} from "../backend/classification/classification-store.mjs";
 import { classificationMetadata } from "../backend/classification/classify-video.mjs";
 import {
   SEARCH_POLICY_VERSION,
@@ -229,6 +232,7 @@ test("Legacy cached videos recover with existing educational decisions and label
       cache: createProviderCache({
         directory,
         filename: "labels.json",
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
         now: () => time,
       }),
       model: "test",
@@ -307,6 +311,7 @@ test("Existing catalog approvals join classification-cache labels by exact evide
     const labelsCache = createProviderCache({
       directory,
       filename: "labels.json",
+      maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
     });
     const labels = createClassificationStore({
       cache: labelsCache,

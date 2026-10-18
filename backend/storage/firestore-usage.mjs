@@ -10,7 +10,7 @@ export function createFirestoreUsage({
       if (
         !Number.isInteger(limit) ||
         limit < 1 ||
-        limit > 100 ||
+        limit > (kind === "classification" ? 500 : 100) ||
         !Number.isInteger(count) ||
         count < 1 ||
         count > 100 ||

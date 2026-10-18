@@ -304,9 +304,9 @@ export async function deploy() {
     CHAT_VIDEO_CONTEXT: environment.CHAT_VIDEO_CONTEXT ?? "true",
     LEARNING_GRAPH_ENABLED: environment.LEARNING_GRAPH_ENABLED ?? "false",
     VIDEO_CLASSIFICATION: environment.VIDEO_CLASSIFICATION ?? "true",
-    CLASSIFICATION_DAILY_LIMIT: environment.CLASSIFICATION_DAILY_LIMIT ?? "40",
+    CLASSIFICATION_DAILY_LIMIT: environment.CLASSIFICATION_DAILY_LIMIT ?? "400",
     GEMINI_REQUEST_INTERVAL_MS:
-      environment.GEMINI_REQUEST_INTERVAL_MS ?? "15000",
+      environment.GEMINI_REQUEST_INTERVAL_MS ?? "5000",
   };
   if (!settings.GEMINI_MODEL) throw new Error("GEMINI_MODEL is missing.");
   configureCacheFields();

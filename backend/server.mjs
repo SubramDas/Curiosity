@@ -15,7 +15,10 @@ import {
   createVideoClassifier,
   classificationMetadata,
 } from "./classification/classify-video.mjs";
-import { createClassificationStore } from "./classification/classification-store.mjs";
+import {
+  CLASSIFICATION_CACHE_TTL_MS,
+  createClassificationStore,
+} from "./classification/classification-store.mjs";
 import { createWikidataClient } from "./providers/wikidata.mjs";
 import { createProviderCache } from "./provider-cache.mjs";
 import { createCachedYouTubeClient } from "./cached-youtube.mjs";
@@ -103,7 +106,7 @@ export function startServer(
     ? createStaticHandler(staticDirectory)
     : null;
   const geminiQueue = createGeminiRequestQueue({
-    intervalMs: Number(environment.GEMINI_REQUEST_INTERVAL_MS ?? 15_000),
+    intervalMs: Number(environment.GEMINI_REQUEST_INTERVAL_MS ?? 5_000),
   });
   const geminiRequest = createGeminiRequester({ queue: geminiQueue });
   let classifier = providedClassifier;
@@ -123,6 +126,7 @@ export function startServer(
       createProviderCache({
         directory: usageDirectory,
         filename: "classification-cache.json",
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
       });
     classificationStore ??= createClassificationStore({
       cache: classificationCache,
@@ -158,7 +162,7 @@ export function startServer(
           reserve: () =>
             limits.reserve(
               "classification",
-              Number(environment.CLASSIFICATION_DAILY_LIMIT ?? 40),
+              Number(environment.CLASSIFICATION_DAILY_LIMIT ?? 400),
             ),
         }),
         wikidata: createWikidataClient({ cache: classificationCache }),

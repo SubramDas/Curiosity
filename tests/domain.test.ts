@@ -121,3 +121,37 @@ test("Local allowance persists across restart and cannot be spent twice near its
     rmSync(directory, { recursive: true });
   }
 });
+
+test("Local classification allowance accepts 400, preserves usage after restart and retains other feature bounds", () => {
+  const directory = mkdtempSync(
+    join(tmpdir(), "revelink-classification-limit-"),
+  );
+  try {
+    writeFileSync(
+      join(directory, "usage.json"),
+      JSON.stringify({
+        day: new Date().toISOString().slice(0, 10),
+        classification: 399,
+        chat: 0,
+        search: 0,
+      }),
+    );
+    const limits = createUsageLimiter(directory);
+    limits.reserve("classification", 400);
+    const restarted = createUsageLimiter(directory);
+    assert.throws(() => restarted.reserve("classification", 400), {
+      code: "LOCAL_LIMIT",
+    });
+    restarted.reserve("classification", 500);
+    for (const limit of [0, 501, 400.5])
+      assert.throws(() => restarted.reserve("classification", limit), {
+        code: "INVALID_CONFIG",
+      });
+    for (const kind of ["chat", "videoChat", "search", "searchGuard"])
+      assert.throws(() => restarted.reserve(kind, 101), {
+        code: "INVALID_CONFIG",
+      });
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});

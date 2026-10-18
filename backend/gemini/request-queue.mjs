@@ -10,7 +10,7 @@ const pacificDay = (time) =>
 
 // Shared by every Gemini request in one app server. Cloud Run is capped at one instance.
 export function createGeminiRequestQueue({
-  intervalMs = 15_000,
+  intervalMs = 5_000,
   now = Date.now,
   maxPending = 32,
 } = {}) {

@@ -205,3 +205,20 @@ test("Actual API routes reuse cached search/details after exhaustion and a serve
     rmSync(directory, { recursive: true, force: true });
   }
 });
+
+test("Local YouTube metadata still rejects lifetimes beyond one day", async () => {
+  const directory = mkdtempSync(join(tmpdir(), "revelink-cache-limit-"));
+  try {
+    const cache = createProviderCache({ directory });
+    await assert.rejects(
+      cache.getOrLoad(["video"], 30 * 86400_000, async () => ({})),
+      /Invalid cache lifetime/,
+    );
+    await assert.rejects(
+      cache.update(["video"], 30 * 86400_000, () => ({})),
+      /Invalid cache lifetime/,
+    );
+  } finally {
+    rmSync(directory, { recursive: true, force: true });
+  }
+});

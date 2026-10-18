@@ -6,9 +6,12 @@ export function createFirestoreCache({
   database,
   namespace = "curiosity",
   now = Date.now,
+  maxTtlMs = 86400_000,
   maxEntries = 400,
   wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
 }) {
+  if (!Number.isFinite(maxTtlMs) || maxTtlMs <= 0)
+    throw new Error("Invalid maximum cache lifetime.");
   const pending = new Map();
   const entries = database.collection(`${namespace}_cache`);
   const index = database.doc(`${namespace}_system/cache-index`);
@@ -174,7 +177,7 @@ export function createFirestoreCache({
     },
     // Use update-only keys for mutable catalogs, separate from leased getOrLoad keys.
     async update(parts, ttl, change) {
-      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > maxTtlMs)
         throw new Error("Invalid cache lifetime.");
       const key = createHash("sha256")
         .update(JSON.stringify(parts))
@@ -184,7 +187,7 @@ export function createFirestoreCache({
       );
     },
     async getOrLoad(parts, ttl, load) {
-      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > maxTtlMs)
         throw new Error("Invalid cache lifetime.");
       const key = createHash("sha256")
         .update(JSON.stringify(parts))

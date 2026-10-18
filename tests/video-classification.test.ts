@@ -14,7 +14,10 @@ import {
   createVideoClassifier,
   classificationMetadata,
 } from "../backend/classification/classify-video.mjs";
-import { createClassificationStore } from "../backend/classification/classification-store.mjs";
+import {
+  CLASSIFICATION_CACHE_TTL_MS,
+  createClassificationStore,
+} from "../backend/classification/classification-store.mjs";
 import { createProviderCache } from "../backend/provider-cache.mjs";
 import { createWikidataClient } from "../backend/providers/wikidata.mjs";
 import { createUsageLimiter } from "../backend/usage.mjs";
@@ -202,6 +205,7 @@ test("Classifications coalesce and persist; metadata/model/policy keys isolate r
     const cache = createProviderCache({
       directory,
       filename: "classification-cache.json",
+      maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
     });
     const store = createClassificationStore({ cache, model: "one" });
     let calls = 0;
@@ -218,6 +222,7 @@ test("Classifications coalesce and persist; metadata/model/policy keys isolate r
       cache: createProviderCache({
         directory,
         filename: "classification-cache.json",
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
       }),
       model: "one",
     });
@@ -256,7 +261,10 @@ test("Wikidata provider retrieves bounded candidates and typed relations, ignore
   const directory = mkdtempSync(join(tmpdir(), "curiosity-wikidata-"));
   try {
     const wikidata = createWikidataClient({
-      cache: createProviderCache({ directory }),
+      cache: createProviderCache({
+        directory,
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
+      }),
       fetchRequest: async (url: any, options: any) => {
         calls++;
         assert.ok(options.headers["User-Agent"].includes("Revelink"));
@@ -381,7 +389,11 @@ test("Temporary graph-outage classifications are reused briefly then can acquire
     calls = 0;
   try {
     const store = createClassificationStore({
-      cache: createProviderCache({ directory, now: () => time }),
+      cache: createProviderCache({
+        directory,
+        now: () => time,
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
+      }),
       model: "one",
     });
     const operation = async () => {
@@ -434,7 +446,10 @@ test("Retrying a failed second stage reuses the accepted first Gemini topic extr
     resolutions = 0;
   try {
     const store = createClassificationStore({
-      cache: createProviderCache({ directory }),
+      cache: createProviderCache({
+        directory,
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
+      }),
       model: "one",
     });
     const classifier = createVideoClassifier({
@@ -530,6 +545,7 @@ test("Cached labels accompany Universe feeds without starting classification or 
   const cache = createProviderCache({
     directory,
     filename: "classification-cache.json",
+    maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
   });
   const store = createClassificationStore({ cache, model: "test" });
   const classification = {
@@ -602,6 +618,54 @@ test("Cached labels accompany Universe feeds without starting classification or 
   } finally {
     server.closeAllConnections();
     await new Promise<void>((resolve) => server.close(() => resolve()));
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test("Topics and classifications survive restart beyond one day and expire at 30 days", async () => {
+  const directory = mkdtempSync(join(tmpdir(), "revelink-topic-retention-"));
+  const startedAt = 1000;
+  let time = startedAt,
+    extracts = 0,
+    classifications = 0;
+  const open = () =>
+    createClassificationStore({
+      cache: createProviderCache({
+        directory,
+        filename: "classification-cache.json",
+        now: () => time,
+        maxTtlMs: CLASSIFICATION_CACHE_TTL_MS,
+      }),
+      model: "test",
+    });
+  const extract = async () => {
+    extracts++;
+    return topic;
+  };
+  const classify = async () => {
+    classifications++;
+    return resolution;
+  };
+  try {
+    let store = open();
+    await store.getExtractedTopic(video, extract);
+    await store.getOrClassify(video, classify);
+    time += 2 * 86400_000;
+    store = open();
+    assert.deepEqual(await store.getExtractedTopic(video, extract), topic);
+    assert.deepEqual(await store.getOrClassify(video, classify), resolution);
+    assert.equal(extracts, 1);
+    assert.equal(classifications, 1);
+    time = startedAt + CLASSIFICATION_CACHE_TTL_MS - 1;
+    store = open();
+    assert.deepEqual(await store.getCached(video), resolution);
+    time++;
+    assert.equal(await store.getCached(video), undefined);
+    await store.getExtractedTopic(video, extract);
+    await store.getOrClassify(video, classify);
+    assert.equal(extracts, 2);
+    assert.equal(classifications, 2);
+  } finally {
     rmSync(directory, { recursive: true, force: true });
   }
 });

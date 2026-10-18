@@ -6,9 +6,12 @@ import { ServiceError } from "./providers/request-json.mjs";
 export function createProviderCache({
   directory = ".local-data",
   now = Date.now,
+  maxTtlMs = 86400_000,
   maxEntries = 500,
   filename = "youtube-cache.json",
 } = {}) {
+  if (!Number.isFinite(maxTtlMs) || maxTtlMs <= 0)
+    throw new Error("Invalid maximum cache lifetime.");
   mkdirSync(directory, { recursive: true });
   const path = `${directory}/${filename}`;
   const entries = new Map();
@@ -40,7 +43,7 @@ export function createProviderCache({
           entry &&
           Number.isFinite(entry.expiresAt) &&
           entry.expiresAt > now() &&
-          entry.expiresAt <= now() + 86400_000 &&
+          entry.expiresAt <= now() + maxTtlMs &&
           "value" in entry
         )
           entries.set(key, entry);
@@ -80,7 +83,7 @@ export function createProviderCache({
         : undefined;
     },
     async update(keyParts, ttl, change) {
-      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > maxTtlMs)
         throw new Error("Invalid cache lifetime.");
       const key = createHash("sha256")
         .update(JSON.stringify(keyParts))
@@ -97,8 +100,8 @@ export function createProviderCache({
       return structuredClone(value);
     },
     async getOrLoad(keyParts, ttl, load) {
-      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > 86400_000)
-        throw new Error("Cache lifetime must be between zero and one day.");
+      if (!Number.isFinite(ttl) || ttl <= 0 || ttl > maxTtlMs)
+        throw new Error("Invalid cache lifetime.");
       const key = createHash("sha256")
         .update(JSON.stringify(keyParts))
         .digest("hex");
