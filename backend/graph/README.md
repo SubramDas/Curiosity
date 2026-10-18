@@ -27,7 +27,7 @@ The migration was prepared but not applied from this session: no Supabase admini
 
 ## 2. Review and publish the starter catalog
 
-`content/graph/catalog.json` contains **30 draft starter concepts and 26 proposed relationships**, with stable IDs and positions. Its `reviewed` field is false. Video and story lists are empty. Nothing from the Penpot illustrative feed is presented as a real published video or current news event.
+`content/graph/catalog.json` contains **30 draft starter concepts and 26 proposed relationships**, with stable IDs and positions. Its `reviewed` field is currently true, while its summary still calls it a draft and topic source lists/QIDs remain empty/unset. This is an operator declaration; independent content review or live publication is not verified by this documentation update. Video and story lists are empty. Nothing from the Penpot illustrative feed is presented as a real published video or current news event.
 
 The topics use `status: published` as their intended post-review state; that does not mean they already exist in Supabase. Publication is blocked while `reviewed` is false.
 

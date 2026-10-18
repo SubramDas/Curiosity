@@ -1,5 +1,7 @@
 # First chat review: 20 questions
 
+> Historical note-only experiment: the current teacher also supports general explanations and eligible public-video analysis. Use [the current demo checklist](../../../docs/evaluation/DEMO_CHECKLIST.md) for evaluator questions; the older insufficient-information expectations below apply to the legacy experiment.
+
 Use this set after a single live example works. Do not run the whole set automatically: first confirm the account's remaining free allowance. This set evaluates only the narrow `gpu-notes.mjs` fixture, not a full tutor or a broad computing library.
 
 For every answer, record model, date, whether the expected behavior occurred, any unsupported claims, whether source references are valid, and full-answer time. A valid source ID alone is not proof that the answer's claims are supported. Review the source and fixture before approving content for learners.

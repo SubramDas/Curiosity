@@ -1,0 +1,33 @@
+{
+  "checkedAtUtc": "2026-10-18T12:42:01.177998+00:00",
+  "nodeVersion": "v20.20.2",
+  "supportedNode": ">=22",
+  "sourceRevision": "e2e5c4562a8305e4db96aa29417628eb73e5ba16",
+  "worktreeDirty": true,
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "tests": 114,
+      "pass": 114,
+      "fail": 0,
+      "scope": "Simulated/controlled provider service and rule checks",
+      "outputSha256": "463b1f92d74022d38d33f6dd35280c97194835596e14d80fb3d2c47a105cc9d5"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "typeCheck": "passed",
+      "bundle": "passed",
+      "warning": "Main bundle exceeds 500 kB advisory",
+      "outputSha256": "fb949bd6b844713798f268bd76fe8d6cde0e785ec3a004123596cd305833c7d6"
+    }
+  ],
+  "browserSuiteRerun": false,
+  "liveProviderCallsDuringThisDocumentationUpdate": false,
+  "limitations": [
+    "Verification used Node 20.20.2; supported local setup remains Node >=22.",
+    "No claim of live-provider accuracy or learning outcomes.",
+    "Original terminal logs are local; this summary is not a substitute for rerunning checks."
+  ]
+}

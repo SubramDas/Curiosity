@@ -2,180 +2,105 @@
 
 **Watch. Discover. Connect the dots.**
 
-## Desktop educational search
+Revelink brings educational video discovery, short-form exploration, an AI teacher and related topics into one learning workspace. The goal is to reduce app switching and make learning more engaging. Improved retention and learning outcomes have not yet been measured.
 
-Focus the desktop header search to open the new Search screen. Clear learning requests show filtered videos; broad topics offer learning choices; entertainment requests offer educational alternatives and a learning-goal clarification. Existing playback and saved searches remain available. Restart `npm run dev` for the backend update.
+**[Live demo](https://revelink-u2ubbw6fra-el.a.run.app)** · Team SSRD · Team leader Subram Das
 
-Search intent and video-purpose checks use the existing Gemini model and paced queue, with a separate `SEARCH_GUARD_DAILY_LIMIT` (default 40 model attempts per UTC day). Missing checks or exhausted allowances show an error rather than unchecked search results. The existing break interface uses a separate timed, topic-bound backend path. See [implementation details and limitations](backend/search/README.md). Mobile retains its existing presentation; its reviewed guardrail screens are not yet implemented. No redeployment is included.
+## Start here for evaluation
 
-A learning app experiment: search any topic, choose YouTube videos, ask a doubt, and return to grouped subjects. A public adult hackathon demo is deployed on Google Cloud; wider release checks remain.
+- [Evaluator guide](docs/evaluation/EVALUATOR_GUIDE.md): architecture, local setup, configuration, feature scope and troubleshooting.
+- [Data sources and grounding](docs/evaluation/DATA_SOURCES.md): what data is used, provenance, storage, datasets and limitations.
+- [Demo tasks and questions](docs/evaluation/DEMO_CHECKLIST.md): concrete inputs, expected behavior and manual review criteria.
+- [Evaluation evidence](docs/evaluation/RESULTS.md): measured timings, reproducibility, test evidence and unmeasured claims.
 
-**Live demo: https://curiosity-u2ubbw6fra-el.a.run.app**
-
-Availability target: December 31, 2026. See [deployment details](GOOGLE_CLOUD_DEPLOYMENT.md) for configuration, verification and remaining checks.
+The app and backend run on **Google Cloud Run**, shared caches/counters use **Firestore**, and optional accounts/user records use **Supabase**. The app is not hosted on Firebase Hosting. The availability target is December 31, 2026, dependent on active billing, credentials and quotas; see [deployment instructions](GOOGLE_CLOUD_DEPLOYMENT.md).
 
 ## Run locally
 
-Use Node 22 or newer. From the project folder:
+Use **Node 22 or newer** and run commands from the repository root:
 
 ```bash
 npm ci
-# Create .env from .env.example if it does not already exist.
-# Add service settings in your editor; never commit the .env file.
+# If .env is missing, copy .env.example to .env, then edit it locally.
+# Do not overwrite an existing .env or commit credentials.
 npm run dev
 ```
 
-Open **http://127.0.0.1:5173**. Keep the terminal running; press Ctrl+C to stop it. The browser and API are bound to this computer, not published to the internet.
+Open **http://127.0.0.1:5173**. The API runs on port **8787**. Restart after changing backend code or `.env`. Keep one local server running to avoid port and usage-file conflicts.
 
-Restart `npm run dev` after changing `.env` or server code. If port 8787 is already in use, stop the earlier prototype in its terminal first. Avoid running two copies against the same local usage record.
+For live discovery and teaching, configure `YOUTUBE_API_KEY`, `GEMINI_API_KEY` and an available `GEMINI_MODEL`. Read [data-use notes](PHASE_2_SETUP.md) before enabling `ALLOW_GEMINI_FREE_TEST=true`; it permits API calls, not free usage or a paid-quota exemption. Credentials are not bundled with the repository. Guest use does not require Supabase. See the [configuration table](docs/evaluation/EVALUATOR_GUIDE.md#configuration).
 
-If npm cannot write to its normal cache, use `npm --cache /tmp/startup-npm-cache ci`. Do not change system directory permissions to install this project.
+Account saving additionally requires `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, migrations [001](supabase/migrations/001_saved_topics.sql) and [002](supabase/migrations/002_video_progress.sql), and configured authentication redirects. Apply schema changes only in a database you own and intend to configure. Never use a service-role key in the browser/app configuration.
 
-## What to try
+The optional graph needs migration 003 and reviewed published content; the example configuration keeps it disabled until setup. See [graph activation](backend/graph/README.md).
 
-1. Search “I want to know about GPUs”; choose a video and start playback.
-2. Load another batch of results. Repeated videos should appear once.
-3. Ask “How do the CPU and GPU work together in CUDA?” Check the source link.
-4. Search AMD; both searches appear in Science & Technology on desktop (Computing & Tech on mobile), as separate saved searches.
-5. Search “Income tax on GPU imports”; it has one home in Money and Business with related tags.
-6. Open a related tag; it shows a preview without duplicating the topic or creating a tile.
-7. Refresh; guest subject tiles remain in this browser. Reopening a saved query reuses cached results when available; YouTube still streams the video.
-8. Enable the 30-second timer demo, then play a visible video or interact with chat. The normal setting is 12 active minutes. Skip the break or request up to three related candidates.
+## Try the core journey
 
-No understanding scores, learner tests, paid courses, or tile editing are included. The category labels are provisional and the fallback is General/Unsorted.
+1. Search **“How do GPUs work?”**, select a video and start playback.
+2. Ask **“How do the CPU and GPU work together in CUDA?”** Inspect the answer's source basis and link when supplied.
+3. Ask **“Explain that more simply.”** The teacher uses recent conversation context.
+4. Search **“football”** and **“funny meme compilations”** to examine clarification and educational redirection; AI wording/results can vary.
+5. Enable **30-second timer demo**, keep playback visible, and request a related break. Normal sessions use 12 active minutes; demo mode still applies content and quota checks.
+6. Refresh and check guest history/progress. Account saving is a separate optional journey.
 
-## Supabase saving
+[Full checklist, including video-context questions and limitations](docs/evaluation/DEMO_CHECKLIST.md).
 
-Add `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` to `.env`, then restart the local server. Keep email confirmation enabled in Supabase.
+## Data and AI behavior
 
-1. Run [the migration](supabase/migrations/001_saved_topics.sql) **once** in the development project's SQL Editor. It creates the table, its access rules, and an index. Do not run it against a production database.
-2. Run [the ownership check](supabase/tests/saved_topics_access.sql) in the development SQL Editor. It temporarily creates test records and rolls them back. If it errors, run `rollback;` before further SQL work and share the error without credentials.
-3. Expand “Save across devices” in the app, create an account, confirm its email, then sign in.
-4. Search a topic. Check for “Saved to your account,” not just a successful video search.
-5. Refresh. You should remain signed in and your account topics should reopen. The official Supabase JavaScript library saves the session in this browser, renews expired tokens, and clears the saved session when you sign out.
-6. If you already have a confirmed account, entering its correct email and password under “Create account” signs you in without another confirmation email. A new account still needs confirmation; an existing unconfirmed account can request another confirmation email. A wrong password never grants access.
+- YouTube Data API supplies real public video metadata; the official embedded player streams media. Instagram integration is a future idea, not an implemented data source.
+- Gemini assesses search intent and educational purpose, extracts topics, resolves Wikidata candidates and answers questions. Existing models are called through the Gemini Developer API; no model is trained or fine-tuned here.
+- The teacher distinguishes **checked notes**, **video analysis** and **general knowledge**. One small developer-prepared CUDA note fixture is included. This is not a broad verified curriculum or a vector-based RAG system.
+- Wikidata supplies candidate concept IDs and relationships for matching. Concept matching does not verify a video's factual accuracy.
+- The draft graph catalog and benchmark cases are not approved teaching content or a reviewed accuracy dataset.
 
-The browser receives only the Supabase URL and the validated publishable (or legacy anon) key from `/api/config`. This public key is intended for browser use; privileged keys are rejected by the server. YouTube and Gemini secrets remain on the server. Sign-in now goes directly to Supabase through its official library; saved-topic and progress routes still verify the user and use database access rules.
+Read [the data-source inventory](docs/evaluation/DATA_SOURCES.md) before making grounding or accuracy claims.
 
-Guest topics and account topics are separate; guest-to-account transfer is not implemented. The founder reports that the SQL ownership check and account save/reopen work in the development project. Independent checks with two real accounts remain before a wider trial. No privileged Supabase key is needed by the app.
-
-## Checks
-
-Prototype API benchmarks are available with `npm run benchmark -- search` (plan only) or `npm run benchmark -- search --live` against the running app. Search, teacher and classification suites produce JSON, CSV and Markdown reports in ignored `.local-data/benchmarks`. Live runs use the server's existing allowance; accuracy scoring requires human-reviewed cases. See [benchmark instructions and limitations](experiments/benchmarks/README.md).
+## Verify the code
 
 ```bash
-npm test                 # API handling, topic rules, timer rules, local limits
-npm run build            # Type checks and production browser build
-npm run test:browser     # Repeatable browser checks with simulated API responses
-npm run phase2:search    # Live YouTube check; consumes API allowance
-npm run phase2:chat      # Live example chat; consumes API allowance
-npm run phase2:review-chat # Up to 20 live questions; consumes remaining local chat allowance
+npm test
+npm run build
+npm run test:browser
 ```
 
-Browser checks use `/usr/bin/google-chrome` if present, or `CHROME_PATH` if set. Otherwise install Playwright Chromium with `npx playwright install chromium` in a normal writable development environment.
+Service/rule tests use controlled dependencies. Browser tests simulate APIs, accounts and playback; they do not establish live-provider performance. Playwright uses `CHROME_PATH` or `/usr/bin/google-chrome` when available; otherwise install its browser with `npx playwright install chromium`. A historical browser run had one legacy navigation failure; see [evidence and scope](docs/evaluation/RESULTS.md).
 
-Local browser API limits default to 40 search calls and 25 chat calls per UTC day. The usage record survives server restarts in ignored `.local-data/usage.json`. Failed attempts count conservatively. The command-line example checks are separate and do not reserve from this local record; they still consume provider allowance. The chat review shares the local record. Do not delete it to bypass provider quotas.
+API benchmarks use the existing running server:
 
-## Project layout
+```bash
+npm run benchmark -- search                 # Plan only; no API calls
+npm run benchmark -- teacher                # Plan only
+npm run benchmark -- classification         # Plan only
+# Append --live to run a suite with real provider allowance.
+```
 
-- `backend`: local and hosted API, provider connections, caching, Supabase access and usage limits.
-- `desktop-ui`: current layout, navigation and styles, including the existing narrow-screen fallback.
-- `mobile-ui`: approved phone layout, bottom navigation, full-screen chat, search/topics screens and mobile styles.
-- `shared/features`: reusable accounts, topics, videos, chat, progress and learning timer.
-- `shared/lib` and `shared/components`: frontend API helpers and reusable visual helpers.
-- `src`: React entry and application state coordination.
-- `experiments/phase-2`: developer checks and the legacy note-only chat experiment.
-- `supabase`: development database migration and ownership check.
-- `tests`: rule tests and repeatable browser journeys.
+[Benchmark instructions](experiments/benchmarks/README.md) explain custom datasets, reviewed labels and timing limitations. Raw runs remain in ignored `.local-data/benchmarks`; a sanitized historical summary is included in [evaluation evidence](docs/evaluation/evidence/benchmark-summary.json).
 
-See [the architecture guide](ARCHITECTURE.md) for module responsibilities and dependency rules. Run commands from the root; `npm run dev` starts `backend/dev.mjs`. The app now selects the mobile layout by screen size while retaining the desktop layout. See [the mobile implementation guide](mobile-ui/README.md) for behaviour and checks.
+## Operational limits
 
-## Limits before wider use
+Classification defaults to **400 model requests per UTC day**, usually two per uncached video. Search/metadata, search guardrails, chat and video analysis have separate app caps. Gemini requests share a process-local queue with **5 seconds between starts**, teacher priority and provider cooldowns. These are app settings, not verified provider entitlements or an enforced combined 500-request budget. Provider RPM, token and daily quotas still apply.
 
-- Video results and break candidates are unreviewed. Search ranking is not a quality guarantee. Entertainment relevance needs manual review.
-- Chat now answers broader questions, uses supplied CUDA notes where applicable, and can analyze supported public YouTube videos for relevant sections. General explanations are labeled separately from supplied-note/video explanations. Recommendations and AI timestamps are not independently reviewed; see [CHATBOT_PLAN.md](CHATBOT_PLAN.md).
-- Guest saving stores our own query/category records, not YouTube metadata or transcripts. Browser storage can be cleared or unavailable.
-- Hosted cache and daily counters use Firestore transactions. Stronger abuse controls, deletion/export and broader release review remain.
-- Dependencies are pinned in `package.json` and `package-lock.json`. The Google Cloud container build and live provider checks passed.
+YouTube metadata is cached for six hours, Trending for one hour, and accepted topic extraction/classification for 30 days. Wikidata-outage classifications last five minutes. Changed metadata/model/policy causes fresh classification; capacity eviction may remove entries earlier. Cloud Run uses Firestore caches and atomic counters; local development uses ignored files. Usage survives restarts and deployment. See [classification](backend/classification/README.md), [search](backend/search/README.md), [scheduler](backend/gemini/README.md) and [YouTube cache](backend/cached-youtube.mjs).
 
-Current evidence and remaining checks: [PHASE_2_RESULTS.md](PHASE_2_RESULTS.md).
+The health endpoint `/api/health` checks that the server responds, not Gemini, YouTube, accounts or remaining quota. Check the actual guest journey during evaluation. Hosted confirmation email delivery, two-account isolation, real-device playback, sustained load, answer correctness and learning outcomes require further checks.
 
-The founder selected Google Cloud for hosting. See [the Cloud Run deployment preparation](GOOGLE_CLOUD_DEPLOYMENT.md). Production startup, persistent shared cache/counters and hosted configuration are implemented. The service is deployed in Mumbai.
+## Code map
 
-## Scrolling videos and continuing playback
+| Location                                                   | Responsibility                                                      |
+| ---------------------------------------------------------- | ------------------------------------------------------------------- |
+| `src`                                                      | React entry and coordination of navigation and features             |
+| `shared`                                                   | Reusable frontend learning, search, chat, accounts and playback     |
+| `desktop-ui`, `mobile-ui`                                  | Separate responsive layouts; full feature parity is not assumed     |
+| `backend/chat`, `backend/search`, `backend/classification` | Teacher, search guardrails and topic mapping                        |
+| `backend/providers`, `backend/gemini`                      | Provider adapters and shared request scheduling                     |
+| `backend/storage`, `supabase`                              | Shared cache/counter adapters, account access and SQL migrations    |
+| `backend/graph`, `content/graph`, `scripts/graph`          | Optional graph feature and reviewed publication workflow            |
+| `experiments/benchmarks`                                   | API benchmarks and draft evaluation cases                           |
+| `experiments/phase-2`                                      | Historical feasibility scripts and narrow note-only chat experiment |
+| `tests`                                                    | Automated service/rule and browser checks                           |
+| `design`                                                   | Penpot handoffs and approved design decisions; Figma is archival    |
+| `deployment`, `submission`                                 | Cloud Run release helper and hackathon presentation artifacts       |
 
-- Choose **Short videos** for a vertical scrolling feed. Only the current card has a player; short videos start muted when visible. YouTube controls remain available. The grouping uses duration up to three minutes, not confirmed official Shorts status or video orientation.
-- Longer videos play directly above their selected result. **Continue watching** shows unfinished videos for the current topic, including saved videos no longer returned in the latest search.
-- Progress is recorded every five seconds while playing, on pause/end, when leaving view, and when the player closes. Finished videos restart from the beginning. This records the last position, not verified learning or a percentage of content understood.
-- Guests retain up to 200 recent playback records in this browser. Signed-in users save to their own Supabase records; guest records do not transfer into the account. After refreshing, the saved sign-in restores account progress automatically.
-- For account progress, run [002_video_progress.sql](supabase/migrations/002_video_progress.sql) once in the development SQL Editor, then run [video_progress_access.sql](supabase/tests/video_progress_access.sql). This adds a separate table without changing saved topics. The test rolls back its temporary records; if it errors, run `rollback;` before further SQL work.
-- Restart `npm run dev` to load the new server routes. The account migration and live account progress check remain pending until the founder runs them. Connection loss or abruptly closing the browser can lose the latest unsynced account position; the interface reports sync failures when the page remains open.
-# Curiosity
+[Architecture](ARCHITECTURE.md) · [Product vision](STARTUP_IDEA.md) · [Design handoff](design/review/DESIGN_REVIEW.md) · [Deployment](GOOGLE_CLOUD_DEPLOYMENT.md)
 
-## Approved desktop layout
-
-The app now uses the approved [Figma layout](https://www.figma.com/design/miSY1sBxnsGIfjjUgx6Djp?node-id=5-2): search and sign-in in the header, saved broad subjects in the sidebar, thumbnail videos, a Shorts shelf, and chat beside topic results. Mobile navigation opens from the menu button.
-
-The top bar shows **Trending**, then subjects from successful saved searches. Trending contains recent popular learning videos from YouTube; suggestions use up to two saved searches. English is preferred, but other languages can appear. Views are not a quality review.
-
-**Restart your existing `npm run dev` process** to load the new `/api/feed/home` route. No new keys, packages, or database migration are required for the redesign. Account playback sync still needs the previously documented video-progress setup.
-
-See [the design handoff](design/review/DESIGN_REVIEW.md) for the implementation, optional features, and verification details.
-
-
-### Playback and account troubleshooting
-
-- Continue watching reopens a saved video directly. Use **Resume video** to play from the saved position. Player failures offer **Retry player** and an Open on YouTube link.
-- Signing out closes the account's active topic view and returns to guest history. Guest searches made before signing in may still appear; they do not belong to the signed-out account.
-- If an account is unconfirmed, use **Resend confirmation email**. A successful request does not guarantee inbox delivery. Sender setup, rate limits, and allowed confirmation-return URLs are documented in [PHASE_2_SETUP.md](PHASE_2_SETUP.md#missing-confirmation-emails).
-
-## YouTube result cache
-
-Search pages and individual video details are reused for **six hours**; Trending is reused for **one hour**. The server stores this metadata in ignored `.local-data/youtube-cache.json`, so it survives page refreshes and server restarts. It caches video IDs, titles, channels, and playback details; YouTube continues streaming media directly. It never stores account records or credentials in this cache.
-
-- Identical simultaneous requests share one provider request. Pagination tokens and search settings distinguish result pages.
-- Home recommendations and topic searches use the same search/detail cache. Overlapping video-detail batches reuse individual records.
-- Fresh cache hits spend no local allowance and remain available after the local limit is reached. New or expired results still require allowance. Failures are not cached; expired data is not served as a fallback.
-- Up to 500 entries are retained. Expired entries are deleted on startup, writes, and a 15-minute cleanup while the server runs. Cache files have restricted permissions. Query keys are hashed rather than storing the original query as the key.
-- Restart `npm run dev` to use this change. Existing exhausted usage is not reset, and results fetched before this cache existed are not automatically recovered. Future successful requests populate the cache.
-- This is a cache for one local server. Hosted deployments need shared storage. See [YouTube quota explanations](YOUTUBE_QUOTAS.md).
-
-
-## Teacher chat
-
-Use **Ask a question** before selecting a video, or ask beside the video you are watching. You can ask about another subject without changing the player. Replies explain whether the question relates to the video, give an answer, and offer up to two actual YouTube results when a matching video section is unavailable. **Watch at …** seeks to an AI-matched section; timing may be approximate. An older reply can reopen its original video at the suggested time.
-
-Follow-up buttons offer simpler explanations, examples, or more depth. The conversation remains available while navigating this page; refresh, New conversation, or an account change clears it. No conversation is stored in the database in this version. Generated recommendation keywords can use the public YouTube metadata cache; question/answer history is not stored in that cache.
-
-Restart `npm run dev` for the new chat route. `CHAT_VIDEO_CONTEXT` defaults to enabled; set it to `false` to use text and notes only. `VIDEO_CHAT_DAILY_LIMIT` defaults to eight analysis attempts per UTC day. Videos longer than 30 minutes, private/unlisted videos, missing details, or exhausted analysis allowance use a text explanation without a timestamp. Unsupported video-input HTTP 400 responses permit one text fallback; network errors are reported without automatic retries. A fallback consumes another chat request. Video requests have a 60-second deadline; ordinary text requests retain 20 seconds. Live web fact-checking is not enabled.
-
-`npm run phase2:teacher-check` runs fixed public developer examples with a separate persisted limit of three model requests, two video attempts, and six YouTube operations per UTC day. Results are ignored under `.local-data/teacher-check`. Do not erase the usage record to repeat calls. These checks consume real provider allowance; they are separate from the browser app's local counter.
-
-## Desktop Universe update
-
-Desktop navigation now uses **Science & Technology**, **Commerce & Business**, and **Arts & Humanities**, with Trending as the default. Universe feeds open directly into videos and subject filters. Long-video labels appear between the title and creator name. A normal video click restores saved playback without a separate app Resume button.
-
-Older searches and progress are preserved. Classification is a provisional rule system; unclear videos remain watchable without a label. Phone navigation remains at its previous design. See [the desktop implementation guide](desktop-ui/features/universes/README.md).
-
-Restart `npm run dev` for the new backend feed route. No new keys or database migration are needed. This update has not been redeployed to the public demo.
-
-## Gemini and Wikidata video labels
-
-Video labels now use background Gemini classification with Wikidata concept matching, replacing video-title keyword rules. One flat topic and one primary Universe determine placement; expandable +1/+2 labels show substantial connections to other Universes. Unmatched concepts remain provisional. Browsing and playback do not wait for classification.
-
-Uses only the existing `GEMINI_MODEL` and credentials. Restart `npm run dev`; no SQL migration is needed. Optional `VIDEO_CLASSIFICATION` and `CLASSIFICATION_DAILY_LIMIT` settings are in `.env.example`. The default separate classification allowance is 400 model requests per UTC day, normally two requests per uncached video. The provider's own allowance still applies.
-
-See [the classification guide](backend/classification/README.md) for prompts, inputs, caching, failure behaviour and live-check evidence. Legacy saved-search grouping is preserved; mobile Universe navigation remains separate work. This update has not been redeployed.
-
-
-## Sequential Gemini requests
-
-Teacher and video classification now share one backend queue: one Gemini request at a time, teacher priority, and a default 5-second interval between request starts (`GEMINI_REQUEST_INTERVAL_MS`). Videos request labels when they enter view; queued offscreen work is removed. Waiting/finding labels and asynchronous status polling keep browsing responsive. Accepted topic extraction is reused if the second stage needs a manual retry.
-
-Gemini rate limits pause new work, and recognized daily quota errors block it until the provider's next daily reset. This cannot restore an already exhausted provider allowance. Exact account limits have not been supplied; the starting interval is configurable rather than a guarantee against all rate/token limits. Restart `npm run dev` and refresh. No live model requests, model changes, quota resets or deployment were made for this update. See [the scheduler guide](backend/gemini/README.md).
-
-## Learning graph implementation
-
-A local implementation of Explore map is prepared: shared constellation map, Map/Feed views, desktop/mobile integration, personal discovery and 30-second exploration achievements. It defaults off. Apply the new Supabase migration, review/publish catalog content, and enable `LEARNING_GRAPH_ENABLED=true` before using it. The starter has 30 concepts/26 connections and deliberately no unreviewed videos or current-news stories.
-
-See [setup, publication, evidence and limitations](backend/graph/README.md) and [the implementation reference](GRAPH_IMPLEMENTATION_PLAN.md). No migration, live provider check or deployment was performed for this feature.
+Phase plans, results and submission artifacts contain dated development evidence. Their older model, link, UI or deployment statements should be read as historical records. The evaluator documents describe current source behavior; a successful deployment record alone does not verify every feature on the live site.

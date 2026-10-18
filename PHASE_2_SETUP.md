@@ -1,5 +1,7 @@
 # Phase 2: setup and working checks
 
+> This file includes historical feasibility setup. For the current Cloud Run architecture, guest setup, grounding and model configuration, start with [the evaluator guide](docs/evaluation/EVALUATOR_GUIDE.md).
+
 Started: 2026-10-13.
 
 ## What we are doing now

@@ -1,6 +1,6 @@
 # Starter learning map
 
-`catalog.json` is a review draft of 30 topics and 26 proposed connections across Science, Commerce and Arts. IDs and coordinates are deterministic/stable. It contains no videos or weekly news stories and has `reviewed: false`.
+`catalog.json` is a review draft of 30 topics and 26 proposed connections across Science, Commerce and Arts. IDs and coordinates are deterministic/stable. It contains no videos or weekly news stories and currently has `reviewed: true`. Its summary still calls it a draft, topic source lists are empty and Wikidata IDs are unset. This flag is an operator declaration, not independent evidence of factual review or live publication.
 
 Descriptions are curiosity prompts, not claims of verified teaching content. Connections are suggestions to review; none is represented as an established prerequisite. Optional Wikidata identities and source provenance are unset until checked.
 

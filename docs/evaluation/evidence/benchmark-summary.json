@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "description": "Sanitized historical local API observations; not accuracy evidence or current hosted performance. Raw runs are ignored local artifacts.",
+  "recordedGeminiIntervalMs": 1500,
+  "intervalProvenance": "Contemporaneous local configuration check; not instrumented per-request timing in these runs.",
+  "runs": [
+    {
+      "suite": "search",
+      "startedAt": "2026-10-18T08:20:28.481Z",
+      "finishedAt": "2026-10-18T08:20:31.585Z",
+      "sourceFile": ".local-data/benchmarks/2026-10-18T08-20-28-481Z-search-71e7f6f6/run.json",
+      "sourceSha256": "4eba0e950b09ece107ca78d14c6e88dd6ffc5ebda24c43d8188ed50c0fe339c7",
+      "metadata": {
+        "target": "http://127.0.0.1:8787",
+        "origin": "http://127.0.0.1:5173",
+        "clientRevision": "bc989dd1899a19a0c0ad4e8da1c95830c3222f3a-dirty",
+        "serverRevision": "unrecorded",
+        "model": "unrecorded",
+        "nodeVersion": "v20.20.2",
+        "datasetSha256": "811adc6b6173307cc35f9e0bd9d264f8b081350c0ead0eb6b93da8a9522cc6bd",
+        "timeoutMs": 180000,
+        "pollMs": 1500,
+        "repeats": 1,
+        "cacheState": "unknown"
+      },
+      "reviewedAttempts": 0,
+      "results": [
+        {
+          "caseId": "gpu-learning",
+          "repeat": 1,
+          "status": "success",
+          "elapsedMs": 3095.88,
+          "firstResultsMs": 3095.79,
+          "requests": 3,
+          "cacheState": "unknown",
+          "observation": {
+            "action": "allow",
+            "videoIds": ["h9Z4oGN89MU", "Axd50ew4pco", "s3yjlRkXhbA"],
+            "filteredCount": 0
+          }
+        }
+      ]
+    },
+    {
+      "suite": "teacher",
+      "startedAt": "2026-10-18T08:20:57.335Z",
+      "finishedAt": "2026-10-18T08:21:01.773Z",
+      "sourceFile": ".local-data/benchmarks/2026-10-18T08-20-57-335Z-teacher-c901dc2c/run.json",
+      "sourceSha256": "748e6d97028a77a18d95c509186b7e20be4625053d9217ff88b19c503154c881",
+      "metadata": {
+        "target": "http://127.0.0.1:8787",
+        "origin": "http://127.0.0.1:5173",
+        "clientRevision": "bc989dd1899a19a0c0ad4e8da1c95830c3222f3a-dirty",
+        "serverRevision": "unrecorded",
+        "model": "unrecorded",
+        "nodeVersion": "v20.20.2",
+        "datasetSha256": "aade728d3fced24617b6fa41b707036e09e3bedd054ab5cdf130ea54714aece1",
+        "timeoutMs": 180000,
+        "pollMs": 1500,
+        "repeats": 1,
+        "cacheState": "unknown"
+      },
+      "reviewedAttempts": 0,
+      "results": [
+        {
+          "caseId": "gpu-ai-explanation",
+          "repeat": 1,
+          "status": "success",
+          "elapsedMs": 4429.66,
+          "firstResultsMs": null,
+          "requests": 1,
+          "cacheState": "unknown",
+          "observation": {
+            "answerCharacters": 627,
+            "relation": "no-video",
+            "answerBasis": "general",
+            "videoContext": "none",
+            "hasTimestamp": false,
+            "videoIds": ["s3yjlRkXhbA", "-EL6i2AebdA"],
+            "noticeCount": 0
+          }
+        }
+      ]
+    },
+    {
+      "suite": "classification",
+      "startedAt": "2026-10-18T08:21:09.737Z",
+      "finishedAt": "2026-10-18T08:21:14.331Z",
+      "sourceFile": ".local-data/benchmarks/2026-10-18T08-21-09-737Z-classification-d3167809/run.json",
+      "sourceSha256": "d34b230ea18bd59df64467c6557a0cc88d630b2f6ed11cb816bca6380a613c1c",
+      "metadata": {
+        "target": "http://127.0.0.1:8787",
+        "origin": "http://127.0.0.1:5173",
+        "clientRevision": "bc989dd1899a19a0c0ad4e8da1c95830c3222f3a-dirty",
+        "serverRevision": "unrecorded",
+        "model": "unrecorded",
+        "nodeVersion": "v20.20.2",
+        "datasetSha256": "22d6a46dea02d85c01e551519e3ce4bb90a20487bdcb15d8d5c6bc04edd7afc9",
+        "timeoutMs": 180000,
+        "pollMs": 1500,
+        "repeats": 1,
+        "cacheState": "unknown"
+      },
+      "reviewedAttempts": 0,
+      "results": [
+        {
+          "caseId": "gpu-video",
+          "repeat": 1,
+          "status": "success",
+          "elapsedMs": 4584.7,
+          "firstResultsMs": null,
+          "requests": 4,
+          "cacheState": "unknown",
+          "observation": {
+            "topicLabel": "GPU architecture",
+            "wikidataId": null,
+            "topicStatus": "provisional",
+            "primaryUniverse": "science",
+            "wikidataStatus": "available",
+            "policyVersion": "1"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # AI Builder Cup 2026 submission
 
+> Historical requirements review and planning notes. Current recorded app URL: https://revelink-u2ubbw6fra-el.a.run.app. See [the evaluator guide](docs/evaluation/EVALUATOR_GUIDE.md) for current source scope; dated evidence below is retained rather than treated as current verification.
+
 Official requirements checked on 2026-10-14. The founder reports that a Google Cloud budget is set; its amount, enforcement type and coverage have not been independently checked. The public demo is deployed at https://curiosity-u2ubbw6fra-el.a.run.app.
 
 ## Dates

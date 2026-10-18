@@ -2,18 +2,20 @@
 
 ## Live demo
 
-**https://curiosity-u2ubbw6fra-el.a.run.app**
+**https://revelink-u2ubbw6fra-el.a.run.app**
 
-Deployed on October 14, 2026. The founder wants this address available through **December 31, 2026**. The service has no automatic expiry or scheduled shutdown. Keeping it available requires active billing, provider credentials, Supabase and sufficient quotas; this date is an operating target, not an uptime guarantee.
+The deployment report records service `revelink` deployed on October 18, 2026. The initial `curiosity` release was deployed on October 14, 2026. The founder wants this address available through **December 31, 2026**. The service has no automatic expiry or scheduled shutdown. Keeping it available requires active billing, provider credentials, Supabase and sufficient quotas; this date is an operating target, not an uptime guarantee.
 
 - Cloud project: `aibuildercup-511419`.
-- Service: `curiosity`, region: `asia-south1` (Mumbai).
-- Verified ready revision: `curiosity-00004-28h`, receiving all traffic.
-- [Open the service in Google Cloud Console](https://console.cloud.google.com/run/detail/asia-south1/curiosity/metrics?project=aibuildercup-511419).
-- [Health endpoint](https://curiosity-u2ubbw6fra-el.a.run.app/api/health).
-- [Demo information](https://curiosity-u2ubbw6fra-el.a.run.app/demo-info.html).
+- Current service: `revelink`, region: `asia-south1` (Mumbai).
+- Historical initial-service revision: `curiosity-00004-28h`; this is not a verified revision of the new `revelink` service.
+- [Open the service in Google Cloud Console](https://console.cloud.google.com/run/detail/asia-south1/revelink/metrics?project=aibuildercup-511419).
+- [Health endpoint](https://revelink-u2ubbw6fra-el.a.run.app/api/health).
+- [Demo information](https://revelink-u2ubbw6fra-el.a.run.app/demo-info.html).
 
 This completes the initial hosting work from Phase 16, including production feasibility work from Phase 2. It does not complete every release or hackathon submission task.
+
+The evaluator entry point is [docs/evaluation/EVALUATOR_GUIDE.md](docs/evaluation/EVALUATOR_GUIDE.md). Deployment reports are release records, not proof that every current-source feature has passed a hosted journey. The checks below are dated evidence.
 
 ## What runs where
 
@@ -66,7 +68,7 @@ The deploy helper uses the existing CLI login, selected local non-secret setting
 
 A revision is an individual release of the same service. Releasing another version preserves the website address and shared database. Use Cloud Run's Revisions tab to route traffic to a known working revision if a release fails. Do not delete the database or secrets as part of a rollback.
 
-## Verification completed
+## Historical initial-release verification
 
 - Production build and 41 service/rule checks passed, including asynchronous quota reservations, cache coordination, persistence simulations and production HTTP handling.
 - Thirty automated desktop/mobile browser journeys passed using simulated providers.
@@ -91,9 +93,9 @@ Real-device playback, account emails, saved progress across devices, a complete 
 - [Supabase return URLs](https://supabase.com/docs/guides/auth/redirect-urls)
 - [Supabase email configuration](https://supabase.com/docs/guides/auth/auth-smtp)
 
-## Prepared classification update — not deployed
+## Classification and scheduler implementation notes
 
-The Gemini/Wikidata video classification update adds a separate `classification` daily counter and `curiosity_classification` Firestore cache namespace. The deploy helper now passes `VIDEO_CLASSIFICATION` and `CLASSIFICATION_DAILY_LIMIT` and configures cache TTL/payload index exemptions for the new collection as well as the existing metadata collection. No new secret or Supabase migration is required. Existing Gemini model settings are reused. These changes are prepared locally; the recorded live revision above has not changed.
+The Gemini/Wikidata video classification update adds a separate `classification` daily counter and `curiosity_classification` Firestore cache namespace. The deploy helper now passes `VIDEO_CLASSIFICATION` and `CLASSIFICATION_DAILY_LIMIT` and configures cache TTL/payload index exemptions for the new collection as well as the existing metadata collection. No new secret or Supabase migration is required. Existing Gemini model settings are reused. The current source includes these changes. The newer deployment report does not identify a source revision; verify live behavior instead of assuming feature-level verification from the report.
 
 
-The prepared sequential-request update also passes `GEMINI_REQUEST_INTERVAL_MS` (default 5000) on a future deployment. Its shared scheduler is process-local and relies on the existing one-instance setting. Classification HTTP requests now return job status promptly and poll without resubmitting model operations. No new deployment was made.
+The prepared sequential-request update also passes `GEMINI_REQUEST_INTERVAL_MS` (default 5000) on a future deployment. Its shared scheduler is process-local and relies on the existing one-instance setting. Classification HTTP requests now return job status promptly and poll without resubmitting model operations. This paragraph originally described a prepared update. See the current deployment report for the recorded service/date; later changes require another deployment.
